@@ -1,0 +1,153 @@
+JV Framework 3.0.10
+======================================
+* Please update new template version
+~ New mobile menu style
++ New JV Framework Extension: Module assigment
+
+JV Framework 3.0.9
+======================================
+# Php strict error
+# Layout-Panel: unable to select front-end positions bug -  Joomla 3.0
+# Position alias : applying its setting on the original position.
+~ Layout-Panel-Block Layout: remove parameters position style, module style
+
+
+JV Framework 3.0.8
+======================================
+# Fixed bug support magic_quotes_gpc
+
+JV Framework 3.0.7
+======================================
+# Fixed bug magic_quotes_gpc On
+
+JV Framework 3.0.6
+======================================
+# Fixed bug template assign
+~ JInput, Exception will be used instead of JRequest, JError
+
+
+JV Framework 3.0 Final (3.0.5)
+======================================
+# Fixed bug edit template
+# Flexmenu fixed bug load module, position
++ Flexmenu add param menu image type
+~ Optimize flexible image
+
+
+JV Framework 3.0 Beta 4 (10/10/12)
+======================================
++ Add css selector for flexible images
+# Fixed bug responsive on IE7
+~ Update new JV JQuery libraries
+
+JV Framework 3.0 Beta 3 (02/10/12)
+======================================
+Update:
+- Create "colors" folder in the template being 
+working on
+- Inside "colors", create folders with the 
+template's colors' names
+- Move all images, css and thumbnail of each 
+template color to the 
+respective folder 
+- Rename css file to style.css, thumbnail to 
+thumbnail.jpg
+
+Change log:
+# Fixed bug extension Style line 113 loadINI
+~ Remove block header setting
++ Add block panel setting
+# Fixed bug Jhtml::core()
+~ Move logo setting to global tab
+~ Change minify cache path to joomla cache
+~ Relocal template color
+~ Add body direction class (ltr, rtl)
+- Remove default custom layout for iphone + 
+android
+
+JV Framework 3.0 Beta 2 (21/9/12)
+======================================
+Update:
+- Remove the unnecessary html overrides 
+- Overwrite the html folder of the template 
+being working on with html 
+folder of template jv-framework 
+
+Change log:
++ Display login and search button on mobile 
+layout
+~ Change override path
++ Support mobile html override
+- Remove mobile.css
+~ Mobile layout is updated to make use of 
+responsive CSS 
++ Support Joomla 3.0
+# Fixed bug typography
++ Add control for position style "carousel"
+
+JV Framework 3.0 Beta 1 (17/9/12)
+======================================
++ Add update server
++ Add magic method to get JDocument variable 
++ Map method countModules
+
+JV Framework 3.0 Alpha 5 (14/9/12)
+======================================
++ On/off responsive css
++ Add bbcode plugin support
+- Remove BBcode custom replacement
+- Remove set default template function
+- Remove style filter function: 'jv'
+
+JV Framework 3.0 Alpha 4 (11/9/12)
+======================================
+# Fixed bug edit block grid
+# Fixed bug edit style
+# Show template icon edit
+# Fixed js bug when server support short_opentag
+
+JV Framework 3.0 Alpha 3 (7/9/12)
+======================================
+Update:
+- Please uninstall old version before update
+- Move all file from theme to template, remove 
+folder "themes"
+- Add position <jdoc:include type="position" 
+name="position_name" />
+- Add block    <jdoc:include type="block"    
+name="block_name" />
+
+Change log:
++ Support jdoc:include tag to add position, 
+block
++ Update new html override
++ Now, you can rename template
++ Support module private output
++ Mobile custom layout
+~ Switch to joomla default template
+~ Relocal theme file to template
+~ Map html override
+~ Remove override class
+~ BBcode allow add custom replacement
+
+
+
+JV Framework 3.0 Alpha 2 (25/8/12)
+======================================
++ Vertical Menu Style 
++ Add cookie for layout switcher
+# Fixed bug dropline menu
++ Add Support RTL
+~ Move basic theme layout to basetheme
++ Template description
++ On/off, position for color chooser
+# Copyright not show
+# Modal class conflict
+# Theme color cookies
+# Cpanel default template
+# Menu configuration
+# JV jQuery Libraries config
+
+
+JV Framework 3.0 Alpha 1 (20/8/12)
+======================================

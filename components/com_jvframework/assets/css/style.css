@@ -1,0 +1,37 @@
+#typography .output h1,#typography .output h2,#typography .output h3,#typography .output h4,#typography .output h5,#typography .output h6 { margin-bottom:0;line-height:normal} 
+
+#typography code,#typography pre { font-size:14px}
+#typography ol { margin:0}
+
+/*------------------------------------------------------------------* TYPOGRAPHY *-------------------------------------------------------------------*/
+#typography h1.page_heading { text-transform:uppercase;}
+#typography h3.title { color:#444; font: 18px/30px Arial,Helvetica,sans-serif; height: 30px; padding-left: 10px; border-bottom:1px solid #ccc}
+#typography h3.title span {background:url(../images/dot.png) no-repeat 0 18px; display:block; padding-left:6px}
+
+#typography .typo_content { padding:0 10px 20px;}
+
+#typography .item { margin:10px 0; background-color:#fff; border:1px solid #e6e6e6; padding:0 10px; font-size:14px; color:#454545}
+#typography .item code, #typography .item pre {display: block; padding:10px; border-radius:0}
+#typography .item .rcode, #typography .item .example { margin-bottom:10px}
+
+#typography .item .code { border-left:1px solid #dcdcdc; padding-left:10px}
+#typography .item code{ border:0; background-color:#ebebeb;}
+
+#typography .item pre { background-color:#f9f9f9; border:1px solid #d3d3d3}
+
+#typography .item .code-exam { background-color:#ebebeb; color:#3e3e3e; padding:5px 15px; display:inline-block}
+
+#typography .item .output h3 { text-transform:uppercase; font-size:24px;}
+#typography .item .output p { margin-bottom:0}
+
+#typography .item .module-badge {border: 1px solid #CCC; }
+#typography .item .example code { line-height: 24px;}
+
+#typography .item .output > span,
+#typography .item .rcode > span,
+#typography .item .example > span { display:block; margin-bottom: 10px;}
+
+#typography a.viewcode {font-size: 14px; color: #000; display: block; margin: 15px 0;}
+#typography a.viewcode span {display: block; width: 15px; height: 15px; background: url(../images/collapse.png) no-repeat; float: left; margin-top: 2px; margin-right: 5px}
+
+.module-badge strong { color:#dd1144}

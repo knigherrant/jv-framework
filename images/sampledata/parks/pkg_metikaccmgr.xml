@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="package" version="1.6" method="upgrade" >
+   <name>metikaccmgr</name>
+   <author>joomlavi</author>
+   <creationDate>May 2016</creationDate>
+   <packagename>metikaccmgr</packagename>
+   <version>1.0.0</version>
+   <url>http://www.joomlavi.com/</url>
+   <packager>joomlavi</packager>
+   <packagerurl>http://www.joomlavi.com/</packagerurl>
+   <description />
+   <update>http://www.joomlavi.com/</update>
+   <files folder="packages">
+      <file type="component" id="metikaccmgr">com_metikaccmgr.zip</file>
+      <file type="template" id="beez_metik">beez_metik.zip</file>
+   </files>
+</extension>
