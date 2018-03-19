@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="plugin" group="system" method="upgrade">
 	<name>System - JV Libraries</name>
-    <author>JoomlaVi! Project</author>
-    <creationDate>September 17, 2015</creationDate>
-    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <author>PHPKungfu! Project</author>
+    <creationDate>April 2016</creationDate>
+    <copyright>Copyright (C) PHPKungfu. All rights reserved</copyright>
     <license>http://www.gnu.org/licenseses/gpl-3.0.html GNU/GPL or later</license>
-    <authorEmail>info@joomlavi.com</authorEmail>
-    <authorUrl>www.joomlavi.com</authorUrl>
-    <version>4.2.4</version>
+    <authorEmail>info@phpkungfu.club</authorEmail>
+    <authorUrl>www.phpkungfu.club</authorUrl>
+    <version>4.2.5</version>
     <description>
     <![CDATA[
         Libraries: jquery, jquery ui, jquery plugins, bootstraps, mootools <br/>

@@ -4,10 +4,10 @@
 # @versions: 1.5.x,1.6.x,1.7.x,2.5.x
 # ------------------------------------------------------------------------
 # author    Open Source Code Solutions Co
-# copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+# copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
 # @license - http://www.gnu.org/licenseses/gpl-3.0.html GNU/GPL or later.
-# Websites: http://www.joomlavi.com
-# Technical Support:  http://www.joomlavi.com/my-tickets.html
+# Websites: http://www.phpkungfu.club
+# Technical Support:  http://www.phpkungfu.club/my-tickets.html
 -------------------------------------------------------------------------*/
 defined('_JEXEC') or die('Restricted access');
 
@@ -233,13 +233,8 @@ class JFormFieldJVCustom extends JFormField{
     }
     
     private static function import_positions(){
-        if(file_exists(JPATH_ADMINISTRATOR . '/components/com_advancedmodules/helpers/modules.php')){
-            require_once JPATH_ADMINISTRATOR . '/components/com_advancedmodules/helpers/modules.php';
-            require_once JPATH_ADMINISTRATOR . '/components/com_modules/models/positions.php';
-        }else{
-            require_once JPATH_ADMINISTRATOR . '/components/com_modules/helpers/modules.php';
-            require_once JPATH_ADMINISTRATOR . '/components/com_modules/models/positions.php';
-        }
+       require_once JPATH_ADMINISTRATOR . '/components/com_modules/helpers/modules.php';
+        require_once JPATH_ADMINISTRATOR . '/components/com_modules/models/positions.php';
         $model = new ModulesModelPositions( array("ignore_request" => 1, "state" => new JObject(
             array(
                 "filter.search" => null,

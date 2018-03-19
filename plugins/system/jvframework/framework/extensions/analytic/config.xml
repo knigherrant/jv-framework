@@ -2,10 +2,10 @@
 <extension type="extension" version="2.5" client="site" method="upgrade">
   <name>JV Framework - Analytic</name>
   <creationDate>14/7/2012</creationDate>
-  <author>JoomlaVi! Project</author>
-  <authorEmail>info@joomlavi.com</authorEmail>
-  <authorUrl>http://www.joomlavi.com</authorUrl>
-  <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+  <author>PHPKungfu! Project</author>
+  <authorEmail>info@phpkungfu.club</authorEmail>
+  <authorUrl>http://www.phpkungfu.club</authorUrl>
+  <copyright>Copyright (C) PHPKungfu. All rights reserved</copyright>
   <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
   <version>1.0</version>
   <description>Analytic extension for JV Framework</description>
@@ -56,6 +56,6 @@
     </fields>
   </config>
   <updateservers>
-    <server type="collection">http://update.joomlavi.com/list.xml</server>
+    <server type="collection">http://update.phpkungfu.club/list.xml</server>
   </updateservers>
 </extension>

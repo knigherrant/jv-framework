@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5.0" method="upgrade">
 	<name>JVFRAMEWORK</name>
-	<author>JoomlaVi! Project</author>
-	<creationDate>22/06/2013</creationDate>
-	<copyright>Copyright (C) JoomlaVi. All rights reserved.</copyright>
+	<author>PHPKungfu! Project</author>
+	<creationDate>April 2016</creationDate>
+	<copyright>Copyright (C) PHPKungfu. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
-	<authorEmail>info@joomlavi.com</authorEmail>
-	<authorUrl>www.joomlavi.com</authorUrl>
-	<version>4.2</version>
+	<authorEmail>info@phpkungfu.club</authorEmail>
+	<authorUrl>www.phpkungfu.club</authorUrl>
+	<version>4.2.6</version>
 	<description>
 	<![CDATA[
 	<style type="text/css">
@@ -50,9 +50,9 @@
 	 }); 
   </script>
 	 <ul>
-		<li><em>Version: 4.0</em></li>
-		<li><em>Release date: 12/22/2014</em></li>
-	    <li><em>Contact us: <a href="mailto:info@joomlavi.com">info@joomlavi.com</a></em></li>
+		<li><em>Version: 4.2.6</em></li>
+		<li><em>Release date: April 2016</em></li>
+	    <li><em>Contact us: <a href="mailto:info@phpkungfu.club">info@phpkungfu.club</a></em></li>
 	</ul>
 	  <div id="controlpanel">
 	<div class="width-60 fltlft">
@@ -97,10 +97,10 @@
 			<h3>//// JV Framework</h3>
 			
 			<p>Flexible, customizable, high performance and developer-friendly.
-JV Framework 4.2 is a steep improvemence over our old Framework. While dropping some functions like drag and drop, it had gained several new ones, more up-to-date functions like a Grid layout control, a Responsive Design and a modular nature, allowing developers to improve or create new features with ease.
+JV Framework 4.2.6 is a steep improvemence over our old Framework. While dropping some functions like drag and drop, it had gained several new ones, more up-to-date functions like a Grid layout control, a Responsive Design and a modular nature, allowing developers to improve or create new features with ease.
 <br>Try it out and experience the improvemence.</p>
 		</div>
-        <div class="cpanel-logo"><a href="http://joomlavi.com" target="_blank"><img alt="Logo" src="components/com_jvframework/assets/images/logo2.png"></a></div>
+        <div class="cpanel-logo"><a href="http://phpkungfu.club" target="_blank"><img alt="Logo" src="components/com_jvframework/assets/images/logo2.png"></a></div>
         </div>
 	</div>		
 </div>
@@ -139,6 +139,6 @@ JV Framework 4.2 is a steep improvemence over our old Framework. While dropping 
     </administration> 
     <scriptfile>install.jvframework.php</scriptfile>
     <updateservers>
-	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	   <server type="collection">http://update.phpkungfu.club/list.xml</server>
 	</updateservers>
 </extension>

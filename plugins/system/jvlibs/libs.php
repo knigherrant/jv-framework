@@ -4,15 +4,15 @@
 # @versions: 1.6.x,1.7.x,2.5.x,3.x
 # ------------------------------------------------------------------------
 # author    Open Source Code Solutions Co
-# copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+# copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
 # @license - http://www.gnu.org/licenseses/gpl-3.0.html GNU/GPL or later.
-# Websites: http://www.joomlavi.com
-# Technical Support:  http://www.joomlavi.com/my-tickets.html
+# Websites: http://www.phpkungfu.club
+# Technical Support:  http://www.phpkungfu.club/my-tickets.html
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
 class JVLibs{
-    static $config,$downloadLink = "http://www.joomlavi.com/joomla-extensions/";
+    static $config,$downloadLink = "http://www.phpkungfu.club/joomla-extensions/";
     
     static function init($subject, $config){
         self::$config = new JVCustomParam($config);

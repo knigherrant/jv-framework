@@ -16,7 +16,7 @@ if(($this['option']->get('global.copyright.enable')) || ($this['option']->get('g
     echo '</div>';
 	if($this['option']->get('global.copyright.fwcopyright')):?>
     <div id="jvframework-logo">
-		<a  href="http://joomlavi.com" title="JV Framework">
+		<a  href="http://phpkungfu.club" title="JV Framework">
 			<img src="<?php echo $this['path']->url('theme::img/powerby.png'); ?>" title="JV Framework" alt="JV Framework"/>
 		</a>
     </div>    

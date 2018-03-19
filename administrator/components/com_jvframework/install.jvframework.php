@@ -4,10 +4,10 @@
  # @version		1.6.x
  # ------------------------------------------------------------------------
  # author    Open Source Code Solutions Co
- # copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+ # copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
  # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
- # Websites: http://www.joomlavi.com
- # Technical Support:  http://www.joomlavi.com/my-tickets.html
+ # Websites: http://www.phpkungfu.club
+ # Technical Support:  http://www.phpkungfu.club/my-tickets.html
  */
 
 // No direct access to this file
@@ -79,7 +79,7 @@ class JVInstall {
 			}
 		}
 		
-		//self::_install( JFolder::folders($folder.'/additional/template', '.', false, true), 'template');	
+		self::_install( JFolder::folders($folder.'/additional/template', '.', false, true), 'template');	
 		self::_install( JFolder::folders($folder.'/additional/extension', '.', false, true), 'extension');
 		
 		self::displayResults ();
@@ -91,7 +91,8 @@ class JVInstall {
 				if($type =='extension'){
 					$version = new JVersion;
 					if($version->isCompatible('3.4')){
-						$installer = new JInstaller(__DIR__, 'JVInstaller' );
+						if($version->isCompatible('3.4.8')) $installer = new JInstaller();
+						else $installer = new JInstaller(__DIR__, 'JVInstaller' );
 					}else $installer = new JInstaller();
 				}else{
 					$installer = new JInstaller();
@@ -133,7 +134,7 @@ class JVInstall {
 			INSERT INTO `#__jv_typos` VALUES (NULL, 'h2', 'h2', '<h2 class=\"{option}\">{param}</h2>', '[h2=hidden1]abc1[/h2]', '2', '1');
 			INSERT INTO `#__jv_typos` VALUES (NULL, 'Blocknumber 1', 'blocknumber1', '<p class=\"blocknumber\"><span class=\"bignumber-1\">{option}</span>{param}</p>', '[blocknumber1=01]Your content goes here![/blocknumber1]', '5', '1');
 			INSERT INTO `#__jv_typos` VALUES (NULL, 'notice', 'notice', '<p class=\"error bg1\"><span class=\"icon\"> </span>{param}</p>', '[notice]Notice[/notice]', '11', '1');
-			INSERT INTO `#__jv_typos` VALUES (NULL, 'url', 'url', '<a href=\"{option}\">{param}</a>', '[url=http://joomlavi.com]joomlavi.com[/url]', '3', '1');
+			INSERT INTO `#__jv_typos` VALUES (NULL, 'url', 'url', '<a href=\"{option}\">{param}</a>', '[url=http://phpkungfu.club]phpkungfu.club[/url]', '3', '1');
 			INSERT INTO `#__jv_typos` VALUES (NULL, 'Paragraph Style - Message', 'message', '<p class=\"message bg2\"><span class=\"icon\"></span>{param}</p>', '[message]Your text here[/message]', '12', '1');
 			INSERT INTO `#__jv_typos` VALUES (NULL, 'Box Style - Sticky', 'sticky', '<p class=\"box-sticky\">{param}</p>', '[sticky]Your clip note goes here![/sticky]', '4', '1');
 			INSERT INTO `#__jv_typos` VALUES (NULL, 'Paragraph Style - Photo', 'photo', '<p class=\"photo bg3\"><span class=\"icon\"> </span>{param}</p>', '[photo]Your message goes here![/photo]', '18', '1');

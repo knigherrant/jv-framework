@@ -4,10 +4,10 @@
   # @version		1.5.x
   # ------------------------------------------------------------------------
   # author    Open Source Code Solutions Co
-  # copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+  # copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
   # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
-  # Websites: http://www.joomlavi.com
-  # Technical Support:  http://www.joomlavi.com/my-tickets.html
+  # Websites: http://www.phpkungfu.club
+  # Technical Support:  http://www.phpkungfu.club/my-tickets.html
   ------------------------------------------------------------------------- 
   */
 // no direct access
@@ -59,15 +59,15 @@ JHtml::_('behavior.tooltip');
 		<div class="cpanel-inner">
 			<h3>//// JV Framework</h3>
 			<ul>
-				<li><em>Version: 4.0</em></li>
-				<li><em>Release date: 12/22/2014</em></li>
-                <li><em>Contact us: <a href="mailto:info@joomlavi.com">info@joomlavi.com</a></em></li>
+				<li><em>Version: 4.2.5</em></li>
+				<li><em>Release date: April 2016</em></li>
+                <li><em>Contact us: <a href="mailto:info@phpkungfu.club">info@phpkungfu.club</a></em></li>
 			</ul>
 			<p>Flexible, customizable, high performance and developer-friendly.
-JV Framework 4.0 is a steep improvemence over our old Framework. While dropping some functions like drag and drop, it had gained several new ones, more up-to-date functions like a Grid layout control, a Responsive Design and a modular nature, allowing developers to improve or create new features with ease.
+JV Framework 4.2.5 is a steep improvemence over our old Framework. While dropping some functions like drag and drop, it had gained several new ones, more up-to-date functions like a Grid layout control, a Responsive Design and a modular nature, allowing developers to improve or create new features with ease.
 <br/>Try it out and experience the improvemence.</p>
 		</div>
-        <div class="cpanel-logo"><a target="_blank" href="http://joomlavi.com"><img src="components/com_jvframework/assets/images/logo2.png" alt="Logo" /></a></div>
+        <div class="cpanel-logo"><a target="_blank" href="http://phpkungfu.club"><img src="components/com_jvframework/assets/images/logo2.png" alt="Logo" /></a></div>
         </div>
 	</div>	
 	<div>
@@ -78,7 +78,7 @@ JV Framework 4.0 is a steep improvemence over our old Framework. While dropping 
 	</form>	
 </div>
 <div class="company-info">
-	<a target="_blank" href="http://joomlavi.com"><img src="components/com_jvframework/assets/images/joomlavi.png" alt="Joomlavi" /></a>
+	<a target="_blank" href="http://phpkungfu.club"><img src="components/com_jvframework/assets/images/phpkungfu.png" alt="PHPKungfu" /></a>
 </div>
 
 

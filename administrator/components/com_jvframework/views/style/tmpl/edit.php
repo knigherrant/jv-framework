@@ -4,10 +4,10 @@
  # @version		1.5.x
  # ------------------------------------------------------------------------
  # author    Open Source Code Solutions Co
- # copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+ # copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
  # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
- # Websites: http://www.joomlavi.com
- # Technical Support:  http://www.joomlavi.com/my-tickets.html
+ # Websites: http://www.phpkungfu.club
+ # Technical Support:  http://www.phpkungfu.club/my-tickets.html
 -------------------------------------------------------------------------*/
 //no direct access
 defined( '_JEXEC' ) or die( 'Retricted Access' );
@@ -226,7 +226,7 @@ jQuery(function() {
 	</div>
 </form>
 <div class="copyright">
-    <a target="_blank" href="http://joomlavi.com"><img src="components/com_jvframework/assets/images/logo2.png" alt="Logo" /></a>  
+    <a target="_blank" href="http://phpkungfu.club"><img src="components/com_jvframework/assets/images/logo2.png" alt="Logo" /></a>  
 </div>
 <div id="clearCache">
     <img src="<?php echo JURI::base(); ?>components/com_jvframework/assets/images/loading.gif" />
