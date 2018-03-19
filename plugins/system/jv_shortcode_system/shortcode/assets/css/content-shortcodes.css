@@ -1,0 +1,863 @@
+/*** jv-Shortcodes  - content elements ***/
+
+/*		Heading
+---------------------------------------------------------------*/
+.jv-heading h1, .jv-heading h2, .jv-heading h3, .jv-heading h4, .jv-heading h5 {
+	position: relative;
+	line-height: 2em;
+}
+
+.jv-heading h1:before, .jv-heading h2:before, .jv-heading h3:before, .jv-heading h4:before, .jv-heading h5:before {
+	width: 60px;
+	height: 3px;
+	background: #e8e8e8;
+	position: absolute;
+	top: 100%;
+	content: "";
+}
+
+.jv-heading-align-left {
+	text-align: left;
+}
+
+.jv-heading-align-right {
+	text-align: right;
+}
+
+.jv-heading-align-center {
+	text-align: center;
+}
+
+.jv-heading-align-center h1:before, 
+.jv-heading-align-center h2:before, 
+.jv-heading-align-center h3:before, 
+.jv-heading-align-center h4:before,
+.jv-heading-align-center h5:before {
+	left: 50%;
+	margin-left: -30px;
+	
+}
+
+.jv-heading-align-left h1:before, 
+.jv-heading-align-left h2:before, 
+.jv-heading-align-left h3:before, 
+.jv-heading-align-left h4:before,
+.jv-heading-align-left h5:before {
+	left: 0;	
+}
+
+.jv-heading-align-right h1:before, 
+.jv-heading-align-right h2:before, 
+.jv-heading-align-right h3:before, 
+.jv-heading-align-right h4:before,
+.jv-heading-align-right h5:before {
+	right: 0;	
+}
+/*		Button
+---------------------------------------------------------------*/
+.jvsc-button {
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	transition: all .2s;
+	-o-transition: all .2s;
+	-ie-transition: all .2s;
+	-moz-transition: all .2s;
+	-webkit-transition: all .2s;
+	overflow: hidden;
+	padding: 0.6em 1em;
+	position: relative;
+}
+
+.jvsc-button-wide {
+	display: block;
+	margin: 1em 0;
+}
+
+.jvsc-button-center {
+	text-align: center;
+}
+
+.jvsc-button span {
+	position: relative;
+}
+
+.jvsc-button img {
+	border: none !important;
+	vertical-align: middle !important;
+	margin: -0.2em 0.4em 0 -0.3em !important;
+	box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+}
+
+.jvsc-button i {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+	line-height: 1em;
+	vertical-align: middle;
+	text-shadow: none;
+}
+/** style 1 **/
+.jvsc-button-style-btn1{
+	border-bottom: 5px solid rgba(0 ,0 , 0, 0.15) !important;
+	position: relative;
+}
+
+.jvsc-button-style-btn1:hover{
+	top: 2px;
+	border-bottom: 3px solid rgba(0 ,0 , 0, 0.15) !important;
+}
+
+/** style 2 **/
+.jvsc-button-style-btn2 i, .jvsc-button-style-btn2 img {
+	margin-left: 10px;
+}
+
+.jvsc-button-style-btn2 {
+	position: relative;
+}
+
+.jvsc-button-style-btn2:after {
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
+	height: 200%;
+	margin: -5px 0 0 -5px;
+	right: -30px;
+	top: -30px;
+	transform: rotate(20deg);
+	transform-origin: 0 0 0;
+	width: 30%;
+	z-index: 1;
+	position: absolute;
+	content: "";
+	transition: all 0.3s ease 0s;
+}
+
+.jvsc-button-style-btn2:hover:after {
+	width: 40%;
+}
+
+/** style 3 **/
+.jvsc-button-style-btn3 {
+	position: relative;
+	overflow: hidden;
+	backface-visibility: hidden;
+}
+
+.jvsc-button-style-btn3 .jvsc-button-text {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	transition: all 0.3s ease 0s;
+	backface-visibility: hidden;
+	transform: translateX(0px);
+}
+
+.jvsc-button-style-btn3 .jvsc-button-icon {
+	font-size: 110%;
+	height: 100%;
+	position: absolute;
+	transition: all 0.3s ease 0s;
+	width: 100%;
+	left: -100%;
+	top: 0;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.jvsc-button-style-btn3 .jvsc-button-icon i {
+	padding: 0.6em 1em;
+}
+
+.jvsc-button-style-btn3:hover .jvsc-button-icon {
+	left: 0;
+}
+
+.jvsc-button-style-btn3:hover .jvsc-button-text {
+	transform: translateX(200%);
+}
+
+/*** style 4 ***/
+.jvsc-button-style-btn4 {
+	position: relative;
+	padding-left: 3em;
+}
+
+.jvsc-button-style-btn4 .jvsc-button-icon {
+	display: inline-block;
+	width: 2em;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0px;
+	border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.jvsc-button-style-btn4 .jvsc-button-icon i {
+	padding-top: 0.7em
+}
+
+.jvsc-button-style-btn4 .jvsc-button-text {
+	transform: translateX(20%);
+}
+
+.jvsc-button-style-btn1:hover:before, .jvsc-button-style-btn4:hover:before
+	{
+	background-color: rgba(0, 0, 0, 0.1);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: "";
+}
+/*		Table
+---------------------------------------------------------------*/
+.jv-table table {
+	width: 100% !important;
+	margin: 0 0 1.5em 0 !important;
+	border-collapse: collapse !important;
+	font-size: 1em !important;
+	border: 1px solid #ccc !important;
+}
+
+.jv-table th {
+	text-align: center !important;
+	padding: 1em !important;
+	font-size: 1em !important;
+	font-weight: normal !important;
+	color: #333 !important;
+	border: 1px solid #ccc !important;
+	background: #f0f0f0 !important;
+}
+
+.jv-table td {
+	padding: 0.5em 1em !important;
+	border: 1px solid #ccc !important;
+	background: #fff !important;
+}
+
+.jv-table .jv-even td {
+	background: #f7f7f7 !important
+}
+
+/*	Iconbox
+-------------------------------------------------------- */
+/*	Iconbox
+-------------------------------------------------------- */
+.jvsc-iconbox {
+	padding: 20px;
+}
+
+.jvsc-iconbox-style-icon-inleft  .jvsc-iconbox-icon {
+	float: left;
+	text-align: center;
+}
+
+.jvsc-iconbox  .icon {
+	
+}
+
+.jvsc-iconbox .jvsc-iconbox-title {
+	margin-bottom: 4px;
+	margin-top: 4px;
+	display: block;
+}
+
+.jvsc-iconbox .jvsc-iconbox-content-text {
+	
+}
+
+.jvsc-iconbox-description {
+	display: block;
+}
+
+.jvsc-iconbox-link a {
+	font-weight: bold;
+	text-decoration: none;
+}
+/* Icon inleft circle*/
+.jvsc-iconbox-style-icon-inleft-circle .icon {
+	border-radius: 50%;
+}
+
+.jvsc-iconbox-style-icon-inleft-circle  .jvsc-iconbox-content-text {
+	
+}
+/* Icon inleft square*/
+.jvsc-iconbox-style-icon-inleft-square .icon {
+	border-radius: 5px;
+}
+/* Icon ontop */
+.jvsc-iconbox-style-icon-ontop {
+	text-align: center;
+}
+
+.jvsc-iconbox-style-icon-ontop .icon {
+	border-radius: 50%;
+}
+
+.jvsc-iconbox-style-icon-ontop .jvsc-iconbox-content-text .jvsc-iconbox-link
+	{
+	margin-top: 10px;
+	display: inline-block;
+	pading: 0 10px;
+}
+
+/* Icon ontop outside*/
+.jvsc-iconbox-style-icon-ontop-outside .jvsc-iconbox-content-text {
+	border: 1px solid #eaeaea;
+	background-color: #f9f9f9;
+}
+
+.jvsc-iconbox-style-icon-ontop-outside .jvsc-iconbox-content-text .jvsc-iconbox-link
+	{
+	margin-top: 10px;
+	display: inline-block;
+	padding: 0 10px;
+	border-radius: 2px;
+}
+
+.jvsc-iconbox-style-icon-ontop-outside .jvsc-iconbox-content-text .jvsc-iconbox-link a:hover
+	{
+	background-color: transparent !important;
+}
+/* For Message Box													
+------------------------------------------------------------------- -------------------  */
+.jvsc-messagebox-before {
+	display: inline-block;
+	float: left;
+	padding: 0 10px 0 20px;
+}
+
+.jvsc-messagebox-after {
+	display: inline-block;
+	float: right;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.jvsc-messagebox-message {
+	display: inline-block;
+}
+
+/* For Tagline Box													
+------------------------------------------------------------------- -------------------  */
+.jvsc-tagline-box-wrap {
+	padding: 20px;
+	border: 1px solid #ebebeb;
+}
+
+.jvsc-taglinebox-title {
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+/* For Testimonials Box													
+------------------------------------------------------------------- -------------------  */
+/** default style **/
+.jvsc-testimonials-bottom-right .jvsc-testimonials-text:after,
+.jvsc-testimonials-default .jvsc-testimonials-text:after {
+	content: "";
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	bottom: -11px;
+	-ms-transform: rotate(45deg); /* IE 9 */
+	-webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+	transform: rotate(45deg);
+	border-style: solid;
+	border-color: #dedede;
+	border-width: 0px 1px 1px 0px;
+	z-index: 999;
+	background-color: #fff;
+}
+.jvsc-testimonials-default .jvsc-testimonials-text:after {
+	left: 40px;
+}
+.jvsc-testimonials-bottom-right .jvsc-testimonials-text:after{
+	right: 40px;
+}
+	
+.jvsc-testimonials-bottom-right .jvsc-testimonials-text,
+.jvsc-testimonials-default .jvsc-testimonials-text {
+	border: 1px solid #dedede;
+	padding: 25px 15px;
+	position: relative;
+}
+
+.jvsc-testimonials-default .jvsc-testimonials-name {
+	font-weight: bold;
+	padding-bottom: 5px;
+	padding-top: 10px;
+}
+
+.jvsc-testimonials-default .jvsc-testimonials-user-avt i,
+	.jvsc-testimonials-default .jvsc-testimonials-user-avt img {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.jvsc-testimonials-default .jvsc-testimonials-info {
+	margin-top: 20px;
+}
+
+/** Left avatar style **/
+.jvsc-testimonials-left .jvsc-testimonials-info {
+	float: left;
+	text-align: center;
+}
+
+.jvsc-testimonials-left .jvsc-testimonials-info span {
+	display: block;
+	text-align: center;
+}
+
+.jvsc-testimonials-left .jvsc-testimonials-user-avt img {
+	border: 1px solid #ededed;
+	padding: 3px;
+	border-radius: 50%;
+}
+
+.jvsc-testimonials-left .jvsc-testimonials-text {
+	border: 1px solid #dedede;
+	padding: 25px 15px;
+	position: relative;
+}
+
+.jvsc-testimonials-left .jvsc-testimonials-text:after {
+	background-color: #fff;
+	border-color: #dedede;
+	border-style: solid;
+	border-width: 0 1px 1px 0;
+	bottom: auto;
+	content: "";
+	height: 20px;
+	left: -11px;
+	position: absolute;
+	top: 23px;
+	transform: rotate(135deg);
+	width: 20px;
+	z-index: 999;
+}
+
+.jvsc-testimonials-bottom-right .jvsc-testimonials-info {
+	text-align: right;
+	padding-right: 35px;
+	margin-top: 25px;
+}
+.jvsc-testimonials-bottom-right .jvsc-testimonials-user-avt {
+	display: inline-block;
+	margin-left: 10px;
+}
+.jvsc-testimonials-bottom-right .jvsc-testimonials-info-alias{
+	display: inline-block;
+}
+
+.jvsc-testimonials-center{
+	border: 1px solid #dedede;
+	padding: 25px 15px;
+	position: relative;
+}
+.jvsc-testimonials-center{
+	text-align: center;
+}
+.jvsc-testimonials-center .jvsc-testimonials-info{
+	display: block;
+	position: absolute;
+	text-align: center;
+	margin: auto;
+	padding: 10px;
+	left: 0; right: 0; top: -40%;
+	margin-bottom: 
+}
+.jvsc-testimonials-center .jvsc-testimonials-user-avt{
+	background: #ffffff;
+	border: 1px solid #dedede;
+	border-radius: 50%;
+	padding: 10px;
+	display: inline-block;
+}
+.jvsc-testimonials-center .jvsc-testimonials-info i{
+	display: block;
+	text-align: center;
+	width: 1em;
+	height: 1em;
+	margin: auto;
+	
+} 
+.jvsc-testimonials-center .jvsc-testimonials-text{
+	margin-top: 30px;
+}
+/* For Skill bars													
+------------------------------------------------------------------- -------------------  */
+.jvsc-skillbars-content-skill {
+	padding-bottom: 17px;
+}
+
+.jvsc-skillbars-content-skill .skill-name {
+	display: block;
+	font-weight: bold;
+}
+
+.jvsc-skillbars-content-skill .skill {
+	height: 18px;
+	margin-top: 3px;
+	position: relative;
+}
+
+.jvsc-skillbars-content-skill .skill .skill-level {
+	height: 18px;
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+
+.jvsc-skillbars-content-skill .skill-percent {
+	font-size: 12px;
+}
+
+.jvsc-skillbars-content-skill .skill-percent-inline {
+	right: 10px;
+	padding-right: 10px;
+	z-index: 1;
+	position: absolute;
+	text-align: right;
+	vertical-align: middle;
+	line-height: 18px;
+}
+
+.jvsc-skillbars-content-skill .skill-percent-callout {
+	position: absolute;
+	top: -40px;
+	width: 50px;
+	height: 24px;
+	border: 1px solid #dadada;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 24px;
+	margin-left: -25px;
+}
+
+.jvsc-skillbars-content-skill .skill-percent-callout:before,
+	.jvsc-skillbars-content-skill .skill-percent-callout:after {
+	content: "";
+	border-style: solid;
+	border-color: transparent;
+	border-bottom: 0; /* we do not need the bottom border in this case */
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	display: block;
+	position: absolute;
+	bottom: -20px;
+	/* border-width of the :after element + padding of the root element */
+	margin: auto;
+}
+
+.jvsc-skillbars-content-skill .skill-percent-callout:before {
+	border-width: 4px;
+	border-top-color: #dadada;
+	bottom: -4px;
+	left: 22px;
+}
+
+.jvsc-skillbars-content-skill .skill-percent-callout:after {
+	border-top-color: #ffffff; /* the callout */
+	border-width: 3px;
+	bottom: -3px;
+	left: 23px;
+}
+/** default style **/
+.jvsc-skillbars-default .skill {
+	-moz-box-shadow: inset 0 0 3px #e8e8e8;
+	-webkit-box-shadow: inset 0 0 3px #e8e8e8;
+	box-shadow: inset 0 0 3px #e8e8e8;
+}
+
+.jvsc-skillbars-default  .skill .skill-level {
+	background-image: url("../images/bgr-skillbars.png");
+	background-repeat: repeat-x;
+}
+
+/* For Table													
+------------------------------------------------------------------- -------------------  */
+.jvsc-table  table {
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.jvsc-table  table tr th {
+	padding: 10px 0;
+}
+
+.jvsc-table table td {
+	padding: 10px 0;
+}
+/* For Price Table											t		
+------------------------------------------------------------------- -------------------  */
+.jvsc-pricetable{
+	text-align: center;	
+	border:0;
+}
+ .jvsc-pricetable .jvsc-pricecol{
+ 	float: left;
+ 	padding: 0!important;
+ 	bottom:0;
+ 	transition: all 0.4s ease 0s;
+ 	margin-bottom: 10px;
+ } 
+ 
+
+
+@media (min-width:601px) and (max-width: 979px){
+	.jvsc-pricetable .jvsc-pricecol:nth-child(odd) .jvsc-pricecol-inner h2
+	{
+		 font-weight: bold;	
+		 border:  1px solid #ddd;
+	}	
+	
+	.jvsc-pricetable .jvsc-pricecol:nth-child(even) .jvsc-pricecol-inner h2
+	{
+		border-bottom:  1px solid #ddd;
+	 	border-right:  1px solid #ddd;
+	 	border-top:  1px solid #ddd;
+	}
+	 .jvsc-pricetable .jvsc-pricecol:nth-child(odd) .jvsc-pricecol-inner h2,
+	 .jvsc-pricetable .jvsc-pricecol:nth-child(odd)   .jvsc-pricecol-row
+	 {
+		border-left: 1px solid #ddd;	
+	 }
+}
+@media (max-width:600px){
+	.jvsc-pricetable .jvsc-pricecol .jvsc-pricecol-inner h2{
+		 font-weight: bold;	
+		 border:  1px solid #ddd;
+	}	
+	
+	
+	 .jvsc-pricetable .jvsc-pricecol .jvsc-pricecol-inner h2,.jvsc-pricetable .jvsc-pricecol  .jvsc-pricecol-row
+	 {
+		border-left: 1px solid #ddd;	
+	 }
+}
+ 
+ .jvsc-pricetable .jvsc-pricecol:first-child .jvsc-pricecol-inner h2,.jvsc-pricetable .jvsc-pricecol:first-child  .jvsc-pricecol-row{
+	border-left: 1px solid #ddd;	
+}
+.jvsc-pricecol-inner .jvsc-pricecol-row{
+	padding: 10px 0;	
+	border-bottom:  1px solid #ddd;
+	border-right:1px solid #ddd;
+}
+.jvsc-pricecol-inner .purchase-button,.jvsc-pricecol-inner .price  {
+	padding: 25px 0;	
+}
+.jvsc-pricecol-inner a{
+	text-decoration: none;
+	border-radius: 2px;
+	padding: 5px 10px;
+	color:#fff!important;
+}
+.jvsc-pricetable .jvsc-pricecol-special{
+	box-shadow: 0px -1px 7px #888;	
+	float:left;
+	bottom:10px;
+	transition: all 0.4s ease 0s;
+	z-index: 1;
+	 
+}
+
+.jvsc-pricetable .jvsc-pricecol-special .purchase-button{
+	line-height: 50px!important;	
+}
+.jvsc-pricetable .jvsc-pricecol-special .price {
+	border: none!important;	
+}
+
+.jvsc-pricetable .image img{
+	max-width: 100%;
+}
+.jvsc-pricetable .image-behind{
+	position: relative;
+}
+.jvsc-pricetable .image-behind img{
+	position: relative;
+}
+.jvsc-pricetable .image-behind h2{
+	border: none;
+	position: absolute;
+	bottom: 0; left: 0; right: 0;
+	background: none;
+	text-align: center;
+}
+
+/*		Dropcap
+---------------------------------------------------------------*/
+
+.jv-dropcap {
+	float: left;
+	display: inline-block;
+	width: 2em;
+	height: 2em;
+	margin: 0.2em 0.5em 0.2em 0;
+	line-height: 2em;
+	text-align: center;
+	overflow: hidden;
+	text-transform: uppercase;
+}
+.jv-dropcap-circle {
+	text-shadow: -1px -1px 0 #000;
+	-moz-text-shadow: -1px -1px 0 #000;
+	-webkit-text-shadow: -1px -1px 0 #000;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+}
+.jv-dropcap-square {
+}
+
+
+
+/**** Action Box ****/
+
+.jv-actionbox-default,
+.jv-actionbox-center{
+	border: 1px solid #f1f1f1;
+	background-color: #fbfbfb;
+	padding: 30px 25px;	
+}
+.jv-actionbox .jv-actionbox-button{
+	float: right;
+}
+.jv-actionbox h3{
+	margin: 0 0 15px 0;
+	font-size: 22px;
+	color: #858585;
+	text-transform: uppercase;
+}
+.jv-actionbox p.jv-actionbox-sub{
+	color: #aeaeae;
+	margin: 0px;
+}
+
+.jv-actionbox-button a {
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	transition: all .2s;
+	-o-transition: all .2s;
+	-ie-transition: all .2s;
+	-moz-transition: all .2s;
+	-webkit-transition: all .2s;
+	overflow: hidden;
+	padding: 0.4em 1.4em;
+	position: relative;
+}
+.jv-actionbox-default  .jv-actionbox-button a{
+	background: #39c5de;
+	box-shadow: 0 4px #2da0b3;
+	color: #ffffff;
+	font-size: 16px; 
+	border-radius: 3px;
+	margin-top: 10px;
+}
+.jv-actionbox-default  .jv-actionbox-button a:hover{
+	box-shadow: 0 3px #2da0b3;
+	top: 2px;
+}
+
+.jv-actionbox-solid{
+	background-color: #39c5de;
+	padding: 30px 25px;	
+}
+.jv-actionbox-solid h3,
+.jv-actionbox-solid p.jv-actionbox-sub{
+	color: #ffffff;
+}
+
+.jv-actionbox-solid  .jv-actionbox-button a{
+	background: #39c5de;
+	border: 3px solid #ffffff;
+	color: #ffffff;
+	font-size: 16px; 
+	border-radius: 3px;
+	margin-top: 10px;
+	position: relative;
+	overflow: hidden;
+	backface-visibility: hidden;
+}
+
+.jv-actionbox-center .jv-actionbox-button-text,
+.jv-actionbox-solid .jv-actionbox-button-text {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	transition: all 0.3s ease 0s;
+	backface-visibility: hidden;
+	transform: translateX(0px);
+}
+.jv-actionbox-center .jv-actionbox-button-icon,
+.jv-actionbox-solid .jv-actionbox-button-icon {
+	font-size: 110%;
+	height: 100%;
+	position: absolute;
+	transition: all 0.3s ease 0s;
+	width: 100%;
+	left: -100%;
+	top: 0;
+	vertical-align: middle;
+	height: 100%;
+}
+.jv-actionbox-center .jv-actionbox-button-icon i,
+.jv-actionbox-solid .jv-actionbox-button-icon i {
+	padding: 0.5em 1em;
+}
+.jv-actionbox-center  .jv-actionbox-button a:hover .jv-actionbox-button-icon,
+.jv-actionbox-solid  .jv-actionbox-button a:hover .jv-actionbox-button-icon {
+	left: 0;
+}
+.jv-actionbox-center  .jv-actionbox-button a:hover .jv-actionbox-button-text,
+.jv-actionbox-solid  .jv-actionbox-button a:hover .jv-actionbox-button-text {
+	transform: translateX(200%);
+}
+
+.jv-actionbox-center{
+	text-align: center;
+}
+.jv-actionbox-center h3{
+	color: #6e6e6e;
+	font-size: 22px;
+	position: relative;
+	margin-bottom: 20px;
+}
+.jv-actionbox-center h3:before{
+	width: 80px;
+	height: 3px;
+	background: #e8e8e8;
+	position: absolute;
+	top: 130%;
+	content: "";
+	left: 50%;
+	margin-left: -40px;
+}
+.jv-actionbox-center p.jv-actionbox-sub{
+	color: #676767;
+}
+.jv-actionbox-center .jv-actionbox-button{
+	float: none;
+}
+
+.jv-actionbox-center  .jv-actionbox-button a{
+	border: 3px solid #f9f3ff;
+	background: #39c5de;
+	color: #ffffff;
+	font-size: 16px; 
+	margin-top: 10px;
+	position: relative;
+	overflow: hidden;
+	backface-visibility: hidden;
+}
