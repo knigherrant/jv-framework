@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>mod_jvss</name>
+	<author>PHPKungfu</author>
+	<creationDate>July 2015</creationDate>
+	<copyright>Copyright (C) 2005 - 2015 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>info@phpkungfu.club</authorEmail>
+	<authorUrl>www.phpkungfu.club</authorUrl>
+	<version>3.0.0</version>
+	<description></description>
+	<files>
+		<filename module="mod_jvss">mod_jvss.php</filename>
+		<filename>mod_jvss.xml</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.mod_jvss.ini</language>
+		<language tag="en-GB">en-GB.mod_jvss.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="ss"
+					type="sql"
+					query="SELECT id, CONCAT( id, ' - ', `name`) as `name` FROM #__jvss_items where state = 1"
+					key_field="id"
+					value_field="name"
+					label="MOD_JVSS_FIELD_NAME_SLIDESHOW" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
