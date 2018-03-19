@@ -1,0 +1,53 @@
+
+.jvcontact_footer {overflow:hidden; color:#878787; padding:5px;}
+
+.formcontact .invalid {color:red !important}
+.formcontact textarea {width:100% !important}
+/* style basic*/
+.recaptcha_nothad_incorrect_sol{margin:10px auto}
+.jvrows.subject { 
+	width:430px; min-height:240px; background:#fff; border:1px solid #f9f9f9; border-right:0; color:#666; font-family:Tahoma, Geneva, sans-serif;
+	-webkit-border-radius: 6px;	-moz-border-radius: 6px;	border-radius: 6px;	
+	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+	box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.2)}
+	
+.formcontact {  padding:10px; background:#343434 ;	 font-family:Tahoma, Geneva, sans-serif; font-size:13px;
+	-webkit-border-radius: 6px;	-moz-border-radius: 6px;	border-radius: 6px; color:#787878; line-height:30px;	}
+	
+.formcontact .innerform { background:#fefefe; padding:10px; overflow:hidden;
+	-webkit-border-radius: 4px;	-moz-border-radius: 4px;	border-radius: 4px;	
+	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.8);-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.8)}
+	
+.formcontact .innerform  .titleform {  font-size:15px; margin-bottom:5px;}	
+
+.formcontact .innerform .form {  background:#EFEFEF; padding:10px 10px 0; border:1px solid #c5c5c5; margin-bottom:5px;
+		-webkit-border-radius: 4px;	-moz-border-radius: 4px;	border-radius: 4px;	
+}
+	
+.formcontact .innerform .form p {     border: 1px solid #c5c5c5;
+    padding:0;
+    margin-bottom: 10px;
+    background: #fff;
+    -webkit-border-radius: 6px;	-moz-border-radius: 6px;	border-radius: 6px; 	
+}	
+.formcontact .innerform .form p.input-message { padding-right: 0;}
+
+.formcontact .innerform .form .inputbox { height:30px;width:100%; margin:0; padding:0; text-indent:10px;  line-height:30px; color:#787878; border:none; background:none;  font-size:12px;font-family:Tahoma, Geneva, sans-serif;}
+
+
+.formcontact .innerform .form textarea.inputbox { line-height: 25px;    height: 120px;   }
+
+.formcontact .wrap_btncontact { overflow: hidden; text-align: center; padding-top: 10px;}
+.formcontact .wrap_btncontact .button {  height:30px; background:#11a9d8; color:#fff; padding:0 10px; border:none;  cursor:pointer;
+	-webkit-border-radius: 4px;	-moz-border-radius: 4px;	border-radius: 4px;	
+	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.2);-moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.4)}
+.formcontact .innerform .button:hover  { background:#0f95c0}
+
+.jvmapcontain { margin-bottom: 20px;}
+
+.msgsendmailok { color: #fff;}
+
+.jvmapcontain img{
+	max-width:none !important
+}

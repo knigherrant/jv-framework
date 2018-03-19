@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+	<name>JV Framework - Performance</name>
+	<creationDate>14/7/2012</creationDate>
+	<author>JoomlaVi! Project</author>
+	<authorEmail>info@joomlavi.com</authorEmail>
+	<authorUrl>http://www.joomlavi.com</authorUrl>
+	<copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+	<version>1.0</version>
+	<description>Performance Optimizing For JV Framework</description> 
+	<files>
+		<filename extension="performance">index.html</filename>
+		<filename>config.xml</filename>
+		<filename>performance.php</filename>
+		<folder>assets</folder>
+	</files>
+	 <languages>
+		<language tag="en-GB">en-GB.ext_performance.ini</language>
+	</languages>
+	<config>
+	<fields name="params">
+    <fieldset name="global">
+        <fields name="global">
+        	
+        	<fields name="compress">
+                        
+                        <field type="group" label="JVFRAMEWORK_EXTENSION_PERFORMENCE_COMPRESS"/>  
+	        	
+                        <field name="css_js" type="radio" class="btn-group" default="1" label="JVFRAMEWORK_EXTENSION_PERFORMENCE_CSS_JS_LABEL"  description="JVFRAMEWORK_EXTENSION_PERFORMENCE_CSS_JS_COMPRESS_DESCRIPTION">
+                            <option value="1">JYES</option>
+                            <option value="0">JNO</option>
+			</field>
+                        <field name="html" type="radio" class="btn-group" default="0" label="Compression HTML"  description="Compression HTML">
+                            <option value="1">JYES</option>
+                            <option value="0">JNO</option>
+			</field>
+			<field name="deferload" type="radio" class="btn-group" label="JVFRAMEWORK_EXTENSION_PERFORMENCE_ENABLE_JS_DEFERLOADING" description="JVFRAMEWORK_EXTENSION_PERFORMENCE_ENABLE_JS_DEFERLOADING_DESCRIPTION">
+                            <option value="1">JYES</option>
+                            <option value="0">JNO</option>
+			</field>
+				
+	
+			<field name="gzip" type="radio" class="btn-group" default="0" label="JVFRAMEWORK_EXTENSION_PERFORMENCE_GZIP" description="JVFRAMEWORK_EXTENSION_PERFORMENCE_GZIP_COMPRESS_DESCRIPTION">
+                            <option value="1">JYES</option>
+                            <option value="0">JNO</option>
+			</field>
+                        <field type="end"/>  
+                        
+			</fields>
+			
+        </fields>
+	</fieldset>
+    </fields>    
+    </config>  
+    <updateservers>
+	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	</updateservers>
+</extension>

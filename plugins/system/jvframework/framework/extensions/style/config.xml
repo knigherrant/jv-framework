@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+    <name>JV Framework - Style</name>
+    <creationDate>July 31, 2015</creationDate>
+    <author>JoomlaVi! Project</author>
+    <authorEmail>info@joomlavi.com</authorEmail>
+    <authorUrl>http://www.joomlavi.com</authorUrl>
+    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+    <version>1.0.1</version>
+    <description>Style </description>
+    <files>
+        <filename extension="style">index.html</filename>
+        <filename>config.xml</filename>
+        <filename>style.php</filename>
+        <folder>fields</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">en-GB.ext_style.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="style">
+                <fields name="styles">
+
+                    <field type="group" label="Style layout"/>  
+                    <field name="themestyle" type="radio" class="btn-group" default="wide" label="">
+                        <option value="wide">Wide</option>
+                        <option value="boxed">Boxed</option>
+                        <option value="framed">Framed</option>
+                        <option value="rounded">Rounded</option>
+                    </field>      
+                    <field type="end"/> 
+
+                    <field type="group" label="Background Layout"/>  
+                    <field name="bgcolor" type="color" class="btn-group" default="" label=""></field>      
+                    <field name="background" type="background" class="btn-group" default="1" label=""></field>      
+                    <field type="end"/> 
+
+                    <fields name="colorchooser">
+                        <field type="group" label="Show color demo"/>  
+                        <field name="enable" type="radio" class="btn-group" default="0" label="JVFRAMEWORK_EXTENSION_DATE_ENABLE">
+                        <option value="1">JON</option>
+                        <option value="0">JOFF</option>
+                        </field>         
+                        <field name="position" type="position" default="" label="JVFRAMEWORK_EXTENSION_DATE_POSITION" />
+                        <field type="end"/>     
+                    </fields>
+                    
+                    <field type="group" label="JVFRAMEWORK_EXTENSION_COLOR"/>  
+                    <field name="themecolor" type="colorlist" default="300" label="" description="JVFRAMEWORK_EXTENSION_COLOR_DESC" />
+                    <field type="end"/>  
+
+                    <field type="group" label="Class style"/>  
+                    <field name="classstyle" type="text" class="form-control" default="" label=""/>
+                    <field type="end"/> 
+ 
+                    <fields name="customcolor">
+                        <field type="group" label="Custom Color"/>  
+                        <field name="enable" type="radio" class="btn-group" default="0" label="Enable">
+                        <option value="1">JON</option>
+                        <option value="0">JOFF</option>
+                        </field>  
+                        <field type="end"/>        
+                    </fields>
+
+                    <field type="group" label="Custom Theme Color"/> 
+                    <field name="defaultcss" type="textarea"  label="Default Custom" />
+                    <field name="cthemecolor" type="themecolor"  label="Theme Color" />
+                    <field type="end"/>     
+                    <fields name="config"></fields>
+                    
+                </fields>
+            </fieldset>
+        </fields>
+    </config>
+    <updateservers>
+       <server type="collection">http://update.joomlavi.com/list.xml</server>
+    </updateservers>
+</extension>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

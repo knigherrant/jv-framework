@@ -1,0 +1,24 @@
+html{font-size: inherit;}
+.pagetitle[class*=icon-]{width: auto; height: auto; line-height: normal; background-position: inherit}
+.adminform legend{width: inherit; border: none;}
+.toolbar-list [class^=icon-]{background-position: 0 0;}
+.ct label.ct{max-width: inherit; min-width: inherit;}
+select.btn-group{font-size: inherit;}
+:not(div).modal{position: static;
+width: auto;
+margin-left: inherit;
+background-color: inherit;
+border: inherit;
+-webkit-border-radius: 4px
+-moz-border-radius: 4x;
+border-radius: 4x;
+outline: 0;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+-webkit-background-clip: padding-box;
+-moz-background-clip: padding-box;
+background-clip: padding-box;
+left: auto;
+z-index: 0;
+}

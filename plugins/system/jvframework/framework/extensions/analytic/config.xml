@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+  <name>JV Framework - Analytic</name>
+  <creationDate>14/7/2012</creationDate>
+  <author>JoomlaVi! Project</author>
+  <authorEmail>info@joomlavi.com</authorEmail>
+  <authorUrl>http://www.joomlavi.com</authorUrl>
+  <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+  <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+  <version>1.0</version>
+  <description>Analytic extension for JV Framework</description>
+  <files>
+    <filename extension="analytic">index.html</filename>
+    <filename>config.xml</filename>
+    <filename>html.php</filename>
+    <filename>analytic.php</filename>
+  </files>
+  <languages>
+    <language tag="en-GB">en-GB.ext_analytic.ini</language>
+  </languages>
+  <config>
+    <fields name="params">
+      <fieldset name="extension">
+        <fields name="extension">
+          <fields name="analytic">
+            <fields name="google">
+              <field type="group" label="JVFRAMEWORK_EXTENSIONS_ANALYTIC_GOOGLE"/>
+              <field name="enable" type="radio" class="btn-group" default="0"
+						label="Enable">
+                <option value="1">JON</option>
+                <option value="0">JOFF</option>
+              </field>
+              <field name="id" type="text" default="UA-XXXXX-Y"
+						label="Tracking ID" />
+              <field type="end"/>
+            </fields>
+            <fields name="yahoo">
+              <field type="group" label="JVFRAMEWORK_EXTENSIONS_ANALYTIC_YAHOO"/>
+              <field name="enable" type="radio" class="btn-group" default="0"
+						label="Enable">
+                <option value="1">JON</option>
+                <option value="0">JOFF</option>
+              </field>
+              <field name="id" type="text" default="1000XXXXXXXX"
+						label="Tracking ID" />
+              <field name="secure" type="radio" class="btn-group" default="0"
+						label="JVFRAMEWORK_EXTENSIONS_ANALYTIC_YAHOO_SECURE">
+                <option value="1">JON</option>
+                <option value="0">JOFF</option>
+              </field>
+              <field type="end"/>
+            </fields>
+          </fields>
+        </fields>
+      </fieldset>
+    </fields>
+  </config>
+  <updateservers>
+    <server type="collection">http://update.joomlavi.com/list.xml</server>
+  </updateservers>
+</extension>

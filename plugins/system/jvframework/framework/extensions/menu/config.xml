@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+    <name>JV Framework - Menu System</name>
+    <creationDate>July 31, 2015</creationDate>
+    <author>JoomlaVi! Project</author>
+    <authorEmail>info@joomlavi.com</authorEmail>
+    <authorUrl>http://www.joomlavi.com</authorUrl>
+    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+    <version>1.0.2</version>
+    <description>Menu System Feature</description>
+    <files>
+        <filename extension="menu">index.html</filename>
+        <filename>config.xml</filename>
+        <filename>menu.php</filename>
+        <folder>assets</folder>
+		<folder>classes</folder>
+		<folder>config</folder>
+		<folder>fields</folder>
+    </files>
+    <languages>
+		<language tag="en-GB">en-GB.ext_menu.ini</language>
+	</languages>
+    <config>
+        
+    <fields name="params">
+        <fieldset name="menu" label="Menu">
+
+            <fields name="menu">                
+                <field type="group" label="Main configuration"/> 
+                    <field name="main_delay" default="300" type="text" label="Delay"/>
+                    <field name="main_duration" default="300" type="text" label="Duration"/>
+                    <field name="main_effect" default="fade" type="list" label="Effect">
+                        <option value="fade">Fade</option>
+                        <option value="slide">Slide</option>
+                    </field>
+                    <field name="main_easing" default="fade" type="list" label="Easing">
+                        <option value="linear">linear</option>
+                    </field>
+                <field type="end"/>
+                
+                <field type="group" label="Sub configuration"/> 
+                    <field name="sub_delay" default="300" type="text" label="Delay"/>
+                    <field name="sub_duration" default="300" type="text" label="Duration"/>
+                    <field name="sub_effect" default="fade" type="list" label="Effect">
+                        <option value="fade">Fade</option>
+                        <option value="slide">Slide</option>
+                    </field>
+                    <field name="sub_easing" default="fade" type="list" label="Easing">
+                        <option value="linear">linear</option>
+                    </field>
+                <field type="end"/>
+                
+                <field type="group" label="Menu Responsive"/>  
+                    <field name="responsive" default="1024" type="text" label="" description="Menu Responsive"/>
+                <field type="end"/>  
+            </fields>
+            
+        </fieldset>	
+    </fields>
+	
+    </config>
+   
+    <jvcustoms>
+		<params>
+			<flexconfig><![CDATA[
+				{
+					field: 'tabs',
+					item:{
+						defaultEff:{
+					field: 'panel',
+					label: 'Default',
+					loop: 'configs',
+					item:{
+						showEff: {
+							field: 'panel',
+							label: 'Show Effect',
+							loop: 'effectconfig',
+							item: {
+								duration:{
+									field: 'input',
+									type: 'text',
+									label: 'Duration',
+									datatype: 'int',
+									value: 500
+								},
+								delay: {
+									field: 'input',
+									type: 'text',
+									label: 'Delay',
+									datatype: 'int',
+									value: 300
+								},
+								easing: {
+									field: 'select',
+									label: 'Easing',
+									item: {
+										linear: 'linear',
+										swing: 'swing',
+										easeInQuad: 'easeInQuad',
+										easeOutQuad: 'easeOutQuad',
+										easeInOutQuad: 'easeInOutQuad',
+										easeInCubic: 'easeInCubic',
+										easeOutCubic: 'easeOutCubic',
+										easeInOutCubic: 'easeInOutCubic',
+										easeInQuart: 'easeInQuart',
+										easeOutQuart: 'easeOutQuart',
+										easeInOutQuart: 'easeInOutQuart',
+										easeInQuint: 'easeInQuint',
+										easeOutQuint: 'easeOutQuint',
+										easeInOutQuint: 'easeInOutQuint',
+										easeInSine: 'easeInSine',
+										easeOutSine: 'easeOutSine',
+										easeInOutSine: 'easeInOutSine',
+										easeInExpo: 'easeInExpo',
+										easeOutExpo: 'easeOutExpo',
+										easeInOutExpo: 'easeInOutExpo',
+										easeInCirc: 'easeInCirc',
+										easeOutCirc: 'easeOutCirc',
+										easeInOutCirc: 'easeInOutCirc',
+										easeInElastic: 'easeInElastic',
+										easeOutElastic: 'easeOutElastic',
+										easeInOutElastic: 'easeInOutElastic',
+										easeInBack: 'easeInBack',
+										easeOutBack: 'easeOutBack',
+										easeInOutBack: 'easeInOutBack',
+										easeInBounce: 'easeInBounce',
+										easeOutBounce: 'easeOutBounce',
+										easeInOutBounce: 'easeInOutBounce'
+									}
+								},
+								effect: {
+									field:'filter',
+									label: 'Effect',
+									item:{
+										blind:{
+											field: 'panel',
+											loop: 'f1',
+											label: 'Blind',
+											item: {
+												direction:{
+													field: 'select',
+													loop: 'd1',
+													label: 'Direction',
+													item: {
+														vertical: 'Vertical',
+														horizontal: 'Horizontal'
+													}
+												}
+											}
+										},
+										clip: {
+											field: 'panel',
+											label: 'Clip',
+											item: {
+												direction:{
+													field: 'select',
+													loop: 'd1',
+													label: 'Direction',
+													item: {
+														vertical: 'Vertical',
+														horizontal: 'Horizontal'
+													}
+												}
+											}
+										},
+										drop: {
+											field: 'panel',
+											label: 'Drop',
+											item: {
+												direction:{
+													field: 'select',
+													loop: 'd2',
+													label: 'Direction',
+													item: {
+														up: 'Up',
+														down: 'Down',
+														left: 'Left',
+														right: 'Right'
+													}
+												}
+											}
+										},
+										fold: {
+											field: 'panel',
+											label: 'Fold',
+											item: {
+												horizFirst: {
+													field: 'input',
+													label: 'Horiz first',
+													type: 'checkbox'
+												},
+												size: {
+													field: 'input',
+													type: 'text',
+													label: 'Size',
+													value: '15'
+												}
+											}
+										},
+										slide: {
+											field: 'panel',
+											label: 'Slide',
+											item: {
+												direction: {use: 'd2'},
+												distance: {
+													field: 'input',
+													type: 'text',
+													label: 'Distance'
+												}
+											}
+										},
+										fade: {field:'input',type:'hidden'}
+									}
+								}
+							}
+						},
+						hideEff: {use: 'effectconfig', label: 'Hide Effect'}
+					}
+				},
+				customEff:{
+					field: 'multi',
+					label: 'Custom',
+					item: {
+						label:'Custom configs',
+						field: 'group',
+						titlefield: 'level',
+						item: {
+							level: {field: 'input',label: 'Menu level',type: 'text'},
+							showEff: {use: 'effectconfig'},
+							hideEff: {use: 'effectconfig',label: 'Hide Effect'}
+						}
+					}
+				}
+				
+					}
+				}
+			]]></flexconfig>
+		</params>
+	</jvcustoms>
+       
+	<updateservers>
+	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	</updateservers>
+</extension>

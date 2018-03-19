@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.5/template-install.dtd">
+<extension version="3.0" type="template" method="upgrade">
+  <name>JV-Melody-III</name>
+  <author>JoomlaVi! Project</author>
+  <creationDate>June 2014</creationDate>
+  <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+  <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+  <authorEmail>info@joomlavi.com</authorEmail>
+  <authorUrl>www.joomlavi.com</authorUrl>
+  <version>4.0</version>
+  <description><![CDATA[
+  <style type="text/css">
+  	.icon-wrapper {width: auto; height: auto}
+	.adminform {text-align: left}
+  	.edit-template { display: none}
+  	#template-manager .edit-template {  display: block}
+  	#template-manager > ul {  float: left; list-style: none; margin: 0;}
+  	#template-manager .pull-left {margin-right: 10px}
+  	#adminForm .adminform > a > img {border: 1px solid #CCC; margin-right: 20px}
+  	#adminForm h2 {text-transform: uppercase; color: #7FB11F}
+  	#adminForm ul li {padding: 2px}
+  	#style-form > div, .width-40, .width-60 {width: 100% !important}
+  	fieldset.adminform > label { display: none}
+  	#style-form .mod-desc {margin-left: 0 !important}
+  	
+  	#controlpanel {background: #FFF; overflow: hidden; padding: 30px 0; clear: both}
+	#controlpanel div.icon a{ text-align: center; height: inherit; text-decoration: none; width: 125px; float: left; margin-right: 15px; border: 1px solid #CCC; background: #FFF}
+	
+	#controlpanel img {padding: 0; float: none;}
+	#controlpanel span { display: block; height: 25px; background: #2c2c2c; color: #FFF; line-height: 25px; text-align: center;}
+	
+	#controlpanel .about { line-height:20px; border: medium none; clear: both; }
+	#controlpanel .about h3 {margin: 0 0 10px; color: #7fb11f; font-size: 18px}
+	#controlpanel .about .about-inner { }
+	#controlpanel .about .about-inner > div { padding:15px}
+	#controlpanel .about .cpanel-inner { border-bottom: 1px solid #CCC; padding: 20px 0 !important;}
+	
+	#controlpanel .about p { margin: 10px 0 0; font-size: 12px;}
+	#controlpanel .about ul { padding-left:0; color:#909090}
+	#controlpanel .about ul li { list-style-type:none; padding: 0}
+	
+	.company-info a { display:block; padding-top:10px; text-align:right; float:right}
+  </style>
+  <script type="text/javascript">
+  	function getUrlVars() {var vars = {}; var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) { vars[key] = value; }); return vars; }
+	 
+	 window.addEvent('domready', function(){
+		 var btn_edit = $('edit-template');  	  
+	  	 btn_edit.set('href',  btn_edit.get('href')  + '&id=' + getUrlVars()["id"] );
+	 }); 
+  </script>
+	 <ul>
+				<li><em>Version: 4.0</em></li>
+				<li><em>Release date: 12/22/2014</em></li>
+	    <li><em>Contact us: <a href="mailto:info@joomlavi.com">info@joomlavi.com</a></em></li>
+	</ul>
+	  <div id="controlpanel">
+	<form name="adminForm" method="post" action="/jv-framework/administrator/index.php?option=com_jvframework">
+	<div class="width-60 fltlft">
+		<div class="cpanel-icon">
+			<div class="icon-wrapper edit-template">
+				<div class="icon">
+					<a title="Edit template::Edit template using JV Framework template editor" id="edit-template" class="modal hasTip" rel="{handler: 'iframe', size: {x: 875, y: 550}, onClose: function() {}}" href="index.php?option=com_jvframework&view=theme&layout=edit&tmpl=component">
+						<img alt="" src="components/com_jvframework/assets/images/cpanel/thememanager.png">
+						<span>Edit template</span>
+					</a>
+				</div>
+			</div>
+			<div class="icon-wrapper">
+				<div class="icon">
+					<a title="Typographies::The “Typography” manager allows you to set up, edit and delete the typographies that will be used on your site." class="hasTip" href="index.php?option=com_jvframework&amp;view=typographies">
+						<img src="components/com_jvframework/assets/images/cpanel/typographies.png" alt="">
+						<span>Typographies</span>
+					</a>
+				</div>
+			</div>
+			<div class="icon-wrapper">
+				<div class="icon">
+					<a title="Extensions::This manager list all the JV Framework extensions that were installed on your site." class="hasTip" href="index.php?option=com_jvframework&amp;view=extensions">
+						<img src="components/com_jvframework/assets/images/cpanel/extension.png" alt="">
+						<span>Extensions</span>
+					</a>
+				</div>
+			</div>
+			<div class="icon-wrapper">
+				<div class="icon">
+				<a title="Install::Use Joomla's Installer to install JV-Framework's Extension." class="hasTip" href="index.php?option=com_installer">
+					<img src="components/com_jvframework/assets/images/cpanel/install.png" alt="">
+					<span>Install</span>
+				</a>				
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="width-60 about">
+    	<div class="about-inner">
+		<div class="cpanel-inner">
+			<h3>//// JV Framework</h3>
+			
+			<p>Flexible, customizable, high performance and developer-friendly.
+JV Framework 4.2.4 is a steep improvemence over our old Framework. While dropping some functions like drag and drop, it had gained several new ones, more up-to-date functions like a Grid layout control, a Responsive Design and a modular nature, allowing developers to improve or create new features with ease.
+<br>Try it out and experience the improvemence.</p>
+		</div>
+        <div class="cpanel-logo"><a href="http://joomlavi.com" target="_blank"><img alt="Logo" src="components/com_jvframework/assets/images/logo2.png"></a></div>
+        </div>
+	</div>	
+	<div>
+    	<input type="hidden" value="" name="task">	
+        <input type="hidden" value="styles" name="view">
+    </div>
+	</form>	
+</div>
+  ]]></description>
+  <files>
+    <filename>favicon.ico</filename>
+	<filename>params.json</filename>
+	<filename>template_preview.png</filename>
+	<filename>template_thumbnail.png</filename>
+	<filename>templateDetails.xml</filename>
+	<filename>touch-icon-ipad.png</filename>
+	<filename>touch-icon-iphone.png</filename>
+	<filename>touch-icon-iphone4.png</filename>
+	<filename>component.php</filename>
+	<filename>config.php</filename>
+	<filename>error.php</filename>
+	<filename>index.php</filename>
+	<filename>version.php</filename>
+	<folder>css</folder>
+	<folder>dev</folder>
+	<folder>fonts</folder>
+	<folder>html</folder>
+	<folder>images</folder>
+	<folder>js</folder>
+	<folder>layouts</folder>
+	<folder>language</folder>	
+	<folder>less</folder>	
+  </files>
+  <positions>
+		<position>breadcrumb</position>
+    	<position>footer</position>
+    	<position>color</position>		
+    	<position>analytic</position>
+    	<position>slide</position>
+    	<position>slideshow</position>
+    	<position>content-top</position>
+    	<position>content-bottom</position>
+    	<position>menu</position>
+    	<position>submenu</position>		
+    	<position>logo</position>
+    	<position>404</position>		
+        <position>login</position>
+        <position>search</position>
+        <position>panel-1</position>
+        <position>panel-2</position>
+        <position>panel-3</position>
+        <position>panel-4</position>
+        <position>panel-5</position>
+        <position>panel-6</position>
+        <position>top-1</position>
+        <position>top-2</position>
+        <position>top-3</position>
+        <position>top-4</position>
+        <position>top-5</position>
+        <position>top-6</position>
+        <position>topb-1</position>
+        <position>topb-2</position>
+        <position>topb-3</position>
+        <position>topb-4</position>
+        <position>topb-5</position>
+        <position>topb-6</position>
+        <position>left</position>
+        <position>left-1</position>
+        <position>left-2</position>
+
+        <position>right</position>
+        <position>right-1</position>
+        <position>right-2</position>
+        <position>bottom </position>
+        <position>bottom-1</position>
+        <position>bottom-2</position>
+        <position>bottom-3</position>
+        <position>bottom-4</position>
+        <position>bottom-5</position>
+        <position>bottom-6</position>
+        <position>bottomb-1</position>
+        <position>bottomb-2</position>
+        <position>bottomb-3</position>
+        <position>bottomb-4</position>
+        <position>bottomb-5</position>
+        <position>bottomb-6</position>
+        <position>footer-1</position>
+        <position>footer-2</position>
+        <position>footer-3</position>
+        <position>footer-4</position>
+        <position>footer-5</position>
+        <position>footer-6</position>
+        <position>contenttop-1</position>
+        <position>contenttop-2</position>
+        <position>contenttop-3</position>
+        <position>contenttop-4</position>
+        <position>contenttop-5</position>
+        <position>contenttop-6</position>
+        <position>contentbottom-1</position>
+        <position>contentbottom-2</position>
+        <position>contentbottom-3</position>
+        <position>contentbottom-4</position>
+        <position>contentbottom-5</position>
+        <position>contentbottom-6</position>
+  </positions>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.tpl_jv-melody-iii.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_jv-melody-iii.sys.ini</language>
+	</languages>  
+  <updateservers>
+	<server type="collection">http://update.joomlavi.com/list.xml</server>
+  </updateservers>
+</extension>

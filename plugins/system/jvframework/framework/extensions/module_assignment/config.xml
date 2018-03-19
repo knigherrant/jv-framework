@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+    <name>JV Framework - Module Assignment</name>
+    <creationDate>24/12/2012</creationDate>
+    <author>JoomlaVi! Project</author>
+    <authorEmail>info@joomlavi.com</authorEmail>
+    <authorUrl>http://www.joomlavi.com</authorUrl>
+    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+    <version>1.0</version>
+    <description>Module Assignment</description>
+    <files>
+        <filename extension="module_assignment">index.html</filename>
+        <filename>config.xml</filename>
+        <filename>module_assignment.php</filename>
+        <folder>assets</folder>
+        <folder>config</folder>
+        <folder>fields</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">en-GB.ext_module_assignment.ini</language>
+    </languages>
+    <config>
+    </config>
+    <updateservers>
+        <server type="collection">http://update.joomlavi.com/list.xml</server>
+    </updateservers>
+</extension>

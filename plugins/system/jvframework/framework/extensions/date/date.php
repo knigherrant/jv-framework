@@ -1,0 +1,29 @@
+<?php
+/**
+ # JV Framework
+ # @version		1.5.x
+ # ------------------------------------------------------------------------
+ # author    Open Source Code Solutions Co
+ # copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+ # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
+ # Websites: http://www.joomlavi.com
+ # Technical Support:  http://www.joomlavi.com/my-tickets.html
+ */
+defined ( '_JEXEC' ) or die ( 'Restricted access' );	
+
+class JVFrameworkExtensionDate extends JVFrameworkExtension{
+
+	public function beforeRender(){
+		if($this['option']->get('extension.date.enable')){
+			$this['position']->register('date', $this['option']->get('extension.date.position', 'top'));
+			$this['asset']->addScript($this['path']->url('extensions::date/assets/js/date.js'));
+		}
+	}
+	
+	public function html($options = array()) {
+		return $this['template']->render('extensions::date/html');
+	}
+}
+
+
+

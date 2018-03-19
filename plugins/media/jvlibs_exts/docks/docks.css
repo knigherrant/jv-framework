@@ -1,0 +1,22 @@
+.jvdock{position: fixed; z-index: 9999999;}
+.jvdock > .btn-toggle{position: absolute;   border-radius: 0 0 6px 6px;  border-color:#aaa; }
+
+.jvdock .jvdock-body > div {    background-clip: padding-box;    background-color: #FFFFFF;	padding:10px;    border: 1px solid #aaa;	 border-radius: 0 0 6px 0;}
+
+
+
+.jvdock[class*=top-] { top: 0;}
+.jvdock[class*=top-] .jvdock-body > div {   border-top:none;    border-radius: 0 0 6px 0;}
+.jvdock[class*=top-]  .btn {  border-top:none; }  
+
+.jvdock[class*=bottom-] { bottom: 0;}
+.jvdock[class*=bottom-] .jvdock-body > div {   border-bottom:none;    border-radius: 0 6px  0 0;}
+.jvdock[class*=bottom-]  .btn {  border-bottom:none;  border-radius:  6px 6px 0 0;}  
+
+.jvdock[class*=left-] { left: 0;}
+.jvdock[class*=left-] .jvdock-body > div { border-left:none;    border-radius: 0 0 6px 0;}
+.jvdock[class*=left-] .btn { border-left:none;  border-radius: 0 6px 6px 0; }  
+
+.jvdock[class*=right-] { right: 0;}
+.jvdock[class*=right-] .jvdock-body > div { border-right:none;    border-radius: 0 0 0 6px;}
+.jvdock[class*=right-] .btn { border-right:none;  border-radius:  6px 0 0 6px ; }  

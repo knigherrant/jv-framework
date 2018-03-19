@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+	<name>JV Framework - Lazyload</name>
+	<creationDate>14/7/2012</creationDate>
+	<author>JoomlaVi! Project</author>
+	<authorEmail>info@joomlavi.com</authorEmail>
+	<authorUrl>http://www.joomlavi.com</authorUrl>
+	<copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+	<version>1.0</version>
+	<description>Lazyload for JV Framework</description> 
+	<files>
+		<filename extension="lazyload">index.html</filename>
+		<filename>config.xml</filename>
+		<filename>lazyload.php</filename>
+	</files>
+	 <languages>
+		<language tag="en-GB">en-GB.ext_lazyload.ini</language>
+	</languages>
+	<config>
+	<fields name="params">
+    <fieldset name="extension">
+       	<fields name="extension">
+	
+                        <field type="group" label="JVFRAMEWORK_EXTENSION_LAZYLOAD"/>  
+          	<fields name="lazyload">
+	                  
+				<field name="enable" type="radio" class="btn-group" description="JVFRAMEWORK_EXTENSION_LAZYLOAD_DESCRIPTION" default="1" label="JVFRAMEWORK_EXTENSION_ENABLE">
+					<option value="1">JON</option>
+					<option value="0">JOFF</option>
+				</field>		
+	            <field name="selector" type="textarea" cols="32" rows="3" default="img" label="JVFRAMEWORK_EXTENSION_SELECTOR"/>
+       	 	</fields>
+                <field type="end"/>
+        </fields>    
+	</fieldset>
+    </fields>    
+    </config>	
+    <updateservers>
+	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	</updateservers>
+</extension>

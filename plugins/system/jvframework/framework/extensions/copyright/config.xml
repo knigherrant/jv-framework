@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+  <name>JV Framework - Copyright</name>
+  <creationDate>14/7/2012</creationDate>
+  <author>JoomlaVi! Project</author>
+  <authorEmail>info@joomlavi.com</authorEmail>
+  <authorUrl>http://www.joomlavi.com</authorUrl>
+  <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+  <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+  <version>1.0</version>
+  <description>Copyright extension for JV Framework</description>
+  <files>
+    <filename extension="copyright">index.html</filename>
+    <filename>config.xml</filename>
+    <filename>copyright.php</filename>
+    <filename>html.php</filename>
+  </files>
+  <languages>
+    <language tag="en-GB">en-GB.ext_copyright.ini</language>
+  </languages>
+  <config>
+    <fields name="params">
+      <fieldset name="global">
+        <fields name="global">
+            <fields name="copyright">
+            <field type="group" label="JVFRAMEWORK_EXTENSION_COPYRIGHT"/>
+            <field name="enable" type="radio" class="btn-group" default="1" label="JVFRAMEWORK_EXTENSION_ENABLE_COPYRIGHT" description="JVFRAMEWORK_EXTENSION_ENABLE_COPYRIGHT_DESCRIPTION">
+                <option value="1">Show</option>
+                <option value="0">Hide</option>
+            </field>
+            <field name="joomlacopyright" type="radio" class="btn-group" default="1" label="JVFRAMEWORK_EXTENSION_JOOMLA_COPYRIGHT" description="JVFRAMEWORK_EXTENSION_JOOMLA_COPYRIGHT_DESCRIPTION">
+                <option value="1">Show</option>
+                <option value="0">Hide</option>
+            </field>
+            <field name="fwcopyright" type="radio" class="btn-group" default="1" label="Logo JV Famework" description="JVFRAMEWORK_EXTENSION_ENABLE_FW_COPYRIGHT_DESCRIPTION">
+                <option value="1">Show</option>
+                <option value="0">Hide</option>
+            </field>
+            <field name="content" type="textarea" default="" label="JVFRAMEWORK_EXTENSION_COPYRIGHT" description="JVFRAMEWORK_EXTENSION_COPYRIGHT_DESCRIPTION" cols="60" rows="7" filter="raw" />
+            <field type="end"/>
+            </fields>
+         </fields>
+      </fieldset>
+    </fields>
+  </config>
+  <updateservers>
+    <server type="collection">http://update.joomlavi.com/list.xml</server>
+  </updateservers>
+</extension>

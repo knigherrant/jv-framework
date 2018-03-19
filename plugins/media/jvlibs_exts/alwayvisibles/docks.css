@@ -1,0 +1,10 @@
+.jvdock{position: fixed; z-index: 999;}
+.jvdock > .btn-toggle{position: absolute; }
+.jvdock > .jvdock-body{ background: #545454;}
+
+
+.jvdock[class*=top-]{ top: 0;}
+.jvdock[class*=left-]{ left: 0;}
+.jvdock[class*=right-]{ right: 0;}
+.jvdock[class*=bottom-]{ bottom: 0;}
+  

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+    <name>JV Framework - Date</name>
+    <creationDate>14/7/2012</creationDate>
+    <author>JoomlaVi! Project</author>
+    <authorEmail>info@joomlavi.com</authorEmail>
+    <authorUrl>http://www.joomlavi.com</authorUrl>
+    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+    <version>1.0</version>
+    <description>Date extension for JV Framework</description>
+    <files>
+        <filename extension="date">index.html</filename>
+        <filename>config.xml</filename>
+        <filename>date.php</filename>
+        <filename>html.php</filename>
+        <folder>assets</folder>
+    </files>
+    <languages>
+		<language tag="en-GB">en-GB.ext_date.ini</language>
+	</languages>
+    <config>
+	<fields name="params">
+    <fieldset name="extension">
+       	<fields name="extension">
+
+                <field type="group" label="JVFRAMEWORK_EXTENSION_DATE"/>  
+           	<fields name="date">
+                <field name="enable" type="radio" class="btn-group" default="0" label="JVFRAMEWORK_EXTENSION_DATE_ENABLE">
+                    <option value="1">JON</option>
+                    <option value="0">JOFF</option>
+                </field>
+                <field name="pretext" type="text" label="JVFRAMEWORK_EXTENSION_DATE_TEXT"/>
+                <field name="type" type="list" default="0" label="JVFRAMEWORK_EXTENSION_DATE_TYPE">
+                    <option value="0">JVFRAMEWORK_EXTENSION_DATE_TYPE_SERVER_TIME</option>
+                    <option value="1">JVFRAMEWORK_EXTENSION_DATE_TYPE_CLIENT_TIME</option>
+                </field>
+                <field name="position" type="position" default="top" label="JVFRAMEWORK_EXTENSION_DATE_POSITION" />
+                <field name="format" type="list" default="DATE_FORMAT_LC1" label="JVFRAMEWORK_EXTENSION_DATE_FORMAT" >
+                	<option value="d-m-Y">d-m-Y</option>
+                	<option value="d M Y">d M Y</option>
+                	<option value="l, d-m-Y">l, d-m-Y</option>
+                	<option value="l, d M Y">l, d M Y</option>
+                	<option value="l, d F Y">l, d F Y</option>
+                	<option value="D, d-m-Y">D, d-m-Y</option>
+                	<option value="D, d M Y">D, d M Y</option>
+                	<option value="D, d F Y">D, d F Y</option>
+                	<option value="Y-m-d">Y-m-d</option>
+                	<option value="Y M d">Y M d</option>
+                	<option value="l, Y-m-d">l, Y-m-d</option>
+                	<option value="l, Y M d">l, Y M d</option>
+                	<option value="l, Y F d">l, Y F d</option>
+                	<option value="D, Y-m-d">D, Y-m-d</option>
+                	<option value="D, Y M d">D, Y M d</option>
+                	<option value="D, Y F d">D, Y F d</option>
+                </field>
+            </fields>
+            <field type="end"/>  
+        </fields>    
+	</fieldset>
+    </fields>    
+    </config>
+    <updateservers>
+	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	</updateservers>
+</extension>

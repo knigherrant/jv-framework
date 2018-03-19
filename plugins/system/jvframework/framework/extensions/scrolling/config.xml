@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+	<name>JV Framework - Scrolling Effect</name>
+	<creationDate>28/06/2014</creationDate>
+	<author>JoomlaVi! Project</author>
+	<authorEmail>info@joomlavi.com</authorEmail>
+	<authorUrl>http://www.joomlavi.com</authorUrl>
+	<copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+	<version>1.0</version>
+	<description>Scrolling Effect extension for JV Framework</description> 
+	<files>
+		<filename extension="scrolling">index.html</filename>
+		<filename>config.xml</filename>
+		<filename>scrolling.php</filename>
+		<folder>assets</folder>
+	</files>
+        <config>
+        <fields name="params">
+            <fieldset name="scrolling" label="Scrolling Effect">
+                <field type="group" label="Apply selector"/>
+                <field name="scrolling" type="jvcustom"><![CDATA[ 
+                {
+            field: 'multi',
+            label: 'Applys',
+            'class': 'none',
+			filter:true,
+            item:{
+                field: 'panel',
+                //label: 'Config effect',
+                toggle: true,
+                //titlefield: 'selector',
+                'class': 'scrolling-item',
+                item: {
+                    selector: {
+                        field: 'input',
+                        label: 'Selector',
+                        validates:{required:true}
+                    },
+                    duration: {
+                        field: 'input',
+                        label: 'Duration',
+                        value: 1000,
+                        validates:{number:true}
+                    },
+                    delay: {
+                        field: 'input',
+                        label: 'Delay',
+                        value: 0,
+                        validates:{number:true}
+                    },
+                    offset: {
+                        field: 'input',
+                        label: 'Offset',
+                        value: 100,
+                        validates:{number:true}
+                    },
+                    iteration: {
+                        field: 'input',
+                        label: 'Iteration',
+                        value: 1,
+                        validates:{number:true}
+                    },
+                    effect: {
+                        field: 'select2',
+                        label: 'Effect',
+                        //maximumSelectionSize: 1,
+                        query: function (query) {
+                            var data = {results: []},$=jQuery;
+                            if(query.term) data.results.push({id: query.term, text: query.term});
+                            $.each(this.item,function(k,v){
+                                var children = [];
+                                $.each(v,function(k,v){
+                                    if(!query.term || k.toLowerCase().indexOf(query.term.toLowerCase()) > -1)
+                                        children.push({id: k, text: v});
+                                });
+                                if(children.length) data.results.push({text: k, children:children});
+                            });
+                            query.callback(data);
+                        },
+                        validates:{required:true},
+                        value: 'fadeIn',
+                        item:{
+							"Custom Effect":{
+								"counting": "Count number",
+                                "clipcircle": "Clip circle"
+							},
+
+
+
+    "attention seekers": {
+        "bounce": "bounce",
+        "flash": "flash",
+        "pulse": "pulse",
+        "rubberBand": "rubberBand",
+        "shake": "shake",
+        "swing": "swing",
+        "tada": "tada",
+        "wobble": "wobble"
+    },
+    "bouncing entrances": {
+        "bounceIn": "bounceIn",
+        "bounceInDown": "bounceInDown",
+        "bounceInLeft": "bounceInLeft",
+        "bounceInRight": "bounceInRight",
+        "bounceInUp": "bounceInUp"
+    },
+    "bouncing exits": {
+        "bounceOut": "bounceOut",
+        "bounceOutDown": "bounceOutDown",
+        "bounceOutLeft": "bounceOutLeft",
+        "bounceOutRight": "bounceOutRight",
+        "bounceOutUp": "bounceOutUp"
+    },
+    "fading entrances": {
+        "fadeIn": "fadeIn",
+        "fadeInDown": "fadeInDown",
+        "fadeInDownBig": "fadeInDownBig",
+        "fadeInLeft": "fadeInLeft",
+        "fadeInLeftBig": "fadeInLeftBig",
+        "fadeInRight": "fadeInRight",
+        "fadeInRightBig": "fadeInRightBig",
+        "fadeInUp": "fadeInUp",
+        "fadeInUpBig": "fadeInUpBig"
+    },
+    "fading exits": {
+        "fadeOut": "fadeOut",
+        "fadeOutDown": "fadeOutDown",
+        "fadeOutDownBig": "fadeOutDownBig",
+        "fadeOutLeft": "fadeOutLeft",
+        "fadeOutLeftBig": "fadeOutLeftBig",
+        "fadeOutRight": "fadeOutRight",
+        "fadeOutRightBig": "fadeOutRightBig",
+        "fadeOutUp": "fadeOutUp",
+        "fadeOutUpBig": "fadeOutUpBig"
+    },
+    "flippers": {
+        "flip": "flip",
+        "flipInX": "flipInX",
+        "flipInY": "flipInY",
+        "flipOutX": "flipOutX",
+        "flipOutY": "flipOutY"
+    },
+    "lightspeed": {
+        "lightSpeedIn": "lightSpeedIn",
+        "lightSpeedOut": "lightSpeedOut"
+    },
+    "rotating entrances": {
+        "rotateIn": "rotateIn",
+        "rotateInDownLeft": "rotateInDownLeft",
+        "rotateInDownRight": "rotateInDownRight",
+        "rotateInUpLeft": "rotateInUpLeft",
+        "rotateInUpRight": "rotateInUpRight"
+    },
+    "rotating exits": {
+        "rotateOut": "rotateOut",
+        "rotateOutDownLeft": "rotateOutDownLeft",
+        "rotateOutDownRight": "rotateOutDownRight",
+        "rotateOutUpLeft": "rotateOutUpLeft",
+        "rotateOutUpRight": "rotateOutUpRight"
+    },
+    "specials": {
+        "hinge": "hinge",
+        "rollIn": "rollIn",
+        "rollOut": "rollOut"
+    },
+    "zooming entrances": {
+        "zoomIn": "zoomIn",
+        "zoomInDown": "zoomInDown",
+        "zoomInLeft": "zoomInLeft",
+        "zoomInRight": "zoomInRight",
+        "zoomInUp": "zoomInUp"
+    },
+    "zooming exits": {
+        "zoomOut": "zoomOut",
+        "zoomOutDown": "zoomOutDown",
+        "zoomOutLeft": "zoomOutLeft",
+        "zoomOutRight": "zoomOutRight",
+        "zoomOutUp": "zoomOutUp"
+    }
+
+
+
+
+
+
+
+                        }
+                    },
+                    mobile: {
+                        field: "input", type: "checkbox",
+                        label: 'Mobile',
+                        value: false
+                    },
+					groupDelay: {
+                        field: 'input',
+                        label: 'Group delay',
+						title: 'Add delay to group',
+                        value: 0,
+                        validates:{number:true}						
+					},
+					groupPoint: {
+                        field: 'input',
+                        label: 'Group point',
+                        value: ''
+					},
+					groupDesc: {
+                        field: 'input',
+						type: 'checkbox',
+                        label: 'Direction DESC',
+                        value: false
+					}
+                }
+            }
+        }
+             ]]></field>
+            <field type="end"/>
+            <field type="jvcustom" include="css"><![CDATA[
+                #params_scrolling_custom{min-width: 400px;}
+                #params_scrolling_custom > .ct-multi-head{display:none;}
+				
+				#jvframework-tab .scroolling-effect ul.fields > li > div:nth-child(2) { float:none}
+                #params_scrolling_custom .scrolling-item .ct-panel-body > label{float:left; margin-right: 3%; width: 30%;  padding-left: 100px !important;    position: relative;		-moz-box-sizing:border-box;	-webkit-box-sizing:border-box;	box-sizing:border-box;				}
+				#params_scrolling_custom .scrolling-item .ct-panel-body > label:first-child { float:none; margin:0; width: 96%;}
+                #params_scrolling_custom .scrolling-item .ct-panel-body > label > span { float:none; display:block; position: absolute; left:0; top:0}
+                #params_scrolling_custom .scrolling-item .ct-panel-body > label > input, #params_scrolling_custom .scrolling-item .ct-panel-body > label  .select2-container { width: 100% !important;  min-width: 120px;}
+				 #params_scrolling_custom .scrolling-item .ct-panel-body > label .btn span { line-height:24px}
+				
+            ]]></field>
+            </fieldset>
+        </fields>
+        </config>
+        
+    <updateservers>
+	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	</updateservers>
+</extension>

@@ -1,0 +1,31 @@
+<form>
+	<fields name="params">
+		<fieldset name="basic1" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_OPTION">
+            <field name="menu_image_type" type="list" default="1" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_MENU_IMAGE_TYPE" description="JVFRAMEWORK_EXTENSION_MENU_FLEX_MENU_IMAGE_TYPE_DESC">
+                <option value="img">Image</option>
+                <option value="bgr">Background</option>
+            </field>
+			<field name="fxmenu_item" type="list" default="0" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_CONTENT">
+				<option value="">Menu item</option>
+				<option value="group">Group</option>
+				<option value="module">Modules</option>
+				<option value="position">Module positions</option>
+			</field>
+			<field name="fxmenu_title" type="list" default="1" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_TITLE" description="JVFRAMEWORK_EXTENSION_MENU_FLEX_TITLE_DESC">
+				<option value="1">Show</option>
+				<option value="0">Hide</option>
+			</field>
+                       
+			<field name="fxmenu_description" type="text" size="50" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_DESCRIPTION" description="JVFRAMEWORK_EXTENSION_MENU_FLEX_DESCRIPTION_DESC" />
+			<field name="fxmenu_column" type="text" default="1" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_COLUMN" description="JVFRAMEWORK_EXTENSION_MENU_FLEX_COLUMN_DESC"/>
+			<field size="15" name="fxmenu_module_pos" type="fxpositions" multiple="true" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_POSITION" addfieldpath="/plugins/jvframework/menu/menu/element/fields"/>
+			<field size="15" name="fxmenu_modules" type="fxmodules" multiple="true" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_MODULE" addfieldpath="/plugins/jvframework/menu/menu/element/fields"/>
+			
+			<field name="fxmenu_width" type="text" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_ITEM_WIDTH" description="JVFRAMEWORK_EXTENSION_MENU_FLEX_ITEM_WIDTH_DESC" />
+			<!--<field name="fxmenu_subwidth" type="text" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_SUBMENU_WIDTH" description="JVFRAMEWORK_EXTENSION_MENU_FLEX_SUBMENU_WIDTH_DESC" />
+			-->
+			<field name="fxmenu_module_style" type="text" size="50" default="jvxhtml" label="JVFRAMEWORK_EXTENSION_MENU_FLEX_MODULE_STYLE" description="JVFRAMEWORK_EXTENSION_MENU_FLEX_MODULE_STYLE_DESC" />
+			
+		</fieldset>
+	</fields>	
+</form>

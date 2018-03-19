@@ -1,0 +1,20 @@
+.jvlatestnews-content { left:0; right:0}
+
+.jvlatestnews-container { position:relative}
+.jvlatestnews .row-fluid { margin-bottom:10px;}
+.jvlatestnews.style_date .row-fluid .thumbnail  { max-width: 150px}
+.jvlatestnews .intro-title { display:block; margin-bottom:10px; font-size:130%;}
+.jvlatestnews .intro-detail { margin-bottom:10px; font-size:92%; font-style:italic}
+.jvlatestnews .intro-detail span {}
+.jvlatestnews .content_intro { margin-bottom:10px;}
+.jvlatestnews .description { margin-bottom:20px;}
+
+ul.jvlatestnews-link li { margin:0 0 5px 0; list-style-type: decimal;}
+
+.LatestNewsPagination ul {  position:relative;  overflow:hidden; z-index:2; text-align:center; margin-left:0 }
+.LatestNewsPagination ul li { display:inline; list-style-type:none; margin:0 2px;}
+
+.jvlatestnews-intro ul { margin:0 }
+.jvlatestnews-intro ul li { list-style-type:none;}
+.jvlatestnews-intro .column0 { clear:both; margin-left:0}
+

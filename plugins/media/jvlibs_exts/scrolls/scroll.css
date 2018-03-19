@@ -1,0 +1,42 @@
+.jvScroll{position: absolute; z-index: 101;}
+.jvScroll-panel{overflow: hidden;}
+
+.jvScroll.vertical{width: 10px;}
+.jvScroll.vertical > div{height: 100%; position: relative;}
+.jvScroll > div > button{
+    display: none;
+    position: absolute;
+    width: 100%;
+    background: red;
+    height: 12px;
+    border-radius: 3px;
+    padding: 0;
+}
+.vertical .slide{width: 100%; position: absolute; top: 0; bottom: 0;}
+.vertical .btn-move{width: 100%; position: absolute; display: block; background: #545454; border-radius: 3px;}
+
+.jvScroll.vertical > div:before{
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0; 
+    background: #DDDDDD; content: ""; display: block;
+    border-radius: 3px;
+}
+
+/* button default*/
+.nav-default.vertical .slide{
+    top: 12px; bottom: 12px;
+}
+.nav-default.vertical > div > button{
+    display: block; 
+    height: 12px; 
+    background: red;}
+.nav-default.vertical > div > .btn-last{bottom: 0;}
+/* button top*/
+.nav-top.vertical .slide{
+    top: 24px;
+}
+.nav-top.vertical > div > button{
+    display: block; 
+    height: 12px; 
+    background: red;}
+.nav-top.vertical > div > .btn-last{top: 12px;}

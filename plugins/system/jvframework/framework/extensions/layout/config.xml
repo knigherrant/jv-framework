@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+    <name>JV Framework - Layout Manager</name>
+    <creationDate>14/7/2012</creationDate>
+    <author>JoomlaVi! Project</author>
+    <authorEmail>info@joomlavi.com</authorEmail>
+    <authorUrl>http://www.joomlavi.com</authorUrl>
+    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+    <version>1.0</version>
+    <description>Layout Manager For JV Framework</description>
+    <files>
+        <filename extension="layout">index.html</filename>
+        <filename>config.xml</filename>
+        <filename>layout.php</filename>
+        <folder>assets</folder>
+        <folder>fields</folder>
+    </files>
+    <languages>
+        <language tag="en-GB">en-GB.ext_layout.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="layout">
+                <fields name="layouts">
+        		
+                    <field type="group" label="Left - Main - Right"/>  
+                    <field name="middle" label="" type="grid" grids="12" column="3" change="0" default='{"3":[3,6,3]}'/>
+                    <field type="end"/>						
+					
+                    <fields name="block">
+                        <fields name="panel">
+
+                            <field type="group" label="JVFRAMEWORK_EXTENSION_LAYOUT_PANEL"/> 
+                            <field name="grid"  label="" type="grid" grids="12" column="6" change="1" default='{"1":[12],"2":[6,6],"3":[4,4,4],"4":[3,3,3,3],"5":[2,2,2,2,4],"6":[2,2,2,2,2,2]}'    />
+                           <field type="end"/>
+                        </fields>		
+						
+                        <fields name="top">
+                            <field type="group" label="JVFRAMEWORK_EXTENSION_LAYOUT_TOP"/> 
+                            <field name="grid" label="" type="grid" grids="12" column="6" change="1" default='{"1":[12],"2":[6,6],"3":[4,4,4],"4":[3,3,3,3],"5":[2,2,2,2,4],"6":[2,2,2,2,2,2]}' />
+                            <field type="end"/>
+                        </fields>
+			
+                        <fields name="topb">
+                            <field type="group" label="Top-b"/> 
+                            <field name="grid" label="" type="grid" grids="12" column="6" change="1" default='{"1":[12],"2":[6,6],"3":[4,4,4],"4":[3,3,3,3],"5":[2,2,2,2,4],"6":[2,2,2,2,2,2]}' />
+                            <field type="end"/>
+                        </fields>		
+						
+                        <fields name="contenttop">
+                            <field type="group" label="JVFRAMEWORK_EXTENSION_LAYOUT_CONTENTTOP"/> 
+                            <field name="grid" label="" type="grid" grids="12" column="6" change="1" default='{"1":[12],"2":[6,6],"3":[4,4,4],"4":[3,3,3,3],"5":[2,2,2,2,4],"6":[2,2,2,2,2,2]}' />
+                            <field type="end"/>
+                        </fields>
+                    </fields>
+                    <fields name="block">
+                        <fields name="contentbottom">
+                            <field type="group" label="JVFRAMEWORK_EXTENSION_LAYOUT_CONTENTBOTTOM"/> 
+                            <field name="grid"  label=""  type="grid" grids="12" column="6" change="1" default='{"1":[12],"2":[6,6],"3":[4,4,4],"4":[3,3,3,3],"5":[2,2,2,2,4],"6":[2,2,2,2,2,2]}' />
+                            <field type="end"/>
+                        </fields>
+                        <fields name="bottom">
+                            <field type="group" label="JVFRAMEWORK_EXTENSION_LAYOUT_BOTTOM"/> 
+                            <field  name="grid" label=""  type="grid" grids="12" column="6" change="1" default='{"1":[12],"2":[6,6],"3":[4,4,4],"4":[3,3,3,3],"5":[2,2,2,2,4],"6":[2,2,2,2,2,2]}' />
+                            <field type="end"/>
+                        </fields>
+                        
+                        
+                        <fields name="bottomb">
+                            <field type="group" label="Bottom-b"/> 
+                            <field  name="grid" label=""  type="grid" grids="12" column="6" change="1" default='{"1":[12],"2":[6,6],"3":[4,4,4],"4":[3,3,3,3],"5":[2,2,2,2,4],"6":[2,2,2,2,2,2]}' />
+                            <field type="end"/>
+                        </fields>
+                        
+                    </fields>
+                </fields>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

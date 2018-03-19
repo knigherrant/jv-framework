@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+    <name>JV Framework - Mobile</name>
+    <creationDate>14/7/2012</creationDate>
+    <author>JoomlaVi! Project</author>
+    <authorEmail>info@joomlavi.com</authorEmail>
+    <authorUrl>http://www.joomlavi.com</authorUrl>
+    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+    <version>1.0</version>
+    <description>Mobile Support for JV Framework</description>
+    <files>
+        <filename extension="mobile">index.html</filename>
+        <filename>config.xml</filename>
+        <filename>mobile.php</filename>
+    </files>
+    <languages>
+		<language tag="en-GB">en-GB.ext_mobile.ini</language>
+	</languages>
+    <config>
+        <fields name="params">
+            <fieldset name="global">
+        <fields name="global">
+                <fields name="mobile">
+
+                    <fields name="allmobile">
+                        <field type="group" label="Layout Mobiles"  description="JVFRAMEWORK_EXTENSION_MOBILE_ENABLE_DESCRIPTION" /> 
+                        <field name="enable" type="radio" class="btn-group" default="0" label="">
+                                  <option value="1">Mobile</option>
+              <option value="2">Responsive</option>
+              <option value="3">Desktop</option>
+                        </field>
+                         <field type="end"/>
+                        
+                    </fields>
+                    
+                </fields>
+                </fields>
+            </fieldset>
+        </fields>
+    </config>
+    <updateservers>
+	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	</updateservers>
+</extension>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>Community - JV Social Library</name>
+	<creationDate>January 2014</creationDate>
+	<author>joomlavi</author>
+	<authorEmail>info@joomlavi.com</authorEmail>
+	<authorUrl>http://joomlavi.com</authorUrl>
+	<copyright>Copyright (C) 2013. All rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>2.0.0</version>
+	<isapplication>true</isapplication>
+	<description>PLG_JVSOCIAL_LIBRARY_DESC</description>	
+	<languages folder="language">		
+		<language tag="en-GB">en-GB/en-GB.plg_system_jvsocial.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_jvsocial.sys.ini</language>
+	</languages>
+	<files>
+		<file plugin="jvsocial">jvsocial.php</file>
+		<folder>jvsocial</folder>
+                <folder>tmpl</folder>
+                <folder>language</folder>
+                <folder>assets</folder>
+		<file>index.html</file>
+	</files>	
+	<menuitem>
+	</menuitem>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">	
+                               
+				<field name="fbapi" type="text" default="363117867047793" label="Facebook API" description="Facebook API" />
+				<field name="fbsecret" type="text" default="2640cb02f59ca7ce5577b74ec6f9a84a" label="Facebook Secret" description="Facebook Secret" />
+			
+				<field name="twapi" type="text" default="hdP5mqDKQ6mAa8IaiQLHA" label="Twiter API" description="Twiter API" />
+				<field name="twsecret" type="text" default="QKZ0UfxAJkt24vqxxCZREXGnqCnUUYrVZTmmDOEIY" label="Twiter Secret" description="Twiter Secret" />
+                                
+                                <field name="clientId" type="text" default="137972063219.apps.googleusercontent.com" label="Client ID" description="Client ID" />
+				<field name="clientSecret" type="text" default="-dGfxcTOW5AV3SoA3CFqnVva" label="Client secret" description="Client secret" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

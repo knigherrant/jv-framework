@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+	<name>JV Framework - Typography</name>
+	<creationDate>14/7/2012</creationDate>
+	<author>JoomlaVi! Project</author>
+	<authorEmail>info@joomlavi.com</authorEmail>
+	<authorUrl>http://www.joomlavi.com</authorUrl>
+	<copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+	<version>1.0</version>
+	<description>Typography extension for JV Framework</description> 
+	<files>
+		<filename extension="typo">index.html</filename>
+		<filename>config.xml</filename>
+		<filename>typo.php</filename>
+		<folder>assets</folder>
+	</files>	
+	<languages>
+		<language tag="en-GB">en-GB.ext_typo.ini</language>
+	</languages>
+	<config></config>  
+	<updateservers>
+	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	</updateservers>
+</extension>

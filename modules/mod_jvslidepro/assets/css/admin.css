@@ -1,0 +1,43 @@
+       
+.jvcustomfieldpanel{margin-bottom: 20px;}
+.slideinput{padding-left: 352px;}
+.ct.imgpath > input{padding-right: 60px;}
+.ct-panel-body label.ct .btn-selectimage { width:auto; border-radius: 0 3px 3px 0; line-height: 26px; padding: 0 10px; position: absolute; right: 11px; top: auto; bottom: 5px; border:none; border-left:1px solid #ccc; left:auto;}
+.slide-preview{width: 350px;position: absolute;top: 0;left: 8px;text-align: center;bottom: 0;overflow: hidden; display:table-cell; vertical-align:middle;
+-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;}
+.slide-preview > img{max-width: inherit; height: 100%; width: auto;}
+.jvcustomfieldpanel .ct-multi-line-head{text-align: left; padding-left: 15px;}
+.jvcustomfieldpanel .source-listitem > .ct-filter-head{height: 0; padding: 0;}
+.jvcustomfieldpanel .source-listitem > .ct-filter-head > span {display: none;}
+.jvcustomfieldpanel .source-listitem > .ct-filter-head .select2-container{position:absolute; top: 3px; right: 10px; min-width: 200px;}
+
+        
+#general .span9 .controls{margin:0;}
+#general .span9 .control-group:nth-child(5) {float: left; width: 100%;}
+#general .span9 .control-group:nth-child(5) > .controls{margin-right: 370px;}
+#general .span9 .control-group:last-child {float: right; margin-left: -100%; width: 365px}
+@media (max-width: 1500px) and (min-width: 1345px){
+    .slide-preview{width: 250px;}
+    .slideinput{padding-left: 252px;}
+}
+@media (max-width: 1345px) and (min-width: 1001px){
+    .slide-preview{width: auto; position: relative; display: block; left:0;-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;}
+    .slide-preview>img{width: 100%; height: auto;}
+    .slideinput{padding: 0;}
+}
+@media (max-width: 1000px){
+    #general .span9 .control-group:nth-child(5) {float: none; width: 100%;}
+    #general .span9 .control-group:nth-child(5) > .controls{margin: 0;}
+    #general .span9 .control-group:last-child {float: none; margin: 0; width: auto;}
+    .slide-preview{width: 250px;}
+    .slideinput{padding-left: 252px;}
+}
+@media (max-width: 830px) and (min-width: 768px),(max-width: 640px){
+    .slide-preview{width: auto; position: relative; display: block; left:0;-webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0;}
+    .slide-preview>img{width: 100%; height: auto;}
+    .slideinput{padding: 0;}
+}
+@media (max-width: 400px){
+    .ct-input:not(.checkbox) > span,.ct-select > span,.ct-select2 > span{display: none;}
+    .ct-input > input[type="text"], .ct-select > select, .ct-select2 > .select2-container{width: 100% !important;} 
+}

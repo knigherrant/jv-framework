@@ -1,0 +1,335 @@
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/helveticaneue/helveticaneue-roman-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-roman-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-roman-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-roman-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-roman-webfont.svg#helvetica_neueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'helvetica_neueitalic';
+    src: url('../fonts/helveticaneue/helveticaneue-italic-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-italic-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-italic-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-italic-webfont.svg#helvetica_neueitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neue_lightregular';
+    src: url('../fonts/helveticaneue/helveticaneue-light-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-light-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-light-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-light-webfont.svg#helvetica_neue_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neue_lightitalic';
+    src: url('../fonts/helveticaneue/helveticaneue-lightitalic-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-lightitalic-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-lightitalic-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-lightitalic-webfont.svg#helvetica_neue_lightitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neue_thinregular';
+    src: url('../fonts/helveticaneue/helveticaneue-thin-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-thin-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-thin-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-thin-webfont.svg#helvetica_neue_thinregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neue_thinitalic';
+    src: url('../fonts/helveticaneue/helveticaneue-thinitalic-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-thinitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-thinitalic-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-thinitalic-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-thinitalic-webfont.svg#helvetica_neue_thinitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neue_mediumregular';
+    src: url('../fonts/helveticaneue/helveticaneue-medium-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-medium-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-medium-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-medium-webfont.svg#helvetica_neue_mediumregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neue_mediumitalic';
+    src: url('../fonts/helveticaneue/helveticaneue-mediumitalic-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-mediumitalic-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-mediumitalic-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-mediumitalic-webfont.svg#helvetica_neue_mediumitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neue_condensed_heRg';
+    src: url('../fonts/helveticaneue/helveticaneue-heavycond-webfont.eot');
+    src: url('../fonts/helveticaneue/helveticaneue-heavycond-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue/helveticaneue-heavycond-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue/helveticaneue-heavycond-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue/helveticaneue-heavycond-webfont.svg#helvetica_neue_condensed_heRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+* { margin:0; padding:0; outline:none !important}
+body { font: 14px/18px  Arial, sans-serif;  font-size: ;  color: #333;  -moz-box-sizing:border-box;	-webkit-box-sizing:border-box;	box-sizing:border-box;}
+body, #mainsite { background:#fff;}
+
+select, input, textarea { font-family:  Arial, sans-serif;  font-size: 14px;}
+.first, .row-fluid .first {    clear: both;    margin-right: 0;}
+
+.tab-pane select { width:200px;}
+.chzn-container-multi .chzn-choices { height:34px !important; border-color:#ddd; background:#fff;}
+.chzn-container-single .chzn-single { height:34px; line-height:34px;}
+.chzn-container-multi .chzn-choices .search-field input {    height: 34px !important;    padding: 0 5px !important; background:none; width:100% !important; margin:0 !important}
+.chzn-container-single .chzn-single div b {	background-position: 0 6px;}
+
+h1, h2, h3, h4, h5, h6 { margin:0 0 20px; font-weight:300; line-height: normal;}
+p { margin:0 0 20px;}
+
+.first, .row-fluid .first {    clear: both;    margin-right: 0;}
+
+a { text-decoration:none; outline:none !important}
+ul.errors { margin:0 0 20px; background:#e5bfbe; border-top:2px solid #dd7b7c;  border-bottom:2px solid #dd7b7c}
+ul.errors li { display:block; line-height:50px; padding:0 20px; color:#cb0300}
+ 
+legend { text-transform:uppercase; border-bottom:1px dotted #cfcfcf;}
+address{ line-height:inherit}
+section , .sidebar .jv-module  { margin-bottom:20px; }
+div.tooltip {    background: none;    border: none;}
+
+.left { float:right; margin-left:20px;}
+.right { float:left; margin-right:20px;}
+
+/* 404 */
+#error404 .image404  { display:block;}
+#error404 .image404 img { width:100%; }
+
+@media (max-width: 1199px) {
+#error404 .container  { margin:0 10px;}	 
+#error404 #block-mainnav { display:none !important;}
+}
+
+/* Form */
+form {  margin: 0;}
+
+input[type="checkbox"],input[type="radio"]{ line-height:normal; height:auto !important; width:auto !important; border:none;}
+input:focus {  border-color: rgba(0, 0, 0, 0.6);}
+
+select,input[type="file"] {  height: 36px;  line-height: 36px;   min-width: 100px;  background-color: #ffffff;  border: 1px solid #cccccc;      padding: 7px 5px;     vertical-align: top;}
+select[multiple],select[size] {  height: auto;}
+select option { padding:7px 5px;}
+
+#logo  { display:inline-block; margin:0; line-height: normal;}
+#logo .text { display:block;  font-size:32px;}
+#logo .slogan { display:block; font-size:16px;}
+
+#block-mainnav  { position:relative; z-index:98; }
+.equal-column > [class*="span"] > div, .equal-column #content  { position:relative; z-index:2}
+
+
+.equal-column { position:relative}
+
+.fx-subitem div.themecolor { overflow:hidden; position:relative; z-index:3}
+.fx-subitem div.themecolor a {    border: 2px solid #AAAAAA;     float: left;    margin-left: 10px;    width: 93px; }
+.fx-subitem div.themecolor a:first-child { margin:0 !important}
+
+div.copyright { text-align:center; padding:20px 0;}
+div.copyright > div { margin-bottom:10px;}	
+#toTop { background: url(../img/glyphicons-halflings.png) no-repeat scroll -278px -84px #FFFFFF;    border-radius: 50px 50px 50px 50px;    bottom: 10px;	    cursor: pointer;   font-size: 0;    height: 35px;    position: fixed !important;    right: 10px;    text-indent: -999em;    width: 35px;     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);    -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);	
+	-webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; -ms-transition: all 0.2s ease-out;		}
+	#toTop:hover { background-position:-278px -88px}
+.tip-wrap { z-index:3}
+.form-horizontal .control-label span.optional { display:none }
+.login-form .input-prepend { display:block}
+#system-message  { margin-bottom:0}
+#block-footer { overflow:hidden}
+.tip-wrap {    background: #FFFFFF;    border: 1px solid #DDDDDD;    max-width: 600px;    padding: 10px;    position: absolute;}
+.item-page .thumbnail { margin-bottom:20px;}
+dl.article-info { font-size:90%;}
+dl.article-info dd { margin:0}
+#jvRelated {    border-top: 1px dashed #ddd;    padding-top: 20px;}
+#jvRelated .thumbnail { margin-bottom:0;}
+#jvRelated .intro-detail { font-size:90%; color:#999}
+.jvRelated-intro { margin-bottom:20px;}
+.jvRelated-intro h4 { margin-bottom:10px;}
+ul.jvRelated-link li {    list-style-type: decimal;    margin: 0 0 5px;}
+
+
+.login-form .input-append { margin-bottom:15px;}
+.login-form  label { display:block; margin-bottom:10px;}
+.login-form input[type="text"], .login-form input[type="password"] {   width: 100%; }
+
+.jcarousel-clip {overflow: hidden;}
+
+/* jcarousel- horizontal */
+.jcarousel-container-horizontal .jcarousel-clip li { margin-left:10px; height:180px; }
+.jcarousel-container-horizontal .jcarousel-clip li a { display:block}
+.jcarousel-container-horizontal .jcarousel-clip li img { height:100%;}
+.jcarousel-next-horizontal , .jcarousel-prev-horizontal { background:#333 url(../img/glyphicons-halflings-white.png) no-repeat;     cursor: pointer;     position: absolute;     height: 30px;     width: 30px; top: 50%; margin-top:-15px;}
+.jcarousel-next-horizontal:hover , .jcarousel-prev-horizontal:hover { background-color:#000}
+.jcarousel-prev-horizontal  {    background-position: -424px -64px;    right: 0;}
+.jcarousel-next-horizontal {    background-position: -449px -64px;    left: 0; }
+
+
+/* jcarousel vertical */
+.jcarousel-container-vertical {}
+.jcarousel-container-vertical .jcarousel-clip {    height: 245px; }
+.jcarousel-container-vertical li { float:none !important;  margin:0 0 10px; }
+.jcarousel-container-vertical img { height:auto !important; width:100%;}
+
+.jcarousel-next-vertical , .jcarousel-prev-vertical { background:#333 url(../img/glyphicons-halflings-white.png) no-repeat;     cursor: pointer;     position: absolute;     height: 30px;     width: 30px;  left: 50%; margin-left:-15px;}
+.jcarousel-next-vertical:hover , .jcarousel-prev-vertical:hover { background-color:#000}
+.jcarousel-prev-vertical  {    background-position: -280px -112px;   top:0;}
+.jcarousel-next-vertical {    background-position: -305px -112px;    bottom: 0;}
+.jcarousel-prev-disabled, .jcarousel-next-disabled {  opacity: 0.6 !important;}
+
+.flexMenuToggle { display:none}
+
+
+
+/* Pagination */
+div.pagination { overflow:hidden;   margin-bottom:30px;}
+div.pagination .counter { float:left;     background-color: #518F12;    color: #FFFFFF;    line-height: 34px;    padding: 0 15px;}
+div.pagination ul {    float:right; margin:0}
+div.pagination ul li { float:right; display:block; margin-right:1px; }
+div.pagination ul li:first-child { margin-left:0; }
+div.pagination ul li a { display:block; line-height:34px; color:#fff; padding:0 15px; background-color:#518f12;  }
+div.pagination ul li:hover a { color:#F18E36;  }
+div.pagination ul li.active a { background-color:#F18E36;  color:#fff !important;  }
+div.pagination ul li.disabled a { background-color:#c4c4c4;  color:#fff !important; }
+
+
+/*--FLEXMENU
+-------------------------------------------------------------------*/
+
+	/*--CLASS CORE--*/
+	
+	#block-mainnav ul.fxmenu  { height:50px; margin:0; padding:0; }
+	#block-mainnav ul.fxmenu li { position:relative; display:block;}
+	#block-mainnav ul.fxmenu li.level1 { float:right; margin-right:1px;}
+	#block-mainnav ul.fxmenu li.level1:first-child { margin:0 !important;}
+	ul[class*="fxmenu"]  span { display:block;}
+	
+	#block-mainnav ul.fxmenu .fx-subitem { display:none; opacity: 0;  position:absolute; z-index:1000; padding: 10px; }
+	#block-mainnav  ul.cssmenu  li:hover > .fx-subitem { display:block; opacity: 1;	}
+	
+	#block-mainnav ul.fxmenu .fxcolumns.cols1 > .insubitem   { width:200px;}
+	#block-mainnav ul.fxmenu .fxcolumns.cols2 > .insubitem   { width:420px;}
+	#block-mainnav ul.fxmenu .fxcolumns.cols3 > .insubitem   { width:640px;}
+	#block-mainnav ul.fxmenu .fxcolumns.cols4 > .insubitem   { width:860px;}
+	#block-mainnav ul.fxmenu .fxcolumns.cols5 > .insubitem   { width:1080px;}
+	#block-mainnav ul.fxmenu .fxcolumns.cols6 > .insubitem   { width:1300px;}
+	#block-mainnav ul.fxmenu .fxcolumns.cols7 > .insubitem   { width:1520px;}
+	
+	#block-mainnav ul.fxmenu .fx-subitem ul { margin:0; padding:0}
+	#block-mainnav ul.fxmenu .fx-subitem .fxcolumn  { float:right; border: none; width:200px; margin-right:20px; box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; }
+	#block-mainnav ul.fxmenu .fx-subitem .fxcolumn.first { margin-right:0 !important; margin-left:0 !important; clear:both}
+	#block-mainnav ul.fxmenu .fx-subitem.cols1  .column1  { margin-right:0 !important; margin-left:0 !important;}		
+	#block-mainnav ul.fxmenu .fx-subitem  .fx-subitem { right:100%; top:0;}
+	
+	#block-mainnav ul.fxmenu .fx-subitem li.hasChild > .iconsubmenu {    background: url(../img/glyphicons-halflings.png) no-repeat  -430px -72px ;    height: 15px;    margin-top: -7px;    position: absolute;    left: 5px;    top: 50%;    width: 15px;}
+	#block-mainnav ul.fxmenu .fx-subitem li.hasChild:hover > .iconsubmenu { left:0}
+
+
+
+@media (min-width: 768px) {
+	body.layout-default #main-body  {  width:100%;  float:right; }
+	body.layout-default #sidebar-a { float: right;   margin: 0 -100% 0 0; }
+	body.layout-default #sidebar-b {    float: left;    margin: 0 -100% 0 0;  }
+	.equal-column > [class*="span"]:after, .equal-column #main-body > [class*="span"]:after  { position:absolute;  top:0; bottom:0;  content:"";}
+	body.layout-left-right-main #main-body { float: left;  width: auto;}
+	body.layout-left-right-main #sidebar-a { float: right; margin-right:0 !important }
+
+
+
+
+/*--VERTICAL
+-------------------------------------------------------------------*/
+
+	.jv-module ul.menu {    border: 1px solid #CBDDB7;      margin: 0;   }
+	.jv-module ul.menu li {    border-top: 1px solid #CBDDB7;    display: block; position:relative;}
+	.jv-module ul.menu li:first-child {    border: medium none;}
+	.jv-module ul.menu li .item-text {    display: block;    padding: 5px 10px; overflow:hidden; line-height:30px;}
+	.jv-module ul.menu li:hover > .item-text , 	.jv-module ul.menu li.active > .item-text {    background-color: rgba(0, 0, 0, 0.1);  }
+
+
+	ul.vertical  .divsubmenu {	width: 200px; position:absolute; top:0; right: 98%; background:#545454;  border-radius: 5px; 	z-index: 99; display:none;  }
+	ul.vertical  li:hover > .divsubmenu { display:block;}
+	ul.vertical ul{  background: #fff ;  border: 1px solid #CBDDB7;  margin:0; padding:0 }
+	ul.vertical li img {    float: right;    height: 30px;    margin: 0  0 0 10px;}
+	ul.vertical ul span { display:block;}
+	ul.vertical li.parent:after {      background: url(../img/glyphicons-halflings.png) no-repeat scroll -430px -72px;  content: ""; height: 15px; position: absolute; left: 10px;    top: 14px;    width: 15px; -webkit-transition: all 0.2s ease-out; 
+-moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; -ms-transition: all 0.2s ease-out;}	
+	ul.vertical li.parent:hover:after { left:0}
+	ul.vertical ul  a { color:#212627 !important;} 
+	ul.vertical ul  a:hover, ul.vertical ul li.active > a { color: #0088CC !important ;}
+
+	
+}
+
+@media (max-width: 767px) {
+h1 {    font-size: 25px;}
+h2 {    font-size: 22px;}
+h3 {    font-size: 19px;}
+h4 {    font-size: 16px;}
+h5 {    font-size: 13px;}
+h6 {    font-size: 11px;}
+h1 small {    font-size: 15px;}
+h2 small {    font-size: 14px;}
+h3 small {    font-size: 13px;}
+h4 small {    font-size: 12px;}	
+		
+	ul.vertical { position:relative; margin: 0;	padding: 0; background:#F4F4F4; border-radius:5px;}
+	ul.vertical li{ margin-top:2px; position:relative; overflow:hidden; list-style-type:none;    box-shadow:0 -1px 0 0 #DDDDDD, 0 -2px 0 0 #FFFFFF; 		-webkit-box-shadow: 0 -1px 0 0 #DDDDDD, 0 -2px 0 0 #FFFFFF;		-moz-box-shadow: 0 -1px 0 0 #DDDDDD, 0 -2px 0 0 #FFFFFF;}
+	ul.vertical li:first-child   {    box-shadow: none; 		-webkit-box-shadow: none;		-moz-box-shadow: none; margin-top:0}
+	ul.vertical  .divsubmenu { 	z-index: 99;}
+	ul.vertical  .divsubmenu ul{  background: #F4F4F4 ; border-radius: 5px; margin:0; padding:0 }
+
+	ul.vertical li a, ul.vertical span.separator {line-height:40px; display:block; padding:0 10px; font-size:16px; color:#212627; }
+	ul.vertical li img {    float: left;    height: 30px;    margin: 5px 10px 0 0;}
+	ul.vertical li:hover a,  ul.vertical li.active a{ color:#0088CC;}
+	ul.vertical span { display:block;}
+	ul.vertical ul  a { color:#212627 !important;} 
+	ul.vertical ul  a:hover, ul.vertical ul li.active > a { color: #0088CC !important ;}
+	
+	ul.vertical li li {box-shadow: none;}
+	ul.vertical li li a, ul.vertical li li span.separator { padding-rihgt:20px;}
+	ul.vertical li li li a, ul.vertical li li li span.separator { padding-rihgt:30px;}
+	ul.vertical li li li li a, ul.vertical li li li li span.separator { padding-rihgt:40px;}	
+}	
+	                                                                                                               

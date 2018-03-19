@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+	<name>JV Framework - Totop</name>
+	<creationDate>14/7/2012</creationDate>
+	<author>JoomlaVi! Project</author>
+	<authorEmail>info@joomlavi.com</authorEmail>
+	<authorUrl>http://www.joomlavi.com</authorUrl>
+	<copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+	<version>1.0</version>
+	<description>Totop extension for JV Framework</description> 
+	<files>
+		<filename extension="totop">index.html</filename>
+		<filename>config.xml</filename>
+		<filename>totop.php</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.ext_totop.ini</language>
+	</languages>
+	<config>
+	<fields name="params">
+    <fieldset name="global">
+       	<fields name="global">
+
+          	<fields name="totop">	  
+
+			<field type="group" label="JVFRAMEWORK_EXTENSION_TOP"/>  	
+				
+				<field name="enable" type="radio" class="btn-group" default="0" label="" >
+                            <option value="1">JYES</option>
+                            <option value="0">JNO</option>
+				</field>		
+				
+			<field type="end"/>  	
+				
+       	 	</fields>
+        </fields>    
+	</fieldset>
+    </fields>    
+    </config>  
+    <updateservers>
+	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	</updateservers>
+</extension>
