@@ -1429,7 +1429,7 @@ abstract class FOFDatabaseQuery
 	 *
 	 * @return  mixed    The FOFDatabaseQuery object on success or boolean false on failure.
 	 *
-	 * @see  http://dev.mysql.com/doc/refman/5.0/en/union.html
+	 * @link http://dev.mysql.com/doc/refman/5.0/en/union.html
 	 *
 	 * @since   12.1
 	 */
@@ -1684,7 +1684,7 @@ abstract class FOFDatabaseQuery
 	 *
 	 * @return  string  The string with the appropriate sql for addition of dates
 	 *
-	 * @link     http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html#function_date-add
+	 * @see     http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html#function_date-add
 	 * @since   13.1
 	 */
 	public function dateAdd($date, $interval, $datePart)

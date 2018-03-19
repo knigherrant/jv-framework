@@ -3,13 +3,11 @@
  * @package     Joomla.Plugin
  * @subpackage  User.contactcreator
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
-
-use Joomla\String\StringHelper;
 
 /**
  * Class for Contact Creator
@@ -38,7 +36,7 @@ class PlgUserContactCreator extends JPlugin
 	 * @param   boolean  $success  True if user was succesfully stored in the database.
 	 * @param   string   $msg      Message.
 	 *
-	 * @return  boolean
+	 * @return  void
 	 *
 	 * @since   1.6
 	 */
@@ -144,12 +142,12 @@ class PlgUserContactCreator extends JPlugin
 
 		while ($table->load(array('alias' => $alias, 'catid' => $categoryId)))
 		{
-			if ($name === $table->name)
+			if ($name == $table->name)
 			{
-				$name = StringHelper::increment($name);
+				$name = JString::increment($name);
 			}
 
-			$alias = StringHelper::increment($alias, 'dash');
+			$alias = JString::increment($alias, 'dash');
 		}
 
 		return array($name, $alias);

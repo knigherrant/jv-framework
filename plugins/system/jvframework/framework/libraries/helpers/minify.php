@@ -4,10 +4,10 @@
  # @version		2.5.x
  # ------------------------------------------------------------------------
  # author    Open Source Code Solutions Co
- # copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+ # copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
  # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
- # Websites: http://www.joomlavi.com
- # Technical Support:  http://www.joomlavi.com/my-tickets.html
+ # Websites: http://www.phpkungfu.club
+ # Technical Support:  http://www.phpkungfu.club/my-tickets.html
  */
 
 // No direct access
@@ -215,14 +215,23 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
         }
 
         public function downScriptInline(){
+		
             $app = JFactory::getApplication();
             if ($app->isAdmin()) return;
             $buffer = JResponse::getBody();    
+			//if IE <!--[if lt IE]> <![endif]-->
+			preg_match_all("/<\!--\[if\s+lt\s+IE\s+\d][^>]*>(.*)<\!\[endif\]-->/Uis", $buffer, $matchesie);
+			foreach( @$matchesie[0] as $itemie )
+            {  
+                $buffer = str_replace( $itemie, '', $buffer );
+            }
+			//get script
             preg_match_all("/<script[^>]*>(.*)<\/script>/Uis", $buffer, $matches);
             foreach( @$matches[0] as $item )
             {  
                 $buffer = str_replace( $item, '', $buffer );
             }
+			$buffer = str_replace( '</body>', implode( '', @$matchesie[ 0 ] ) . '</body>', $buffer );
             $buffer = str_replace( '</body>', implode( '', @$matches[ 0 ] ) . '</body>', $buffer );
             JResponse::setBody( $buffer );
         }
@@ -246,7 +255,7 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
             }
             
             $buffer = $app->getBody();
-            $buffer = Minify_HTML::minify($buffer);
+            $buffer = JVMinify_HTML::minify($buffer);
             $app->setBody($buffer);
         }
         
@@ -296,7 +305,8 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 			$stylesheets = array(); // empty - begin a new group
 			foreach ($group as $url => $stylesheet) {
 				$url = self::fixUrl($url);
-				if ($stylesheet['type'] == 'text/css' && ($csspath = self::cssPath($url))) {
+
+				if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
 					$stylesheet['path'] = $csspath;
 					$stylesheet['data'] = file_get_contents($csspath);
 
@@ -416,7 +426,7 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 				}
 				//.'?t='.($grouptime % 1000)
 				$output[$outputurl . '/' . $groupname] = array(
-					'type' => 'text/css',
+					'mime' => 'text/css',
 					'media' => $media == 'all' ? NULL : $media,
 					'attribs' => array()
 					);
@@ -451,9 +461,9 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 		foreach ($doc->_scripts as $url => $script) {
 
 			$url = self::fixUrl($url);
-                        $script['type'] = 'text/javascript';
+                        $script['mime'] = 'text/javascript';
 
-			if ($script['type'] == 'text/javascript' && ($jspath = self::jsPath($url))) {
+			if ($script['mime'] == 'text/javascript' && ($jspath = self::jsPath($url))) {
 				$script['path'] = $jspath;
 				$script['data'] = file_get_contents($jspath);
 				$scripts[$url] = $script;
@@ -545,7 +555,7 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 				}
 				//.'?t='.($grouptime % 1000)
 				$output[$outputurl . '/' . $groupname] = array(
-					'type' => 'text/javascript',
+					'mime' => 'text/javascript',
 					'defer' => false,
 					'async' => false
 				);
@@ -558,7 +568,7 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 	}
 }
 
-class Minify_HTML {
+class JVMinify_HTML {
     /**
      * @var boolean
      */

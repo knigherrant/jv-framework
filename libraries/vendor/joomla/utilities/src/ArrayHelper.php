@@ -2,7 +2,7 @@
 /**
  * Part of the Joomla Framework Utilities Package
  *
- * @copyright  Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -19,8 +19,6 @@ final class ArrayHelper
 {
 	/**
 	 * Private constructor to prevent instantiation of this class
-	 *
-	 * @since   1.0
 	 */
 	private function __construct()
 	{
@@ -32,7 +30,7 @@ final class ArrayHelper
 	 * @param   array  $array    The source array to convert
 	 * @param   mixed  $default  A default value (int|array) to assign if $array is not an array
 	 *
-	 * @return  array
+	 * @return  array The converted array
 	 *
 	 * @since   1.0
 	 */
@@ -40,20 +38,25 @@ final class ArrayHelper
 	{
 		if (is_array($array))
 		{
-			return array_map('intval', $array);
+			$array = array_map('intval', $array);
 		}
-
-		if ($default === null)
+		else
 		{
-			return array();
+			if ($default === null)
+			{
+				$array = array();
+			}
+			elseif (is_array($default))
+			{
+				$array = self::toInteger($default, null);
+			}
+			else
+			{
+				$array = array((int) $default);
+			}
 		}
 
-		if (is_array($default))
-		{
-			return static::toInteger($default, null);
-		}
-
-		return array((int) $default);
+		return $array;
 	}
 
 	/**
@@ -63,7 +66,7 @@ final class ArrayHelper
 	 * @param   string   $class      Name of the class to create
 	 * @param   boolean  $recursive  Convert also any array inside the main array
 	 *
-	 * @return  object
+	 * @return  object   The object mapped from the given array
 	 *
 	 * @since   1.0
 	 */
@@ -75,7 +78,7 @@ final class ArrayHelper
 		{
 			if ($recursive && is_array($v))
 			{
-				$obj->$k = static::toObject($v, $class);
+				$obj->$k = self::toObject($v, $class);
 			}
 			else
 			{
@@ -94,7 +97,7 @@ final class ArrayHelper
 	 * @param   string   $outer_glue    The glue (optional, defaults to ' ') between array elements.
 	 * @param   boolean  $keepOuterKey  True if final key should be kept.
 	 *
-	 * @return  string
+	 * @return  string   The string mapped from the given array
 	 *
 	 * @since   1.0
 	 */
@@ -112,7 +115,7 @@ final class ArrayHelper
 				}
 
 				// This is value is an array, go and do it again!
-				$output[] = static::toString($item, $inner_glue, $outer_glue, $keepOuterKey);
+				$output[] = self::toString($item, $inner_glue, $outer_glue, $keepOuterKey);
 			}
 			else
 			{
@@ -130,7 +133,7 @@ final class ArrayHelper
 	 * @param   boolean  $recurse  True to recurse through multi-level objects
 	 * @param   string   $regex    An optional regular expression to match on field names
 	 *
-	 * @return  array
+	 * @return  array    The array mapped from the given object
 	 *
 	 * @since   1.0
 	 */
@@ -140,8 +143,10 @@ final class ArrayHelper
 		{
 			return self::arrayFromObject($p_obj, $recurse, $regex);
 		}
-
-		return array();
+		else
+		{
+			return null;
+		}
 	}
 
 	/**
@@ -151,7 +156,7 @@ final class ArrayHelper
 	 * @param   boolean  $recurse  True to recurse through multi-level objects
 	 * @param   string   $regex    An optional regular expression to match on field names
 	 *
-	 * @return  array
+	 * @return  array  The array mapped from the given object
 	 *
 	 * @since   1.0
 	 */
@@ -175,11 +180,8 @@ final class ArrayHelper
 					}
 				}
 			}
-
-			return $result;
 		}
-
-		if (is_array($item))
+		elseif (is_array($item))
 		{
 			$result = array();
 
@@ -187,11 +189,13 @@ final class ArrayHelper
 			{
 				$result[$k] = self::arrayFromObject($v, $recurse, $regex);
 			}
-
-			return $result;
+		}
+		else
+		{
+			$result = $item;
 		}
 
-		return $item;
+		return $result;
 	}
 
 	/**
@@ -199,15 +203,12 @@ final class ArrayHelper
 	 *
 	 * @param   array   $array     The source array
 	 * @param   string  $valueCol  The index of the column or name of object property to be used as value
-	 *                             It may also be NULL to return complete arrays or objects (this is
-	 *                             useful together with <var>$keyCol</var> to reindex the array).
 	 * @param   string  $keyCol    The index of the column or name of object property to be used as key
 	 *
 	 * @return  array  Column of values from the source array
 	 *
 	 * @since   1.0
 	 * @see     http://php.net/manual/en/language.types.array.php
-	 * @see     http://php.net/manual/en/function.array-column.php
 	 */
 	public static function getColumn(array $array, $valueCol, $keyCol = null)
 	{
@@ -218,24 +219,19 @@ final class ArrayHelper
 			// Convert object to array
 			$subject = is_object($item) ? static::fromObject($item) : $item;
 
-			/*
-			 * We process arrays (and objects already converted to array)
-			 * Only if the value column (if required) exists in this item
-			 */
-			if (is_array($subject) && (!isset($valueCol) || isset($subject[$valueCol])))
+			// We process array (and object already converted to array) only.
+			// Only if the value column exists in this item
+			if (is_array($subject) && isset($subject[$valueCol]))
 			{
-				// Use whole $item if valueCol is null, else use the value column.
-				$value = isset($valueCol) ? $subject[$valueCol] : $item;
-
 				// Array keys can only be integer or string. Casting will occur as per the PHP Manual.
 				if (isset($keyCol) && isset($subject[$keyCol]) && is_scalar($subject[$keyCol]))
 				{
 					$key          = $subject[$keyCol];
-					$result[$key] = $value;
+					$result[$key] = $subject[$valueCol];
 				}
 				else
 				{
-					$result[] = $value;
+					$result[] = $subject[$valueCol];
 				}
 			}
 		}
@@ -251,10 +247,11 @@ final class ArrayHelper
 	 * @param   mixed               $default  The default value to give if no key found
 	 * @param   string              $type     Return type for the variable (INT, FLOAT, STRING, WORD, BOOLEAN, ARRAY)
 	 *
-	 * @return  mixed
+	 * @return  mixed  The value from the source array
+	 *
+	 * @throws  \InvalidArgumentException
 	 *
 	 * @since   1.0
-	 * @throws  \InvalidArgumentException
 	 */
 	public static function getValue($array, $name, $default = null, $type = '')
 	{
@@ -345,7 +342,7 @@ final class ArrayHelper
 	 *
 	 * @param   array  $array  The source array.
 	 *
-	 * @return  array
+	 * @return  array  The inverted array.
 	 *
 	 * @since   1.0
 	 */
@@ -378,7 +375,7 @@ final class ArrayHelper
 	 *
 	 * @param   array  $array  An array to test.
 	 *
-	 * @return  boolean
+	 * @return  boolean  True if the array is an associative array.
 	 *
 	 * @since   1.0
 	 */
@@ -482,7 +479,7 @@ final class ArrayHelper
 	 * @param   mixed  $caseSensitive  Boolean or array of booleans to let sort occur case sensitive or insensitive
 	 * @param   mixed  $locale         Boolean or array of booleans to let sort occur using the locale language or not
 	 *
-	 * @return  array
+	 * @return  array  The sorted array of objects
 	 *
 	 * @since   1.0
 	 */
@@ -499,7 +496,7 @@ final class ArrayHelper
 		$sortLocale    = $locale;
 
 		usort(
-			$a, function ($a, $b) use ($sortCase, $sortDirection, $key, $sortLocale)
+			$a, function($a, $b) use($sortCase, $sortDirection, $key, $sortLocale)
 			{
 				for ($i = 0, $count = count($key); $i < $count; $i++)
 				{
@@ -572,7 +569,8 @@ final class ArrayHelper
 	}
 
 	/**
-	 * An improved array_search that allows for partial matching of strings values in associative arrays.
+	 * An improved array_search that allows for partial matching
+	 * of strings values in associative arrays.
 	 *
 	 * @param   string   $needle         The text to search for within the array.
 	 * @param   array    $haystack       Associative array to search in to find $needle.

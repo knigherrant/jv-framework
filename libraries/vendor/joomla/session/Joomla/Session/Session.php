@@ -2,7 +2,7 @@
 /**
  * Part of the Joomla Framework Session Package
  *
- * @copyright  Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -243,7 +243,7 @@ class Session implements \IteratorAggregate
 		// Create a token
 		if ($token === null || $forceNew)
 		{
-			$token = $this->_createToken();
+			$token = $this->_createToken(12);
 			$this->set('session.token', $token);
 		}
 
@@ -601,7 +601,7 @@ class Session implements \IteratorAggregate
 				if ($session_clean)
 				{
 					session_id($session_clean);
-					$cookie->set($session_name, '', 1);
+					$cookie->set($session_name, '', time() - 3600);
 				}
 			}
 		}
@@ -649,7 +649,7 @@ class Session implements \IteratorAggregate
 		 */
 		if (isset($_COOKIE[session_name()]))
 		{
-			$this->input->cookie->set(session_name(), '', 1);
+			setcookie(session_name(), '', time() - 42000, $this->cookie_path, $this->cookie_domain);
 		}
 
 		session_unset();
@@ -837,7 +837,17 @@ class Session implements \IteratorAggregate
 	 */
 	protected function createToken($length = 32)
 	{
-		return bin2hex(random_bytes($length));
+		static $chars = '0123456789abcdef';
+		$max = strlen($chars) - 1;
+		$token = '';
+		$name = session_name();
+
+		for ($i = 0; $i < $length; ++$i)
+		{
+			$token .= $chars[(rand(0, $max))];
+		}
+
+		return md5($token . $name);
 	}
 
 	/**

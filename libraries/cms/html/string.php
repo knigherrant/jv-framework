@@ -3,13 +3,11 @@
  * @package     Joomla.Libraries
  * @subpackage  HTML
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
-
-use Joomla\String\StringHelper;
 
 /**
  * HTML helper class for rendering manipulated strings.
@@ -36,7 +34,7 @@ abstract class JHtmlString
 	public static function truncate($text, $length = 0, $noSplit = true, $allowHtml = true)
 	{
 		// Assume a lone open tag is invalid HTML.
-		if ($length === 1 && $text[0] === '<')
+		if ($length == 1 && substr($text, 0, 1) == '<')
 		{
 			return '...';
 		}
@@ -47,7 +45,7 @@ abstract class JHtmlString
 			// Deal with spacing issues in the input.
 			$text = str_replace('>', '> ', $text);
 			$text = str_replace(array('&nbsp;', '&#160;'), ' ', $text);
-			$text = StringHelper::trim(preg_replace('#\s+#mui', ' ', $text));
+			$text = JString::trim(preg_replace('#\s+#mui', ' ', $text));
 
 			// Strip the tags from the input and decode entities.
 			$text = strip_tags($text);
@@ -55,15 +53,15 @@ abstract class JHtmlString
 
 			// Remove remaining extra spaces.
 			$text = str_replace('&nbsp;', ' ', $text);
-			$text = StringHelper::trim(preg_replace('#\s+#mui', ' ', $text));
+			$text = JString::trim(preg_replace('#\s+#mui', ' ', $text));
 		}
 
 		// Whether or not allowing HTML, truncate the item text if it is too long.
-		if ($length > 0 && StringHelper::strlen($text) > $length)
+		if ($length > 0 && JString::strlen($text) > $length)
 		{
-			$tmp = trim(StringHelper::substr($text, 0, $length));
+			$tmp = trim(JString::substr($text, 0, $length));
 
-			if ($tmp[0] === '<' && strpos($tmp, '>') === false)
+			if (substr($tmp, 0, 1) == '<' && strpos($tmp, '>') === false)
 			{
 				return '...';
 			}
@@ -72,8 +70,8 @@ abstract class JHtmlString
 			if ($noSplit)
 			{
 				// Find the position of the last space within the allowed length.
-				$offset = StringHelper::strrpos($tmp, ' ');
-				$tmp = StringHelper::substr($tmp, 0, $offset + 1);
+				$offset = JString::strrpos($tmp, ' ');
+				$tmp = JString::substr($tmp, 0, $offset + 1);
 
 				// If there are no spaces and the string is longer than the maximum
 				// we need to just use the ellipsis. In that case we are done.
@@ -82,9 +80,9 @@ abstract class JHtmlString
 					return '...';
 				}
 
-				if (StringHelper::strlen($tmp) > $length - 3)
+				if (JString::strlen($tmp) > $length - 3)
 				{
-					$tmp = trim(StringHelper::substr($tmp, 0, StringHelper::strrpos($tmp, ' ')));
+					$tmp = trim(JString::substr($tmp, 0, JString::strrpos($tmp, ' ')));
 				}
 			}
 
@@ -95,7 +93,7 @@ abstract class JHtmlString
 				$openedTags = $result[1];
 
 				// Some tags self close so they do not need a separate close tag.
-				$openedTags = array_diff($openedTags, array('img', 'hr', 'br'));
+				$openedTags = array_diff($openedTags, array("img", "hr", "br"));
 				$openedTags = array_values($openedTags);
 
 				// Put all closed tags into an array
@@ -104,31 +102,26 @@ abstract class JHtmlString
 
 				$numOpened = count($openedTags);
 
-				// Not all tags are closed so trim the text and finish.
-				if (count($closedTags) !== $numOpened)
+				// All tags are closed so trim the text and finish.
+				if (count($closedTags) == $numOpened)
 				{
-					// Closing tags need to be in the reverse order of opening tags.
-					$openedTags = array_reverse($openedTags);
-
-					// Close tags
-					for ($i = 0; $i < $numOpened; $i++)
-					{
-						if (!in_array($openedTags[$i], $closedTags))
-						{
-							$tmp .= '</' . $openedTags[$i] . '>';
-						}
-						else
-						{
-							unset($closedTags[array_search($openedTags[$i], $closedTags)]);
-						}
-					}
+					return trim($tmp) . '...';
 				}
 
-				// Check if we are within a tag
-				if (StringHelper::strrpos($tmp, '<') > StringHelper::strrpos($tmp, '>'))
+				// Closing tags need to be in the reverse order of opening tags.
+				$openedTags = array_reverse($openedTags);
+
+				// Close tags
+				for ($i = 0; $i < $numOpened; $i++)
 				{
-					$offset = StringHelper::strrpos($tmp, '<');
-					$tmp = StringHelper::trim(StringHelper::substr($tmp, 0, $offset));
+					if (!in_array($openedTags[$i], $closedTags))
+					{
+						$tmp .= "</" . $openedTags[$i] . ">";
+					}
+					else
+					{
+						unset($closedTags[array_search($openedTags[$i], $closedTags)]);
+					}
 				}
 			}
 
@@ -170,19 +163,19 @@ abstract class JHtmlString
 		$baseLength = strlen($html);
 
 		// If the original HTML string is shorter than the $maxLength do nothing and return that.
-		if ($baseLength <= $maxLength || $maxLength === 0)
+		if ($baseLength <= $maxLength || $maxLength == 0)
 		{
 			return $html;
 		}
 
 		// Take care of short simple cases.
-		if ($maxLength <= 3 && $html[0] !== '<' && strpos(substr($html, 0, $maxLength - 1), '<') === false && $baseLength > $maxLength)
+		if ($maxLength <= 3 && substr($html, 0, 1) != '<' && strpos(substr($html, 0, $maxLength - 1), '<') === false && $baseLength > $maxLength)
 		{
 			return '...';
 		}
 
 		// Deal with maximum length of 1 where the string starts with a tag.
-		if ($maxLength === 1 && $html[0] === '<')
+		if ($maxLength == 1 && substr($html, 0, 1) == '<')
 		{
 			$endTagPos = strlen(strstr($html, '>', true));
 			$tag = substr($html, 1, $endTagPos);
@@ -204,20 +197,20 @@ abstract class JHtmlString
 		$ptString = JHtml::_('string.truncate', $html, $maxLength, $noSplit, $allowHtml = false);
 
 		// It's all HTML, just return it.
-		if ($ptString === '')
+		if (strlen($ptString) == 0)
 		{
 				return $html;
 		}
 
 		// If the plain text is shorter than the max length the variable will not end in ...
 		// In that case we use the whole string.
-		if (substr($ptString, -3) !== '...')
+		if (substr($ptString, -3) != '...')
 		{
 				return $html;
 		}
 
 		// Regular truncate gives us the ellipsis but we want to go back for text and tags.
-		if ($ptString === '...')
+		if ($ptString == '...')
 		{
 			$stripped = substr(strip_tags($html), 0, $maxLength);
 			$ptString = JHtml::_('string.truncate', $stripped, $maxLength, $noSplit, $allowHtml = false);
@@ -232,7 +225,7 @@ abstract class JHtmlString
 			// Get the truncated string assuming HTML is allowed.
 			$htmlString = JHtml::_('string.truncate', $html, $maxLength, $noSplit, $allowHtml = true);
 
-			if ($htmlString === '...' && strlen($ptString) + 3 > $maxLength)
+			if ($htmlString == '...' && strlen($ptString) + 3 > $maxLength)
 			{
 				return $htmlString;
 			}
@@ -244,7 +237,7 @@ abstract class JHtmlString
 			$htmlStringToPtString = rtrim($htmlStringToPtString, '.');
 
 			// If the new plain text string matches the original plain text string we are done.
-			if ($ptString === $htmlStringToPtString)
+			if ($ptString == $htmlStringToPtString)
 			{
 				return $htmlString . '...';
 			}
@@ -283,14 +276,14 @@ abstract class JHtmlString
 	public static function abridge($text, $length = 50, $intro = 30)
 	{
 		// Abridge the item text if it is too long.
-		if (StringHelper::strlen($text) > $length)
+		if (JString::strlen($text) > $length)
 		{
 			// Determine the remaining text length.
 			$remainder = $length - ($intro + 3);
 
 			// Extract the beginning and ending text sections.
-			$beg = StringHelper::substr($text, 0, $intro);
-			$end = StringHelper::substr($text, StringHelper::strlen($text) - $remainder);
+			$beg = JString::substr($text, 0, $intro);
+			$end = JString::substr($text, JString::strlen($text) - $remainder);
 
 			// Build the resulting string.
 			$text = $beg . '...' . $end;

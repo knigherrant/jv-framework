@@ -3,10 +3,10 @@ Script:
 	JVEqualHeight - Equal elements height.
 
 License:
-	Proprietary - JoomlaVi Club members only
+	Proprietary - PHPKungfu Club members only
 
 Copyright:
-	Copyright (C) JoomlaVi. All rights reserved.
+	Copyright (C) PHPKungfu. All rights reserved.
 */
 
 
@@ -28,10 +28,10 @@ Script:
 	JVEffects - JV Effects such as background color.
 
 License:
-	Proprietary - JoomlaVi Club members only
+	Proprietary - PHPKungfu Club members only
 
 Copyright:
-	Copyright (C) JoomlaVi. All rights reserved.
+	Copyright (C) PHPKungfu. All rights reserved.
 */
 
 var JVEffects = new Class({
@@ -92,10 +92,10 @@ Script:
 	JVLazyLoad - Lazy loading.
 
 License:
-	Proprietary - JoomlaVi Club members only
+	Proprietary - PHPKungfu Club members only
 
 Copyright:
-	Copyright (C) JoomlaVi. All rights reserved.
+	Copyright (C) PHPKungfu. All rights reserved.
 */
 
 var JVLazyLoad = new Class({
@@ -145,10 +145,10 @@ Script:
 	JVTop - Scroll to top effect.
 
 License:
-	Proprietary - JoomlaVi Club members only
+	Proprietary - PHPKungfu Club members only
 
 Copyright:
-	Copyright (C) JoomlaVi. All rights reserved.
+	Copyright (C) PHPKungfu. All rights reserved.
 */
 
 var JVTop = new Class({
@@ -166,8 +166,7 @@ var JVTop = new Class({
             'html': '' 
 		}).inject(document.body);
         topElement.addEvent('click', function(){
-            jQuery( 'html,body' ).stop().animate( { scrollTop: 0 } );
-			return false;
+            new Fx.Scroll(window).toTop();
         });
 		var topFx = new Fx.Morph(topElement, this.options).set({'opacity': 0});
 		window.addEvent('scroll', function(){

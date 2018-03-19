@@ -3,8 +3,8 @@
  * @package     Joomla.Legacy
  * @subpackage  Response
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -18,34 +18,28 @@ JLog::add('JResponse is deprecated.', JLog::WARNING, 'deprecated');
  * response variables.  This includes header and body.
  *
  * @since       11.1
- * @deprecated  1.5  Use JApplicationWeb instead
+ * @deprecated  4.0  Use JApplicationWeb instead
  */
 class JResponse
 {
 	/**
-	 * Response body
-	 *
-	 * @var    array
-	 * @since  1.6
-	 * @deprecated  3.2
+	 * @var    array  Body
+	 * @since  11.1
+	 * @deprecated  4.0
 	 */
 	protected static $body = array();
 
 	/**
-	 * Flag if the response is cachable
-	 *
-	 * @var    boolean
-	 * @since  1.6
-	 * @deprecated  3.2
+	 * @var    boolean  Cachable
+	 * @since  11.1
+	 * @deprecated  4.0
 	 */
 	protected static $cachable = false;
 
 	/**
-	 * Response headers
-	 *
-	 * @var    array
-	 * @since  1.6
-	 * @deprecated  3.2
+	 * @var    array  Headers
+	 * @since  11.1
+	 * @deprecated  4.0
 	 */
 	protected static $headers = array();
 
@@ -58,8 +52,8 @@ class JResponse
 	 *
 	 * @return  boolean  True if browser caching should be allowed
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::allowCache() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::allowCache() instead
 	 */
 	public static function allowCache($allow = null)
 	{
@@ -77,8 +71,8 @@ class JResponse
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::setHeader() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::setHeader() instead
 	 */
 	public static function setHeader($name, $value, $replace = false)
 	{
@@ -90,8 +84,8 @@ class JResponse
 	 *
 	 * @return  array
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::getHeaders() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::getHeaders() instead
 	 */
 	public static function getHeaders()
 	{
@@ -103,8 +97,8 @@ class JResponse
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::clearHeaders() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::clearHeaders() instead
 	 */
 	public static function clearHeaders()
 	{
@@ -116,8 +110,8 @@ class JResponse
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::sendHeaders() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::sendHeaders() instead
 	 */
 	public static function sendHeaders()
 	{
@@ -133,8 +127,8 @@ class JResponse
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::setBody() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::setBody() instead
 	 */
 	public static function setBody($content)
 	{
@@ -148,8 +142,8 @@ class JResponse
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::prependBody() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::prependBody() instead
 	 */
 	public static function prependBody($content)
 	{
@@ -163,8 +157,8 @@ class JResponse
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::appendBody() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::appendBody() instead
 	 */
 	public static function appendBody($content)
 	{
@@ -178,8 +172,8 @@ class JResponse
 	 *
 	 * @return  string  array
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationWeb::getBody() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::getBody() instead
 	 */
 	public static function getBody($toArray = false)
 	{
@@ -193,8 +187,8 @@ class JResponse
 	 *
 	 * @return  string
 	 *
-	 * @since   1.5
-	 * @deprecated  3.2  Use JApplicationCms::toString() instead
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationCms::toString() instead
 	 */
 	public static function toString($compress = false)
 	{
@@ -211,9 +205,9 @@ class JResponse
 	 *
 	 * @return  string  compressed data
 	 *
-	 * @note    Replaces _compress method from 1.5
-	 * @since   1.7
-	 * @deprecated  3.2  Use JApplicationWeb::compress() instead
+	 * @note    Replaces _compress method in 11.1
+	 * @since   11.1
+	 * @deprecated  4.0  Use JApplicationWeb::compress() instead
 	 */
 	protected static function compress($data)
 	{
@@ -256,7 +250,7 @@ class JResponse
 		self::setHeader('Content-Encoding', $encoding);
 
 		// Header will be removed at 4.0
-		if (defined('JVERSION') && JFactory::getConfig()->get('MetaVersion', 0))
+		if (JFactory::getConfig()->get('MetaVersion', 0) && defined('JVERSION'))
 		{
 			self::setHeader('X-Content-Encoded-By', 'Joomla! ' . JVERSION);
 		}
@@ -269,9 +263,9 @@ class JResponse
 	 *
 	 * @return  boolean
 	 *
-	 * @since   1.7
-	 * @note    Replaces _clientEncoding method from 1.5
-	 * @deprecated  3.2  Use JApplicationWebClient instead
+	 * @since   11.1
+	 * @note    Replaces _clientEncoding method from 11.1
+	 * @deprecated  4.0  Use JApplicationWebClient instead
 	 */
 	protected static function clientEncoding()
 	{

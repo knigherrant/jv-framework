@@ -4,10 +4,10 @@
  # @version		1.5.x
  # ------------------------------------------------------------------------
  # author    Open Source Code Solutions Co
- # copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+ # copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
  # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
- # Websites: http://www.joomlavi.com
- # Technical Support:  http://www.joomlavi.com/my-tickets.html
+ # Websites: http://www.phpkungfu.club
+ # Technical Support:  http://www.phpkungfu.club/my-tickets.html
  */
 defined ( '_JEXEC' ) or die ( 'Restricted access' );
 
@@ -113,7 +113,7 @@ class JVFrameworkHelperTemplate extends JVFrameworkHelper {
                     if (strpos($name, '::')){
                             list ( $type, $name ) = explode ( '::', $name );
                     }
-                    $path = $this['path']->findPath($name.'.php', $type); 
+                    $path = $this['path']->findPath($name.'.php', $type);
                     if(is_file($path)){
                             ob_start();
                             extract($params);

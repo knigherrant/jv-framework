@@ -4,10 +4,10 @@
  # @version		2.5.9
  # ------------------------------------------------------------------------
  # author    Open Source Code Solutions Co
- # copyright Copyright � 2008-2012 joomlavi.com. All Rights Reserved.
+ # copyright Copyright � 2008-2012 phpkungfu.club. All Rights Reserved.
  # @license - http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL or later.
- # Websites: http://www.joomlavi.com
- # Technical Support:  http://www.joomlavi.com/my-tickets.html
+ # Websites: http://www.phpkungfu.club
+ # Technical Support:  http://www.phpkungfu.club/my-tickets.html
 -------------------------------------------------------------------------*/
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
@@ -58,7 +58,7 @@ class JFormFieldMap extends JFormField {
 								style:"width:100%;height:500px"
 							}).inject(injectel);
 				';
-		
+		$db = JFactory::getDbo();
 		$js .= 'var mymap = new jvmap({
 					hosturl : "'.JURI::root().'",
 					moduleid: '.$moduleid.',
@@ -67,7 +67,7 @@ class JFormFieldMap extends JFormField {
 					lng		: "'.$mainlong.'",
 					zoom	: '.$zoom.',
 					addevent: 1,
-					infotext: "'.$infotext.'"
+					infotext: "'.$db->quote($infotext).'"
 				});';
 		if($markers) foreach($markers as $marker){
 			$arr = explode('|',$marker);

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="system" method="upgrade">
 	<name>System - JVFramework </name>
-    <author>JoomlaVi! Project</author>
-    <creationDate>Feb 2011</creationDate>
-    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <author>PHPKungfu! Project</author>
+    <creationDate>April 2016</creationDate>
+    <copyright>Copyright (C) PHPKungfu. All rights reserved</copyright>
     <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL or later</license>
-    <authorEmail>info@joomlavi.com</authorEmail>
-    <authorUrl>www.joomlavi.com</authorUrl>
-    <version>3.0.10</version>
+    <authorEmail>info@phpkungfu.club</authorEmail>
+    <authorUrl>www.phpkungfu.club</authorUrl>
+    <version>4.2.5</version>
 	<scriptfile>script.php</scriptfile>
 	<files>
 		<filename plugin="jvframework">jvframework.php</filename>
@@ -18,6 +18,6 @@
 		<language tag="en-GB">en-GB.plg_system_jvframework.ini</language>
 	</languages>
 	<updateservers>
-	   <server type="collection">http://update.joomlavi.com/list.xml</server>
+	   <server type="collection">http://update.phpkungfu.club/list.xml</server>
 	</updateservers>
 </extension>

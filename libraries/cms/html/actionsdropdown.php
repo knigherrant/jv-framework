@@ -3,8 +3,8 @@
  * @package     Joomla.Libraries
  * @subpackage  HTML
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -224,7 +224,7 @@ abstract class JHtmlActionsDropdown
 	{
 		static::$dropDownList[] = '<li>'
 			. '<a href = "javascript://" onclick="listItemTask(\'' . $id . '\', \'' . $task . '\')">'
-			. ($icon ? '<span class="icon-' . $icon . '" aria-hidden="true"></span> ' : '')
+			. ($icon ? '<span class="icon-' . $icon . '"></span> ' : '')
 			. $label
 			. '</a>'
 			. '</li>';

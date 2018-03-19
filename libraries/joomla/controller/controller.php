@@ -3,11 +3,9 @@
  * @package     Joomla.Platform
  * @subpackage  Controller
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
-
-use Joomla\Application\AbstractApplication;
 
 defined('JPATH_PLATFORM') or die;
 
@@ -34,7 +32,7 @@ interface JController extends Serializable
 	/**
 	 * Get the application object.
 	 *
-	 * @return  AbstractApplication  The application object.
+	 * @return  JApplicationBase  The application object.
 	 *
 	 * @since   12.1
 	 */
@@ -43,7 +41,7 @@ interface JController extends Serializable
 	/**
 	 * Get the input object.
 	 *
-	 * @return  JInput  The input object.
+	 * @return  \Joomla\Input\Input  The input object.
 	 *
 	 * @since   12.1
 	 */

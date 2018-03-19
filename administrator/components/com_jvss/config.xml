@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+   <fieldset label="COM_JVSS" name="jvss">
+      <field type="text" label="COM_JVSS_COG_YT_KEY" name="yt_key" default="AIzaSyDOkg-u9jnhP-WnzX5WPJyV1sc5QQrtuyc" class="input-block-level" />
+   </fieldset>
+   <fieldset name="permissions" description="JCONFIG_PERMISSIONS_DESC" label="JCONFIG_PERMISSIONS_LABEL">
+      <field name="rules" type="rules" component="com_jvss" class="inputbox" filter="rules" validate="rules" label="JCONFIG_PERMISSIONS_LABEL" section="component" />
+   </fieldset>
+</config> 

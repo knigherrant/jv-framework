@@ -84,21 +84,18 @@ class OutputFilter
 	 * This method processes a string and replaces all accented UTF-8 characters by unaccented
 	 * ASCII-7 "equivalents", whitespaces are replaced by hyphens and the string is lowercase.
 	 *
-	 * @param   string  $string    String to process
-	 * @param   string  $language  Language to transliterate to
+	 * @param   string  $string  String to process
 	 *
 	 * @return  string  Processed string
 	 *
 	 * @since   1.0
 	 */
-	public static function stringUrlSafe($string, $language = '')
+	public static function stringUrlSafe($string)
 	{
 		// Remove any '-' from the string since they will be used as concatenaters
 		$str = str_replace('-', ' ', $string);
 
-		// Transliterate on the language requested (fallback to current language if not specified)
-		$lang = empty($language) ? Language::getInstance() : Language::getInstance($language);
-		$str = $lang->transliterate($str);
+		$str = Language::getInstance()->transliterate($str);
 
 		// Trim white spaces at beginning and end of alias and make lowercase
 		$str = trim(StringHelper::strtolower($str));
@@ -154,10 +151,18 @@ class OutputFilter
 	 * @return  string  Processed string.
 	 *
 	 * @since   1.0
+	 * @todo    There must be a better way???
 	 */
 	public static function ampReplace($text)
 	{
-		return preg_replace('/(?<!&)&(?!&|#|[\w]+;)/', '&amp;', $text);
+		$text = str_replace('&&', '*--*', $text);
+		$text = str_replace('&#', '*-*', $text);
+		$text = str_replace('&amp;', '&', $text);
+		$text = preg_replace('|&(?![\w]+;)|', '&amp;', $text);
+		$text = str_replace('*-*', '&#', $text);
+		$text = str_replace('*--*', '&&', $text);
+
+		return $text;
 	}
 
 	/**

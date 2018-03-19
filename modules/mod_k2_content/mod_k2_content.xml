@@ -2,11 +2,11 @@
 <extension type="module" client="site" version="2.5" method="upgrade">
     <name>K2 Content</name>
     <author>JoomlaWorks</author>
-    <creationDate>December 8th, 2014</creationDate>
-    <copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
+    <creationDate>August 4th, 2016</creationDate>
+    <copyright>Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.</copyright>
     <authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
     <authorUrl>www.joomlaworks.net</authorUrl>
-    <version>2.6.9</version>
+    <version>2.7.1</version>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <description>K2_MOD_K2_CONTENT_DESCRIPTION</description>
     <files>
@@ -34,6 +34,8 @@
                     <option value="0">K2_NO</option>
                     <option value="1">K2_YES</option>
                 </field>
+                <field name="tags" type="k2tags" label="K2_TAGS"/>
+                <field name="users" type="k2users" label="K2_USERS"/>
                 <field name="itemCount" type="text" size="4" default="5" label="K2_ITEM_COUNT" description=""/>
                 <field name="itemsOrdering" type="list" default="" label="K2_ITEM_ORDERING" description="">
                     <option value="">K2_DEFAULT</option>

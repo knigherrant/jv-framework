@@ -3,13 +3,11 @@
  * @package     Joomla.Site
  * @subpackage  Layout
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('JPATH_BASE') or die;
-
-use Joomla\Utilities\ArrayHelper;
 
 // Load bootstrap-tooltip-extended plugin for additional tooltip positions in modal
 JHtml::_('bootstrap.tooltipExtended');
@@ -33,7 +31,7 @@ extract($displayData);
  *                             - bodyHeight   int      Optional height of the modal body in viewport units (vh)
  *                             - modalWidth   int      Optional width of the modal in viewport units (vh)
  *                             - footer       string   Optional markup for the modal footer
- * @param   string  $body      Markup for the modal body. Appended after the <iframe> if the URL option is set
+ * @param   string  $body      Markup for the modal body. Appended after the <iframe> if the url option is set
  *
  */
 
@@ -41,14 +39,14 @@ $modalClasses = array('modal', 'hide');
 
 if (!isset($params['animation']) || $params['animation'])
 {
-	$modalClasses[] = 'fade';
+	array_push($modalClasses, 'fade');
 }
 
 $modalWidth = isset($params['modalWidth']) ? round((int) $params['modalWidth'], -1) : '';
 
 if ($modalWidth && $modalWidth > 0 && $modalWidth <= 100)
 {
-	$modalClasses[] = 'jviewport-width' . $modalWidth;
+	array_push($modalClasses, 'jviewport-width' . $modalWidth);
 }
 
 $modalAttributes = array(
@@ -75,7 +73,7 @@ if (isset($params['keyboard']))
  *      - max-height    .modal-body     Max-height for the modal body
  *                                      When height of the modal is too high for the window viewport height.
  *      - max-height    .iframe         Max-height for the iframe (Deducting the padding of the modal-body)
- *                                      When URL option is set and height of the iframe is higher than max-height of the modal body.
+ *                                      When url option is set and height of the iframe is higher than max-height of the modal body.
  *
  * Fix iOS scrolling inside bootstrap modals
  *      - overflow-y    .modal-body     When max-height is set for modal-body
@@ -152,21 +150,21 @@ $script[] = "});";
 
 JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 ?>
-<div id="<?php echo $selector; ?>" <?php echo ArrayHelper::toString($modalAttributes); ?>>
+<div id="<?php echo $selector; ?>" <?php echo JArrayHelper::toString($modalAttributes); ?>>
 	<?php
-	// Header
-	if (!isset($params['closeButton']) || isset($params['title']) || $params['closeButton'])
-	{
-		echo JLayoutHelper::render('joomla.modal.header', $displayData);
-	}
+		// Header
+		if (!isset($params['closeButton']) || isset($params['title']) || $params['closeButton'])
+		{
+			echo JLayoutHelper::render('joomla.modal.header', $displayData);
+		}
 
-	// Body
-	echo JLayoutHelper::render('joomla.modal.body', $displayData);
+		// Body
+		echo JLayoutHelper::render('joomla.modal.body', $displayData);
 
-	// Footer
-	if (isset($params['footer']))
-	{
-		echo JLayoutHelper::render('joomla.modal.footer', $displayData);
-	}
+		// Footer
+		if (isset($params['footer']))
+		{
+			echo JLayoutHelper::render('joomla.modal.footer', $displayData);
+		}
 	?>
 </div>

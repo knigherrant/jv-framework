@@ -1,14 +1,14 @@
 <?php
 /**
- # Module		JV Contact
- # @version		3.0.1
- # ------------------------------------------------------------------------
- # author    Open Source Code Solutions Co
- # copyright Copyright © 2008-2012 joomlavi.com. All Rights Reserved.
- # @license - http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL or later.
- # Websites: http://www.joomlavi.com
- # Technical Support:  http://www.joomlavi.com/my-tickets.html
--------------------------------------------------------------------------*/
+ * Module		JV Contact
+ * @version		3.5
+ * ------------------------------------------------------------------------
+ * author    Open Source Code Solutions Co
+ * copyright Copyright © 2008-2012 phpkungfu.club. All Rights Reserved.
+ * @license - http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL or later.
+ * Websites: http://www.phpkungfu.club
+ * Technical Support:  http://www.phpkungfu.club/my-tickets.html
+*------------------------------------------------------------------------*/
 
 // No direct access to this file
 defined( '_JEXEC' ) or die( 'Restricted access' );
@@ -19,7 +19,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 <div class="formcontact">
 
 <?php echo @$myparams['captcha'][1];?>
-<form id="jvcontact<?php echo $moduleid;?>" action="" method="post">
+<form id="jvcontact<?php echo $moduleid;?>" action="<?php echo JUri::getInstance()->toString();?>" method="post">
 	<div class="innerform">
 	
 	 	<?php echo $myparams['social'];?>
@@ -60,7 +60,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
     
     <div class="msgsendmailok" id="<?php echo $divmsgid?>">
         <?php
-        if($msgthankyou && @$post['jvcontact'][$moduleid]){
+        if($msgthankyou){
         	echo '<div class="msgthankyou">'.$msgthankyou.'</div>';
         }
         ?>

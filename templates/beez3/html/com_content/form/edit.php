@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  Templates.beez3
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
+JHtml::_('behavior.calendar');
 JHtml::_('behavior.formvalidation');
 
 // Create shortcut to parameters.
@@ -28,7 +29,7 @@ endif;
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task === 'article.cancel' || document.formvalidator.isValid(document.getElementById('adminForm')))
+		if (task == 'article.cancel' || document.formvalidator.isValid(document.getElementById('adminForm')))
 		{
 			<?php echo $this->form->getField('articletext')->save(); ?>
 			Joomla.submitform(task);
@@ -55,7 +56,7 @@ endif;
 				</div>
 			</div>
 
-		<?php if ($this->item->id === null):?>
+		<?php if (is_null($this->item->id)):?>
 			<div class="control-group">
 				<div class="control-label">
 					<?php echo $this->form->getLabel('alias'); ?>
@@ -74,9 +75,7 @@ endif;
 					<?php echo JText::_('JCANCEL') ?>
 				</button>
 			</div>
-			<?php if ($this->captchaEnabled) : ?>
-				<?php echo $this->form->renderField('captcha'); ?>
-			<?php endif; ?>
+
 			<?php echo $this->form->getInput('articletext'); ?>
 
 	</fieldset>
@@ -229,7 +228,6 @@ endif;
 					<?php echo $this->form->getInput('tags'); ?>
 				</div>
 			</div>
-			<?php if ($params->get('show_publishing_options', 1) == 1) : ?>	
 			<div class="control-group">
 				<div class="control-label">
 					<?php echo $this->form->getLabel('created_by_alias'); ?>
@@ -238,7 +236,7 @@ endif;
 					<?php echo $this->form->getInput('created_by_alias'); ?>
 				</div>
 			</div>
-			<?php endif; ?>
+
 			<?php if ($this->item->params->get('access-change')) : ?>
 				<div class="control-group">
 					<div class="control-label">
@@ -256,7 +254,6 @@ endif;
 						<?php echo $this->form->getInput('featured'); ?>
 					</div>
 				</div>
-				<?php if ($params->get('show_publishing_options', 1) == 1) : ?>	
 				<div class="control-group">
 					<div class="control-label">
 						<?php echo $this->form->getLabel('publish_up'); ?>
@@ -273,7 +270,6 @@ endif;
 						<?php echo $this->form->getInput('publish_down'); ?>
 					</div>
 				</div>
-				<?php endif; ?>
 			<?php endif; ?>
 			<div class="control-group">
 				<div class="control-label">
@@ -283,7 +279,7 @@ endif;
 					<?php echo $this->form->getInput('access'); ?>
 				</div>
 			</div>
-			<?php if ($this->item->id === null):?>
+			<?php if (is_null($this->item->id)):?>
 				<div class="control-group">
 					<div class="control-label">
 					</div>
@@ -306,7 +302,6 @@ endif;
 			</div>
 	</fieldset>
 
-	<?php if ($params->get('show_publishing_options', 1) == 1) : ?>	
 	<fieldset>
 		<legend><?php echo JText::_('COM_CONTENT_METADATA'); ?></legend>
 			<div class="control-group">
@@ -325,14 +320,13 @@ endif;
 					<?php echo $this->form->getInput('metakey'); ?>
 				</div>
 			</div>
-	</fieldset>
-	<?php endif; ?>
+
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="return" value="<?php echo $this->return_page;?>" />
 		<?php if ($this->params->get('enable_category', 0) == 1) : ?>
 			<input type="hidden" name="jform[catid]" value="<?php echo $this->params->get('catid', 1);?>"/>
 		<?php endif;?>
 		<?php echo JHtml::_('form.token'); ?>
-
+	</fieldset>
 </form>
 </div>

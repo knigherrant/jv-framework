@@ -12,7 +12,7 @@
         require("../css/css"),
         require("../sass/sass"),
         require("../stylus/stylus"),
-        require("../pug/pug"),
+        require("../jade/jade"),
         require("../handlebars/handlebars"));
   } else if (typeof define === "function" && define.amd) { // AMD
     define(["../../lib/codemirror",
@@ -23,7 +23,7 @@
             "../css/css",
             "../sass/sass",
             "../stylus/stylus",
-            "../pug/pug",
+            "../jade/jade",
             "../handlebars/handlebars"], mod);
   } else { // Plain browser env
     mod(CodeMirror);
@@ -32,26 +32,19 @@
   var tagLanguages = {
     script: [
       ["lang", /coffee(script)?/, "coffeescript"],
-      ["type", /^(?:text|application)\/(?:x-)?coffee(?:script)?$/, "coffeescript"],
-      ["lang", /^babel$/, "javascript"],
-      ["type", /^text\/babel$/, "javascript"],
-      ["type", /^text\/ecmascript-\d+$/, "javascript"]
+      ["type", /^(?:text|application)\/(?:x-)?coffee(?:script)?$/, "coffeescript"]
     ],
     style: [
       ["lang", /^stylus$/i, "stylus"],
       ["lang", /^sass$/i, "sass"],
-      ["lang", /^less$/i, "text/x-less"],
-      ["lang", /^scss$/i, "text/x-scss"],
       ["type", /^(text\/)?(x-)?styl(us)?$/i, "stylus"],
-      ["type", /^text\/sass/i, "sass"],
-      ["type", /^(text\/)?(x-)?scss$/i, "text/x-scss"],
-      ["type", /^(text\/)?(x-)?less$/i, "text/x-less"]
+      ["type", /^text\/sass/i, "sass"]
     ],
     template: [
       ["lang", /^vue-template$/i, "vue"],
-      ["lang", /^pug$/i, "pug"],
+      ["lang", /^jade$/i, "jade"],
       ["lang", /^handlebars$/i, "handlebars"],
-      ["type", /^(text\/)?(x-)?pug$/i, "pug"],
+      ["type", /^(text\/)?(x-)?jade$/i, "jade"],
       ["type", /^text\/x-handlebars-template$/i, "handlebars"],
       [null, null, "vue-template"]
     ]
@@ -70,8 +63,7 @@
 
   CodeMirror.defineMode("vue", function (config) {
     return CodeMirror.getMode(config, {name: "htmlmixed", tags: tagLanguages});
-  }, "htmlmixed", "xml", "javascript", "coffeescript", "css", "sass", "stylus", "pug", "handlebars");
+  }, "htmlmixed", "xml", "javascript", "coffeescript", "css", "sass", "stylus", "jade", "handlebars");
 
   CodeMirror.defineMIME("script/x-vue", "vue");
-  CodeMirror.defineMIME("text/x-vue", "vue");
 });

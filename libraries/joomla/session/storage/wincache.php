@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Session
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -12,8 +12,7 @@ defined('JPATH_PLATFORM') or die;
 /**
  * WINCACHE session storage handler for PHP
  *
- * @since       11.1
- * @deprecated  4.0  The CMS' Session classes will be replaced with the `joomla/session` package
+ * @since  11.1
  */
 class JSessionStorageWincache extends JSessionStorage
 {
@@ -44,10 +43,7 @@ class JSessionStorageWincache extends JSessionStorage
 	 */
 	public function register()
 	{
-		if (!headers_sent())
-		{
-			ini_set('session.save_handler', 'wincache');
-		}
+		ini_set('session.save_handler', 'wincache');
 	}
 
 	/**
@@ -59,6 +55,6 @@ class JSessionStorageWincache extends JSessionStorage
 	 */
 	public static function isSupported()
 	{
-		return extension_loaded('wincache') && function_exists('wincache_ucache_get') && !strcmp(ini_get('wincache.ucenabled'), '1');
+		return extension_loaded('wincache') && function_exists('wincache_ucache_get') && !strcmp(ini_get('wincache.ucenabled'), "1");
 	}
 }

@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_users
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -43,11 +43,9 @@ class UsersViewProfile extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		$user = JFactory::getUser();
-
 		// Get the view data.
-		$this->data	        = $this->get('Data');
-		$this->form	        = $this->getModel()->getForm(new JObject(array('id' => $user->id)));
+		$this->data	            = $this->get('Data');
+		$this->form	            = $this->get('Form');
 		$this->state            = $this->get('State');
 		$this->params           = $this->state->get('params');
 		$this->twofactorform    = $this->get('Twofactorform');
@@ -64,6 +62,7 @@ class UsersViewProfile extends JViewLegacy
 		}
 
 		// View also takes responsibility for checking if the user logged in with remember me.
+		$user = JFactory::getUser();
 		$cookieLogin = $user->get('cookieLogin');
 
 		if (!empty($cookieLogin))
@@ -86,12 +85,7 @@ class UsersViewProfile extends JViewLegacy
 		}
 
 		$this->data->tags = new JHelperTags;
-		$this->data->tags->getItemTags('com_users.user', $this->data->id);
-
-		JPluginHelper::importPlugin('content');
-		$this->data->text = '';
-		JEventDispatcher::getInstance()->trigger('onContentPrepare', array ('com_users.user', &$this->data, &$this->data->params, 0));
-		unset($this->data->text);
+		$this->data->tags->getItemTags('com_users.user.', $this->data->id);
 
 		// Check for layout override
 		$active = JFactory::getApplication()->getMenu()->getActive();

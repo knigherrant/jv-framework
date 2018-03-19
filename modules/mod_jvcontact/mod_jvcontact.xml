@@ -6,12 +6,12 @@
 	method="upgrade">
 	<name>MOD_JVCONTACT</name>
 	<author>Open Source Code Solutions Co</author>
-	<creationDate>July 2013</creationDate>
-	<copyright>Copyright © 2008-2012 joomlavi.com. All Rights Reserved.</copyright>
+	<creationDate>11/2015</creationDate>
+	<copyright>Copyright © 2008-2015 phpkungfu.club. All Rights Reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL or later.</license>
-	<authorEmail>info@joomlavi.com</authorEmail>
-	<authorUrl>http://www.joomlavi.com/my-tickets.html</authorUrl>
-	<version>3.1.1</version>
+	<authorEmail>info@phpkungfu.club</authorEmail>
+	<authorUrl>http://www.phpkungfu.club/my-tickets.html</authorUrl>
+	<version>3.5</version>
 	<description>MOD_JVCONTACT_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_jvcontact">mod_jvcontact.php</filename>
@@ -175,6 +175,12 @@
 					<option value="0">JNO</option>
 					<option value="1">JYEs</option>
 				</field>
+                                
+                                <field name="captcha_version" type="list" class="btn-group" default="1" label="Re-Captcha Version" description="">
+					<option value="1">1.0</option>
+					<option value="2">2.0</option>
+				</field>
+                                
 				<field
 					name="captchapublickey"
 					class="inputbox"

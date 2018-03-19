@@ -54,7 +54,7 @@
 
   function getSearchCursor(cm, query, pos) {
     // Heuristic: if the query string is all lowercase, do a case insensitive search.
-    return cm.getSearchCursor(query, pos, {caseFold: queryCaseInsensitive(query), multiline: true});
+    return cm.getSearchCursor(query, pos, queryCaseInsensitive(query));
   }
 
   function persistentDialog(cm, text, deflt, onEnter, onKeyDown) {
@@ -99,7 +99,7 @@
   }
 
   var queryDialog =
-    '<span class="CodeMirror-search-label">Search:</span> <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint">(Use /re/ syntax for regexp search)</span>';
+    'Search: <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint">(Use /re/ syntax for regexp search)</span>';
 
   function startSearch(cm, state, query) {
     state.queryText = query;
@@ -117,7 +117,6 @@
     var state = getSearchState(cm);
     if (state.query) return findNext(cm, rev);
     var q = cm.getSelection() || state.lastQuery;
-    if (q instanceof RegExp && q.source == "x^") q = null
     if (persistent && cm.openDialog) {
       var hiding = null
       var searchNext = function(query, event) {
@@ -138,7 +137,8 @@
       };
       persistentDialog(cm, queryDialog, q, searchNext, function(event, query) {
         var keyName = CodeMirror.keyName(event)
-        var extra = cm.getOption('extraKeys'), cmd = (extra && extra[keyName]) || CodeMirror.keyMap[cm.getOption("keyMap")][keyName]
+        var cmd = CodeMirror.keyMap[cm.getOption("keyMap")][keyName]
+        if (!cmd) cmd = cm.getOption('extraKeys')[keyName]
         if (cmd == "findNext" || cmd == "findPrev" ||
           cmd == "findPersistentNext" || cmd == "findPersistentPrev") {
           CodeMirror.e_stop(event);
@@ -188,8 +188,8 @@
 
   var replaceQueryDialog =
     ' <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint">(Use /re/ syntax for regexp search)</span>';
-  var replacementQueryDialog = '<span class="CodeMirror-search-label">With:</span> <input type="text" style="width: 10em" class="CodeMirror-search-field"/>';
-  var doReplaceConfirm = '<span class="CodeMirror-search-label">Replace?</span> <button>Yes</button> <button>No</button> <button>All</button> <button>Stop</button>';
+  var replacementQueryDialog = 'With: <input type="text" style="width: 10em" class="CodeMirror-search-field"/>';
+  var doReplaceConfirm = "Replace? <button>Yes</button> <button>No</button> <button>All</button> <button>Stop</button>";
 
   function replaceAll(cm, query, text) {
     cm.operation(function() {
@@ -205,7 +205,7 @@
   function replace(cm, all) {
     if (cm.getOption("readOnly")) return;
     var query = cm.getSelection() || getSearchState(cm).lastQuery;
-    var dialogText = '<span class="CodeMirror-search-label">' + (all ? 'Replace all:' : 'Replace:') + '</span>';
+    var dialogText = all ? "Replace all:" : "Replace:"
     dialog(cm, dialogText + replaceQueryDialog, dialogText, query, function(query) {
       if (!query) return;
       query = parseQuery(query);

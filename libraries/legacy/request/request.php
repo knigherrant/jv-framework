@@ -3,8 +3,8 @@
  * @package     Joomla.Legacy
  * @subpackage  Request
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -30,8 +30,8 @@ JLog::add('JRequest is deprecated.', JLog::WARNING, 'deprecated');
  * request variables.  This includes $_POST, $_GET, and naturally $_REQUEST.  Variables
  * can be passed through an input filter to avoid injection or returned raw.
  *
- * @since       1.5
- * @deprecated  1.7 Get the JInput object from the application instead
+ * @since       11.1
+ * @deprecated  12.1 (Platform) & 4.0 (CMS) - Get the JInput object from the application instead
  */
 class JRequest
 {
@@ -40,8 +40,9 @@ class JRequest
 	 *
 	 * @return  string
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @since   11.1
+	 *
+	 * @deprecated   12.1
 	 */
 	public static function getUri()
 	{
@@ -55,12 +56,15 @@ class JRequest
 	 *
 	 * @return  string
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7 Use JInput::getMethod() instead
+	 * @since   11.1
+	 *
+	 * @deprecated   12.1 Use JInput::getMethod() instead
 	 */
 	public static function getMethod()
 	{
-		return strtoupper($_SERVER['REQUEST_METHOD']);
+		$method = strtoupper($_SERVER['REQUEST_METHOD']);
+
+		return $method;
 	}
 
 	/**
@@ -83,15 +87,16 @@ class JRequest
 	 * default $_REQUEST
 	 *
 	 * @param   string   $name     Variable name.
-	 * @param   mixed    $default  Default value if the variable does not exist.
+	 * @param   string   $default  Default value if the variable does not exist.
 	 * @param   string   $hash     Where the var should come from (POST, GET, FILES, COOKIE, METHOD).
 	 * @param   string   $type     Return type for the variable, for valid values see {@link JFilterInput::clean()}.
 	 * @param   integer  $mask     Filter mask for the variable.
 	 *
 	 * @return  mixed  Requested variable.
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7  Use JInput::get()
+	 * @since   11.1
+	 *
+	 * @deprecated   12.1  Use JInput::Get
 	 */
 	public static function getVar($name, $default = null, $hash = 'default', $type = 'none', $mask = 0)
 	{
@@ -141,7 +146,7 @@ class JRequest
 		}
 		elseif (!isset($GLOBALS['_JREQUEST'][$name][$sig]))
 		{
-			if (isset($input[$name]))
+			if (isset($input[$name]) && $input[$name] !== null)
 			{
 				// Get the variable from the input hash and clean it
 				$var = self::_cleanVar($input[$name], $mask, $type);
@@ -173,14 +178,15 @@ class JRequest
 	 *
 	 * See getVar() for more in-depth documentation on the parameters.
 	 *
-	 * @param   string   $name     Variable name.
-	 * @param   integer  $default  Default value if the variable does not exist.
-	 * @param   string   $hash     Where the var should come from (POST, GET, FILES, COOKIE, METHOD).
+	 * @param   string  $name     Variable name.
+	 * @param   string  $default  Default value if the variable does not exist.
+	 * @param   string  $hash     Where the var should come from (POST, GET, FILES, COOKIE, METHOD).
 	 *
 	 * @return  integer  Requested variable.
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @since   11.1
+	 *
+	 * @deprecated   12.1
 	 */
 	public static function getInt($name, $default = 0, $hash = 'default')
 	{
@@ -194,14 +200,14 @@ class JRequest
 	 *
 	 * See getVar() for more in-depth documentation on the parameters.
 	 *
-	 * @param   string   $name     Variable name.
-	 * @param   integer  $default  Default value if the variable does not exist.
-	 * @param   string   $hash     Where the var should come from (POST, GET, FILES, COOKIE, METHOD).
+	 * @param   string  $name     Variable name.
+	 * @param   string  $default  Default value if the variable does not exist.
+	 * @param   string  $hash     Where the var should come from (POST, GET, FILES, COOKIE, METHOD).
 	 *
 	 * @return  integer  Requested variable.
 	 *
-	 * @since   1.7
-	 * @deprecated  1.7
+	 * @deprecated  12.1
+	 * @since       11.1
 	 */
 	public static function getUInt($name, $default = 0, $hash = 'default')
 	{
@@ -216,13 +222,14 @@ class JRequest
 	 * See getVar() for more in-depth documentation on the parameters.
 	 *
 	 * @param   string  $name     Variable name.
-	 * @param   float   $default  Default value if the variable does not exist.
+	 * @param   string  $default  Default value if the variable does not exist.
 	 * @param   string  $hash     Where the var should come from (POST, GET, FILES, COOKIE, METHOD).
 	 *
 	 * @return  float  Requested variable.
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @since   11.1
+	 *
+	 * @deprecated   12.1
 	 */
 	public static function getFloat($name, $default = 0.0, $hash = 'default')
 	{
@@ -236,14 +243,14 @@ class JRequest
 	 *
 	 * See getVar() for more in-depth documentation on the parameters.
 	 *
-	 * @param   string   $name     Variable name.
-	 * @param   boolean  $default  Default value if the variable does not exist.
-	 * @param   string   $hash     Where the var should come from (POST, GET, FILES, COOKIE, METHOD).
+	 * @param   string  $name     Variable name.
+	 * @param   string  $default  Default value if the variable does not exist.
+	 * @param   string  $hash     Where the var should come from (POST, GET, FILES, COOKIE, METHOD).
 	 *
 	 * @return  boolean  Requested variable.
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @deprecated  12.1
+	 * @since       11.1
 	 */
 	public static function getBool($name, $default = false, $hash = 'default')
 	{
@@ -263,8 +270,9 @@ class JRequest
 	 *
 	 * @return  string  Requested variable.
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @since   11.1
+	 *
+	 * @deprecated   12.1
 	 */
 	public static function getWord($name, $default = '', $hash = 'default')
 	{
@@ -272,7 +280,7 @@ class JRequest
 	}
 
 	/**
-	 * Cmd (Word and Integer) filter
+	 * Cmd (Word and Integer0 filter
 	 *
 	 * Fetches and returns a given filtered variable. The cmd
 	 * filter only allows the characters [A-Za-z0-9.-_]. This is
@@ -286,8 +294,8 @@ class JRequest
 	 *
 	 * @return  string  Requested variable
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @deprecated  12.1
+	 * @since       11.1
 	 */
 	public static function getCmd($name, $default = '', $hash = 'default')
 	{
@@ -308,8 +316,9 @@ class JRequest
 	 *
 	 * @return  string   Requested variable
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @since   11.1
+	 *
+	 * @deprecated   12.1
 	 */
 	public static function getString($name, $default = '', $hash = 'default', $mask = 0)
 	{
@@ -327,8 +336,9 @@ class JRequest
 	 *
 	 * @return  string   Previous value
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @since   11.1
+	 *
+	 * @deprecated   12.1
 	 */
 	public static function setVar($name, $value = null, $hash = 'method', $overwrite = true)
 	{
@@ -406,9 +416,9 @@ class JRequest
 	 *
 	 * @return  mixed    Request hash.
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7  Use JInput::get()
-	 * @see     JInput
+	 * @deprecated  12.1   User JInput::get
+	 * @see         JInput
+	 * @since       11.1
 	 */
 	public static function get($hash = 'default', $mask = 0)
 	{
@@ -450,7 +460,9 @@ class JRequest
 				break;
 		}
 
-		return self::_cleanVar($input, $mask);
+		$result = self::_cleanVar($input, $mask);
+
+		return $result;
 	}
 
 	/**
@@ -462,8 +474,9 @@ class JRequest
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7  Use JInput::set()
+	 * @deprecated  12.1  Use JInput::set()
+	 * @see         JInput::set()
+	 * @since       11.1
 	 */
 	public static function set($array, $hash = 'default', $overwrite = true)
 	{
@@ -482,12 +495,12 @@ class JRequest
 	 *
 	 * @return  boolean  True if found and valid, false otherwise.
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7 Use JSession::checkToken() instead. Note that 'default' has to become 'request'.
+	 * @deprecated  12.1 Use JSession::checkToken() instead. Note that 'default' has to become 'request'.
+	 * @since       11.1
 	 */
 	public static function checkToken($method = 'post')
 	{
-		if ($method === 'default')
+		if ($method == 'default')
 		{
 			$method = 'request';
 		}
@@ -509,8 +522,8 @@ class JRequest
 	 *
 	 * @return  mixed  Same as $var
 	 *
-	 * @since   1.5
-	 * @deprecated  1.7
+	 * @deprecated  12.1
+	 * @since       11.1
 	 */
 	protected static function _cleanVar($var, $mask = 0, $type = null)
 	{
@@ -524,6 +537,7 @@ class JRequest
 		if ($mask & 2)
 		{
 			// If the allow raw flag is set, do not modify the variable
+			$var = $var;
 		}
 		elseif ($mask & 4)
 		{

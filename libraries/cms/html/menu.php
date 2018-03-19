@@ -3,8 +3,8 @@
  * @package     Joomla.Libraries
  * @subpackage  HTML
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -22,7 +22,7 @@ abstract class JHtmlMenu
 	 * @var    array
 	 * @since  1.6
 	 */
-	protected static $menus = array();
+	protected static $menus = null;
 
 	/**
 	 * Cached array of the menus items.
@@ -30,71 +30,53 @@ abstract class JHtmlMenu
 	 * @var    array
 	 * @since  1.6
 	 */
-	protected static $items = array();
+	protected static $items = null;
 
 	/**
 	 * Get a list of the available menus.
 	 *
-	 * @param   int  $clientId  The client id
-	 *
-	 * @return  array
+	 * @return  string
 	 *
 	 * @since   1.6
 	 */
-	public static function menus($clientId = 0)
+	public static function menus()
 	{
-		$key = serialize($clientId);
-
-		if (!isset(static::$menus[$key]))
+		if (is_null(static::$menus))
 		{
 			$db = JFactory::getDbo();
 
 			$query = $db->getQuery(true)
-				->select($db->qn(array('id', 'menutype', 'title', 'client_id'), array('id', 'value', 'text', 'client_id')))
+				->select($db->qn(array('id', 'menutype', 'title'), array('id', 'value', 'text')))
 				->from($db->quoteName('#__menu_types'))
-				->order('client_id, title');
+				->order('title');
 
-			if (isset($clientId))
-			{
-				$query->where('client_id = ' . (int) $clientId);
-			}
-
-			static::$menus[$key] = $db->setQuery($query)->loadObjectList();
+			static::$menus = $db->setQuery($query)->loadObjectList();
 		}
 
-		return static::$menus[$key];
+		return static::$menus;
 	}
 
 	/**
 	 * Returns an array of menu items grouped by menu.
 	 *
-	 * @param   array  $config  An array of configuration options [published, checkacl, clientid].
+	 * @param   array  $config  An array of configuration options.
 	 *
 	 * @return  array
 	 *
 	 * @since   1.6
 	 */
-	public static function menuItems($config = array())
+	public static function menuitems($config = array())
 	{
-		$key = serialize($config);
-
-		if (empty(static::$items[$key]))
+		if (empty(static::$items))
 		{
-			// B/C - not passed  = 0, null can be passed for both clients
-			$clientId = array_key_exists('clientid', $config) ? $config['clientid'] : 0;
-			$menus    = static::menus($clientId);
+			$menus = static::menus();
 
-			$db    = JFactory::getDbo();
+			$db = JFactory::getDbo();
 			$query = $db->getQuery(true)
-				->select('a.id AS value, a.title AS text, a.level, a.menutype, a.client_id')
+				->select('a.id AS value, a.title AS text, a.level, a.menutype')
 				->from('#__menu AS a')
-				->where('a.parent_id > 0');
-
-			// Filter on the client id
-			if (isset($clientId))
-			{
-				$query->where('a.client_id = ' . (int) $clientId);
-			}
+				->where('a.parent_id > 0')
+				->where('a.client_id = 0');
 
 			// Filter on the published state
 			if (isset($config['published']))
@@ -129,7 +111,7 @@ abstract class JHtmlMenu
 				$item->text = str_repeat('- ', $item->level) . $item->text;
 			}
 
-			static::$items[$key] = array();
+			static::$items = array();
 
 			$user = JFactory::getUser();
 
@@ -148,26 +130,26 @@ abstract class JHtmlMenu
 				}
 
 				// Start group:
-				static::$items[$key][] = JHtml::_('select.optgroup', $menu->text);
+				static::$items[] = JHtml::_('select.optgroup', $menu->text);
 
 				// Special "Add to this Menu" option:
-				static::$items[$key][] = JHtml::_('select.option', $menu->value . '.1', JText::_('JLIB_HTML_ADD_TO_THIS_MENU'));
+				static::$items[] = JHtml::_('select.option', $menu->value . '.1', JText::_('JLIB_HTML_ADD_TO_THIS_MENU'));
 
 				// Menu items:
 				if (isset($lookup[$menu->value]))
 				{
 					foreach ($lookup[$menu->value] as &$item)
 					{
-						static::$items[$key][] = JHtml::_('select.option', $menu->value . '.' . $item->value, $item->text);
+						static::$items[] = JHtml::_('select.option', $menu->value . '.' . $item->value, $item->text);
 					}
 				}
 
 				// Finish group:
-				static::$items[$key][] = JHtml::_('select.optgroup', $menu->text);
+				static::$items[] = JHtml::_('select.optgroup', $menu->text);
 			}
 		}
 
-		return static::$items[$key];
+		return static::$items;
 	}
 
 	/**
@@ -176,24 +158,24 @@ abstract class JHtmlMenu
 	 * @param   string  $name      The name of the control.
 	 * @param   string  $selected  The value of the selected option.
 	 * @param   string  $attribs   Attributes for the control.
-	 * @param   array   $config    An array of options for the control [id, published, checkacl, clientid].
+	 * @param   array   $config    An array of options for the control.
 	 *
 	 * @return  string
 	 *
 	 * @since   1.6
 	 */
-	public static function menuItemList($name, $selected = null, $attribs = null, $config = array())
+	public static function menuitemlist($name, $selected = null, $attribs = null, $config = array())
 	{
 		static $count;
 
-		$options = static::menuItems($config);
+		$options = static::menuitems($config);
 
 		return JHtml::_(
 			'select.genericlist', $options, $name,
 			array(
-				'id'             => isset($config['id']) ? $config['id'] : 'assetgroups_' . (++$count),
-				'list.attr'      => $attribs === null ? 'class="inputbox" size="1"' : $attribs,
-				'list.select'    => (int) $selected,
+				'id' => isset($config['id']) ? $config['id'] : 'assetgroups_' . (++$count),
+				'list.attr' => (is_null($attribs) ? 'class="inputbox" size="1"' : $attribs),
+				'list.select' => (int) $selected,
 				'list.translate' => false,
 			)
 		);
@@ -240,28 +222,21 @@ abstract class JHtmlMenu
 	 *
 	 * @param   boolean  $all         True if all can be selected
 	 * @param   boolean  $unassigned  True if unassigned can be selected
-	 * @param   int      $clientId    The client id
 	 *
 	 * @return  string
 	 *
 	 * @since   1.5
 	 */
-	public static function linkOptions($all = false, $unassigned = false, $clientId = 0)
+	public static function linkoptions($all = false, $unassigned = false)
 	{
 		$db = JFactory::getDbo();
 
 		// Get a list of the menu items
 		$query = $db->getQuery(true)
-			->select('m.id, m.parent_id, m.title, m.menutype, m.client_id')
+			->select('m.id, m.parent_id, m.title, m.menutype')
 			->from($db->quoteName('#__menu') . ' AS m')
 			->where($db->quoteName('m.published') . ' = 1')
-			->order('m.client_id, m.menutype, m.parent_id');
-
-		if (isset($clientId))
-		{
-			$query->where('m.client_id = ' . (int) $clientId);
-		}
-
+			->order('m.menutype, m.parent_id');
 		$db->setQuery($query);
 
 		$mitems = $db->loadObjectList();
@@ -277,9 +252,9 @@ abstract class JHtmlMenu
 		// First pass - collect children
 		foreach ($mitems as $v)
 		{
-			$pt            = $v->parent_id;
-			$list          = @$children[$pt] ? $children[$pt] : array();
-			$list[]        = $v;
+			$pt = $v->parent_id;
+			$list = @$children[$pt] ? $children[$pt] : array();
+			array_push($list, $v);
 			$children[$pt] = $list;
 		}
 
@@ -307,7 +282,7 @@ abstract class JHtmlMenu
 		}
 
 		$lastMenuType = null;
-		$tmpMenuType  = null;
+		$tmpMenuType = null;
 
 		foreach ($list as $list_a)
 		{
@@ -318,9 +293,9 @@ abstract class JHtmlMenu
 					$mitems[] = JHtml::_('select.option', '</OPTGROUP>');
 				}
 
-				$mitems[]     = JHtml::_('select.option', '<OPTGROUP>', $list_a->menutype);
+				$mitems[] = JHtml::_('select.option', '<OPTGROUP>', $list_a->menutype);
 				$lastMenuType = $list_a->menutype;
-				$tmpMenuType  = $list_a->menutype;
+				$tmpMenuType = $list_a->menutype;
 			}
 
 			$mitems[] = JHtml::_('select.option', $list_a->id, $list_a->title);
@@ -351,22 +326,22 @@ abstract class JHtmlMenu
 	 */
 	public static function treerecurse($id, $indent, $list, &$children, $maxlevel = 9999, $level = 0, $type = 1)
 	{
-		if ($level <= $maxlevel && isset($children[$id]) && is_array($children[$id]))
+		if (@$children[$id] && $level <= $maxlevel)
 		{
-			if ($type)
-			{
-				$pre    = '<sup>|_</sup>&#160;';
-				$spacer = '.&#160;&#160;&#160;&#160;&#160;&#160;';
-			}
-			else
-			{
-				$pre    = '- ';
-				$spacer = '&#160;&#160;';
-			}
-
 			foreach ($children[$id] as $v)
 			{
 				$id = $v->id;
+
+				if ($type)
+				{
+					$pre = '<sup>|_</sup>&#160;';
+					$spacer = '.&#160;&#160;&#160;&#160;&#160;&#160;';
+				}
+				else
+				{
+					$pre = '- ';
+					$spacer = '&#160;&#160;';
+				}
 
 				if ($v->parent_id == 0)
 				{
@@ -377,18 +352,10 @@ abstract class JHtmlMenu
 					$txt = $pre . $v->title;
 				}
 
-				$list[$id]           = $v;
+				$list[$id] = $v;
 				$list[$id]->treename = $indent . $txt;
-
-				if (isset($children[$id]) && is_array($children[$id]))
-				{
-					$list[$id]->children = count($children[$id]);
-					$list                = static::treerecurse($id, $indent . $spacer, $list, $children, $maxlevel, $level + 1, $type);
-				}
-				else
-				{
-					$list[$id]->children = 0;
-				}
+				$list[$id]->children = count(@$children[$id]);
+				$list = static::treerecurse($id, $indent . $spacer, $list, $children, $maxlevel, $level + 1, $type);
 			}
 		}
 

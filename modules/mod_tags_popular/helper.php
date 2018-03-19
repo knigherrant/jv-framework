@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  mod_tags_popular
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,7 +12,9 @@ defined('_JEXEC') or die;
 /**
  * Helper for mod_tags_popular
  *
- * @since  3.1
+ * @package     Joomla.Site
+ * @subpackage  mod_tags_popular
+ * @since       3.1
  */
 abstract class ModTagsPopularHelper
 {
@@ -53,20 +55,12 @@ abstract class ModTagsPopularHelper
 		// Only return published tags
 		$query->where($db->quoteName('t.published') . ' = 1 ');
 
-		// Filter by Parent Tag
-		$parentTags = $params->get('parentTag', 0);
-
-		if ($parentTags)
-		{
-			$query->where($db->quoteName('t.parent_id') . ' IN (' . implode(',', $parentTags) . ')');
-		}
-
 		// Optionally filter on language
 		$language = JComponentHelper::getParams('com_tags')->get('tag_list_language_filter', 'all');
 
-		if ($language !== 'all')
+		if ($language != 'all')
 		{
-			if ($language === 'current_language')
+			if ($language == 'current_language')
 			{
 				$language = JHelperContent::getCurrentLanguage();
 			}
@@ -74,7 +68,7 @@ abstract class ModTagsPopularHelper
 			$query->where($db->quoteName('t.language') . ' IN (' . $db->quote($language) . ', ' . $db->quote('*') . ')');
 		}
 
-		if ($timeframe !== 'alltime')
+		if ($timeframe != 'alltime')
 		{
 			$query->where($db->quoteName('tag_date') . ' > ' . $query->dateAdd($nowDate, '-1', strtoupper($timeframe)));
 		}
@@ -92,7 +86,7 @@ abstract class ModTagsPopularHelper
 				. ' OR  ' . $db->quoteName('c.core_publish_down') . ' >= ' . $db->quote($nowDate) . ')');
 
 		// Set query depending on order_value param
-		if ($order_value === 'rand()')
+		if ($order_value == 'rand()')
 		{
 			$query->order($query->Rand());
 		}
@@ -101,7 +95,7 @@ abstract class ModTagsPopularHelper
 			$order_value     = $db->quoteName($order_value);
 			$order_direction = $params->get('order_direction', 1) ? 'DESC' : 'ASC';
 
-			if ($params->get('order_value', 'title') === 'title')
+			if ($params->get('order_value', 'title') == 'title')
 			{
 				$query->setLimit($maximum);
 				$query->order('count DESC');

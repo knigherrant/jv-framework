@@ -3,8 +3,8 @@
  * @package     Joomla.Legacy
  * @subpackage  Base
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -12,34 +12,32 @@ defined('JPATH_PLATFORM') or die;
 /**
  * Tree Class.
  *
- * @since       1.5
- * @deprecated  3.0
+ * @since       11.1
+ * @deprecated  12.3 (Platform) & 4.0 (CMS)
+ * @codeCoverageIgnore
  */
 class JTree extends JObject
 {
 	/**
 	 * Root node
 	 *
-	 * @var    JNode
-	 * @since  1.5
-	 * @deprecated  3.0
+	 * @var    object
+	 * @since  11.1
 	 */
 	protected $_root = null;
 
 	/**
 	 * Current working node
 	 *
-	 * @var    JNode
-	 * @since  1.5
-	 * @deprecated  3.0
+	 * @var    object
+	 * @since  11.1
 	 */
 	protected $_current = null;
 
 	/**
 	 * Constructor
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since   11.1
 	 */
 	public function __construct()
 	{
@@ -55,10 +53,9 @@ class JTree extends JObject
 	 * @param   array    &$node       The node to process
 	 * @param   boolean  $setCurrent  True to set as current working node
 	 *
-	 * @return  void
+	 * @return  mixed
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since   11.1
 	 */
 	public function addChild(&$node, $setCurrent = false)
 	{
@@ -77,8 +74,7 @@ class JTree extends JObject
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since   11.1
 	 */
 	public function getParent()
 	{
@@ -92,8 +88,7 @@ class JTree extends JObject
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since   11.1
 	 */
 	public function reset()
 	{

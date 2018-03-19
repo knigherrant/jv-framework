@@ -3,24 +3,23 @@
  # @version		3.0.1
  # ------------------------------------------------------------------------
  # author    Open Source Code Solutions Co
- # copyright Copyright (C) 2011 joomlavi.com. All Rights Reserved.
+ # copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
  # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
- # Websites: http://www.joomlavi.com
- # Technical Support:  http://www.joomlavi.com/my-tickets.html
+ # Websites: http://www.phpkungfu.club
+ # Technical Support:  http://www.phpkungfu.club/my-tickets.html
 -------------------------------------------------------------------------*/
 function formsubmit(formid){
-	var 
-		form = $(formid),
-		reg,
+	var $ = jQuery;
+		form = $('#'+formid),
 		flag = true,
 		msg = ''
 	;
-	
+	console.log(formid);
 	//form.submit();
-	form.getElements('.email').each(function(el){
-		console.log(el);
-		reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-		if(reg.test(el.value) == false){
+	form.find('.email').each(function(el){
+		var el = $(this);
+		var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+		if(reg.test(el.val()) == false){
 			flag = false;
 			msg = 'Invalid Email!';
 			el.addClass('invalid');
@@ -30,24 +29,34 @@ function formsubmit(formid){
 	});
 	
 	
-	form.getElements('.require').each(function(el){
-		
-		if(el.value==''){
-			flag = false;
-			msg = 'Please input valid data in red fields!';
-			el.addClass('invalid');
+	form.find('.require').each(function(el){
+		var el = $(this);
+		if(el.attr('type') =="checkbox"){
+			if(el.is(':checked')== false){
+				flag = false;
+				msg = 'Please input valid data in red fields!';
+				el.addClass('invalid');
+			}else{
+				el.removeClass('invalid');
+			}
 		}else{
-			el.removeClass('invalid');
+			if(el.val()==''){
+				flag = false;
+				msg = 'Please input valid data in red fields!';
+				el.addClass('invalid');
+			}else{
+				el.removeClass('invalid');
+			}
 		}
 	});
 	
-	if($('recaptcha_response_field')){
-		if($('recaptcha_response_field').value==''){
+	if($('#recaptcha_response_field')){
+		if($('#recaptcha_response_field').val()==''){
 			flag=false;
 			msg = '<div class="alert alert-error alert-block">Please input valid data in captcha fields!</div>';
-			$('recaptcha_response_field').addClass('invalid');
+			$('#recaptcha_response_field').addClass('invalid');
 		}else{
-			$('recaptcha_response_field').removeClass('invalid');
+			$('#recaptcha_response_field').removeClass('invalid');
 		}
 	}
 	
@@ -55,8 +64,8 @@ function formsubmit(formid){
 	if(flag){
 		form.submit();
 	}else{
-		if($('msg'+formid)){
-			$('msg'+formid).innerHTML = msg;
+		if($('#msg'+formid)){
+			$('#msg'+formid).html(msg);
 		}
 	}
 

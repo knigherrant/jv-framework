@@ -3,8 +3,8 @@
  * @package     Joomla.Legacy
  * @subpackage  Base
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -12,8 +12,9 @@ defined('JPATH_PLATFORM') or die;
 /**
  * Abstract observer class to implement the observer design pattern
  *
- * @since       1.5
- * @deprecated  2.5
+ * @since       11.1
+ * @deprecated  12.3 (Platform) & 4.0 (CMS)
+ * @codeCoverageIgnore
  */
 abstract class JObserver extends JObject
 {
@@ -21,8 +22,8 @@ abstract class JObserver extends JObject
 	 * Event object to observe.
 	 *
 	 * @var    object
-	 * @since  1.5
-	 * @deprecated  2.5
+	 * @since  11.1
+	 * @deprecated  12.3
 	 */
 	protected $_subject = null;
 
@@ -31,8 +32,8 @@ abstract class JObserver extends JObject
 	 *
 	 * @param   object  &$subject  The object to observe.
 	 *
-	 * @since   1.5
-	 * @deprecated  2.5
+	 * @since   11.1
+	 * @deprecated  12.3
 	 */
 	public function __construct(&$subject)
 	{
@@ -50,8 +51,8 @@ abstract class JObserver extends JObject
 	 *
 	 * @return  mixed
 	 *
-	 * @since   1.5
-	 * @deprecated  2.5
+	 * @since   11.1
+	 * @deprecated  12.3
 	 */
 	abstract public function update(&$args);
 }

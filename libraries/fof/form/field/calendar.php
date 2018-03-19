@@ -146,7 +146,7 @@ class FOFFormFieldCalendar extends JFormFieldCalendar implements FOFFormField
 					if ((int) $this->value)
 					{
 						// Get a date object based on the correct timezone.
-						$date->setTimezone($user->getTimezone());
+						$date->setTimezone(new DateTimeZone($user->getParam('timezone', $config->get('offset'))));
 					}
 					break;
 

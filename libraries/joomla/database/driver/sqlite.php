@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -12,7 +12,7 @@ defined('JPATH_PLATFORM') or die;
 /**
  * SQLite database driver
  *
- * @link   https://secure.php.net/pdo
+ * @see    https://secure.php.net/pdo
  * @since  12.1
  */
 class JDatabaseDriverSqlite extends JDatabaseDriverPdo
@@ -45,54 +45,14 @@ class JDatabaseDriverSqlite extends JDatabaseDriverPdo
 	protected $nameQuote = '`';
 
 	/**
-	 * Connects to the database if needed.
-	 *
-	 * @return  void  Returns void if the database connected successfully.
+	 * Destructor.
 	 *
 	 * @since   12.1
-	 * @throws  RuntimeException
 	 */
-	public function connect()
+	public function __destruct()
 	{
-		if ($this->connection)
-		{
-			return;
-		}
-
-		parent::connect();
-
-		$this->connection->sqliteCreateFunction(
-			'ROW_NUMBER',
-			function($init = null)
-			{
-				static $rownum, $partition;
-
-				if ($init !== null)
-				{
-					$rownum = $init;
-					$partition = null;
-
-					return $rownum;
-				}
-
-				$args = func_get_args();
-				array_shift($args);
-
-				$partitionBy = $args ? implode(',', $args) : null;
-
-				if ($partitionBy === null || $partitionBy === $partition)
-				{
-					$rownum++;
-				}
-				else
-				{
-					$rownum    = 1;
-					$partition = $partitionBy;
-				}
-
-				return $rownum;
-			}
-		);
+		$this->freeResult();
+		unset($this->connection);
 	}
 
 	/**
@@ -105,8 +65,7 @@ class JDatabaseDriverSqlite extends JDatabaseDriverPdo
 	public function disconnect()
 	{
 		$this->freeResult();
-
-		$this->connection = null;
+		unset($this->connection);
 	}
 
 	/**
@@ -338,7 +297,7 @@ class JDatabaseDriverSqlite extends JDatabaseDriverPdo
 	{
 		$this->connect();
 
-		$this->setQuery('SELECT sqlite_version()');
+		$this->setQuery("SELECT sqlite_version()");
 
 		return $this->loadResult();
 	}

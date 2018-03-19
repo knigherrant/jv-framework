@@ -3,7 +3,7 @@
  * @package     Joomla.Plugin
  * @subpackage  Editors.codemirror
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -30,7 +30,11 @@ class PlgEditorCodemirror extends JPlugin
 	 *
 	 * @var array
 	 */
-	protected $modeAlias = array();
+	protected $modeAlias = array(
+			'html' => 'htmlmixed',
+			'ini'  => 'properties',
+			'json' => array('name' => 'javascript', 'json' => true),
+		);
 
 	/**
 	 * Initialises the Editor.
@@ -53,7 +57,7 @@ class PlgEditorCodemirror extends JPlugin
 		$doc = JFactory::getDocument();
 
 		// Codemirror shall have its own group of plugins to modify and extend its behavior
-		JPluginHelper::importPlugin('editors_codemirror');
+		$result = JPluginHelper::importPlugin('editors_codemirror');
 		$dispatcher	= JEventDispatcher::getInstance();
 
 		// At this point, params can be modified by a plugin before going to the layout renderer.
@@ -73,7 +77,7 @@ class PlgEditorCodemirror extends JPlugin
 		{
 			if (isset($fontInfo->url))
 			{
-				$doc->addStyleSheet($fontInfo->url);
+				$doc->addStylesheet($fontInfo->url);
 			}
 
 			if (isset($fontInfo->css))
@@ -96,8 +100,6 @@ class PlgEditorCodemirror extends JPlugin
 	 * @param   string  $id  The id of the editor field.
 	 *
 	 * @return  string  Javascript
-	 *
-	 * @deprecated 4.0 Code executes directly on submit
 	 */
 	public function onSave($id)
 	{
@@ -110,8 +112,6 @@ class PlgEditorCodemirror extends JPlugin
 	 * @param   string  $id  The id of the editor field.
 	 *
 	 * @return  string  Javascript
-	 *
-	 * @deprecated 4.0 Use directly the returned code
 	 */
 	public function onGetContent($id)
 	{
@@ -125,8 +125,6 @@ class PlgEditorCodemirror extends JPlugin
 	 * @param   string  $content  The content to set.
 	 *
 	 * @return  string  Javascript
-	 *
-	 * @deprecated 4.0 Use directly the returned code
 	 */
 	public function onSetContent($id, $content)
 	{
@@ -136,9 +134,7 @@ class PlgEditorCodemirror extends JPlugin
 	/**
 	 * Adds the editor specific insert method.
 	 *
-	 * @return  void
-	 *
-	 * @deprecated 4.0 Code is loaded in the init script
+	 * @return  boolean
 	 */
 	public function onGetInsertMethod()
 	{
@@ -191,12 +187,6 @@ class PlgEditorCodemirror extends JPlugin
 		// Options for the CodeMirror constructor.
 		$options = new stdClass;
 
-		// Is field readonly?
-		if (!empty($params['readonly']))
-		{
-			$options->readOnly = 'nocursor';
-		}
-
 		// Should we focus on the editor on load?
 		$options->autofocus = (boolean) $this->params->get('autoFocus', true);
 
@@ -241,11 +231,11 @@ class PlgEditorCodemirror extends JPlugin
 		if ($theme = $this->params->get('theme'))
 		{
 			$options->theme = $theme;
-			JHtml::_('stylesheet', $this->params->get('basePath', 'media/editors/codemirror/') . 'theme/' . $theme . '.css', array('version' => 'auto'));
+			JHtml::_('stylesheet', $this->params->get('basePath', 'media/editors/codemirror/') . 'theme/' . $theme . '.css');
 		}
 
 		// Special options for tagged modes (xml/html).
-		if (in_array($options->mode, array('xml', 'html', 'php')))
+		if (in_array($options->mode, array('xml', 'htmlmixed', 'htmlembedded', 'php')))
 		{
 			// Autogenerate closing tags (html/xml only).
 			$options->autoCloseTags = (boolean) $this->params->get('autoCloseTags', true);
@@ -255,7 +245,7 @@ class PlgEditorCodemirror extends JPlugin
 		}
 
 		// Special options for non-tagged modes.
-		if (!in_array($options->mode, array('xml', 'html')))
+		if (!in_array($options->mode, array('xml', 'htmlmixed', 'htmlembedded')))
 		{
 			// Autogenerate closing brackets.
 			$options->autoCloseBrackets = (boolean) $this->params->get('autoCloseBrackets', true);
@@ -350,7 +340,7 @@ class PlgEditorCodemirror extends JPlugin
 
 		if (!$fonts)
 		{
-			$fonts = json_decode(file_get_contents(__DIR__ . '/fonts.json'), true);
+			$fonts = json_decode(JFile::read(__DIR__ . '/fonts.json'), true);
 		}
 
 		return isset($fonts[$font]) ? (object) $fonts[$font] : null;

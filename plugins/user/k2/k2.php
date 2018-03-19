@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		2.6.x
- * @package		K2
- * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -14,12 +14,6 @@ jimport('joomla.plugin.plugin');
 
 class plgUserK2 extends JPlugin
 {
-
-	function plgUserK2(&$subject, $config)
-	{
-
-		parent::__construct($subject, $config);
-	}
 
 	function onUserAfterSave($user, $isnew, $success, $msg)
 	{
@@ -101,6 +95,7 @@ class plgUserK2 extends JPlugin
 				$filter = new JFilterInput( array(), array(), 1, 1, 0);
 				$row->description = $filter->clean($row->description);
 			}
+			$row->store();
 
 			$file = JRequest::get('files');
 
@@ -126,7 +121,7 @@ class plgUserK2 extends JPlugin
 				{
 					$mainframe->enqueueMessage(JText::_('K2_COULD_NOT_UPLOAD_YOUR_IMAGE').$handle->error, 'notice');
 				}
-				$row->image = $handle->file_dst_name;
+				$image = $handle->file_dst_name;
 			}
 
 			if (JRequest::getBool('del_image'))
@@ -136,10 +131,14 @@ class plgUserK2 extends JPlugin
 				{
 					JFile::delete(JPATH_ROOT.DS.'media'.DS.'k2'.DS.'users'.DS.$row->image);
 				}
-				$row->image = '';
+				$image = '';
+			}
+			if (isset($image))
+			{
+				$row->image = $image;
+				$row->store();
 			}
 
-			$row->store();
 			$itemid = $params->get('redirect');
 
 			if (!$isnew && $itemid)
@@ -147,10 +146,18 @@ class plgUserK2 extends JPlugin
 				$menu = JSite::getMenu();
 				$item = $menu->getItem($itemid);
 				$url = JRoute::_($item->link.'&Itemid='.$itemid, false);
-				if (JURI::isInternal($url))
+
+				if (K2_JVERSION == '15')
 				{
-					$mainframe->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
-					$mainframe->redirect($url);
+					if (JURI::isInternal($url))
+					{
+						$mainframe->enqueueMessage(JText::_('K2_YOUR_SETTINGS_HAVE_BEEN_SAVED'));
+						$mainframe->redirect($url);
+					}
+				}
+				else
+				{
+					$mainframe->setUserState('com_users.edit.profile.redirect', $url);
 				}
 			}
 		}
@@ -226,26 +233,46 @@ class plgUserK2 extends JPlugin
 		$session = JFactory::getSession();
 		if ($params->get('K2UserProfile') && $isNew && $params->get('recaptchaOnRegistration') && $mainframe->isSite() && !$session->get('socialConnectData'))
 		{
-			if (!function_exists('_recaptcha_qsencode'))
+			if($params->get('recaptchaV2'))
 			{
-				require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'recaptchalib.php');
+				require_once JPATH_SITE.'/components/com_k2/helpers/utilities.php';
+				if (!K2HelperUtilities::verifyRecaptcha())
+				{
+					if (K2_JVERSION != '15')
+					{
+						$url = 'index.php?option=com_users&view=registration';
+					}
+					else
+					{
+						$url = 'index.php?option=com_user&view=register';
+					}
+					$mainframe->enqueueMessage(JText::_('K2_COULD_NOT_VERIFY_THAT_YOU_ARE_NOT_A_ROBOT'), 'error');
+					$mainframe->redirect($url);
+				}
 			}
-			$privatekey = $params->get('recaptcha_private_key');
-			$recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';
-			$recaptcha_response_field = isset($_POST["recaptcha_response_field"]) ? $_POST["recaptcha_response_field"] : '';
-			$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $recaptcha_challenge_field, $recaptcha_response_field);
-			if (!$resp->is_valid)
+			else
 			{
-				if (K2_JVERSION != '15')
+				if (!function_exists('_recaptcha_qsencode'))
 				{
-					$url = 'index.php?option=com_users&view=registration';
+					require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'recaptchalib.php');
 				}
-				else
+				$privatekey = $params->get('recaptcha_private_key');
+				$recaptcha_challenge_field = isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '';
+				$recaptcha_response_field = isset($_POST["recaptcha_response_field"]) ? $_POST["recaptcha_response_field"] : '';
+				$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $recaptcha_challenge_field, $recaptcha_response_field);
+				if (!$resp->is_valid)
 				{
-					$url = 'index.php?option=com_user&view=register';
+					if (K2_JVERSION != '15')
+					{
+						$url = 'index.php?option=com_users&view=registration';
+					}
+					else
+					{
+						$url = 'index.php?option=com_user&view=register';
+					}
+					$mainframe->enqueueMessage(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
+					$mainframe->redirect($url);
 				}
-				$mainframe->enqueueMessage(JText::_('K2_THE_WORDS_YOU_TYPED_DID_NOT_MATCH_THE_ONES_DISPLAYED_PLEASE_TRY_AGAIN'), 'error');
-				$mainframe->redirect($url);
 			}
 		}
 	}

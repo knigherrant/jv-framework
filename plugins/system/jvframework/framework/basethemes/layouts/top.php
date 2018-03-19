@@ -48,7 +48,7 @@
 <?php if( $this['position']->count('breadcrumb') ):?>
 	<section id="block-breadcrumb">
     	<div class="container">
-			<jdoc:include type="position" name="breadcrumb" style="jvxhtmls" />
+			<jdoc:include type="position" name="breadcrumb" style="none" />
 		</div>
 	</section>
 <?php endif;?>

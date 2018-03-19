@@ -3,7 +3,7 @@
  * @package     Joomla.Plugin
  * @subpackage  Search.categories
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -65,9 +65,12 @@ class PlgSearchCategories extends JPlugin
 		$groups = implode(',', $user->getAuthorisedViewLevels());
 		$searchText = $text;
 
-		if (is_array($areas) && !array_intersect($areas, array_keys($this->onContentSearchAreas())))
+		if (is_array($areas))
 		{
-			return array();
+			if (!array_intersect($areas, array_keys($this->onContentSearchAreas())))
+			{
+				return array();
+			}
 		}
 
 		$sContent = $this->params->get('search_content', 1);
@@ -92,7 +95,7 @@ class PlgSearchCategories extends JPlugin
 
 		$text = trim($text);
 
-		if ($text === '')
+		if ($text == '')
 		{
 			return array();
 		}
@@ -160,7 +163,7 @@ class PlgSearchCategories extends JPlugin
 			->group('a.id, a.title, a.description, a.alias, a.created_time')
 			->order($order);
 
-		if ($app->isClient('site') && JLanguageMultilang::isEnabled())
+		if ($app->isSite() && JLanguageMultilang::isEnabled())
 		{
 			$query->where('a.language in (' . $db->quote(JFactory::getLanguage()->getTag()) . ',' . $db->quote('*') . ')');
 		}
@@ -181,14 +184,19 @@ class PlgSearchCategories extends JPlugin
 
 		if ($rows)
 		{
-			foreach ($rows as $i => $row)
-			{
-				if (searchHelper::checkNoHtml($row, $searchText, array('name', 'title', 'text')))
-				{
-					$row->href = ContentHelperRoute::getCategoryRoute($row->slug);
-					$row->section = JText::_('JCATEGORY');
+			$count = count($rows);
 
-					$return[] = $row;
+			for ($i = 0; $i < $count; $i++)
+			{
+				$rows[$i]->href = ContentHelperRoute::getCategoryRoute($rows[$i]->slug);
+				$rows[$i]->section = JText::_('JCATEGORY');
+			}
+
+			foreach ($rows as $category)
+			{
+				if (searchHelper::checkNoHtml($category, $searchText, array('name', 'title', 'text')))
+				{
+					$return[] = $category;
 				}
 			}
 		}

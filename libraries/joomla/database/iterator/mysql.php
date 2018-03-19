@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -12,9 +12,9 @@ defined('JPATH_PLATFORM') or die;
 /**
  * MySQL database iterator.
  *
- * @link        http://dev.mysql.com/doc/
+ * @see         http://dev.mysql.com/doc/
  * @since       12.1
- * @deprecated  4.0  Use MySQLi or PDO MySQL instead
+ * @deprecated  Will be removed when the minimum supported PHP version no longer includes the deprecated PHP `mysql` extension
  */
 class JDatabaseIteratorMysql extends JDatabaseIterator
 {

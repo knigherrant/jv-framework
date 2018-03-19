@@ -3,8 +3,8 @@
  * @package     Joomla.Legacy
  * @subpackage  Base
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -12,34 +12,32 @@ defined('JPATH_PLATFORM') or die;
 /**
  * Tree Node Class.
  *
- * @since       1.5
- * @deprecated  3.0
+ * @since       11.1
+ * @deprecated  12.3 (Platform) & 4.0 (CMS)
+ * @codeCoverageIgnore
  */
 class JNode extends JObject
 {
 	/**
 	 * Parent node
+	 * @var    object
 	 *
-	 * @var    JNode
-	 * @since  1.5
-	 * @deprecated  3.0
+	 * @since  11.1
 	 */
 	protected $_parent = null;
 
 	/**
 	 * Array of Children
 	 *
-	 * @var    JNode[]
-	 * @since  1.5
-	 * @deprecated  3.0
+	 * @var    array
+	 * @since  11.1
 	 */
 	protected $_children = array();
 
 	/**
 	 * Constructor
 	 *
-	 * @since  1.5
-	 * @deprecated  3.0
+	 * @since  11.1
 	 */
 	public function __construct()
 	{
@@ -57,8 +55,7 @@ class JNode extends JObject
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since   11.1
 	 */
 	public function addChild(&$child)
 	{
@@ -75,27 +72,26 @@ class JNode extends JObject
 	 *
 	 * If the node already has a parent, the link is unset
 	 *
-	 * @param   JNode|null  &$parent  The JNode for parent to be set or null
+	 * @param   mixed  &$parent  The JNode for parent to be set or null
 	 *
 	 * @return  void
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since    11.1
 	 */
 	public function setParent(&$parent)
 	{
 		JLog::add('JNode::setParent() is deprecated.', JLog::WARNING, 'deprecated');
 
-		if ($parent instanceof JNode || $parent === null)
+		if ($parent instanceof JNode || is_null($parent))
 		{
 			$hash = spl_object_hash($this);
 
-			if ($this->_parent !== null)
+			if (!is_null($this->_parent))
 			{
 				unset($this->_parent->children[$hash]);
 			}
 
-			if ($parent !== null)
+			if (!is_null($parent))
 			{
 				$parent->_children[$hash] = & $this;
 			}
@@ -107,10 +103,9 @@ class JNode extends JObject
 	/**
 	 * Get the children of this node
 	 *
-	 * @return  JNode[]  The children
+	 * @return  array    The children
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since   11.1
 	 */
 	public function &getChildren()
 	{
@@ -122,10 +117,9 @@ class JNode extends JObject
 	/**
 	 * Get the parent of this node
 	 *
-	 * @return  JNode|null  JNode object with the parent or null for no parent
+	 * @return  mixed   JNode object with the parent or null for no parent
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since   11.1
 	 */
 	public function &getParent()
 	{
@@ -137,10 +131,9 @@ class JNode extends JObject
 	/**
 	 * Test if this node has children
 	 *
-	 * @return  boolean  True if there are children
+	 * @return   boolean  True if there are children
 	 *
-	 * @since   1.5
-	 * @deprecated  3.0
+	 * @since    11.1
 	 */
 	public function hasChildren()
 	{
@@ -154,8 +147,7 @@ class JNode extends JObject
 	 *
 	 * @return  boolean  True if there is a parent
 	 *
-	 * @since   1.6
-	 * @deprecated  3.0
+	 * @since   11.1
 	 */
 	public function hasParent()
 	{

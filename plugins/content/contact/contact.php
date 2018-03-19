@@ -3,7 +3,7 @@
  * @package     Joomla.Plugin
  * @subpackage  Content.Contact
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -57,13 +57,15 @@ class PlgContentContact extends JPlugin
 			return true;
 		}
 
-		$contact = $this->getContactId($row->created_by);
-		$row->contactid = $contact->contactid;
+		$row->contactid = $this->getContactId($row->created_by);
 
 		if ($row->contactid)
 		{
-			JLoader::register('ContactHelperRoute', JPATH_SITE . '/components/com_contact/helpers/route.php');
-			$row->contact_link = JRoute::_(ContactHelperRoute::getContactRoute($contact->contactid . ':' . $contact->alias, $contact->catid));
+			$needle = 'index.php?option=com_contact&view=contact&id=' . $row->contactid;
+			$menu = JFactory::getApplication()->getMenu();
+			$item = $menu->getItems('link', $needle, true);
+			$link = $item ? $needle . '&Itemid=' . $item->id : $needle;
+			$row->contact_link = JRoute::_($link);
 		}
 		else
 		{
@@ -91,12 +93,12 @@ class PlgContentContact extends JPlugin
 
 		$query = $this->db->getQuery(true);
 
-		$query->select('MAX(contact.id) AS contactid, contact.alias, contact.catid');
+		$query->select('MAX(contact.id) AS contactid');
 		$query->from($this->db->quoteName('#__contact_details', 'contact'));
 		$query->where('contact.published = 1');
 		$query->where('contact.user_id = ' . (int) $created_by);
 
-		if (JLanguageMultilang::isEnabled() === true)
+		if (JLanguageMultilang::isEnabled() == 1)
 		{
 			$query->where('(contact.language in '
 				. '(' . $this->db->quote(JFactory::getLanguage()->getTag()) . ',' . $this->db->quote('*') . ') '
@@ -105,7 +107,7 @@ class PlgContentContact extends JPlugin
 
 		$this->db->setQuery($query);
 
-		$contacts[$created_by] = $this->db->loadObject();
+		$contacts[$created_by] = $this->db->loadResult();
 
 		return $contacts[$created_by];
 	}

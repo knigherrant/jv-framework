@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Session
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -12,8 +12,7 @@ defined('JPATH_PLATFORM') or die;
 /**
  * Memcache session storage handler for PHP
  *
- * @since       11.1
- * @deprecated  4.0  The CMS' Session classes will be replaced with the `joomla/session` package
+ * @since  11.1
  */
 class JSessionStorageMemcache extends JSessionStorage
 {
@@ -63,12 +62,8 @@ class JSessionStorageMemcache extends JSessionStorage
 		if (!empty($this->_servers) && isset($this->_servers[0]))
 		{
 			$serverConf = current($this->_servers);
-
-			if (!headers_sent())
-			{
-				ini_set('session.save_path', "{$serverConf['host']}:{$serverConf['port']}");
-				ini_set('session.save_handler', 'memcache');
-			}
+			ini_set('session.save_path', "{$serverConf['host']}:{$serverConf['port']}");
+			ini_set('session.save_handler', 'memcache');
 		}
 	}
 

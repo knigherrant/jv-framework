@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -66,57 +66,6 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 		switch ($this->type)
 		{
 			case 'select':
-				if ($this->selectRowNumber && $this->selectRowNumber['native'] === false)
-				{
-					// Workaround for postgresql version less than 8.4.0
-					try
-					{
-						$this->db->setQuery('CREATE TEMP SEQUENCE ROW_NUMBER');
-						$this->db->execute();
-					}
-					catch (JDatabaseExceptionExecuting $e)
-					{
-						// Do nothing, sequence exists
-					}
-
-					$orderBy          = $this->selectRowNumber['orderBy'];
-					$orderColumnAlias = $this->selectRowNumber['orderColumnAlias'];
-
-					$columns = "nextval('ROW_NUMBER') - 1 AS $orderColumnAlias";
-
-					if ($this->select === null)
-					{
-						$query = PHP_EOL . "SELECT 1"
-							. (string) $this->from
-							. (string) $this->where;
-					}
-					else
-					{
-						$tmpOffset    = $this->offset;
-						$tmpLimit     = $this->limit;
-						$this->offset = 0;
-						$this->limit  = 0;
-						$tmpOrder     = $this->order;
-						$this->order  = null;
-						$query        = parent::__toString();
-						$columns      = "w.*, $columns";
-						$this->order  = $tmpOrder;
-						$this->offset = $tmpOffset;
-						$this->limit  = $tmpLimit;
-					}
-
-					// Add support for second order by, offset and limit
-					$query = PHP_EOL . "SELECT $columns FROM (" . $query . PHP_EOL . "ORDER BY $orderBy"
-						. PHP_EOL . ") w,(SELECT setval('ROW_NUMBER', 1)) AS r";
-
-					if ($this->order)
-					{
-						$query .= (string) $this->order;
-					}
-
-					break;
-				}
-
 				$query .= (string) $this->select;
 				$query .= (string) $this->from;
 
@@ -132,16 +81,6 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 				if ($this->where)
 				{
 					$query .= (string) $this->where;
-				}
-
-				if ($this->selectRowNumber)
-				{
-					if ($this->order)
-					{
-						$query .= (string) $this->order;
-					}
-
-					break;
 				}
 
 				if ($this->group)
@@ -184,42 +123,23 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 
 				if ($this->join)
 				{
-					$tmpFrom     = $this->from;
-					$tmpWhere    = $this->where ? clone $this->where : null;
-					$this->from  = null;
+					$onWord = ' ON ';
 
 					// Workaround for special case of JOIN with UPDATE
 					foreach ($this->join as $join)
 					{
 						$joinElem = $join->getElements();
 
-						$joinArray = preg_split('/\sON\s/i', $joinElem[0]);
-
-						if (count($joinArray) > 2)
-						{
-							$condition = array_pop($joinArray);
-							$joinArray = array(implode(' ON ', $joinArray), $condition);
-						}
+						$joinArray = explode($onWord, $joinElem[0]);
 
 						$this->from($joinArray[0]);
-
-						if (isset($joinArray[1]))
-						{
-							$this->where($joinArray[1]);
-						}
+						$this->where($joinArray[1]);
 					}
 
 					$query .= (string) $this->from;
-
-					if ($this->where)
-					{
-						$query .= (string) $this->where;
-					}
-
-					$this->from  = $tmpFrom;
-					$this->where = $tmpWhere;
 				}
-				elseif ($this->where)
+
+				if ($this->where)
 				{
 					$query .= (string) $this->where;
 				}
@@ -341,26 +261,16 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	 *
 	 * Usage:
 	 * $query->select($query->castAsChar('a'));
-	 * $query->select($query->castAsChar('a', 40));
 	 *
 	 * @param   string  $value  The value to cast as a char.
-	 *
-	 * @param   string  $len    The lenght of the char.
 	 *
 	 * @return  string  Returns the cast value.
 	 *
 	 * @since   11.3
 	 */
-	public function castAsChar($value, $len = null)
+	public function castAsChar($value)
 	{
-		if (!$len)
-		{
-			return $value . '::text';
-		}
-		else
-		{
-			return ' CAST(' . $value . ' AS CHAR(' . $len . '))';
-		}
+		return $value . '::text';
 	}
 
 	/**
@@ -744,33 +654,5 @@ class JDatabaseQueryPostgresql extends JDatabaseQuery implements JDatabaseQueryL
 	public function Rand()
 	{
 		return ' RANDOM() ';
-	}
-
-	/**
-	 * Return the number of the current row.
-	 *
-	 * @param   string  $orderBy           An expression of ordering for window function.
-	 * @param   string  $orderColumnAlias  An alias for new ordering column.
-	 *
-	 * @return  JDatabaseQuery  Returns this object to allow chaining.
-	 *
-	 * @since   3.7.0
-	 * @throws  RuntimeException
-	 */
-	public function selectRowNumber($orderBy, $orderColumnAlias)
-	{
-		$this->validateRowNumber($orderBy, $orderColumnAlias);
-
-		if (version_compare($this->db->getVersion(), '8.4.0') >= 0)
-		{
-			$this->selectRowNumber['native'] = true;
-			$this->select("ROW_NUMBER() OVER (ORDER BY $orderBy) AS $orderColumnAlias");
-		}
-		else
-		{
-			$this->selectRowNumber['native'] = false;
-		}
-
-		return $this;
 	}
 }

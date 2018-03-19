@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -53,7 +53,7 @@ class JFormFieldRules extends JFormField
 	/**
 	 * Method to get certain otherwise inaccessible properties from the form field object.
 	 *
-	 * @param   string  $name  The property name for which to get the value.
+	 * @param   string  $name  The property name for which to the the value.
 	 *
 	 * @return  mixed  The property value or null.
 	 *
@@ -75,7 +75,7 @@ class JFormFieldRules extends JFormField
 	/**
 	 * Method to set certain otherwise inaccessible properties of the form field object.
 	 *
-	 * @param   string  $name   The property name for which to set the value.
+	 * @param   string  $name   The property name for which to the the value.
 	 * @param   mixed   $value  The value of the property.
 	 *
 	 * @return  void
@@ -102,7 +102,7 @@ class JFormFieldRules extends JFormField
 	 *
 	 * @param   SimpleXMLElement  $element  The SimpleXMLElement object representing the `<field>` tag for the form field object.
 	 * @param   mixed             $value    The form field value to validate.
-	 * @param   string            $group    The field name group control value. This acts as an array container for the field.
+	 * @param   string            $group    The field name group control value. This acts as as an array container for the field.
 	 *                                      For example if the field has name="foo" and the group value is set to "bar" then the
 	 *                                      full field name would end up being "bar[foo]".
 	 *
@@ -139,7 +139,7 @@ class JFormFieldRules extends JFormField
 		JHtml::_('bootstrap.tooltip');
 
 		// Add Javascript for permission change
-		JHtml::_('script', 'system/permissions.js', array('version' => 'auto', 'relative' => true));
+		JHtml::_('script', 'system/permissions.js', false, true);
 
 		// Load JavaScript message titles
 		JText::script('ERROR');
@@ -248,9 +248,14 @@ class JFormFieldRules extends JFormField
 		foreach ($groups as $group)
 		{
 			// Initial Active Tab
-			$active = (int) $group->value === 1 ? ' class="active"' : '';
+			$active = '';
 
-			$html[] = '<li' . $active . '>';
+			if ((int) $group->value === 1)
+			{
+				$active = 'active';
+			}
+
+			$html[] = '<li class="' . $active . '">';
 			$html[] = '<a href="#permission-' . $group->value . '" data-toggle="tab">';
 			$html[] = JLayoutHelper::render('joomla.html.treeprefix', array('level' => $group->level + 1)) . $group->text;
 			$html[] = '</a>';
@@ -265,7 +270,12 @@ class JFormFieldRules extends JFormField
 		foreach ($groups as $group)
 		{
 			// Initial Active Pane
-			$active = (int) $group->value === 1 ? ' active' : '';
+			$active = '';
+
+			if ((int) $group->value === 1)
+			{
+				$active = ' active';
+			}
 
 			$html[] = '<div class="tab-pane' . $active . '" id="permission-' . $group->value . '">';
 			$html[] = '<table class="table table-striped">';
@@ -371,7 +381,7 @@ class JFormFieldRules extends JFormField
 
 					/**
 					 * @to do: incorrect info
-					 * If a component has a permission that doesn't exists in global config (ex: frontend editing in com_modules) by default
+					 * If a component as a permission that doesn't exists in global config (ex: frontend editing in com_modules) by default
 					 * we get "Not Allowed (Inherited)" when we should get "Not Allowed (Default)".
 					 */
 
@@ -422,7 +432,7 @@ class JFormFieldRules extends JFormField
 		$html[] = '<div class="clr"></div>';
 		$html[] = '<div class="alert">';
 
-		if ($section === 'component' || !$section)
+		if ($section === 'component' || $section === null)
 		{
 			$html[] = JText::_('JLIB_RULES_SETTING_NOTES');
 		}

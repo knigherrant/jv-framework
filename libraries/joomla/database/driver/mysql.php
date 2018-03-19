@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -12,9 +12,9 @@ defined('JPATH_PLATFORM') or die;
 /**
  * MySQL database driver
  *
- * @link        https://dev.mysql.com/doc/
+ * @see         http://dev.mysql.com/doc/
  * @since       12.1
- * @deprecated  4.0  Use MySQLi or PDO MySQL instead
+ * @deprecated  Will be removed when the minimum supported PHP version no longer includes the deprecated PHP `mysql` extension
  */
 class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 {
@@ -55,6 +55,16 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 	}
 
 	/**
+	 * Destructor.
+	 *
+	 * @since   12.1
+	 */
+	public function __destruct()
+	{
+		$this->disconnect();
+	}
+
+	/**
 	 * Connects to the database if needed.
 	 *
 	 * @return  void  Returns void if the database connected successfully.
@@ -72,13 +82,13 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 		// Make sure the MySQL extension for PHP is installed and enabled.
 		if (!self::isSupported())
 		{
-			throw new JDatabaseExceptionUnsupported('Make sure the MySQL extension for PHP is installed and enabled.');
+			throw new JDatabaseExceptionUnsupported('Could not connect to MySQL.');
 		}
 
 		// Attempt to connect to the server.
 		if (!($this->connection = @ mysql_connect($this->options['host'], $this->options['user'], $this->options['password'], true)))
 		{
-			throw new JDatabaseExceptionConnecting('Could not connect to MySQL server.');
+			throw new JDatabaseExceptionConnecting('Could not connect to MySQL.');
 		}
 
 		// Set sql_mode to non_strict mode
@@ -99,7 +109,7 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 		// Turn MySQL profiling ON in debug mode:
 		if ($this->debug && $this->hasProfiling())
 		{
-			mysql_query('SET profiling = 1;', $this->connection);
+			mysql_query("SET profiling = 1;", $this->connection);
 		}
 	}
 
@@ -159,7 +169,7 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 	 */
 	public static function isSupported()
 	{
-		return PHP_MAJOR_VERSION < 7 && function_exists('mysql_connect');
+		return function_exists('mysql_connect');
 	}
 
 	/**
@@ -305,7 +315,7 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 		{
 			// Get the error number and message before we execute any more queries.
 			$this->errorNum = $this->getErrorNumber();
-			$this->errorMsg = $this->getErrorMessage();
+			$this->errorMsg = $this->getErrorMessage($query);
 
 			// Check if the server was disconnected.
 			if (!$this->connected())
@@ -321,7 +331,7 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 				{
 					// Get the error number and message.
 					$this->errorNum = $this->getErrorNumber();
-					$this->errorMsg = $this->getErrorMessage();
+					$this->errorMsg = $this->getErrorMessage($query);
 
 					// Throw the normal query exception.
 					JLog::add(JText::sprintf('JLIB_DATABASE_QUERY_FAILED', $this->errorNum, $this->errorMsg), JLog::ERROR, 'database-error');
@@ -366,7 +376,7 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 
 		if (!mysql_select_db($database, $this->connection))
 		{
-			throw new JDatabaseExceptionConnecting('Could not connect to MySQL database.');
+			throw new JDatabaseExceptionConnecting('Could not connect to database');
 		}
 
 		return true;
@@ -538,11 +548,13 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 	/**
 	 * Return the actual SQL Error message
 	 *
+	 * @param   string  $query  The SQL Query that fails
+	 *
 	 * @return  string  The SQL Error message
 	 *
 	 * @since   3.4.6
 	 */
-	protected function getErrorMessage()
+	protected function getErrorMessage($query)
 	{
 		$errorMessage = (string) mysql_error($this->connection);
 
@@ -550,8 +562,9 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 		if (!$this->debug)
 		{
 			$errorMessage = str_replace($this->tablePrefix, '#__', $errorMessage);
+			$query        = str_replace($this->tablePrefix, '#__', $query);
 		}
 
-		return $errorMessage;
+		return $errorMessage . ' SQL=' . $query;
 	}
 }

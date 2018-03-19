@@ -3,8 +3,8 @@
  * @package     Joomla.Libraries
  * @subpackage  HTML
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -47,7 +47,8 @@ abstract class JHtmlFormbehavior
 		// If no debugging value is set, use the configuration setting
 		if ($debug === null)
 		{
-			$debug = JDEBUG;
+			$config = JFactory::getConfig();
+			$debug  = (boolean) $config->get('debug');
 		}
 
 		// Default settings

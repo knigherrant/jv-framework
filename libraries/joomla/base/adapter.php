@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Base
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -130,24 +130,6 @@ class JAdapter extends JObject
 			return true;
 		}
 
-		$class = rtrim($this->_classprefix, '\\') . '\\' . ucfirst($name);
-
-		if (class_exists($class))
-		{
-			$this->_adapters[$name] = new $class($this, $this->_db, $options);
-
-			return true;
-		}
-
-		$class = rtrim($this->_classprefix, '\\') . '\\' . ucfirst($name) . 'Adapter';
-
-		if (class_exists($class))
-		{
-			$this->_adapters[$name] = new $class($this, $this->_db, $options);
-
-			return true;
-		}
-
 		$fullpath = $this->_basepath . '/' . $this->_adapterfolder . '/' . strtolower($name) . '.php';
 
 		if (!file_exists($fullpath))
@@ -156,9 +138,9 @@ class JAdapter extends JObject
 		}
 
 		// Try to load the adapter object
-		$class = $this->_classprefix . ucfirst($name);
+		require_once $fullpath;
 
-		JLoader::register($class, $fullpath);
+		$class = $this->_classprefix . ucfirst($name);
 
 		if (!class_exists($class))
 		{
