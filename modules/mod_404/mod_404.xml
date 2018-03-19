@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.0.0" method="upgrade" client="site">
+	<name>Error 404</name>
+	<creationDate>13 Aug 2015</creationDate>
+	<author>PHPKungfu.com</author>
+	<authorEmail>dev@phpkungfu.club</authorEmail>
+	<authorUrl>http://www.phpkungfu.club</authorUrl>
+	<copyright>Copyright (C) 20015 PHPKungfu. All rights reserved. </copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>1.0.0</version>
+	<description>Error 404 module</description>
+	<files>
+		<filename module="mod_404">mod_404.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_404.xml</filename>
+		<folder>tmpl</folder>
+	</files>
+	
+	<config>
+		<fields name="params">
+            <fieldset name="basic">
+				<field name="error_image" type="media" default="" label="Error Image" description="" />
+				<field name="error_title" type="text" default="Error 404 - Not Found!" label="Title" description="" /> 
+				<field name="error_sub_title" type="text" default="Please go back to home and try to find out once again." label="Sub title" description="" />
+				<field name="error_content" type="textarea" default="Are you Lost Somewhere?" rows="6" label="Error message" description="" />
+				<field name="error_background" type="media" default="" label="Error Background" description="" />
+			</fieldset> 
+            <fieldset name="advanced">
+                <field name="moduleclass_sfx" type="text" default="" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" /> 
+            </fieldset>
+        </fields>
+	</config>
+</extension>
