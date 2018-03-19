@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+   <fieldset>
+      <field name="id" type="text" default="0" label="COM_JVSS_FORM_LBL_ITEM_ID" readonly="true" class="readonly" description="JGLOBAL_FIELD_ID_DESC" />
+      <field name="name" type="text" label="COM_JVSS_FORM_LBL_ITEM_NAME" description="COM_JVSS_FORM_DESC_ITEM_NAME" class="span12" />
+      <field name="params" type="textarea" filter="raw" />
+      <field name="customcss" type="textarea" class="inputbox" />
+      <field name="sconfig" type="textarea" class="inputbox" filter="raw" />
+      <field name="state" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1" default="1">
+         <option value="1">JPUBLISHED</option>
+         <option value="0">JUNPUBLISHED</option>
+         <option value="2">JARCHIVED</option>
+         <option value="-2">JTRASHED</option>
+      </field>
+   </fieldset>
+</form>
