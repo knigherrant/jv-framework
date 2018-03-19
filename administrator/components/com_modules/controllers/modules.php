@@ -3,13 +3,11 @@
  * @package     Joomla.Administrator
  * @subpackage  com_modules
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
-
-use Joomla\Utilities\ArrayHelper;
 
 /**
  * Modules list controller class.
@@ -31,7 +29,7 @@ class ModulesControllerModules extends JControllerAdmin
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		$pks = $this->input->post->get('cid', array(), 'array');
-		$pks = ArrayHelper::toInteger($pks);
+		JArrayHelper::toInteger($pks);
 
 		try
 		{

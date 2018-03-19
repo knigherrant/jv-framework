@@ -3,13 +3,11 @@
  * @package     Joomla.Administrator
  * @subpackage  com_redirect
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
-
-use Joomla\Utilities\ArrayHelper;
 
 /**
  * Redirect link model.
@@ -109,7 +107,7 @@ class RedirectModelLink extends JModelAdmin
 			$form->setFieldAttribute('published', 'filter', 'unset');
 		}
 
-		// If in advanced mode then we make sure the new URL field is not compulsory and the header
+		// If in advanced mode then we make sure the new url field is not compulsory and the header
 		// field compulsory in case people select non-3xx redirects
 		if (JComponentHelper::getParams('com_redirect')->get('mode', 0) == true)
 		{
@@ -160,7 +158,7 @@ class RedirectModelLink extends JModelAdmin
 
 		// Sanitize the ids.
 		$pks = (array) $pks;
-		$pks = ArrayHelper::toInteger($pks);
+		JArrayHelper::toInteger($pks);
 
 		// Populate default comment if necessary.
 		$comment = (!empty($comment)) ? $comment : JText::sprintf('COM_REDIRECT_REDIRECTED_ON', JHtml::_('date', time()));
@@ -218,7 +216,7 @@ class RedirectModelLink extends JModelAdmin
 
 		// Sanitize the ids.
 		$pks = (array) $pks;
-		$pks = ArrayHelper::toInteger($pks);
+		JArrayHelper::toInteger($pks);
 
 		// Access checks.
 		if (!$user->authorise('core.edit', 'com_redirect'))
@@ -245,7 +243,6 @@ class RedirectModelLink extends JModelAdmin
 			{
 				$query->set($db->quoteName('comment') . ' = ' . $db->quote($comment));
 			}
-
 			$db->setQuery($query);
 
 			try
@@ -262,4 +259,5 @@ class RedirectModelLink extends JModelAdmin
 
 		return true;
 	}
+
 }

@@ -3,14 +3,13 @@
  * @package     Joomla.Administrator
  * @subpackage  com_plugins
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
-use Joomla\Utilities\ArrayHelper;
 
 /**
  * Plugin model.
@@ -63,7 +62,7 @@ class PluginsModelPlugin extends JModelAdmin
 	 * @param   array    $data      Data for the form.
 	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return  JForm    A JForm object on success, false on failure.
+	 * @return  JForm	A JForm object on success, false on failure.
 	 *
 	 * @since   1.6
 	 */
@@ -78,8 +77,8 @@ class PluginsModelPlugin extends JModelAdmin
 		}
 		else
 		{
-			$folder  = ArrayHelper::getValue($data, 'folder', '', 'cmd');
-			$element = ArrayHelper::getValue($data, 'element', '', 'cmd');
+			$folder  = JArrayHelper::getValue($data, 'folder', '', 'cmd');
+			$element = JArrayHelper::getValue($data, 'element', '', 'cmd');
 		}
 
 		// Add the default fields directory
@@ -164,10 +163,11 @@ class PluginsModelPlugin extends JModelAdmin
 
 			// Convert to the JObject before adding other data.
 			$properties = $table->getProperties(1);
-			$this->_cache[$pk] = ArrayHelper::toObject($properties, 'JObject');
+			$this->_cache[$pk] = JArrayHelper::toObject($properties, 'JObject');
 
 			// Convert the params field to an array.
-			$registry = new Registry($table->params);
+			$registry = new Registry;
+			$registry->loadString($table->params);
 			$this->_cache[$pk]->params = $registry->toArray();
 
 			// Get the plugin XML.
@@ -297,8 +297,8 @@ class PluginsModelPlugin extends JModelAdmin
 			$helpKey = trim((string) $help[0]['key']);
 			$helpURL = trim((string) $help[0]['url']);
 
-			$this->helpKey = $helpKey ?: $this->helpKey;
-			$this->helpURL = $helpURL ?: $this->helpURL;
+			$this->helpKey = $helpKey ? $helpKey : $this->helpKey;
+			$this->helpURL = $helpURL ? $helpURL : $this->helpURL;
 		}
 
 		// Trigger the default form events.

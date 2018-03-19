@@ -3,14 +3,13 @@
  * @package     Joomla.Administrator
  * @subpackage  com_finder
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
-use Joomla\String\StringHelper;
 
 JLoader::register('FinderIndexerParser', __DIR__ . '/parser.php');
 JLoader::register('FinderIndexerStemmer', __DIR__ . '/stemmer.php');
@@ -31,14 +30,6 @@ class FinderIndexerHelper
 	 * @since	2.5
 	 */
 	public static $stemmer;
-
-	/**
-	 * A state flag, in order to not constantly check if the stemmer is an instance of FinderIndexerStemmer
-	 *
-	 * @var		boolean
-	 * @since	3.7.0
-	 */
-	protected static $stemmerOK;
 
 	/**
 	 * Method to parse input into plain text.
@@ -71,7 +62,7 @@ class FinderIndexerHelper
 	public static function tokenize($input, $lang, $phrase = false)
 	{
 		static $cache;
-		$store = StringHelper::strlen($input) < 128 ? md5($input . '::' . $lang . '::' . $phrase) : null;
+		$store = JString::strlen($input) < 128 ? md5($input . '::' . $lang . '::' . $phrase) : null;
 
 		// Check if the string has been tokenized already.
 		if ($store && isset($cache[$store]))
@@ -98,7 +89,7 @@ class FinderIndexerHelper
 		 *  7. Replace the assorted single quotation marks with the ASCII standard single quotation.
 		 *  8. Remove multiple space characters and replaces with a single space.
 		 */
-		$input = StringHelper::strtolower($input);
+		$input = JString::strtolower($input);
 		$input = preg_replace('#[^\pL\pM\pN\p{Pi}\p{Pf}\'+-.,]+#mui', ' ', $input);
 		$input = preg_replace('#(^|\s)[+-.,]+([\pL\pM]+)#mui', ' $1', $input);
 		$input = preg_replace('#([\pL\pM\pN]+)[+-.,]+(\s|$)#mui', '$1 ', $input);
@@ -107,7 +98,7 @@ class FinderIndexerHelper
 		$input = preg_replace('#(^|\s)[\p{Pi}\p{Pf}]+(\s|$)#mui', ' ', $input);
 		$input = preg_replace('#[' . $quotes . ']+#mui', '\'', $input);
 		$input = preg_replace('#\s+#mui', ' ', $input);
-		$input = trim($input);
+		$input = JString::trim($input);
 
 		// Explode the normalized string to get the terms.
 		$terms = explode(' ', $input);
@@ -129,7 +120,7 @@ class FinderIndexerHelper
 				// Split apart any groups of Chinese characters.
 				for ($j = 0; $j < $charCount; $j++)
 				{
-					$tSplit = StringHelper::str_ireplace($charMatches[0][$j], '', $terms[$i], false);
+					$tSplit = JString::str_ireplace($charMatches[0][$j], '', $terms[$i], false);
 
 					if (!empty($tSplit))
 					{
@@ -224,27 +215,18 @@ class FinderIndexerHelper
 	public static function stem($token, $lang)
 	{
 		// Trim apostrophes at either end of the token.
-		$token = trim($token, '\'');
+		$token = JString::trim($token, '\'');
 
 		// Trim everything after any apostrophe in the token.
-		if ($res = explode('\'', $token))
+		if (($pos = JString::strpos($token, '\'')) !== false)
 		{
-			$token = $res[0];
+			$token = JString::substr($token, 0, $pos);
 		}
 
-		if (static::$stemmerOK === true)
+		// Stem the token if we have a valid stemmer to use.
+		if (static::$stemmer instanceof FinderIndexerStemmer)
 		{
 			return static::$stemmer->stem($token, $lang);
-		}
-		else
-		{
-			// Stem the token if we have a valid stemmer to use.
-			if (static::$stemmer instanceof FinderIndexerStemmer)
-			{
-				static::$stemmerOK = true;
-
-				return static::$stemmer->stem($token, $lang);
-			}
 		}
 
 		return $token;
@@ -311,25 +293,15 @@ class FinderIndexerHelper
 	public static function isCommon($token, $lang)
 	{
 		static $data;
-		static $default;
-
-		$langCode = $lang;
-
-		// If language requested is wildcard, use the default language.
-		if ($lang == '*')
-		{
-			$default = $default === null ? substr(self::getDefaultLanguage(), 0, 2) : $default;
-			$langCode = $default;
-		}
 
 		// Load the common tokens for the language if necessary.
-		if (!isset($data[$langCode]))
+		if (!isset($data[$lang]))
 		{
-			$data[$langCode] = self::getCommonWords($langCode);
+			$data[$lang] = self::getCommonWords($lang);
 		}
 
 		// Check if the token is in the common array.
-		return in_array($token, $data[$langCode], true);
+		return in_array($token, $data[$lang]);
 	}
 
 	/**
@@ -402,7 +374,7 @@ class FinderIndexerHelper
 			else
 			{
 				// Get the language key using string position.
-				$data[$lang] = StringHelper::substr($lang, 0, StringHelper::strpos($lang, '-'));
+				$data[$lang] = JString::substr($lang, 0, JString::strpos($lang, '-'));
 			}
 		}
 
@@ -443,7 +415,7 @@ class FinderIndexerHelper
 	 * Method to get extra data for a content before being indexed. This is how
 	 * we add Comments, Tags, Labels, etc. that should be available to Finder.
 	 *
-	 * @param   FinderIndexerResult  &$item  The item to index as a FinderIndexerResult object.
+	 * @param   FinderIndexerResult  &$item  The item to index as an FinderIndexerResult object.
 	 *
 	 * @return  boolean  True on success, false on failure.
 	 *
@@ -474,15 +446,14 @@ class FinderIndexerHelper
 	/**
 	 * Method to process content text using the onContentPrepare event trigger.
 	 *
-	 * @param   string               $text    The content to process.
-	 * @param   Registry             $params  The parameters object. [optional]
-	 * @param   FinderIndexerResult  $item    The item which get prepared. [optional]
+	 * @param   string    $text    The content to process.
+	 * @param   Registry  $params  The parameters object. [optional]
 	 *
 	 * @return  string  The processed content.
 	 *
 	 * @since   2.5
 	 */
-	public static function prepareContent($text, $params = null, FinderIndexerResult $item = null)
+	public static function prepareContent($text, $params = null)
 	{
 		static $loaded;
 
@@ -499,24 +470,14 @@ class FinderIndexerHelper
 		// Instantiate the parameter object if necessary.
 		if (!($params instanceof Registry))
 		{
-			$registry = new Registry($params);
+			$registry = new Registry;
+			$registry->loadString($params);
 			$params = $registry;
 		}
 
 		// Create a mock content object.
 		$content = JTable::getInstance('Content');
 		$content->text = $text;
-
-		if ($item)
-		{
-			$content->bind((array) $item);
-			$content->bind($item->getElements());
-		}
-
-		if ($item && !empty($item->context))
-		{
-			$content->context = $item->context;
-		}
 
 		// Fire the onContentPrepare event.
 		$dispatcher->trigger('onContentPrepare', array('com_finder.indexer', &$content, &$params, 0));

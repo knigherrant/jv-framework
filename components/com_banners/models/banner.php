@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_banners
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -143,41 +143,41 @@ class BannersModelBanner extends JModelLegacy
 	{
 		if (!isset($this->_item))
 		{
-			/** @var JCacheControllerCallback $cache */
-			$cache = JFactory::getCache('com_banners', 'callback');
+			$cache = JFactory::getCache('com_banners', '');
 
 			$id = $this->getState('banner.id');
 
-			// For PHP 5.3 compat we can't use $this in the lambda function below, so grab the database driver now to use it
-			$db = $this->getDbo();
+			$this->_item = $cache->get($id);
 
-			$loader = function ($id) use ($db)
+			if ($this->_item === false)
 			{
+				// Redirect to banner url
+				$db = $this->getDbo();
 				$query = $db->getQuery(true)
 					->select(
-						array(
-							$db->quoteName('a.clickurl', 'clickurl'),
-							$db->quoteName('a.cid', 'cid'),
-							$db->quoteName('a.track_clicks', 'track_clicks'),
-							$db->quoteName('cl.track_clicks', 'client_track_clicks'),
-						)
+						'a.clickurl as clickurl,'
+							. 'a.cid as cid,'
+							. 'a.track_clicks as track_clicks'
 					)
-					->from($db->quoteName('#__banners', 'a'))
+					->from('#__banners as a')
+					->where('a.id = ' . (int) $id)
+
 					->join('LEFT', '#__banner_clients AS cl ON cl.id = a.cid')
-					->where('a.id = ' . (int) $id);
+					->select('cl.track_clicks as client_track_clicks');
 
 				$db->setQuery($query);
 
-				return $db->loadObject();
-			};
+				try
+				{
+					$db->execute();
+				}
+				catch (RuntimeException $e)
+				{
+					JError::raiseError(500, $e->getMessage());
+				}
 
-			try
-			{
-				$this->_item = $cache->get($loader, array($id), md5(__METHOD__ . $id));
-			}
-			catch (JCacheException $e)
-			{
-				$this->_item = $loader($id);
+				$this->_item = $db->loadObject();
+				$cache->store($this->_item, $id);
 			}
 		}
 

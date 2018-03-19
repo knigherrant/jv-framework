@@ -37,10 +37,10 @@
 				label="COM_TAGS_FIELD_LANGUAGE_FILTER_LABEL"
 				description="COM_TAGS_FIELD_LANGUAGE_FILTER_DESC"
 				default=""
-				useglobal="true"
-				>
-				<option value="all">JALL</option>
-				<option value="current_language">JCURRENT</option>
+			>
+					<option value="">JGLOBAL_USE_GLOBAL</option>
+					<option value="all">JALL</option>
+					<option value="current_language">JCURRENT</option>
 			</field>
 
 		</fieldset>
@@ -54,9 +54,8 @@
 				type="list"
 				label="COM_TAGS_SHOW_TAG_TITLE_LABEL"
 				description="COM_TAGS_SHOW_TAG_TITLE_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
@@ -66,9 +65,8 @@
 				type="list"
 				label="COM_TAGS_SHOW_TAG_IMAGE_LABEL"
 				description="COM_TAGS_SHOW_TAG_IMAGE_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
@@ -78,9 +76,8 @@
 				type="list"
 				label="COM_TAGS_SHOW_TAG_DESCRIPTION_LABEL"
 				description="COM_TAGS_SHOW_TAG_DESCRIPTION_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
@@ -95,13 +92,24 @@
 			<field 
 				name="tag_list_description" 
 				type="textarea"
+				class="inputbox"
 				label="COM_TAGS_SHOW_TAG_LIST_DESCRIPTION_LABEL"
 				description="COM_TAGS_TAG_LIST_DESCRIPTION_DESC"
-				class="inputbox"
 				rows="3" 
 				cols="30" 
 				filter="safehtml"
 			/>
+
+			<field 
+				name="show_tag_num_items" 
+				type="list"
+				label="COM_TAGS_NUMBER_TAG_ITEMS_LABEL"
+				description="COM_TAGS_NUMBER_TAG_ITEMS_DESC"
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
+				<option value="0">JHIDE</option>
+				<option value="1">JSHOW</option>
+			</field>
 
 			<field 
 				name="tag_list_orderby"
@@ -109,8 +117,8 @@
 				label="JGLOBAL_FIELD_FIELD_ORDERING_LABEL"
 				description="JGLOBAL_FIELD_FIELD_ORDERING_DESC"
 				default=""
-				useglobal="true"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="c.core_title">JGLOBAL_TITLE</option>
 				<option value="match_count">COM_TAGS_MATCH_COUNT</option>
 				<option value="c.core_created_time">JGLOBAL_CREATED_DATE</option>
@@ -123,8 +131,8 @@
 				type="list"
 				label="JGLOBAL_ORDER_DIRECTION_LABEL"
 				description="JGLOBAL_ORDER_DIRECTION_DESC"
-				useglobal="true"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="ASC">JGLOBAL_ORDER_ASCENDING</option>
 				<option value="DESC">JGLOBAL_ORDER_DESCENDING</option>
 			</field>
@@ -136,8 +144,8 @@
 			<field 
 				name="spacer2" 
 				type="spacer" 
-				label="COM_TAGS_SUBSLIDER_DRILL_TAG_LIST_LABEL"
 				class="text"
+				label="COM_TAGS_SUBSLIDER_DRILL_TAG_LIST_LABEL"
 			/>
 
 			<field 
@@ -145,9 +153,8 @@
 				type="list"
 				label="COM_TAGS_TAG_LIST_SHOW_ITEM_IMAGE_LABEL"
 				description="COM_TAGS_TAG_LIST_SHOW_ITEM_IMAGE_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
@@ -157,31 +164,28 @@
 				type="list"
 				label="COM_TAGS_TAG_LIST_SHOW_ITEM_DESCRIPTION_LABEL"
 				description="COM_TAGS_TAG_LIST_SHOW_ITEM_DESCRIPTION_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
 
 			<field
 				name="tag_list_item_maximum_characters"
-				type="number"
+				type="text"
+				filter="integer"
 				label="COM_TAGS_LIST_MAX_CHARACTERS_LABEL"
 				description="COM_TAGS_LIST_MAX_CHARACTERS_DESC"
-				filter="integer"
-				useglobal="true"
 			/>
 
 			<field
 				name="filter_field"
 				type="list"
+				default=""
 				label="JGLOBAL_FILTER_FIELD_LABEL"
 				description="JGLOBAL_FILTER_FIELD_DESC"
-				default=""
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
@@ -191,21 +195,17 @@
 				type="list"
 				label="JGLOBAL_DISPLAY_SELECT_LABEL"
 				description="JGLOBAL_DISPLAY_SELECT_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>
 
-			<field 
-				name="display_num" 
-				type="list"
-				label="COM_TAGS_FIELD_NUMBER_ITEMS_LIST_LABEL"
+			<field name="display_num" type="list"
+				default="20"
 				description="COM_TAGS_FIELD_NUMBER_ITEMS_LIST_DESC"
-				class="chzn-color"
-				>
-				<option value="">JGLOBAL_USE_GLOBAL</option>
+				label="COM_TAGS_FIELD_NUMBER_ITEMS_LIST_LABEL"
+			>
 				<option value="5">J5</option>
 				<option value="10">J10</option>
 				<option value="15">J15</option>
@@ -222,9 +222,8 @@
 				type="list"
 				label="JGLOBAL_PAGINATION_LABEL"
 				description="JGLOBAL_PAGINATION_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 				<option value="2">JGLOBAL_AUTO</option>
@@ -234,12 +233,10 @@
 				name="show_pagination_results" 
 				type="list"
 				label="JGLOBAL_PAGINATION_RESULTS_LABEL"
-				description="JGLOBAL_PAGINATION_RESULTS_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
+				description="JGLOBAL_PAGINATION_RESULTS_DESC">
+					<option value="">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
 			</field>
 
 			<field 
@@ -247,9 +244,8 @@
 				type="list"
 				label="JGLOBAL_SHOW_DATE_LABEL"
 				description="JGLOBAL_SHOW_DATE_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="created">JGLOBAL_CREATED</option>
 				<option value="modified">JGLOBAL_MODIFIED</option>
@@ -273,8 +269,8 @@
 				type="list"
 				label="COM_TAGS_SEARCH_TYPE_LABEL"
 				description="COM_TAGS_SEARCH_TYPE_DESC"
-				useglobal="true"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">COM_TAGS_ALL</option>
 				<option value="1">COM_TAGS_ANY</option>
 			</field>
@@ -285,8 +281,8 @@
 				label="COM_TAGS_INCLUDE_CHILDREN_LABEL"
 				description="COM_TAGS_INCLUDE_CHILDREN_DESC"
 				default=""
-				useglobal="true"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">COM_TAGS_EXCLUDE</option>
 				<option value="1">COM_TAGS_INCLUDE</option>
 			</field>
@@ -300,9 +296,8 @@
 				type="list"
 				label="JGLOBAL_SHOW_FEED_LINK_LABEL"
 				description="JGLOBAL_SHOW_FEED_LINK_DESC"
-				useglobal="true"
-				class="chzn-color"
-				>
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 			</field>

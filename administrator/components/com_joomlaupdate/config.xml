@@ -9,9 +9,9 @@
 		<field
 			name="updatesource"
 			type="list"
+			default="default"
 			label="COM_JOOMLAUPDATE_CONFIG_UPDATESOURCE_LABEL"
 			description="COM_JOOMLAUPDATE_CONFIG_UPDATESOURCE_DESC"
-			default="default"
 			>
 			<!-- Note: Changed the values lts to default and sts to next with 3.4.0 -->
 			<!--       Eliminated the 'nochange' option with 3.4.0 -->
@@ -25,13 +25,12 @@
 		<field
 			name="customurl"
 			type="text"
-			label="COM_JOOMLAUPDATE_CONFIG_CUSTOMURL_LABEL"
-			description="COM_JOOMLAUPDATE_CONFIG_CUSTOMURL_DESC"
 			default=""
 			length="50"
+			label="COM_JOOMLAUPDATE_CONFIG_CUSTOMURL_LABEL"
+			description="COM_JOOMLAUPDATE_CONFIG_CUSTOMURL_DESC"
 			showon="updatesource:custom"
-		/>
-
+			/>
 	</fieldset>
 
 	<fieldset
@@ -47,8 +46,6 @@
 			filter="rules"
 			validate="rules"
 			component="com_joomlaupdate"
-			section="component"
-		/>
-
+			section="component" />
 	</fieldset>
 </config>

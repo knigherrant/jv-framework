@@ -3,14 +3,13 @@
  * @package     Joomla.Administrator
  * @subpackage  com_newsfeeds
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
-use Joomla\String\StringHelper;
 
 JLoader::register('NewsfeedsHelper', JPATH_ADMINISTRATOR . '/components/com_newsfeeds/helpers/newsfeeds.php');
 
@@ -112,7 +111,6 @@ class NewsfeedsModelNewsfeed extends JModelAdmin
 			if (!$this->table->check())
 			{
 				$this->setError($this->table->getError());
-
 				return false;
 			}
 
@@ -122,7 +120,6 @@ class NewsfeedsModelNewsfeed extends JModelAdmin
 			if (!$this->table->store())
 			{
 				$this->setError($this->table->getError());
-
 				return false;
 			}
 
@@ -349,7 +346,6 @@ class NewsfeedsModelNewsfeed extends JModelAdmin
 					$data['alias'] = '';
 				}
 			}
-
 			$data['published'] = 0;
 		}
 
@@ -370,11 +366,13 @@ class NewsfeedsModelNewsfeed extends JModelAdmin
 		if ($item = parent::getItem($pk))
 		{
 			// Convert the params field to an array.
-			$registry = new Registry($item->metadata);
+			$registry = new Registry;
+			$registry->loadString($item->metadata);
 			$item->metadata = $registry->toArray();
 
 			// Convert the images field to an array.
-			$registry = new Registry($item->images);
+			$registry = new Registry;
+			$registry->loadString($item->images);
 			$item->images = $registry->toArray();
 		}
 
@@ -489,7 +487,6 @@ class NewsfeedsModelNewsfeed extends JModelAdmin
 	{
 		$condition = array();
 		$condition[] = 'catid = ' . (int) $table->catid;
-
 		return $condition;
 	}
 
@@ -512,32 +509,37 @@ class NewsfeedsModelNewsfeed extends JModelAdmin
 		}
 
 		// Association newsfeeds items
-		if (JLanguageAssociations::isEnabled())
+		$assoc = JLanguageAssociations::isEnabled();
+
+		if ($assoc)
 		{
-			$languages = JLanguageHelper::getContentLanguages(false, true, null, 'ordering', 'asc');
+			$languages = JLanguageHelper::getLanguages('lang_code');
+			$addform = new SimpleXMLElement('<form />');
+			$fields = $addform->addChild('fields');
+			$fields->addAttribute('name', 'associations');
+			$fieldset = $fields->addChild('fieldset');
+			$fieldset->addAttribute('name', 'item_associations');
+			$fieldset->addAttribute('description', 'COM_NEWSFEEDS_ITEM_ASSOCIATIONS_FIELDSET_DESC');
+			$add = false;
 
-			if (count($languages) > 1)
+			foreach ($languages as $tag => $language)
 			{
-				$addform = new SimpleXMLElement('<form />');
-				$fields = $addform->addChild('fields');
-				$fields->addAttribute('name', 'associations');
-				$fieldset = $fields->addChild('fieldset');
-				$fieldset->addAttribute('name', 'item_associations');
-
-				foreach ($languages as $language)
+				if (empty($data->language) || $tag != $data->language)
 				{
+					$add = true;
 					$field = $fieldset->addChild('field');
-					$field->addAttribute('name', $language->lang_code);
+					$field->addAttribute('name', $tag);
 					$field->addAttribute('type', 'modal_newsfeed');
-					$field->addAttribute('language', $language->lang_code);
+					$field->addAttribute('language', $tag);
 					$field->addAttribute('label', $language->title);
 					$field->addAttribute('translate_label', 'false');
-					$field->addAttribute('select', 'true');
-					$field->addAttribute('new', 'true');
 					$field->addAttribute('edit', 'true');
 					$field->addAttribute('clear', 'true');
 				}
+			}
 
+			if ($add)
+			{
 				$form->load($addform, false);
 			}
 		}
@@ -560,15 +562,13 @@ class NewsfeedsModelNewsfeed extends JModelAdmin
 	{
 		// Alter the title & alias
 		$table = $this->getTable();
-
 		while ($table->load(array('alias' => $alias, 'catid' => $category_id)))
 		{
 			if ($name == $table->name)
 			{
-				$name = StringHelper::increment($name);
+				$name = JString::increment($name);
 			}
-
-			$alias = StringHelper::increment($alias, 'dash');
+			$alias = JString::increment($alias, 'dash');
 		}
 
 		return array($name, $alias);
@@ -577,7 +577,7 @@ class NewsfeedsModelNewsfeed extends JModelAdmin
 	/**
 	 * Is the user allowed to create an on the fly category?
 	 *
-	 * @return  boolean
+	 * @return  bool
 	 *
 	 * @since   3.6.1
 	 */

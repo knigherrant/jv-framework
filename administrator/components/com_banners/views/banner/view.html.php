@@ -3,7 +3,7 @@
  * @package     Joomla.Administrator
  * @subpackage  com_banners
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -56,10 +56,13 @@ class BannersViewBanner extends JViewLegacy
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			throw new Exception(implode("\n", $errors), 500);
+			JError::raiseError(500, implode("\n", $errors));
+
+			return false;
 		}
 
 		$this->addToolbar();
+		JHtml::_('jquery.framework');
 
 		return parent::display($tpl);
 	}
@@ -109,7 +112,7 @@ class BannersViewBanner extends JViewLegacy
 		}
 		else
 		{
-			if (JComponentHelper::isEnabled('com_contenthistory') && $this->state->params->get('save_history', 0) && $canDo->get('core.edit'))
+			if ($this->state->params->get('save_history', 0) && $canDo->get('core.edit'))
 			{
 				JToolbarHelper::versions('com_banners.banner', $this->item->id);
 			}

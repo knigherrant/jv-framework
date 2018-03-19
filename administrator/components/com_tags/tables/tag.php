@@ -3,14 +3,13 @@
  * @package     Joomla.Administrator
  * @subpackage  com_tags
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
-use Joomla\String\StringHelper;
 
 /**
  * Tags table
@@ -47,25 +46,29 @@ class TagsTableTag extends JTableNested
 	{
 		if (isset($array['params']) && is_array($array['params']))
 		{
-			$registry = new Registry($array['params']);
+			$registry = new Registry;
+			$registry->loadArray($array['params']);
 			$array['params'] = (string) $registry;
 		}
 
 		if (isset($array['metadata']) && is_array($array['metadata']))
 		{
-			$registry = new Registry($array['metadata']);
+			$registry = new Registry;
+			$registry->loadArray($array['metadata']);
 			$array['metadata'] = (string) $registry;
 		}
 
 		if (isset($array['urls']) && is_array($array['urls']))
 		{
-			$registry = new Registry($array['urls']);
+			$registry = new Registry;
+			$registry->loadArray($array['urls']);
 			$array['urls'] = (string) $registry;
 		}
 
 		if (isset($array['images']) && is_array($array['images']))
 		{
-			$registry = new Registry($array['images']);
+			$registry = new Registry;
+			$registry->loadArray($array['images']);
 			$array['images'] = (string) $registry;
 		}
 
@@ -97,7 +100,7 @@ class TagsTableTag extends JTableNested
 
 		if (trim(str_replace('-', '', $this->alias)) == '')
 		{
-			$this->alias = JFactory::getDate()->format('Y-m-d-H-i-s');
+			$this->alias = JFactory::getDate()->format("Y-m-d-H-i-s");
 		}
 
 		// Check the publish down date is not earlier than publish up.
@@ -112,10 +115,10 @@ class TagsTableTag extends JTableNested
 		{
 			// Only process if not empty
 			// Define array of characters to remove
-			$bad_characters = array("\n", "\r", "\"", '<', '>');
+			$bad_characters = array("\n", "\r", "\"", "<", ">");
 
 			// Remove bad characters
-			$after_clean = StringHelper::str_ireplace($bad_characters, '', $this->metakey);
+			$after_clean = JString::str_ireplace($bad_characters, "", $this->metakey);
 
 			// Create array using commas as delimiter
 			$keys = explode(',', $after_clean);
@@ -131,17 +134,16 @@ class TagsTableTag extends JTableNested
 			}
 
 			// Put array back together delimited by ", "
-			$this->metakey = implode(', ', $clean_keys);
+			$this->metakey = implode(", ", $clean_keys);
 		}
 
 		// Clean up description -- eliminate quotes and <> brackets
 		if (!empty($this->metadesc))
 		{
 			// Only process if not empty
-			$bad_characters = array("\"", '<', '>');
-			$this->metadesc = StringHelper::str_ireplace($bad_characters, '', $this->metadesc);
+			$bad_characters = array("\"", "<", ">");
+			$this->metadesc = JString::str_ireplace($bad_characters, "", $this->metadesc);
 		}
-
 		// Not Null sanity check
 		$date = JFactory::getDate();
 

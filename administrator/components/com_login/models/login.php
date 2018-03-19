@@ -3,7 +3,7 @@
  * @package     Joomla.Administrator
  * @subpackage  com_login
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -33,8 +33,8 @@ class LoginModelLogin extends JModelLegacy
 		$method = $input->getMethod();
 
 		$credentials = array(
-			'username'  => $input->$method->get('username', '', 'USERNAME'),
-			'password'  => $input->$method->get('passwd', '', 'RAW'),
+			'username' => $input->$method->get('username', '', 'USERNAME'),
+			'password' => $input->$method->get('passwd', '', 'RAW'),
 			'secretkey' => $input->$method->get('secretkey', '', 'RAW'),
 		);
 		$this->setState('credentials', $credentials);
@@ -127,14 +127,16 @@ class LoginModelLogin extends JModelLegacy
 			return $clean;
 		}
 
-		$app      = JFactory::getApplication();
-		$lang     = JFactory::getLanguage()->getTag();
+		$app = JFactory::getApplication();
+		$lang = JFactory::getLanguage()->getTag();
 		$clientId = (int) $app->getClientId();
 
-		/** @var JCacheControllerCallback $cache */
-		$cache = JFactory::getCache('com_modules', 'callback');
+		$cache = JFactory::getCache('com_modules', '');
+		$cacheid = md5(serialize(array($clientId, $lang)));
+		$loginmodule = array();
 
-		$loader = function () use ($app, $lang, $module) {
+		if (!($clean = $cache->get($cacheid)))
+		{
 			$db = JFactory::getDbo();
 
 			$query = $db->getQuery(true)
@@ -145,7 +147,7 @@ class LoginModelLogin extends JModelLegacy
 				->where('e.enabled = 1');
 
 			// Filter by language.
-			if ($app->isClient('site') && $app->getLanguageFilter())
+			if ($app->isSite() && $app->getLanguageFilter())
 			{
 				$query->where('m.language IN (' . $db->quote($lang) . ',' . $db->quote('*') . ')');
 			}
@@ -155,31 +157,23 @@ class LoginModelLogin extends JModelLegacy
 			// Set the query.
 			$db->setQuery($query);
 
-			return $db->loadObjectList();
-		};
-
-		try
-		{
-			return $clean = $cache->get($loader, array(), md5(serialize(array($clientId, $lang))));
-		}
-		catch (JCacheException $cacheException)
-		{
 			try
 			{
-				return $loader();
+				$modules = $db->loadObjectList();
 			}
-			catch (JDatabaseExceptionExecuting $databaseException)
+			catch (RuntimeException $e)
 			{
-				JError::raiseWarning(500, JText::sprintf('JLIB_APPLICATION_ERROR_MODULE_LOAD', $databaseException->getMessage()));
+				JError::raiseWarning(500, JText::sprintf('JLIB_APPLICATION_ERROR_MODULE_LOAD', $e->getMessage()));
 
-				return array();
+				return $loginmodule;
 			}
-		}
-		catch (JDatabaseExceptionExecuting $databaseException)
-		{
-			JError::raiseWarning(500, JText::sprintf('JLIB_APPLICATION_ERROR_MODULE_LOAD', $databaseException->getMessage()));
 
-			return array();
+			// Return to simple indexing that matches the query order.
+			$loginmodule = $modules;
+
+			$cache->store($loginmodule, $cacheid);
 		}
+
+		return $loginmodule;
 	}
 }

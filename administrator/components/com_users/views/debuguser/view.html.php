@@ -3,14 +3,14 @@
  * @package     Joomla.Administrator
  * @subpackage  com_users
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * View class for a list of User ACL permissions.
+ * View class for a list of users.
  *
  * @since  1.6
  */
@@ -54,7 +54,7 @@ class UsersViewDebuguser extends JViewLegacy
 		// Access check.
 		if (!JFactory::getUser()->authorise('core.manage', 'com_users'))
 		{
-			throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+			return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 		}
 
 		$this->actions       = $this->get('DebugActions');
@@ -66,14 +66,15 @@ class UsersViewDebuguser extends JViewLegacy
 		$this->activeFilters = $this->get('ActiveFilters');
 
 		// Vars only used in hathor.
-		// @deprecated  4.0 To be removed with Hathor
 		$this->levels        = UsersHelperDebug::getLevelsOptions();
 		$this->components    = UsersHelperDebug::getComponents();
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			throw new Exception(implode("\n", $errors), 500);
+			JError::raiseError(500, implode("\n", $errors));
+
+			return false;
 		}
 
 		$this->addToolbar();
@@ -90,16 +91,7 @@ class UsersViewDebuguser extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		$canDo = JHelperContent::getActions('com_users');
-
 		JToolbarHelper::title(JText::sprintf('COM_USERS_VIEW_DEBUG_USER_TITLE', $this->user->id, $this->user->name), 'users user');
-		JToolbarHelper::cancel('user.cancel', 'JTOOLBAR_CLOSE');
-
-		if ($canDo->get('core.admin') || $canDo->get('core.options'))
-		{
-			JToolbarHelper::preferences('com_users');
-			JToolbarHelper::divider();
-		}
 
 		JToolbarHelper::help('JHELP_USERS_DEBUG_USERS');
 	}

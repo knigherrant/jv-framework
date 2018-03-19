@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_config
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -126,7 +126,8 @@ abstract class ConfigViewCmsHtml extends JViewHtml
 		if ($this->_template != false)
 		{
 			// Unset so as not to introduce into template scope
-			unset($tpl, $file);
+			unset($tpl);
+			unset($file);
 
 			// Never allow a 'this' property
 			if (isset($this->this))
@@ -166,6 +167,8 @@ abstract class ConfigViewCmsHtml extends JViewHtml
 	 */
 	protected function _createFileName($type, $parts = array())
 	{
+		$filename = '';
+
 		switch ($type)
 		{
 			case 'template':

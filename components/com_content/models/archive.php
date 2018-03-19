@@ -3,13 +3,11 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
-
-use Joomla\Utilities\ArrayHelper;
 
 JLoader::register('ContentModelArticles', __DIR__ . '/articles.php');
 
@@ -35,7 +33,7 @@ class ContentModelArchive extends ContentModelArticles
 	 * @param   string  $ordering   The field to order on.
 	 * @param   string  $direction  The direction to order on.
 	 *
-	 * @return  void
+	 * @return  void.
 	 *
 	 * @since   1.6
 	 */
@@ -83,10 +81,7 @@ class ContentModelArchive extends ContentModelArticles
 	 */
 	protected function getListQuery()
 	{
-		$params           = $this->state->params;
-		$app              = JFactory::getApplication('site');
-		$catids           = ArrayHelper::toInteger($app->input->get('catid', array(), 'array'));
-		$catids           = array_values(array_diff($catids, array(0)));
+		$params = $this->state->params;
 		$articleOrderDate = $params->get('order_date');
 
 		// Create a new query object.
@@ -125,11 +120,6 @@ class ContentModelArchive extends ContentModelArticles
 		if ($year = $this->getState('filter.year'))
 		{
 			$query->where($query->year($queryDate) . ' = ' . $year);
-		}
-
-		if (count($catids) > 0)
-		{
-			$query->where('c.id IN (' . implode(', ', $catids) . ')');
 		}
 
 		return $query;
@@ -194,7 +184,7 @@ class ContentModelArchive extends ContentModelArticles
 	 * Gets the archived articles years
 	 *
 	 * @return   array
-	 *
+	 * 
 	 * @since    3.6.0
 	 */
 	public function getYears()
@@ -213,7 +203,6 @@ class ContentModelArchive extends ContentModelArticles
 			->order('1 ASC');
 
 		$db->setQuery($query);
-
 		return $db->loadColumn();
 	}
 }

@@ -3,13 +3,11 @@
  * @package     Joomla.Administrator
  * @subpackage  com_menus
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
-
-use Joomla\Utilities\ArrayHelper;
 
 /**
  * The Menu Item Controller
@@ -90,18 +88,7 @@ class MenusControllerItems extends JControllerAdmin
 	{
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		try
-		{
-			JLog::add(
-				sprintf('%s() is deprecated. Function will be removed in 4.0.', __METHOD__),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
-		catch (RuntimeException $exception)
-		{
-			// Informational log only
-		}
+		JLog::add('MenusControllerItems::saveorder() is deprecated. Function will be removed in 4.0', JLog::WARNING, 'deprecated');
 
 		// Get the arrays from the Request
 		$order = $this->input->post->get('order', null, 'array');
@@ -139,7 +126,7 @@ class MenusControllerItems extends JControllerAdmin
 		$cid   = $this->input->get('cid', array(), 'array');
 		$data  = array('setDefault' => 1, 'unsetDefault' => 0);
 		$task  = $this->getTask();
-		$value = ArrayHelper::getValue($data, $task, 0, 'int');
+		$value = JArrayHelper::getValue($data, $task, 0, 'int');
 
 		if (empty($cid))
 		{
@@ -151,7 +138,7 @@ class MenusControllerItems extends JControllerAdmin
 			$model = $this->getModel();
 
 			// Make sure the item ids are integers
-			$cid = ArrayHelper::toInteger($cid);
+			JArrayHelper::toInteger($cid);
 
 			// Publish the items.
 			if (!$model->setHome($cid, $value))
@@ -174,11 +161,11 @@ class MenusControllerItems extends JControllerAdmin
 		}
 
 		$this->setRedirect(
-			JRoute::_(
-				'index.php?option=' . $this->option . '&view=' . $this->view_list
-				. '&menutype=' . $app->getUserState('com_menus.items.menutype'), false
-			)
-		);
+				JRoute::_(
+						'index.php?option=' . $this->option . '&view=' . $this->view_list
+						. '&menutype=' . $app->getUserState('com_menus.items.menutype'), false
+						)
+				);
 	}
 
 	/**
@@ -197,18 +184,11 @@ class MenusControllerItems extends JControllerAdmin
 		$cid = JFactory::getApplication()->input->get('cid', array(), 'array');
 		$data = array('publish' => 1, 'unpublish' => 0, 'trash' => -2, 'report' => -3);
 		$task = $this->getTask();
-		$value = ArrayHelper::getValue($data, $task, 0, 'int');
+		$value = JArrayHelper::getValue($data, $task, 0, 'int');
 
 		if (empty($cid))
 		{
-			try
-			{
-				JLog::add(JText::_($this->text_prefix . '_NO_ITEM_SELECTED'), JLog::WARNING, 'jerror');
-			}
-			catch (RuntimeException $exception)
-			{
-				JFactory::getApplication()->enqueueMessage(JText::_($this->text_prefix . '_NO_ITEM_SELECTED'), 'warning');
-			}
+			JLog::add(JText::_($this->text_prefix . '_NO_ITEM_SELECTED'), JLog::WARNING, 'jerror');
 		}
 		else
 		{
@@ -216,21 +196,20 @@ class MenusControllerItems extends JControllerAdmin
 			$model = $this->getModel();
 
 			// Make sure the item ids are integers
-			$cid = ArrayHelper::toInteger($cid);
+			JArrayHelper::toInteger($cid);
 
 			// Publish the items.
 			try
 			{
 				$model->publish($cid, $value);
-				$errors      = $model->getErrors();
-				$messageType = 'message';
+				$errors = $model->getErrors();
 
 				if ($value == 1)
 				{
 					if ($errors)
 					{
-						$messageType = 'error';
-						$ntext       = $this->text_prefix . '_N_ITEMS_FAILED_PUBLISHING';
+						$app = JFactory::getApplication();
+						$app->enqueueMessage(JText::plural($this->text_prefix . '_N_ITEMS_FAILED_PUBLISHING', count($cid)), 'error');
 					}
 					else
 					{
@@ -246,7 +225,7 @@ class MenusControllerItems extends JControllerAdmin
 					$ntext = $this->text_prefix . '_N_ITEMS_TRASHED';
 				}
 
-				$this->setMessage(JText::plural($ntext, count($cid)), $messageType);
+				$this->setMessage(JText::plural($ntext, count($cid)));
 			}
 			catch (Exception $e)
 			{

@@ -3,8 +3,8 @@
  * @package     Joomla.Administrator
  * @subpackage  com_finder
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('_JEXEC') or die;
@@ -38,17 +38,17 @@ class FinderHelper
 		JHtmlSidebar::addEntry(
 			JText::_('COM_FINDER_SUBMENU_INDEX'),
 			'index.php?option=com_finder&view=index',
-			$vName === 'index'
+			$vName == 'index'
 		);
 		JHtmlSidebar::addEntry(
 			JText::_('COM_FINDER_SUBMENU_MAPS'),
 			'index.php?option=com_finder&view=maps',
-			$vName === 'maps'
+			$vName == 'maps'
 		);
 		JHtmlSidebar::addEntry(
 			JText::_('COM_FINDER_SUBMENU_FILTERS'),
 			'index.php?option=com_finder&view=filters',
-			$vName === 'filters'
+			$vName == 'filters'
 		);
 	}
 
@@ -92,18 +92,7 @@ class FinderHelper
 	public static function getActions()
 	{
 		// Log usage of deprecated function
-		try
-		{
-			JLog::add(
-				sprintf('%s() is deprecated. Use JHelperContent::getActions() with new arguments order instead.', __METHOD__),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
-		catch (RuntimeException $exception)
-		{
-			// Informational log only
-		}
+		JLog::add(__METHOD__ . '() is deprecated, use JHelperContent::getActions() with new arguments order instead.', JLog::WARNING, 'deprecated');
 
 		// Get list of actions
 		return JHelperContent::getActions('com_finder');

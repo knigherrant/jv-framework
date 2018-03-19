@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_users
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -27,7 +27,7 @@ class UsersControllerUser extends UsersController
 	 */
 	public function login()
 	{
-		$this->checkToken('post');
+		JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
 
 		$app    = JFactory::getApplication();
 		$input  = $app->input;
@@ -46,6 +46,7 @@ class UsersControllerUser extends UsersController
 		{
 			if (JLanguageMultilang::isEnabled())
 			{
+
 				$db = JFactory::getDbo();
 				$query = $db->getQuery(true)
 					->select('language')
@@ -141,17 +142,12 @@ class UsersControllerUser extends UsersController
 	 */
 	public function logout()
 	{
-		$this->checkToken('request');
+		JSession::checkToken('request') or jexit(JText::_('JINVALID_TOKEN'));
 
 		$app = JFactory::getApplication();
 
-		// Prepare the logout options.
-		$options = array(
-			'clientid' => $app->get('shared_session', '0') ? null : 0,
-		);
-
 		// Perform the log out.
-		$error  = $app->logout(null, $options);
+		$error  = $app->logout();
 		$input  = $app->input;
 		$method = $input->getMethod();
 
@@ -161,7 +157,7 @@ class UsersControllerUser extends UsersController
 			$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));
 		}
 
-		// Get the return URL from the request and validate that it is internal.
+		// Get the return url from the request and validate that it is internal.
 		$return = $input->$method->get('return', '', 'BASE64');
 		$return = base64_decode($return);
 
@@ -170,6 +166,7 @@ class UsersControllerUser extends UsersController
 		{
 			if (JLanguageMultilang::isEnabled())
 			{
+
 				$db = JFactory::getDbo();
 				$query = $db->getQuery(true)
 					->select('language')
@@ -213,12 +210,6 @@ class UsersControllerUser extends UsersController
 			}
 		}
 
-		// In case redirect url is not set, redirect user to homepage
-		if (empty($return))
-		{
-			$return = JUri::root();
-		}
-
 		// Redirect the user.
 		$app->redirect(JRoute::_($return, false));
 	}
@@ -226,7 +217,7 @@ class UsersControllerUser extends UsersController
 	/**
 	 * Method to logout directly and redirect to page.
 	 *
-	 * @return  void
+	 * @return  boolean
 	 *
 	 * @since   3.5
 	 */
@@ -293,7 +284,7 @@ class UsersControllerUser extends UsersController
 	}
 
 	/**
-	 * Method to request a username reminder.
+	 * Method to login a user.
 	 *
 	 * @return  boolean
 	 *
@@ -302,7 +293,7 @@ class UsersControllerUser extends UsersController
 	public function remind()
 	{
 		// Check the request token.
-		$this->checkToken('post');
+		JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
 
 		$app   = JFactory::getApplication();
 		$model = $this->getModel('User', 'UsersModel');
@@ -359,7 +350,7 @@ class UsersControllerUser extends UsersController
 	}
 
 	/**
-	 * Method to resend a user.
+	 * Method to login a user.
 	 *
 	 * @return  void
 	 *
@@ -368,6 +359,6 @@ class UsersControllerUser extends UsersController
 	public function resend()
 	{
 		// Check for request forgeries
-		// $this->checkToken('post');
+		JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
 	}
 }

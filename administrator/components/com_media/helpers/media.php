@@ -3,7 +3,7 @@
  * @package     Joomla.Administrator
  * @subpackage  com_media
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 /**
  * Media helper class.
- *
+ * 
  * @since       1.6
  * @deprecated  4.0  Use JHelperMedia instead
  */
@@ -29,19 +29,7 @@ abstract class MediaHelper
 	 */
 	public static function isImage($fileName)
 	{
-		try
-		{
-			JLog::add(
-				sprintf('%s() is deprecated. Use JHelperMedia::isImage() instead.', __METHOD__),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
-		catch (RuntimeException $exception)
-		{
-			// Informational log only
-		}
-
+		JLog::add('MediaHelper::isImage() is deprecated. Use JHelperMedia::isImage() instead.', JLog::WARNING, 'deprecated');
 		$mediaHelper = new JHelperMedia;
 
 		return $mediaHelper->isImage($fileName);
@@ -59,19 +47,7 @@ abstract class MediaHelper
 	 */
 	public static function getTypeIcon($fileName)
 	{
-		try
-		{
-			JLog::add(
-				sprintf('%s() is deprecated. Use JHelperMedia::getTypeIcon() instead.', __METHOD__),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
-		catch (RuntimeException $exception)
-		{
-			// Informational log only
-		}
-
+		JLog::add('MediaHelper::getTypeIcon() is deprecated. Use JHelperMedia::getTypeIcon() instead.', JLog::WARNING, 'deprecated');
 		$mediaHelper = new JHelperMedia;
 
 		return $mediaHelper->getTypeIcon($fileName);
@@ -90,19 +66,7 @@ abstract class MediaHelper
 	 */
 	public static function canUpload($file, $error = '')
 	{
-		try
-		{
-			JLog::add(
-				sprintf('%s() is deprecated. Use JHelperMedia::canUpload() instead.', __METHOD__),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
-		catch (RuntimeException $exception)
-		{
-			// Informational log only
-		}
-
+		JLog::add('MediaHelper::canUpload() is deprecated. Use JHelperMedia::canUpload() instead.', JLog::WARNING, 'deprecated');
 		$mediaHelper = new JHelperMedia;
 
 		return $mediaHelper->canUpload($file, 'com_media');
@@ -116,22 +80,11 @@ abstract class MediaHelper
 	 * @return  string  The converted file size
 	 *
 	 * @since   1.6
-	 * @deprecated  4.0  Use JHtml::_('number.bytes') instead
+	 * @deprecated  4.0  Use JHtmlNumber::bytes() instead
 	 */
 	public static function parseSize($size)
 	{
-		try
-		{
-			JLog::add(
-				sprintf("%s() is deprecated. Use JHtml::_('number.bytes') instead.", __METHOD__),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
-		catch (RuntimeException $exception)
-		{
-			// Informational log only
-		}
+		JLog::add('MediaHelper::parseSize() is deprecated. Use JHtmlNumber::bytes() instead.', JLog::WARNING, 'deprecated');
 
 		return JHtml::_('number.bytes', $size);
 	}
@@ -150,19 +103,7 @@ abstract class MediaHelper
 	 */
 	public static function imageResize($width, $height, $target)
 	{
-		try
-		{
-			JLog::add(
-				sprintf('%s() is deprecated. Use JHelperMedia::imageResize() instead.', __METHOD__),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
-		catch (RuntimeException $exception)
-		{
-			// Informational log only
-		}
-
+		JLog::add('MediaHelper::countFiles() is deprecated. Use JHelperMedia::countFiles() instead.', JLog::WARNING, 'deprecated');
 		$mediaHelper = new JHelperMedia;
 
 		return $mediaHelper->imageResize($width, $height, $target);
@@ -180,19 +121,7 @@ abstract class MediaHelper
 	 */
 	public static function countFiles($dir)
 	{
-		try
-		{
-			JLog::add(
-				sprintf('%s() is deprecated. Use JHelperMedia::countFiles() instead.', __METHOD__),
-				JLog::WARNING,
-				'deprecated'
-			);
-		}
-		catch (RuntimeException $exception)
-		{
-			// Informational log only
-		}
-
+		JLog::add('MediaHelper::countFiles() is deprecated. Use JHelperMedia::countFiles() instead.', JLog::WARNING, 'deprecated');
 		$mediaHelper = new JHelperMedia;
 
 		return $mediaHelper->countFiles($dir);

@@ -3,13 +3,11 @@
  * @package     Joomla.Administrator
  * @subpackage  com_languages
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
-
-use Joomla\Utilities\ArrayHelper;
 
 /**
  * Languages Component Language Model
@@ -110,7 +108,7 @@ class LanguagesModelLanguage extends JModelAdmin
 		}
 
 		$properties = $table->getProperties(1);
-		$value      = ArrayHelper::toObject($properties, 'JObject');
+		$value      = JArrayHelper::toObject($properties, 'JObject');
 
 		return $value;
 	}

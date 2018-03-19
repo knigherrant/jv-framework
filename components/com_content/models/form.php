@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -87,7 +87,8 @@ class ContentModelForm extends ContentModelArticle
 		$value = ArrayHelper::toObject($properties, 'JObject');
 
 		// Convert attrib field to Registry.
-		$value->params = new Registry($value->attribs);
+		$value->params = new Registry;
+		$value->params->loadString($value->attribs);
 
 		// Compute selected asset permissions.
 		$user   = JFactory::getUser();
@@ -140,7 +141,8 @@ class ContentModelForm extends ContentModelArticle
 		}
 
 		// Convert the metadata field to an array.
-		$registry = new Registry($value->metadata);
+		$registry = new Registry;
+		$registry->loadString($value->metadata);
 		$value->metadata = $registry->toArray();
 
 		if ($itemId)
@@ -177,41 +179,19 @@ class ContentModelForm extends ContentModelArticle
 	public function save($data)
 	{
 		// Associations are not edited in frontend ATM so we have to inherit them
-		if (JLanguageAssociations::isEnabled() && !empty($data['id'])
-			&& $associations = JLanguageAssociations::getAssociations('com_content', '#__content', 'com_content.item', $data['id']))
+		if (JLanguageAssociations::isEnabled() && !empty($data['id']))
 		{
-			foreach ($associations as $tag => $associated)
+			if ($associations = JLanguageAssociations::getAssociations('com_content', '#__content', 'com_content.item', $data['id']))
 			{
-				$associations[$tag] = (int) $associated->id;
-			}
+				foreach ($associations as $tag => $associated)
+				{
+					$associations[$tag] = (int) $associated->id;
+				}
 
-			$data['associations'] = $associations;
+				$data['associations'] = $associations;
+			}
 		}
 
 		return parent::save($data);
-	}
-
-	/**
-	 * Allows preprocessing of the JForm object.
-	 *
-	 * @param   JForm   $form   The form object
-	 * @param   array   $data   The data to be merged into the form object
-	 * @param   string  $group  The plugin group to be executed
-	 *
-	 * @return  void
-	 *
-	 * @since   3.7.0
-	 */
-	protected function preprocessForm(JForm $form, $data, $group = 'content')
-	{
-		$params = $this->getState()->get('params');
-
-		if ($params && $params->get('enable_category') == 1)
-		{
-			$form->setFieldAttribute('catid', 'default', $params->get('catid', 1));
-			$form->setFieldAttribute('catid', 'readonly', 'true');
-		}
-
-		return parent::preprocessForm($form, $data, $group);
 	}
 }

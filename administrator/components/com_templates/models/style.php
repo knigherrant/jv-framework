@@ -3,15 +3,13 @@
  * @package     Joomla.Administrator
  * @subpackage  com_templates
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
-use Joomla\String\StringHelper;
-use Joomla\Utilities\ArrayHelper;
 
 /**
  * Template style model.
@@ -120,7 +118,7 @@ class TemplatesModelStyle extends JModelAdmin
 				// You should not delete a default style
 				if ($table->home != '0')
 				{
-					JError::raiseWarning(500, JText::_('COM_TEMPLATES_STYLE_CANNOT_DELETE_DEFAULT_STYLE'));
+					JError::raiseWarning(SOME_ERROR_NUMBER, JText::_('COM_TEMPLATES_STYLE_CANNOT_DELETE_DEFAULT_STYLE'));
 
 					return false;
 				}
@@ -239,7 +237,7 @@ class TemplatesModelStyle extends JModelAdmin
 
 		while ($table->load(array('title' => $title)))
 		{
-			$title = StringHelper::increment($title);
+			$title = JString::increment($title);
 		}
 
 		return $title;
@@ -266,12 +264,12 @@ class TemplatesModelStyle extends JModelAdmin
 		}
 		else
 		{
-			$clientId  = ArrayHelper::getValue($data, 'client_id');
-			$template  = ArrayHelper::getValue($data, 'template');
+			$clientId  = JArrayHelper::getValue($data, 'client_id');
+			$template  = JArrayHelper::getValue($data, 'template');
 		}
 
 		// Add the default fields directory
-		$baseFolder = $clientId ? JPATH_ADMINISTRATOR : JPATH_SITE;
+		$baseFolder = ($clientId) ? JPATH_ADMINISTRATOR : JPATH_SITE;
 		JForm::addFieldPath($baseFolder . '/templates/' . $template . '/field');
 
 		// These variables are used to add data from the plugin XML files.
@@ -351,10 +349,11 @@ class TemplatesModelStyle extends JModelAdmin
 
 			// Convert to the JObject before adding other data.
 			$properties        = $table->getProperties(1);
-			$this->_cache[$pk] = ArrayHelper::toObject($properties, 'JObject');
+			$this->_cache[$pk] = JArrayHelper::toObject($properties, 'JObject');
 
 			// Convert the params field to an array.
-			$registry = new Registry($table->params);
+			$registry = new Registry;
+			$registry->loadString($table->params);
 			$this->_cache[$pk]->params = $registry->toArray();
 
 			// Get the template XML.
@@ -382,7 +381,7 @@ class TemplatesModelStyle extends JModelAdmin
 	 * @param   array   $config  Configuration array for model. Optional.
 	 *
 	 * @return  JTable  A database object
-	 */
+	*/
 	public function getTable($type = 'Style', $prefix = 'TemplatesTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
@@ -432,7 +431,7 @@ class TemplatesModelStyle extends JModelAdmin
 		// Disable home field if it is default style
 
 		if ((is_array($data) && array_key_exists('home', $data) && $data['home'] == '1')
-			|| (is_object($data) && isset($data->home) && $data->home == '1'))
+			|| ((is_object($data) && isset($data->home) && $data->home == '1')))
 		{
 			$form->setFieldAttribute('home', 'readonly', 'true');
 		}
@@ -451,8 +450,8 @@ class TemplatesModelStyle extends JModelAdmin
 			$helpKey = trim((string) $help[0]['key']);
 			$helpURL = trim((string) $help[0]['url']);
 
-			$this->helpKey = $helpKey ?: $this->helpKey;
-			$this->helpURL = $helpURL ?: $this->helpURL;
+			$this->helpKey = $helpKey ? $helpKey : $this->helpKey;
+			$this->helpURL = $helpURL ? $helpURL : $this->helpURL;
 		}
 
 		// Trigger the default form events.
@@ -541,7 +540,7 @@ class TemplatesModelStyle extends JModelAdmin
 
 			if (!empty($data['assigned']) && is_array($data['assigned']))
 			{
-				$data['assigned'] = ArrayHelper::toInteger($data['assigned']);
+				JArrayHelper::toInteger($data['assigned']);
 
 				// Update the mapping for menu items that this style IS assigned to.
 				$query = $db->getQuery(true)

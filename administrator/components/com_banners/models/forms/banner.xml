@@ -4,7 +4,7 @@
 
 		<field
 			name="id"
-			type="number"
+			type="text"
 			label="JGLOBAL_FIELD_ID_LABEL"
 			description="JGLOBAL_FIELD_ID_DESC"
 			default="0"
@@ -92,7 +92,7 @@
 			description="COM_BANNERS_FIELD_DESCRIPTION_DESC"
 			filter="JComponentHelper::filterText"
 			buttons="true"
-			hide="readmore,pagebreak,module,article,contact,menu"
+			hide="readmore,pagebreak,module,article"
 		/>
 
 		<field
@@ -133,8 +133,7 @@
 			label="COM_BANNERS_FIELD_CREATED_LABEL"
 			description="COM_BANNERS_FIELD_CREATED_DESC"
 			size="22"
-			translateformat="true"
-			showtime="true"
+			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
 
@@ -161,8 +160,7 @@
 			class="readonly"
 			size="22"
 			readonly="true"
-			translateformat="true"
-			showtime="true"
+			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 		/>
 
@@ -192,8 +190,7 @@
 			type="calendar"
 			label="COM_BANNERS_FIELD_PUBLISH_UP_LABEL"
 			description="COM_BANNERS_FIELD_PUBLISH_UP_DESC"
-			translateformat="true"
-			showtime="true"
+			format="%Y-%m-%d %H:%M:%S"
 			size="22"
 			filter="user_utc"
 		/>
@@ -203,8 +200,7 @@
 			type="calendar"
 			label="COM_BANNERS_FIELD_PUBLISH_DOWN_LABEL"
 			description="COM_BANNERS_FIELD_PUBLISH_DOWN_DESC"
-			translateformat="true"
-			showtime="true"
+			format="%Y-%m-%d %H:%M:%S"
 			size="22"
 			filter="user_utc"
 		/>
@@ -342,7 +338,7 @@
 
 			<field
 				name="width"
-				type="number"
+				type="text"
 				label="COM_BANNERS_FIELD_WIDTH_LABEL"
 				description="COM_BANNERS_FIELD_WIDTH_DESC"
 				class="input-mini validate-numeric"
@@ -350,7 +346,7 @@
 
 			<field
 				name="height"
-				type="number"
+				type="text"
 				label="COM_BANNERS_FIELD_HEIGHT_LABEL"
 				description="COM_BANNERS_FIELD_HEIGHT_DESC"
 				class="input-mini validate-numeric"

@@ -3,7 +3,7 @@
  * @package     Joomla.Administrator
  * @subpackage  com_redirect
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -40,7 +40,9 @@ class RedirectViewLink extends JViewLegacy
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			throw new Exception(implode("\n", $errors), 500);
+			JError::raiseError(500, implode("\n", $errors));
+
+			return false;
 		}
 
 		$this->addToolbar();
@@ -50,7 +52,7 @@ class RedirectViewLink extends JViewLegacy
 	/**
 	 * Add the page title and toolbar.
 	 *
-	 * @return  void
+	 * @return  void.
 	 *
 	 * @since   1.6
 	 */

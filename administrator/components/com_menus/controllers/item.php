@@ -3,7 +3,7 @@
  * @package     Joomla.Administrator
  * @subpackage  com_menus
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -69,12 +69,6 @@ class MenusControllerItem extends JControllerForm
 
 			if (!empty($item->menutype))
 			{
-				// Protected menutype, do not allow edit
-				if ($item->menutype == 'main')
-				{
-					return false;
-				}
-
 				$menutypeID = (int) $this->getMenuTypeId($item->menutype);
 			}
 		}
@@ -119,6 +113,10 @@ class MenusControllerItem extends JControllerForm
 		{
 			$app->setUserState($context . '.type', null);
 			$app->setUserState($context . '.link', null);
+
+			$menuType = $app->getUserStateFromRequest($this->context . '.filter.menutype', 'menutype', 'mainmenu', 'cmd');
+
+			$this->setRedirect(JRoute::_('index.php?option=com_menus&view=item&menutype=' . $menuType . $this->getRedirectToItemAppend(), false));
 		}
 
 		return $result;
@@ -172,7 +170,7 @@ class MenusControllerItem extends JControllerForm
 			$this->setRedirect(
 				JRoute::_(
 					'index.php?option=' . $this->option . '&view=' . $this->view_list . $this->getRedirectToListAppend()
-					. '&menutype=' . $app->getUserState('com_menus.items.menutype'), false
+				. '&menutype=' . $app->getUserState('com_menus.items.menutype'), false
 				)
 			);
 		}
@@ -207,38 +205,6 @@ class MenusControllerItem extends JControllerForm
 	}
 
 	/**
-	 * Gets the URL arguments to append to an item redirect.
-	 *
-	 * @param   integer  $recordId  The primary key id for the item.
-	 * @param   string   $urlVar    The name of the URL variable for the id.
-	 *
-	 * @return  string  The arguments to append to the redirect URL.
-	 *
-	 * @since   12.2
-	 */
-	protected function getRedirectToItemAppend($recordId = null, $urlVar = 'id')
-	{
-		$append = parent::getRedirectToItemAppend($recordId, $urlVar);
-
-		if ($recordId)
-		{
-			$model    = $this->getModel();
-			$item     = $model->getItem($recordId);
-			$clientId = $item->client_id;
-			$append   = '&client_id=' . $clientId . $append;
-		}
-		else
-		{
-			$app      = JFactory::getApplication();
-			$clientId = $app->input->get('client_id', '0', 'int');
-			$menuType = $app->input->get('menutype', 'mainmenu', 'cmd');
-			$append   = '&client_id=' . $clientId . ($menuType ? '&menutype=' . $menuType : '') . $append;
-		}
-
-		return $append;
-	}
-
-	/**
 	 * Method to save a record.
 	 *
 	 * @param   string  $key     The name of the primary key of the URL variable.
@@ -259,12 +225,6 @@ class MenusControllerItem extends JControllerForm
 		$data     = $this->input->post->get('jform', array(), 'array');
 		$task     = $this->getTask();
 		$context  = 'com_menus.edit.item';
-
-		// Set the menutype should we need it.
-		if ($data['menutype'] !== '')
-		{
-			$app->input->set('menutype', $data['menutype']);
-		}
 
 		// Determine the name of the primary key for the data.
 		if (empty($key))
@@ -336,12 +296,8 @@ class MenusControllerItem extends JControllerForm
 			{
 				$segments = explode(':', $data['link']);
 				$protocol = strtolower($segments[0]);
-				$scheme   = array(
-					'http', 'https', 'ftp', 'ftps', 'gopher', 'mailto',
-					'news', 'prospero', 'telnet', 'rlogin', 'tn3270', 'wais',
-					'mid', 'cid', 'nntp', 'tel', 'urn', 'ldap', 'file', 'fax',
-					'modem', 'git', 'sms',
-				);
+				$scheme = array('http', 'https', 'ftp', 'ftps', 'gopher', 'mailto', 'news', 'prospero', 'telnet', 'rlogin', 'tn3270', 'wais', 'url',
+					'mid', 'cid', 'nntp', 'tel', 'urn', 'ldap', 'file', 'fax', 'modem', 'git');
 
 				if (!in_array($protocol, $scheme))
 				{
@@ -357,26 +313,24 @@ class MenusControllerItem extends JControllerForm
 
 		$data = $model->validate($form, $data);
 
-		// Preprocess request fields to ensure that we remove not set or empty request params
-		$request = $form->getGroup('request');
-
 		// Check for the special 'request' entry.
-		if ($data['type'] == 'component' && !empty($request))
+		if ($data['type'] == 'component' && isset($data['request']) && is_array($data['request']) && !empty($data['request']))
 		{
 			$removeArgs = array();
 
-			if (!isset($data['request']) || !is_array($data['request']))
-			{
-				$data['request'] = array();
-			}
+			// Preprocess request fields to ensure that we remove not set or empty request params
+			$request = $form->getGroup('request');
 
-			foreach ($request as $field)
+			if (!empty($request))
 			{
-				$fieldName = $field->getAttribute('name');
-
-				if (!isset($data['request'][$fieldName]) || $data['request'][$fieldName] == '')
+				foreach ($request as $field)
 				{
-					$removeArgs[$fieldName] = '';
+					$fieldName = $field->getAttribute('name');
+
+					if (!isset($data['request'][$fieldName]) || $data['request'][$fieldName] == '')
+					{
+						$removeArgs[$fieldName] = '';
+					}
 				}
 			}
 
@@ -475,6 +429,7 @@ class MenusControllerItem extends JControllerForm
 				$app->setUserState('com_menus.edit.item.data', null);
 				$app->setUserState('com_menus.edit.item.type', null);
 				$app->setUserState('com_menus.edit.item.link', null);
+				$app->setUserState('com_menus.edit.item.menutype', $model->getState('item.menutype'));
 
 				// Redirect back to the edit screen.
 				$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $this->view_item . $this->getRedirectToItemAppend(), false));
@@ -490,8 +445,8 @@ class MenusControllerItem extends JControllerForm
 				// Redirect to the list screen.
 				$this->setRedirect(
 					JRoute::_(
-						'index.php?option=' . $this->option . '&view=' . $this->view_list . $this->getRedirectToListAppend()
-						. '&menutype=' . $app->getUserState('com_menus.items.menutype'), false
+					'index.php?option=' . $this->option . '&view=' . $this->view_list . $this->getRedirectToListAppend()
+					. '&menutype=' . $app->getUserState('com_menus.items.menutype'), false
 					)
 				);
 				break;
@@ -509,8 +464,6 @@ class MenusControllerItem extends JControllerForm
 	 */
 	public function setType()
 	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
 		$app = JFactory::getApplication();
 
 		// Get the posted values from the request.
@@ -523,16 +476,11 @@ class MenusControllerItem extends JControllerForm
 		$title = isset($type->title) ? $type->title : null;
 		$recordId = isset($type->id) ? $type->id : 0;
 
-		$specialTypes = array('alias', 'separator', 'url', 'heading', 'container');
+		$specialTypes = array('alias', 'separator', 'url', 'heading');
 
 		if (!in_array($title, $specialTypes))
 		{
 			$title = 'component';
-		}
-		else
-		{
-			// Set correct component id to ensure proper 404 messages with system links
-			$data['component_id'] = 0;
 		}
 
 		$app->setUserState('com_menus.edit.item.type', $title);
@@ -541,9 +489,6 @@ class MenusControllerItem extends JControllerForm
 		{
 			if (isset($type->request))
 			{
-				// Clean component name
-				$type->request->option = JFilterInput::getInstance()->clean($type->request->option, 'CMD');
-
 				$component = JComponentHelper::getComponent($type->request->option);
 				$data['component_id'] = $component->id;
 
@@ -557,7 +502,6 @@ class MenusControllerItem extends JControllerForm
 		}
 
 		unset($data['request']);
-
 		$data['type'] = $title;
 
 		if ($this->input->get('fieldtype') == 'type')
@@ -583,26 +527,18 @@ class MenusControllerItem extends JControllerForm
 	{
 		$app = JFactory::getApplication();
 
-		$results  = array();
 		$menutype = $this->input->get->get('menutype');
 
-		if ($menutype)
+		$model = $this->getModel('Items', '', array());
+		$model->setState('filter.menutype', $menutype);
+		$model->setState('list.select', 'a.id, a.title, a.level');
+
+		$results = $model->getItems();
+
+		// Pad the option text with spaces using depth level as a multiplier.
+		for ($i = 0, $n = count($results); $i < $n; $i++)
 		{
-			$model = $this->getModel('Items', '', array());
-			$model->getState();
-			$model->setState('filter.menutype', $menutype);
-			$model->setState('list.select', 'a.id, a.title, a.level');
-			$model->setState('list.start', '0');
-			$model->setState('list.limit', '0');
-
-			/** @var  MenusModelItems  $model */
-			$results = $model->getItems();
-
-			// Pad the option text with spaces using depth level as a multiplier.
-			for ($i = 0, $n = count($results); $i < $n; $i++)
-			{
-				$results[$i]->title = str_repeat(' - ', $results[$i]->level) . $results[$i]->title;
-			}
+			$results[$i]->title = str_repeat('- ', $results[$i]->level) . $results[$i]->title;
 		}
 
 		// Output a JSON object

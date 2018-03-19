@@ -3,26 +3,20 @@
  * @package     Joomla.Administrator
  * @subpackage  com_modules
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
-if (JFactory::getApplication()->isClient('site'))
+if (JFactory::getApplication()->isSite())
 {
 	JSession::checkToken('get') or die(JText::_('JINVALID_TOKEN'));
 }
 
-// Load needed scripts
 JHtml::_('behavior.core');
 JHtml::_('bootstrap.tooltip', '.hasTooltip', array('placement' => 'bottom'));
-JHtml::_('bootstrap.popover', '.hasPopover', array('placement' => 'bottom'));
 JHtml::_('formbehavior.chosen', 'select');
-
-// Scripts for the modules xtd-button
-JHtml::_('behavior.polyfill', array('event'), 'lt IE 9');
-JHtml::_('script', 'com_modules/admin-modules-modal.min.js', array('version' => 'auto', 'relative' => true));
 
 // Special case for the search field tooltip.
 $searchFilterDesc = $this->filterForm->getFieldAttribute('search', 'description', null, 'filter');
@@ -31,13 +25,30 @@ JHtml::_('bootstrap.tooltip', '#filter_search', array('title' => JText::_($searc
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));
 $editor    = JFactory::getApplication()->input->get('editor', '', 'cmd');
+
+JFactory::getDocument()->addScriptDeclaration('
+moduleIns = function(type, name) {
+	window.parent.jInsertEditorText("{loadmodule " + type + "," + name + "}", "' . $editor . '");
+	window.parent.jModalClose();
+};
+modulePosIns = function(position) {
+	window.parent.jInsertEditorText("{loadposition " + position + "}", "' . $editor . '");
+	window.parent.jModalClose();
+};');
 ?>
 <div class="container-popup">
 
 	<form action="<?php echo JRoute::_('index.php?option=com_modules&view=modules&layout=modal&tmpl=component&' . JSession::getFormToken() . '=1'); ?>" method="post" name="adminForm" id="adminForm">
 
 		<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
-		<?php if ($this->total > 0) : ?>
+
+		<div class="clearfix"></div>
+
+		<?php if (empty($this->items)) : ?>
+		<div class="alert alert-no-items">
+			<?php echo JText::_('COM_MODULES_MSG_MANAGE_NO_MODULES'); ?>
+		</div>
+		<?php else : ?>
 		<table class="table table-striped" id="moduleList">
 			<thead>
 				<tr>
@@ -86,16 +97,14 @@ $editor    = JFactory::getApplication()->input->get('editor', '', 'cmd');
 				?>
 				<tr class="row<?php echo $i % 2; ?>">
 					<td class="center">
-						<span class="<?php echo $iconStates[$this->escape($item->published)]; ?>" aria-hidden="true"></span>
+						<span class="<?php echo $iconStates[$this->escape($item->published)]; ?>"></span>
 					</td>
 					<td class="has-context">
-						<a class="js-module-insert btn btn-small btn-block btn-success" href="#" data-module="<?php echo $this->escape($item->module); ?>" data-title="<?php echo $this->escape($item->title); ?>" data-editor="<?php echo $this->escape($editor); ?>">
-							<?php echo $this->escape($item->title); ?>
-						</a>
+						<a class="btn btn-small btn-block btn-success" href="#" onclick="moduleIns('<?php echo $this->escape($item->module); ?>', '<?php echo $this->escape($item->title); ?>');"><?php echo $this->escape($item->title); ?></a>
 					</td>
 					<td class="small hidden-phone">
 						<?php if ($item->position) : ?>
-						<a class="js-position-insert btn btn-small btn-block btn-warning" href="#" data-position="<?php echo $this->escape($item->position); ?>" data-editor="<?php echo $this->escape($editor); ?>"><?php echo $this->escape($item->position); ?></a>
+						<a class="btn btn-small btn-block btn-warning" href="#" onclick="modulePosIns('<?php echo $this->escape($item->position); ?>');"><?php echo $this->escape($item->position); ?></a>
 						<?php else : ?>
 						<span class="label"><?php echo JText::_('JNONE'); ?></span>
 						<?php endif; ?>
@@ -110,7 +119,13 @@ $editor    = JFactory::getApplication()->input->get('editor', '', 'cmd');
 						<?php echo $this->escape($item->access_level); ?>
 					</td>
 					<td class="small hidden-phone">
-						<?php echo JLayoutHelper::render('joomla.content.language', $item); ?>
+						<?php if ($item->language == '') : ?>
+							<?php echo JText::_('JDEFAULT'); ?>
+						<?php elseif ($item->language == '*') : ?>
+							<?php echo JText::alt('JALL', 'language'); ?>
+						<?php else : ?>
+							<?php echo $item->language_title ? JHtml::_('image', 'mod_languages/' . $item->language_image . '.gif', $item->language_title, array('title' => $item->language_title), true) . '&nbsp;' . $this->escape($item->language_title) : JText::_('JUNDEFINED'); ?>
+						<?php endif;?>
 					</td>
 					<td class="hidden-phone">
 						<?php echo (int) $item->id; ?>
@@ -119,7 +134,7 @@ $editor    = JFactory::getApplication()->input->get('editor', '', 'cmd');
 			<?php endforeach; ?>
 			</tbody>
 		</table>
-		<?php endif; ?>
+		<?php endif;?>
 
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />

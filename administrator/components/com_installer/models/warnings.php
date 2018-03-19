@@ -3,14 +3,14 @@
  * @package     Joomla.Administrator
  * @subpackage  com_installer
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /**
- * Installer Warnings Model
+ * Extension Manager Templates Model
  *
  * @since  1.6
  */
@@ -33,41 +33,21 @@ class InstallerModelWarnings extends JModelList
 	 */
 	public function return_bytes($val)
 	{
-		if (empty($val))
-		{
-			return 0;
-		}
-
 		$val = trim($val);
+		$last = strtolower($val{strlen($val) - 1});
 
-		preg_match('#([0-9]+)[\s]*([a-z]+)#i', $val, $matches);
-
-		$last = '';
-
-		if (isset($matches[2]))
+		switch ($last)
 		{
-			$last = $matches[2];
-		}
-
-		if (isset($matches[1]))
-		{
-			$val = (int) $matches[1];
-		}
-
-		switch (strtolower($last))
-		{
+			// The 'G' modifier is available since PHP 5.1.0
 			case 'g':
-			case 'gb':
 				$val *= 1024;
 			case 'm':
-			case 'mb':
 				$val *= 1024;
 			case 'k':
-			case 'kb':
 				$val *= 1024;
 		}
 
-		return (int) $val;
+		return $val;
 	}
 
 	/**

@@ -3,13 +3,11 @@
  * @package     Joomla.Administrator
  * @subpackage  com_installer
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
-
-use Joomla\Utilities\ArrayHelper;
 
 /**
  * Installer Update Sites Controller
@@ -55,7 +53,7 @@ class InstallerControllerUpdatesites extends JControllerLegacy
 		$ids    = $this->input->get('cid', array(), 'array');
 		$values = array('publish' => 1, 'unpublish' => 0);
 		$task   = $this->getTask();
-		$value  = ArrayHelper::getValue($values, $task, 0, 'int');
+		$value  = JArrayHelper::getValue($values, $task, 0, 'int');
 
 		if (empty($ids))
 		{
@@ -122,4 +120,5 @@ class InstallerControllerUpdatesites extends JControllerLegacy
 
 		$this->setRedirect(JRoute::_('index.php?option=com_installer&view=updatesites', false));
 	}
+
 }

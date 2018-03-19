@@ -2,7 +2,7 @@
 /**
  * @package    Joomla.Cli
  *
- * @copyright  Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -17,6 +17,12 @@
  * Called with --purge:      php finder_indexer.php --purge
  *                           Purges and rebuilds the index (search filters are preserved).
  */
+
+// Make sure we're being called from the command line, not a web interface
+if (PHP_SAPI !== 'cli')
+{
+	die('This is a command line only application.');
+}
 
 // We are a valid entry point.
 const _JEXEC = 1;
@@ -46,7 +52,6 @@ require_once JPATH_CONFIGURATION . '/configuration.php';
 
 // System configuration.
 $config = new JConfig;
-define('JDEBUG', $config->debug);
 
 // Configure error reporting to maximum for CLI output.
 error_reporting(E_ALL);
@@ -137,7 +142,6 @@ class FinderCli extends JApplicationCli
 
 		// Total reporting.
 		$this->out(JText::sprintf('FINDER_CLI_PROCESS_COMPLETE', round(microtime(true) - $this->time, 3)), true);
-		$this->out(JText::sprintf('FINDER_CLI_PEAK_MEMORY_USAGE', number_format(memory_get_peak_usage(true))));
 
 		// Print a blank line at the end.
 		$this->out();
@@ -152,7 +156,7 @@ class FinderCli extends JApplicationCli
 	 */
 	private function index()
 	{
-		JLoader::register('FinderIndexer', JPATH_ADMINISTRATOR . '/components/com_finder/helpers/indexer/indexer.php');
+		require_once JPATH_ADMINISTRATOR . '/components/com_finder/helpers/indexer/indexer.php';
 
 		// Disable caching.
 		$config = JFactory::getConfig();
@@ -162,8 +166,7 @@ class FinderCli extends JApplicationCli
 		// Reset the indexer state.
 		FinderIndexer::resetState();
 
-		// Import the plugins.
-		JPluginHelper::importPlugin('system');
+		// Import the finder plugins.
 		JPluginHelper::importPlugin('finder');
 
 		// Starting Indexer.

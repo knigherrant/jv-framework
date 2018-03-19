@@ -3,13 +3,11 @@
  * @package     Joomla.Administrator
  * @subpackage  com_newsfeeds
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
-
-use Joomla\String\StringHelper;
 
 /**
  * Newsfeed Table class.
@@ -50,7 +48,6 @@ class NewsfeedsTableNewsfeed extends JTable
 		if (trim($this->name) == '')
 		{
 			$this->setError(JText::_('COM_NEWSFEEDS_WARNING_PROVIDE_VALID_NAME'));
-
 			return false;
 		}
 
@@ -63,7 +60,7 @@ class NewsfeedsTableNewsfeed extends JTable
 
 		if (trim(str_replace('-', '', $this->alias)) == '')
 		{
-			$this->alias = JFactory::getDate()->format('Y-m-d-H-i-s');
+			$this->alias = JFactory::getDate()->format("Y-m-d-H-i-s");
 		}
 
 		// Check the publish down date is not earlier than publish up.
@@ -79,10 +76,10 @@ class NewsfeedsTableNewsfeed extends JTable
 		if (!empty($this->metakey))
 		{
 			// Array of characters to remove
-			$bad_characters = array("\n", "\r", "\"", '<', '>');
+			$bad_characters = array("\n", "\r", "\"", "<", ">");
 
 			// Remove bad characters
-			$after_clean = StringHelper::str_ireplace($bad_characters, '', $this->metakey);
+			$after_clean = JString::str_ireplace($bad_characters, "", $this->metakey);
 
 			// Create array using commas as delimiter
 			$keys = explode(',', $after_clean);
@@ -98,15 +95,15 @@ class NewsfeedsTableNewsfeed extends JTable
 			}
 
 			// Put array back together delimited by ", "
-			$this->metakey = implode(', ', $clean_keys);
+			$this->metakey = implode(", ", $clean_keys);
 		}
 
 		// Clean up description -- eliminate quotes and <> brackets
 		if (!empty($this->metadesc))
 		{
 			// Only process if not empty
-			$bad_characters = array("\"", '<', '>');
-			$this->metadesc = StringHelper::str_ireplace($bad_characters, '', $this->metadesc);
+			$bad_characters = array("\"", "<", ">");
+			$this->metadesc = JString::str_ireplace($bad_characters, "", $this->metadesc);
 		}
 
 		return true;
@@ -147,7 +144,6 @@ class NewsfeedsTableNewsfeed extends JTable
 				$this->created_by = $user->get('id');
 			}
 		}
-
 		// Verify that the alias is unique
 		$table = JTable::getInstance('Newsfeed', 'NewsfeedsTable');
 

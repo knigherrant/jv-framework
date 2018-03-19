@@ -3,8 +3,8 @@
  * @package     Joomla.Administrator
  * @subpackage  com_finder
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('_JEXEC') or die;
@@ -22,8 +22,6 @@ class FinderViewMaps extends JViewLegacy
 	 * An array of items
 	 *
 	 * @var  array
-	 *
-	 * @since  3.6.1
 	 */
 	protected $items;
 
@@ -31,8 +29,6 @@ class FinderViewMaps extends JViewLegacy
 	 * The pagination object
 	 *
 	 * @var  JPagination
-	 *
-	 * @since  3.6.1
 	 */
 	protected $pagination;
 
@@ -40,8 +36,6 @@ class FinderViewMaps extends JViewLegacy
 	 * The HTML markup for the sidebar
 	 *
 	 * @var  string
-	 *
-	 * @since  3.6.1
 	 */
 	protected $sidebar;
 
@@ -49,8 +43,6 @@ class FinderViewMaps extends JViewLegacy
 	 * The model state
 	 *
 	 * @var  object
-	 *
-	 * @since  3.6.1
 	 */
 	protected $state;
 
@@ -58,8 +50,6 @@ class FinderViewMaps extends JViewLegacy
 	 * The total number of items
 	 *
 	 * @var  object
-	 *
-	 * @since  3.6.1
 	 */
 	protected $total;
 
@@ -90,7 +80,9 @@ class FinderViewMaps extends JViewLegacy
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			throw new Exception(implode("\n", $errors), 500);
+			JError::raiseError(500, implode("\n", $errors));
+
+			return false;
 		}
 
 		JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');

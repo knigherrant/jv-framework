@@ -1,10 +1,10 @@
 <?php
 /**
- * @version		2.6.x
- * @package		K2
- * @author		JoomlaWorks http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
- * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
+ * @version    2.7.x
+ * @package    K2
+ * @author     JoomlaWorks http://www.joomlaworks.net
+ * @copyright  Copyright (c) 2006 - 2016 JoomlaWorks Ltd. All rights reserved.
+ * @license    GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
 
 // no direct access
@@ -33,7 +33,7 @@ class Com_K2InstallerScript
             }
             $installer = new JInstaller;
             $result = $installer->install($path);
-            if ($result && $group != 'finder' && $group != 'josetta_ext')
+            if ($result && $group != 'finder')
             {
                 if (JFile::exists(JPATH_SITE.'/plugins/'.$group.'/'.$name.'/'.$name.'.xml'))
                 {
@@ -48,7 +48,7 @@ class Com_K2InstallerScript
             	$db->query();
 			}
             $status->plugins[] = array('name' => $name, 'group' => $group, 'result' => $result);
-        }		
+        }
         $modules = $manifest->xpath('modules/module');
         foreach ($modules as $module)
         {
@@ -59,13 +59,13 @@ class Com_K2InstallerScript
                 $client = 'site';
             }
             ($client == 'administrator') ? $path = $src.'/administrator/modules/'.$name : $path = $src.'/modules/'.$name;
-			
+
 			if($client == 'administrator')
 			{
 				$db->setQuery("SELECT id FROM #__modules WHERE `module` = ".$db->quote($name));
 				$isUpdate = (int)$db->loadResult();
 			}
-			
+
             $installer = new JInstaller;
             $result = $installer->install($path);
             if ($result)
@@ -96,7 +96,7 @@ class Com_K2InstallerScript
         {
             JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php');
         }
-    
+
         if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_k2/models/cpanel.php'))
         {
             JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/models/cpanel.php');
@@ -109,14 +109,14 @@ class Com_K2InstallerScript
 				JFile::copy($src.'/administrator/components/com_joomfish/contentelements/'.$element->data(), JPATH_ADMINISTRATOR.'/components/com_joomfish/contentelements/'.$element->data());
 			}
 		}
-		
+
 	    // Clean up empty entries in #__k2_users table caused by an issue in the K2 user plugin. Fix details: http://code.google.com/p/getk2/source/detail?r=1966
 		$query = "DELETE FROM #__k2_users WHERE userID = 0";
 		$db->setQuery($query);
 		$db->query();
-		
+
         $this->installationResults($status);
-       
+
     }
 
     public function uninstall($parent)
@@ -143,7 +143,7 @@ class Com_K2InstallerScript
                 }
                 $status->plugins[] = array('name' => $name, 'group' => $group, 'result' => $result);
             }
-            
+
         }
         $modules = $manifest->xpath('modules/module');
         foreach ($modules as $module)
@@ -163,7 +163,7 @@ class Com_K2InstallerScript
                 }
                 $status->modules[] = array('name' => $name, 'client' => $client, 'result' => $result);
             }
-            
+
         }
         $this->uninstallationResults($status);
     }
@@ -260,6 +260,26 @@ class Com_K2InstallerScript
             $db->query();
         }*/
 
+        // Add index for comments count
+        $query = "SHOW INDEX FROM #__k2_comments";
+        $db->setQuery($query);
+        $indexes = $db->loadObjectList();
+        $indexExists = false;
+        foreach ($indexes as $index)
+        {
+            if ($index->Key_name == 'countComments')
+                $indexExists = true;
+        }
+
+        if (!$indexExists)
+        {
+            $query = "ALTER TABLE #__k2_comments ADD INDEX `countComments` (`itemID`, `published`)";
+            $db->setQuery($query);
+            $db->query();
+        }
+
+
+
         $query = "SELECT COUNT(*) FROM #__k2_user_groups";
         $db->setQuery($query);
         $num = $db->loadResult();
@@ -279,13 +299,25 @@ class Com_K2InstallerScript
         $fields = $db->getTableColumns('#__k2_users');
         if (!array_key_exists('ip', $fields))
         {
-            $query = "ALTER TABLE `#__k2_users` 
-			ADD `ip` VARCHAR( 15 ) NOT NULL , 
-			ADD `hostname` VARCHAR( 255 ) NOT NULL , 
+            $query = "ALTER TABLE `#__k2_users`
+			ADD `ip` VARCHAR( 15 ) NOT NULL ,
+			ADD `hostname` VARCHAR( 255 ) NOT NULL ,
 			ADD `notes` TEXT NOT NULL";
             $db->setQuery($query);
             $db->query();
         }
+
+
+		 $query = "CREATE TABLE IF NOT EXISTS `#__k2_log` (
+  `status` int(11) NOT NULL,
+  `response` text NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+            $db->setQuery($query);
+            $db->query();
+
+
+
     }
     private function installationResults($status)
     {
@@ -381,7 +413,7 @@ class Com_K2InstallerScript
                 </tr>
                 <?php endforeach; ?>
                 <?php endif; ?>
-        
+
                 <?php if (count($status->plugins)): ?>
                 <tr>
                     <th><?php echo JText::_('K2_PLUGIN'); ?></th>
@@ -401,4 +433,3 @@ class Com_K2InstallerScript
     <?php
     }
     }
-        

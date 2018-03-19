@@ -12,7 +12,6 @@
 			label="JCONFIG_PERMISSIONS_LABEL"
 			filter="rules"
 			component="com_postinstall"
-			section="component" 
-		/>
+			section="component" />
 	</fieldset>	
 </config>

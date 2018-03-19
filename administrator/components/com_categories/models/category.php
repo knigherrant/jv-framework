@@ -3,14 +3,13 @@
  * @package     Joomla.Administrator
  * @subpackage  com_categories
  *
- * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 use Joomla\Registry\Registry;
-use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
 
 /**
@@ -57,9 +56,6 @@ class CategoriesModelCategory extends JModelAdmin
 		parent::__construct($config);
 		$extension = JFactory::getApplication()->input->get('extension', 'com_content');
 		$this->typeAlias = $extension . '.category';
-
-		// Add a new batch command
-		$this->batch_commands['flip_ordering'] = 'batchFlipordering';
 	}
 
 	/**
@@ -182,7 +178,8 @@ class CategoriesModelCategory extends JModelAdmin
 			}
 
 			// Convert the metadata field to an array.
-			$registry = new Registry($result->metadata);
+			$registry = new Registry;
+			$registry->loadString($result->metadata);
 			$result->metadata = $registry->toArray();
 
 			// Convert the created and modified dates to local user time for display in the form.
@@ -274,11 +271,9 @@ class CategoriesModelCategory extends JModelAdmin
 			$data['extension'] = $extension;
 		}
 
-		$categoryId = $jinput->get('id');
-		$parts      = explode('.', $extension);
-		$assetKey   = $categoryId ? $extension . '.category.' . $categoryId : $parts[0];
+		$user = JFactory::getUser();
 
-		if (!JFactory::getUser()->authorise('core.edit.state', $assetKey))
+		if (!$user->authorise('core.edit.state', $extension . '.category.' . $jinput->get('id')))
 		{
 			// Disable fields for display.
 			$form->setFieldAttribute('ordering', 'disabled', 'true');
@@ -403,9 +398,8 @@ class CategoriesModelCategory extends JModelAdmin
 
 		if (file_exists($path))
 		{
+			require_once $path;
 			$cName = ucfirst($eName) . ucfirst($section) . 'HelperCategory';
-
-			JLoader::register($cName, $path);
 
 			if (class_exists($cName) && is_callable(array($cName, 'onPrepareForm')))
 			{
@@ -430,33 +424,38 @@ class CategoriesModelCategory extends JModelAdmin
 		$form->setFieldAttribute('rules', 'section', $name);
 
 		// Association category items
-		if ($this->getAssoc())
+		$assoc = $this->getAssoc();
+
+		if ($assoc)
 		{
-			$languages = JLanguageHelper::getContentLanguages(false, true, null, 'ordering', 'asc');
+			$languages = JLanguageHelper::getLanguages('lang_code');
+			$addform = new SimpleXMLElement('<form />');
+			$fields = $addform->addChild('fields');
+			$fields->addAttribute('name', 'associations');
+			$fieldset = $fields->addChild('fieldset');
+			$fieldset->addAttribute('name', 'item_associations');
+			$fieldset->addAttribute('description', 'COM_CATEGORIES_ITEM_ASSOCIATIONS_FIELDSET_DESC');
+			$add = false;
 
-			if (count($languages) > 1)
+			foreach ($languages as $tag => $language)
 			{
-				$addform = new SimpleXMLElement('<form />');
-				$fields = $addform->addChild('fields');
-				$fields->addAttribute('name', 'associations');
-				$fieldset = $fields->addChild('fieldset');
-				$fieldset->addAttribute('name', 'item_associations');
-
-				foreach ($languages as $language)
+				if (empty($data->language) || $tag != $data->language)
 				{
+					$add = true;
 					$field = $fieldset->addChild('field');
-					$field->addAttribute('name', $language->lang_code);
+					$field->addAttribute('name', $tag);
 					$field->addAttribute('type', 'modal_category');
-					$field->addAttribute('language', $language->lang_code);
+					$field->addAttribute('language', $tag);
 					$field->addAttribute('label', $language->title);
 					$field->addAttribute('translate_label', 'false');
 					$field->addAttribute('extension', $extension);
-					$field->addAttribute('select', 'true');
-					$field->addAttribute('new', 'true');
 					$field->addAttribute('edit', 'true');
 					$field->addAttribute('clear', 'true');
 				}
+			}
 
+			if ($add)
+			{
 				$form->load($addform, false);
 			}
 		}
@@ -483,7 +482,7 @@ class CategoriesModelCategory extends JModelAdmin
 		$isNew      = true;
 		$context    = $this->option . '.' . $this->name;
 
-		if (!empty($data['tags']) && $data['tags'][0] != '')
+		if ((!empty($data['tags']) && $data['tags'][0] != ''))
 		{
 			$table->newTags = $data['tags'];
 		}
@@ -551,7 +550,7 @@ class CategoriesModelCategory extends JModelAdmin
 		}
 
 		// Trigger the before save event.
-		$result = $dispatcher->trigger($this->event_before_save, array($context, &$table, $isNew, $data));
+		$result = $dispatcher->trigger($this->event_before_save, array($context, &$table, $isNew));
 
 		if (in_array(false, $result, true))
 		{
@@ -587,9 +586,9 @@ class CategoriesModelCategory extends JModelAdmin
 			}
 
 			// Detecting all item menus
-			$allLanguage = $table->language == '*';
+			$all_language = $table->language == '*';
 
-			if ($allLanguage && !empty($associations))
+			if ($all_language && !empty($associations))
 			{
 				JError::raiseNotice(403, JText::_('COM_CATEGORIES_ERROR_ALL_LANGUAGE_ASSOCIATED'));
 			}
@@ -602,7 +601,7 @@ class CategoriesModelCategory extends JModelAdmin
 				->where($db->quoteName('context') . ' = ' . $db->quote($this->associationsContext))
 				->where($db->quoteName('id') . ' = ' . (int) $table->id);
 			$db->setQuery($query);
-			$oldKey = $db->loadResult();
+			$old_key = $db->loadResult();
 
 			// Deleting old associations for the associated items
 			$query = $db->getQuery(true)
@@ -612,11 +611,11 @@ class CategoriesModelCategory extends JModelAdmin
 			if ($associations)
 			{
 				$query->where('(' . $db->quoteName('id') . ' IN (' . implode(',', $associations) . ') OR '
-					. $db->quoteName('key') . ' = ' . $db->quote($oldKey) . ')');
+					. $db->quoteName('key') . ' = ' . $db->quote($old_key) . ')');
 			}
 			else
 			{
-				$query->where($db->quoteName('key') . ' = ' . $db->quote($oldKey));
+				$query->where($db->quoteName('key') . ' = ' . $db->quote($old_key));
 			}
 
 			$db->setQuery($query);
@@ -633,7 +632,7 @@ class CategoriesModelCategory extends JModelAdmin
 			}
 
 			// Adding self to the association
-			if (!$allLanguage)
+			if (!$all_language)
 			{
 				$associations[$table->language] = (int) $table->id;
 			}
@@ -666,7 +665,7 @@ class CategoriesModelCategory extends JModelAdmin
 		}
 
 		// Trigger the after save event.
-		$dispatcher->trigger($this->event_after_save, array($context, &$table, $isNew, $data));
+		$dispatcher->trigger($this->event_after_save, array($context, &$table, $isNew));
 
 		// Rebuild the path for the category:
 		if (!$table->rebuildPath($table->id))
@@ -823,56 +822,6 @@ class CategoriesModelCategory extends JModelAdmin
 	}
 
 	/**
-	 * Batch flip category ordering.
-	 *
-	 * @param   integer  $value     The new category.
-	 * @param   array    $pks       An array of row IDs.
-	 * @param   array    $contexts  An array of item contexts.
-	 *
-	 * @return  mixed    An array of new IDs on success, boolean false on failure.
-	 *
-	 * @since   3.6.3
-	 */
-	protected function batchFlipordering($value, $pks, $contexts)
-	{
-		$successful = array();
-
-		$db = $this->getDbo();
-		$query = $db->getQuery(true);
-
-		/**
-		 * For each category get the max ordering value
-		 * Re-order with max - ordering
-		 */
-		foreach ($pks as $id)
-		{
-			$query->select('MAX(ordering)')
-				->from('#__content')
-				->where($db->qn('catid') . ' = ' . $db->q($id));
-
-			$db->setQuery($query);
-
-			$max = (int) $db->loadresult();
-			$max++;
-
-			$query->clear();
-
-			$query->update('#__content')
-				->set($db->qn('ordering') . ' = ' . $max . ' - ' . $db->qn('ordering'))
-				->where($db->qn('catid') . ' = ' . $db->q($id));
-
-			$db->setQuery($query);
-
-			if ($db->execute())
-			{
-				$successful[] = $id;
-			}
-		}
-
-		return empty($successful) ? false : $successful;
-	}
-
-	/**
 	 * Batch copy categories to a new category.
 	 *
 	 * @param   integer  $value     The new category.
@@ -1013,7 +962,7 @@ class CategoriesModelCategory extends JModelAdmin
 			{
 				if (!in_array($childId, $pks))
 				{
-					$pks[] = $childId;
+					array_push($pks, $childId);
 				}
 			}
 
@@ -1287,8 +1236,8 @@ class CategoriesModelCategory extends JModelAdmin
 
 		while ($table->load(array('alias' => $alias, 'parent_id' => $parent_id)))
 		{
-			$title = StringHelper::increment($title);
-			$alias = StringHelper::increment($alias, 'dash');
+			$title = JString::increment($title);
+			$alias = JString::increment($alias, 'dash');
 		}
 
 		return array($title, $alias);
