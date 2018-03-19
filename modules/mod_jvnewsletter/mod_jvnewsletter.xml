@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5" client="site" method="upgrade">
 	<name>Jv Newsletter</name>
-	<author>Open Source Code Solutions Co</author>
+	<author>PHPKungfu Solutions Co</author>
 	<creationDate>11/2015</creationDate>
 	<copyright>Copyright (C) 2011 phpkungfu.club. All Rights Reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL or later.</license>

@@ -3,7 +3,7 @@
  # MOD_JVLATEST_NEWS - JV Latest News
  # @version		3.x
  # ------------------------------------------------------------------------
- # author    Open Source Code Solutions Co
+ # author    PHPKungfu Solutions Co
  # copyright Copyright (C) 2013 phpkungfu.club. All Rights Reserved.
  # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
  # Websites: http://www.phpkungfu.club
