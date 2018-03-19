@@ -1,0 +1,136 @@
+.mfp-content {
+	.jvnewsletter-box {
+		.title {
+			font-size: 40px;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin-top: 50px;
+		}
+		.jvnewsletter_subscribe_pre_text {
+			margin-bottom: 30px;
+		}
+		.form-control {
+			border-color: @brand-primary;
+			font-size: 13px;
+		}
+		.btn {
+			padding-left: 30px;
+			padding-right: 30px;
+			font-weight: bold;
+			font-size: 13px;
+		}
+		.mfp-close {
+			left: auto;
+		    width: 32px;
+		    height: 32px;
+		    line-height: 32px;
+		    padding: 0;
+		    text-align: center;
+		    right: 2px;
+		    top: 2px;
+		    background-color: #6d6d6d;
+		    color: #fff;
+		    .transition(all 0.2s ease-in-out);
+		    &:hover {
+		    	background-color: @brand-primary;
+		    }
+		}
+	}
+}
+
+.custom.newsletter-2 {
+    overflow: hidden;
+    > *{
+	    display: inline-block;
+	}
+	> .jvnewsletter_subscribe_pre_text {
+	    text-transform: uppercase;
+	    line-height: 30px;
+	    margin-right: 30px;
+	    margin-bottom: 0;
+	}
+	> .jvnewsletter_subscribe_form form > *{
+	    display: inline-block;
+	    margin: 0 12px 0 0;
+	    vertical-align: middle;
+	}
+	> .jvnewsletter_subscribe_form form > .control-group > * {
+	    border: none;
+	    height: 34px;
+	    padding: 0 20px;
+	    line-height: 34px;
+	    font-size: 13px;
+	}
+    @media (max-width: 480px) {
+    	> * {
+    		display: block;
+    	}
+    	.jvnewsletter_subscribe_pre_text {
+    		margin: 0;
+    	}
+    	> .jvnewsletter_subscribe_form form > {
+    		.control-group {
+    			margin: 0 0 10px 0;
+    			display: block;
+    		}
+    		.btn {
+    			width: 100%;
+    		}
+    	}
+    }
+}
+
+.custom.cta-style {
+	&:after {
+		content: "";
+		display: block;
+		float: none;
+		clear: both;
+	}
+	.jvnewsletter_subscribe_pre_text {
+		text-align: center;
+		font-size: 15px;
+		&:before {
+			content: attr(data-title);
+			display: block;
+			font-size: 45px;
+			text-transform: uppercase;
+			line-height: 1;
+			margin-bottom: 5px;
+			color: @headings-color;
+			@media(max-width: 767px) {
+				font-size: 35px;
+			}
+			@media(max-width: 480px) {
+				font-size: 25px;
+			}
+		}
+	}
+	.jvnewsletter_subscribe_form {
+		padding-top: 10px;
+		.form-control {
+			height: 50px !important;
+		    line-height: 50px !Important;
+		    font-size: inherit !important;
+		    padding: 0 20px !important;
+		    border: none;
+		}
+		.btn {
+			padding: 0 40px;
+		    line-height: 48px;
+		    font-weight: bold;
+		}
+	}
+	@media (min-width: 992px) {
+		> div {
+			float: left;
+		}
+		.jvnewsletter_subscribe_pre_text{
+			width: 40%;
+			margin-bottom: 0;
+		}
+		.jvnewsletter_subscribe_form {
+			width: 60%;
+		}
+	}
+}

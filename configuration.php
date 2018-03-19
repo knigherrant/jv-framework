@@ -20,8 +20,8 @@ class JConfig {
 	public $live_site = '';
 	public $secret = 'pO3aWWXHA0MQjrEw';
 	public $gzip = '0';
-	public $error_reporting = 'maximum';
-	public $helpurl = 'https://help.joomla.org/proxy/index.php?option=com_help&keyref=Help{major}{minor}:{keyref}';
+	public $error_reporting = 'default';
+	public $helpurl = 'https://help.joomla.org/proxy?keyref=Help{major}{minor}:{keyref}&lang={langcode}';
 	public $ftp_host = '';
 	public $ftp_port = '';
 	public $ftp_user = '';
@@ -89,4 +89,13 @@ class JConfig {
 	public $redis_server_auth = '';
 	public $redis_server_db = '0';
 	public $massmailoff = '0';
+	public $cache_platformprefix = '0';
+	public $replyto = '';
+	public $replytoname = '';
+	public $session_redis_persist = '1';
+	public $session_redis_server_host = 'localhost';
+	public $session_redis_server_port = '6379';
+	public $session_redis_server_auth = '';
+	public $session_redis_server_db = '0';
+	public $shared_session = '0';
 }

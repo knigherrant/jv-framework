@@ -1,0 +1,549 @@
+.social {
+	&-1 {
+		overflow: hidden;
+		.social {
+			&-icon {
+				display: block;
+				width: 33px;
+				height: 33px;
+				border-radius: 50%;
+				line-height: 33px;
+				text-align: center;
+				margin: 5px;
+				background-color: @btn-gray-border;
+				color: @text-color;
+				font-size: ceil((@font-size-base * 0.92));
+				.footer & {
+					background-color: #4a4a4a;
+					color: #6b6b6b;
+				}
+				.footer &:hover,
+				&:hover {
+					color: #fff;
+				}
+			}			
+			&icons-inner {
+				margin: -5px;
+				.clearfix();
+			}
+			&-cols{
+				display: inline-block;
+			}
+		}
+	}
+	&-2 {
+		.social {
+			&-icon {
+				display: block;
+				width: 35px;
+				height: 35px;
+				border-radius: 50%;
+				line-height: 33px;
+				text-align: center;
+				margin: 5px;
+				// background-color: fade(#fff, 50%);
+				color: @btn-dark-border;
+				border: 1px solid @btn-dark-border;
+			}			
+			&icons-inner {
+				margin: -5px;
+				.clearfix();
+			}
+			&-cols{
+				display: inline-block;
+			}
+		}
+	}
+	&-3 {
+		overflow: hidden;
+		.social {
+			&-icon {
+				display: block;
+				width: 33px;
+				height: 33px;
+				border-radius: 50%;
+				line-height: 31px;
+				text-align: center;
+				margin: 5px;
+				background-color: @btn-dark-border;
+				color: #fff;
+				border: 1px solid @btn-dark-border;
+				&:hover {
+					background-color: fade(#fff, 50%) !important;
+				}
+			}			
+			&icons-inner {
+				margin: -5px;
+				.clearfix();
+			}
+			&-cols{
+				display: inline-block;
+			}
+		}
+	}
+	&-4 {
+		overflow: hidden;
+		.social {
+			&-icon {
+				display: block;
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				line-height: 30px;
+				text-align: center;
+				margin: 5px;
+				// background-color: fade(#fff, 50%);
+				color: @btn-dark-border;
+				border: 1px solid #fff;
+			}			
+			&icons-inner {
+				margin: -5px;
+				.clearfix();
+			}
+			&-cols{
+				display: inline-block;
+			}
+		}
+	}
+	&-5 {
+		overflow: hidden;
+		.social {
+			padding: 17px 0 12px;
+			.text-center();
+			&-icon {
+				display: block;
+				width: 46px;
+				height: 46px;
+				border-radius: 50%;
+				line-height: 46px;
+				text-align: center;
+				margin: 0 auto 13px;
+				background-color: fade(#fff, 10%);
+				color: #fff;
+				font-size: 20px;
+				position: relative;
+				&:before {
+					content: "";
+					width: 54px;
+					height: 54px;
+					border: 1px solid fade(#fff, 15%);
+					border-radius: 50%;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin-top: -27px;
+					margin-left: -27px;
+					.scale(1.2);
+					.opacity(0);
+					.transition(all 0.2s ease-in-out);
+				}
+				&:hover {
+					background-color:  fade(#fff, 20%);
+				}				
+			}			
+			&icons-inner {
+				.clearfix();
+				margin: -5px;
+				margin: -5px;
+			}
+			&-title {
+				font-weight: 600;
+				color: #fff;
+			}
+			&-cols{
+				padding: 5px;
+				padding: 5px;
+			}
+			&:hover {
+				.social-icon:before {
+					.scale(1);
+					.opacity(1);
+				}
+			}
+		}
+	}
+	&-6 {
+		overflow: hidden;
+		.social {
+			background-color: @btn-gray-bg;
+			.clearfix();
+			line-height: 26px;
+			.footer & {
+				background-color: #4a4a4a;
+			}
+			&-icon {
+				display: block;
+				width: 26px;
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+				color: #fff;
+				float: left;
+				.footer &,
+				.footer &:hover{
+					color: #fff;
+				}
+				+ .social-title {
+					margin-left: 36px;
+				}
+			}			
+			&icons-inner {
+				.clearfix();
+				margin: -8px -5px;
+				.footer &{
+					margin: -5px;
+				}
+			}
+			&-title {
+				display: block;
+				font-size: ceil((@font-size-base * 0.77));
+				.text-uppercase();
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+			&-cols{
+				padding: 8px 5px;
+				.footer &{
+					padding: 5px;
+				}
+			}
+		}
+		&.full-color {
+			.social-icon {
+			    width: 100%;
+			    span {
+				    display: block;
+				    width: 26px;
+				}
+			}
+			.social-title {
+			    position: absolute;
+			    color: #fff;
+			    right: 0;
+			    left: 0;
+			    display: block;
+			}
+		}
+	}
+	&-7 {
+		overflow: hidden;
+		.social {
+			background-color: #fff;
+			line-height: 22px;
+			padding: 20px;
+			.text-right();
+			.clearfix();
+			.transition(all 0.2s ease-in-out);
+			&-icon {
+				color: @btn-dark-border;
+				font-size: 20px;
+				float: left;
+			}			
+			&icons-inner {
+				.clearfix();
+				margin-top: -15px;
+				margin-bottom: -15px;
+			}
+			&-title {
+				color: @headings-color;
+				.transition(all 0.2s ease-in-out);
+			}
+			&-cols{
+				padding-top: 15px;
+				padding-bottom: 15px;
+			}
+			&:hover {
+				.social-icon,
+				.social-title {
+					color: #fff;
+				}
+			}
+		}
+	}
+	&-8 {
+		overflow: hidden;
+		.social {
+			&-icon {
+				display: block;
+				width: 36px;
+				height: 37px;
+				line-height: 37px;
+				text-align: center;
+				margin: 5px;
+				background-color: @btn-gray-border;
+				color: @text-color;
+				font-size: ceil((@font-size-base * 0.92));
+				.footer & {
+					margin: 1.5px;
+					background-color: #4a4a4a;
+					color: #6b6b6b;
+					&:hover {
+						color: #fff !important;
+					}
+				}
+				&:hover {
+					color: #fff;
+				}
+			}			
+			&icons-inner {
+				margin: -5px;
+				.clearfix();
+				.footer & {
+					margin: -1.5px;
+				}
+			}
+			&-cols{
+				float: left;
+			}
+		}
+	}
+	&-9 {
+		overflow: hidden;
+		.social {
+			&-icon {
+				display: block;
+				width: 41px;
+				height: 47px;
+				line-height: 47px;
+				text-align: center;
+				margin: 5px;
+				background-color: @btn-dark-border;
+				color: #fff;
+				border: 1px solid @btn-dark-border;
+				&:hover {
+					background-color: fade(#fff, 50%) !important;
+				}
+			}			
+			&icons-inner {
+				margin: -5px;
+				.clearfix();
+			}
+			&-cols{
+				float: left;
+			}
+		}
+	}
+	&-10 {
+		overflow: hidden;
+		.social {
+			&-icon {
+				display: block;
+				width: 47px;
+				height: 51px;
+				border-radius: 4px;
+				line-height: 51px;
+				text-align: center;
+				margin: 3px;
+				background-color: fade(#fff, 50%);
+				color: @btn-dark-border;
+				font-size: 16px;
+				border: 1px solid @btn-dark-border;
+				.transition(all 0.2s ease-in-out);
+			}			
+			&icons-inner {
+				margin: -3px;
+				.clearfix();
+			}
+			&-cols{
+				float: left;
+			}
+			&:hover {
+				.social-icon{
+					color: #fff;
+				}
+			}
+		}
+	}
+	&-11 {
+		.social {
+			text-align: center;
+			&-icon {
+				display: inline-block;
+				width: 118px;
+				height: 118px;
+				border-radius: 50%;
+				line-height: 118px;
+				text-align: center;
+				background-color: fade(#fff, 25%);
+				color: #fff;
+				font-size: 40px;
+			}
+			&icons-inner {
+				display: none;
+			}
+		}
+	}
+	&-12 {
+		overflow: hidden;
+		.social {
+			text-align: center;
+			margin: 2px 1px;
+			&-icon {
+				display: block;
+				height: 220px;
+				line-height: 220px;
+				text-align: center;
+				color: #fff;
+				font-size: 60px;
+				@media (max-width: 1399px) and (min-width: 1200px){
+					height: 170px;
+					line-height: 170px;
+				}
+				@media (max-width: 1199px) and (min-width: 992px){
+					height: 145px;
+					line-height: 145px;
+				}
+			}
+			&icons-inner {
+				display: none;
+				width: auto !important;
+				margin-left: -1px;
+				margin-right: -1px;
+			}
+		}
+	}
+	&-13 {
+		// overflow: hidden;
+		.social {
+			padding-top: 13px;
+			padding-bottom: 13px;
+			.clearfix();
+			&-icon {
+				display: block;
+				width: 75px;
+				height: 75px;
+				line-height: 73px;
+				text-align: center;
+				color: #fff;
+				float: left;
+				font-size: 28px; 
+				border: 1px solid #fff;
+				+ .social-content {
+					margin-left: 95px;
+				}
+				&:hover {
+					background-color: fade(#fff, 50%) !important;
+				}
+				@media (max-width: 1199px) {
+					width: 50px;
+					height: 50px;
+					line-height: 48px;
+					font-size: 24px; 
+					+ .social-content {
+						margin-left: 70px;
+					}
+				}
+			}
+			&icons-inner {
+				margin-top: -13px;
+				margin-bottom: -13px;
+			}
+			&-title {
+				display: inline-block;
+				font-size: 15px;
+				margin-top: 10px;
+				color: @headings-color;
+				+ .social-sub-title {
+					display: block;
+					margin-top: 6px;
+				}
+				@media (max-width: 1199px) {
+					line-height: 1;
+					margin-top: 0;
+					+ .social-sub-title {
+						font-size: 0.9em;
+						margin-top: 0;
+					}
+				}
+			}
+		}
+	}
+	&-14 {
+		overflow: hidden;
+		.socialicons-inner {
+			margin-left: -10px;
+			margin-right: -10px;
+			.social-cols {
+				display: inline-block;
+				padding-right: 10px;
+				padding-left: 10px;
+				&:last-child {
+					margin-right: 0;
+				}
+				.social-icon {
+					font-size: 20px;
+					color: #4a4a4a;
+					&:hover {
+						color: @brand-primary;
+					}
+				}
+			}
+		}
+		.light & {
+			.socialicons-inner {
+				.social-cols {
+					.social-icon {
+						font-size: 18px;
+						color: fade(#fff, 80%);
+						&:hover {
+							color: #fff;
+						}
+					}
+				}
+			}
+		}
+		.sidebar &{
+			.social-cols {
+				margin-right: 9px;
+				.social-icon {
+					font-size: 16px;
+					color: #dadada;
+					&:hover {
+						color: @brand-primary;
+					}
+				}
+				&:last-child {
+					margin-right: 0;
+				} 
+			}
+		}
+	}
+	&-15 {
+		overflow: hidden;
+		.socialicons-inner {
+			display: inline-block;
+			margin: -5px;
+			.social-cols{
+				padding: 5px;
+				display: inline-block;
+				.social {
+					text-align: center;
+					&-icon{
+						display: block;
+						width: 48px;
+						height: 48px;
+						border-radius: 50%;
+						background-color: lighten(#000, 29%);
+						color: #6b6b6b;
+						font-size: 20px;
+						line-height: 48px;
+					}
+					&-title {
+						display: block;
+						padding-top: 10px;
+						color: #6b6b6b;
+						font-size: 10px;
+						text-transform: uppercase;
+					}
+					&:hover {
+						.social-icon,
+						.social-title {
+							color: #fff;
+						}
+					}
+				}
+			}
+		}
+	}
+}

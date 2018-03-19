@@ -296,8 +296,7 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 			$stylesheets = array(); // empty - begin a new group
 			foreach ($group as $url => $stylesheet) {
 				$url = self::fixUrl($url);
-
-				if ($stylesheet['mime'] == 'text/css' && ($csspath = self::cssPath($url))) {
+				if ($stylesheet['type'] == 'text/css' && ($csspath = self::cssPath($url))) {
 					$stylesheet['path'] = $csspath;
 					$stylesheet['data'] = file_get_contents($csspath);
 
@@ -417,7 +416,7 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 				}
 				//.'?t='.($grouptime % 1000)
 				$output[$outputurl . '/' . $groupname] = array(
-					'mime' => 'text/css',
+					'type' => 'text/css',
 					'media' => $media == 'all' ? NULL : $media,
 					'attribs' => array()
 					);
@@ -452,9 +451,9 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 		foreach ($doc->_scripts as $url => $script) {
 
 			$url = self::fixUrl($url);
-                        $script['mime'] = 'text/javascript';
+                        $script['type'] = 'text/javascript';
 
-			if ($script['mime'] == 'text/javascript' && ($jspath = self::jsPath($url))) {
+			if ($script['type'] == 'text/javascript' && ($jspath = self::jsPath($url))) {
 				$script['path'] = $jspath;
 				$script['data'] = file_get_contents($jspath);
 				$scripts[$url] = $script;
@@ -546,7 +545,7 @@ class JVFrameworkHelperMinify extends JVFrameworkHelper {
 				}
 				//.'?t='.($grouptime % 1000)
 				$output[$outputurl . '/' . $groupname] = array(
-					'mime' => 'text/javascript',
+					'type' => 'text/javascript',
 					'defer' => false,
 					'async' => false
 				);

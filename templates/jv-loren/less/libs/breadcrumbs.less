@@ -1,0 +1,130 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+  padding: @breadcrumb-padding-vertical @breadcrumb-padding-horizontal;
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  border-radius: @border-radius-base;
+
+  > li {
+    display: inline-block;
+
+    + li:before {
+      content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
+      color: @breadcrumb-color;
+    }
+  }
+
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+}
+
+
+.extended-breadcrumb {  
+  position: relative;
+  background-attachment: fixed;
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: 50% 0;
+  .pageHeading {
+    font-size: 50px;
+    color: #fff;
+    margin-top: 0;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: -6px;
+    font-weight: bold;
+    &-Description {
+      font-size: 25px;
+      color: #fff;
+      margin: 5px 0 0;
+      display: block;
+      line-height: 1.3;
+      font-weight: 700;
+      .opacity(0.5);
+      .text-uppercase();
+    }
+  }
+  .breadcrumb {
+    margin: 0;
+    position: absolute;
+    top: 75px;
+    padding: 0;
+    text-align: center;
+    left: 0;
+    right: 0;
+    font-weight: normal;
+    > li {
+      > a,
+      > span {
+        color: #fff;
+      }
+      > a:hover {
+        .opacity(0.5);
+      }
+      + li:before {
+        color: fade(#fff, 90%);
+      }
+    }
+    > .active {
+      color: #fff;
+    }
+  }
+  > .container {
+    padding-top: 190px;
+    position: relative;
+  }
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+  @media (max-width: 1199px) {
+    > .container {
+      padding-top: 130px;
+      .breadcrumb {
+        top: 55px;
+      }
+      .pageHeading {
+          font-size: 45px;
+      }
+    }
+  }
+  @media (max-width: 992px) {
+    > .container {
+      padding-top: 100px;
+      .breadcrumb {
+        display: none;
+      }
+      .pageHeading {
+          font-size: 40px;
+          margin-bottom: -5px;
+      }
+    }
+  }
+  @media (max-width: 767px) {
+    background-position: center !important;
+    > .container {
+      padding-top: 100px;
+      .breadcrumb {
+        display: none;
+      }
+      .pageHeading {
+          font-size: 30px;
+          margin-bottom: -4px;
+      }
+    }
+  }
+}

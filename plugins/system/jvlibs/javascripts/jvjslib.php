@@ -117,6 +117,35 @@ abstract class JHtmlJquery
         JVJSLib::add('jquery.ui.interactions');
         return;
     }
+    
+    public static function token($name = 'csrf.token')
+	{
+		// Only load once
+		if (!empty(static::$loaded[__METHOD__][$name]))
+		{
+			return;
+		}
+
+		static::framework();
+		JHtml::_('form.csrf', $name);
+
+		$doc = JFactory::getDocument();
+
+		$doc->addScriptDeclaration(
+<<<JS
+;(function ($) {
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-Token': Joomla.getOptions('$name')
+		}
+	});
+})(jQuery);
+JS
+		);
+
+		static::$loaded[__METHOD__][$name] = true;
+	}
+    
 }
 
 if(JFactory::getApplication()->isSite()){
