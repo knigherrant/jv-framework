@@ -1,0 +1,309 @@
+//
+// Progress bars
+// --------------------------------------------------
+
+
+// Bar animations
+// -------------------------
+
+// WebKit
+@-webkit-keyframes progress-bar-stripes {
+  from  { background-position: 40px 0; }
+  to    { background-position: 0 0; }
+}
+
+// Spec and IE10+
+@keyframes progress-bar-stripes {
+  from  { background-position: 40px 0; }
+  to    { background-position: 0 0; }
+}
+
+
+// Bar itself
+// -------------------------
+
+// Outer container
+.progress {
+  overflow: hidden;
+  height: 18px;
+  margin-bottom: 24px;
+  background-color: @progress-bg;
+  border-radius: @progress-border-radius;
+}
+
+// Bar of progress
+.progress-bar {
+  float: left;
+  width: 0%;
+  height: 100%;
+  font-size: @font-size-small;
+  line-height: @line-height-computed;
+  color: @progress-bar-color;
+  text-align: center;
+  background-color: @progress-bar-bg;
+  border-radius: @progress-border-radius;
+  .transition(width .6s ease);
+  .text-white &,
+  .light &,
+  .white & {
+    color: #fff;
+  }
+}
+
+.progress-value {
+ float: right;
+}
+
+// Striped bars
+//
+// `.progress-striped .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar-striped` class, which you just add to an existing
+// `.progress-bar`.
+.progress-striped .progress-bar,
+.progress-bar-striped {
+  #gradient > .striped(rgba(255,255,255,.10); -65deg);
+  background-size: 16px 35px;
+}
+
+// Call animation for the active one
+//
+// `.progress.active .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar.active` approach.
+.progress.active .progress-bar,
+.progress-bar.active {
+  .animation(progress-bar-stripes 2s linear infinite);
+}
+
+
+// Variations
+// -------------------------
+
+.progress-bar-success {
+  .progress-bar-variant(@progress-bar-success-bg);
+}
+
+.progress-bar-info {
+  .progress-bar-variant(@progress-bar-info-bg);
+}
+
+.progress-bar-warning {
+  .progress-bar-variant(@progress-bar-warning-bg);
+}
+
+.progress-bar-danger {
+  .progress-bar-variant(@progress-bar-danger-bg);
+}
+
+.customAnimation {-webkit-animation-name: customAnimation; -moz-animation-name: customAnimation; -o-animation-name: customAnimation; animation-name: customAnimation;}
+@-webkit-keyframes customAnimation {0% {width: 0%;}}
+@-moz-keyframes customAnimation {0% {width: 0%;}}
+@-o-keyframes customAnimation {0% {width: 0%;}}
+@keyframes customAnimation {0% {width: 0%;}}
+
+.jv-progress {
+  &-2{
+    .progress-wrapper {
+      .progress {
+        margin-bottom: 33px;
+        background-color: #cacaca;
+        height: 6px;
+        overflow: inherit;
+        border-radius: 0;
+        .box-shadow(none);
+        &-title{
+          font-size: 12px;
+          margin-bottom: 5px;
+          text-transform: uppercase;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+        }
+        &-value {
+          position: absolute;
+          top: -29px;
+          right: -18px;
+          line-height: 21px;
+          width: 36px;
+          font-size: 12px;
+          float: none;
+          text-align: center;
+          background-color: #000;
+          background-color: fade(#000, 70%);
+          &:before {
+              content: "";
+              display: block;
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -4px;
+              border-style: solid;
+              border-width: 4px 4px 0 4px;
+              border-color: #000 transparent;
+              border-color: fade(#000, 70%) transparent;
+          }
+        }
+        &-bar {
+          .box-shadow(none);
+          border-radius: 0;
+          position: relative;
+        }
+      }
+    }    
+  }
+}
+
+.counter {
+  text-align: center;
+  &-icon {
+    display: inline-block;
+    font-size: 2em;
+    width: 3em;
+    height: 3em;
+    line-height: 3em;
+    border-radius: 50%;
+  }
+  &-head {
+    margin-top: 15px;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    color: @text-color;
+    letter-spacing: 0.1em;
+  }
+  &-content {
+    margin-top: 20px;
+    font-size: 3em;
+    line-height: 1;
+    margin-bottom: 0;
+    color: @headings-color;
+    .text-semi-bold();
+  }
+}
+.text-white&,
+.text-white &{
+  .counter-head,
+  .counter-content {
+    color: #fff;
+  }
+}
+
+.piechart {
+  position: relative;
+  margin-bottom: 20px;
+  &-wrap{
+    .text-center(); 
+    p {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-bottom: 0;
+    }
+    &.text-white,
+    .light & {
+      .piechart-value,
+      .piechart-head {
+        color: #fff;
+        + p {
+          color: fade(#fff, 50%);
+        }
+      }
+
+    }
+  }
+  &-inner{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;    
+    display: table;
+    > * {
+      vertical-align: middle;
+      display: table-cell;
+      text-align: center;
+    }
+  }
+  &-value {
+    color: @headings-color; 
+    sub, sup {
+      font-size: 65%;
+    }
+  }
+  &-counter {
+    color: @headings-color;
+    font-size: 30px;
+    + .piechart-head {
+      color: inherit;
+    }
+    .light & { 
+      color: #fff;
+      margin-top: -20px;
+    }
+  }
+  &-head {
+    margin: 0;
+    line-height: 1;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    + p {
+      margin-top: 12px;
+    }
+  }
+}
+
+.process {
+  text-align: center;
+  .step {
+    .step-icon {
+      font-size: 22px;
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      border: 2px solid @brand-primary;
+      color: @brand-primary;
+      border-radius: 50%;
+      .number:before {
+          content: "0";
+      }
+    }
+    .step-title {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: @brand-primary;
+      margin-bottom: 0;
+      margin-top: 20px;
+    }
+    .step-content {
+      color: #999;
+      font-weight: 400;
+      line-height: 24px;
+      margin-top: 15px;
+    }
+    &.active {
+      .step-icon {
+        border-color: #e6e6e6;
+        color: @headings-color;
+      }
+      .step-title {
+        color: @headings-color;
+      }
+    }
+  }
+  .text-white&,
+  .text-white & {
+    &,
+    .step-title {
+      color: #fff;
+    }
+    .step.active {
+      .step-icon {
+        border-color: #fff;
+        color: #fff; 
+      }
+      .step-title {
+        color: #fff;
+      }
+    }
+  }
+}

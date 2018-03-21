@@ -1,0 +1,121 @@
+//
+// Pagination (multiple pages)
+// --------------------------------------------------
+.pagination {
+  display: block;
+  padding-left: 0;
+  margin: 0;
+  text-align: right;
+  padding: 20px 0;
+  border: 1px solid #e3e3e3;
+  border-width: 1px 0;
+  > li {
+    display: inline-block; // Remove list-style and block-level defaults
+    .text-center();
+    > a,
+    > span {
+      display: block;
+      position: relative;
+      line-height: @line-height-base;
+      text-decoration: none;
+      color: @pagination-color;
+      background-color: @pagination-bg;
+      border: 1px solid @pagination-border;
+      font-weight: 700;
+      line-height: 34px;
+      min-width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      margin: 0 5px;
+      .fa-angle-left:before {
+        content: "\f177";
+      }
+      .fa-angle-right:before {
+        content: "\f178";
+      }
+    }
+  }
+
+  > li > a,
+  > li > span {
+    &:hover,
+    &:focus {
+      z-index: 3;
+      color: @pagination-hover-color;
+      background-color: @pagination-hover-bg;
+      border-color: @pagination-hover-border;
+    }
+  }
+
+  > .active > a,
+  > .active > span {
+    &,
+    &:hover,
+    &:focus {
+      z-index: 2;
+      color: @pagination-active-color;
+      background-color: @pagination-active-bg;
+      border-color: @pagination-active-border;
+      cursor: default;
+    }
+  }
+
+  > .disabled {
+    > span,
+    > span:hover,
+    > span:focus,
+    > a,
+    > a:hover,
+    > a:focus {
+      color: @pagination-disabled-color;
+      background-color: @pagination-disabled-bg;
+      border-color: @pagination-disabled-border;
+      cursor: @cursor-disabled;
+    }
+  }
+  &-wrap {
+    .counter {
+      line-height: 36px;
+    }
+  }
+  &-results {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: @headings-color;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-top: 27px;
+  }
+  @media(max-width: 767px) {
+    text-align: center;
+    border-top: none;
+    > li {
+      margin: 2px 0;
+    }
+    &-wrap {
+      border-top: 1px solid #e3e3e3;
+    }
+    &-results {
+      padding-top: 20px;
+      margin-top: 0;
+      text-align: center;
+      &.pull-left {
+        float: none !important;
+      }
+    }
+  }
+}
+
+// Sizing
+// --------------------------------------------------
+
+// Large
+.pagination-lg {
+  .pagination-size(@padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @border-radius-large);
+}
+
+// Small
+.pagination-sm {
+  .pagination-size(@padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @border-radius-small);
+}

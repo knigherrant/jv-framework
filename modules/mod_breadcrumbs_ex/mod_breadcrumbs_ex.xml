@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>mod_breadcrumbs_ex</name>
+	<author>PHPKungfu.Com</author>
+	<creationDate>July 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>dev@phpkungfu.club</authorEmail>
+	<authorUrl>www.phpkungfu.club</authorUrl>
+	<version>1.0.1</version>
+	<description>MOD_BREADCRUMBS_EX_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_breadcrumbs_ex">mod_breadcrumbs_ex.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>mod_breadcrumbs_ex.xml</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.mod_breadcrumbs_ex.ini</language>
+		<language tag="en-GB">en-GB.mod_breadcrumbs_ex.sys.ini</language>
+	</languages>
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_BREADCRUMBS" />
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="showHeadings"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="MOD_BREADCRUMBS_EX_SHOW_HEADINGS"
+					description="MOD_BREADCRUMBS_EX_SHOW_HEADINGS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="showBreadcrumbs"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="MOD_BREADCRUMBS_EX_SHOW_BREADCRUMBS"
+					description="MOD_BREADCRUMBS_EX_SHOW_BREADCRUMBS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+			<fieldset name="headings" label="MOD_BREADCRUMBS_EX_HEADINGS">
+				<field
+					name="headingsTitle"
+					type="text"
+					label="MOD_BREADCRUMBS_EX_HEADINGS_TITLE"
+					description="MOD_BREADCRUMBS_EX_HEADINGS_TITLE_DESC" />
+				<field
+					name="headingsDescription"
+					type="textarea"
+					rows="6" 
+					label="MOD_BREADCRUMBS_EX_HEADINGS_DESCRIPTION"
+					description="MOD_BREADCRUMBS_EX_HEADINGS_DESCRIPTION_DESC" />
+			</fieldset>
+			<fieldset name="background" label="MOD_BREADCRUMBS_EX_BACKGROUND">
+				<field
+					name="moduleBackground"
+					type="media"
+					label="MOD_BREADCRUMBS_EX_BACKGROUND"
+					description="MOD_BREADCRUMBS_EX_BACKGROUND_DESC" />
+				<field
+					name="position"
+					type="list"
+					label="MOD_BREADCRUMBS_EX_BACKGROUND_POSITION"
+					description="MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_DESC"
+					default="center">
+					<option value="center">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_CENTER</option>
+					<option value="top center">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_TOP_CENTER</option>
+					<option value="top left">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_TOP_LEFT</option>
+					<option value="top right">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_TOP_RIGHT</option>
+					<option value="bottom center">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_BOTTOM_CENTER</option>
+					<option value="bottom left">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_BOTTOM_LEFT</option>
+					<option value="bottom right">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_BOTTOM_RIGHT</option>
+					<option value="left center">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_LEFT_CENTER</option>
+					<option value="right center">MOD_BREADCRUMBS_EX_BACKGROUND_POSITION_RIGHT_CENTER</option>
+				</field>
+				<field name="size" type="text" default="cover" label="MOD_BREADCRUMBS_EX_BACKGROUND_SIZE" description="MOD_BREADCRUMBS_EX_BACKGROUND_SIZE_DESC" />
+				<field
+					name="parallax"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					label="Parallax scrolling"
+					description="Parallax scrolling"
+					default="0">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="speed" type="text" default="0.15" label="Parallax Speed" description="Parallax Speed" />
+				<field name="colorBgOverlay" type="color" default="" label="Color Background Overlay" />
+				<field
+					name="opacityBgOverlay"
+					type="text"
+					default = "0"
+					label="Opacity Background Overlay"/>
+			</fieldset>
+			<fieldset name="breadcrumbs" label="MOD_BREADCRUMBS_EX_BREADCRUMBS">
+				<field
+					name="showHere"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="MOD_BREADCRUMBS_EX_FIELD_SHOWHERE_LABEL"
+					description="MOD_BREADCRUMBS_EX_FIELD_SHOWHERE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="showHome"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="MOD_BREADCRUMBS_EX_FIELD_SHOWHOME_LABEL"
+					description="MOD_BREADCRUMBS_EX_FIELD_SHOWHOME_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+					name="homeText"
+					type="text"
+					label="MOD_BREADCRUMBS_EX_FIELD_HOMETEXT_LABEL"
+					description="MOD_BREADCRUMBS_EX_FIELD_HOMETEXT_DESC" />
+				<field
+					name="showLast"
+					type="radio"
+					default="1"
+					class="btn-group btn-group-yesno"
+					label="MOD_BREADCRUMBS_EX_FIELD_SHOWLAST_LABEL"
+					description="MOD_BREADCRUMBS_EX_FIELD_SHOWLAST_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+			<fieldset
+				name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				<field
+					name="moduleclass_sfx"
+					type="textarea" rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="itemid">
+					<option
+						value="itemid"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

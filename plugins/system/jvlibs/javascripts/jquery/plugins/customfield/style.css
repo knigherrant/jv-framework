@@ -1,0 +1,230 @@
+/*border*/
+
+.ct-round{ -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; border: 1px solid #ddd; background: #F6F6F6;}
+.ct-round-4{ -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; border: 1px solid #ddd;}
+.ct-transition{transition: all 0.5s ease; -webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -ms-transition: all 0.5s ease;}
+
+.ct-border{ border: 1px solid #ddd;} 
+.ct [class^=ct-][class*=-head]{
+    background-color: #F5F5F5;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    background-repeat: repeat-x;
+    cursor: pointer;
+    -webkit-border-radius: 3px 3px 0 0; -moz-border-radius: 3px 3px 0 0; border-radius: 3px 3px 0 0;
+    padding: 5px 10px;
+    font-size: 17px;
+}
+.ct.none{
+    background: none;
+    border: none;
+}
+
+
+
+.ct-btn-expand{float: right;}
+/*corlor*/
+.ct.error > input, .ct.error > selecgt, .ct.error > textarea,.ct.error > .select2-container > *, .ct.error > .popover{ border-color: #b94a48; color: #b94a48; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);}
+.ct.blue, .ct .blue{border-color:  #15497c;}
+.blue > [class^=ct-][class*=-head]{ 
+    background-color: #1D6CB0;
+    background-image: linear-gradient(to bottom, #2384D3, #15497C);
+    background-repeat: repeat-x;
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/*multi*/
+.ct-multi-head{line-height: 30px; height: 30px;}
+.ct-multi-head > span{line-height: 25px; margin-left: 10px;}
+.ct-multi-body{margin: 7px;}
+.ct-multi-line{margin-bottom: 11px; position: relative;}
+
+
+.ct .ct-multi-line-head{margin: 0; display: none; }
+.ui-sortable > .ct-multi-line > .ct-multi-line-head{
+    display: block; cursor: move; text-align: center; line-height: 35px; 
+    padding: 0;
+    height: 35px;
+}
+.ct-multi-line-body > .ct-round{ overflow: visible; border: none;}
+.ct-multi-body > a.btn{margin: 0 5px;}
+.ct-multi-body > a.btn > i {margin-right: 7px;}
+
+.linehead-left > .ct-multi-body > .ui-sortable > .ct-multi-line > .ct-multi-line-head{position: absolute; bottom: 0; left: 0; top: 0; width: 34px;-webkit-border-radius: 3px 0 0 3px; -moz-border-radius: 3px 0 0 3px; border-radius: 3px 0 0 3px; height:100%;}
+.linehead-left > .ct-multi-body > .ui-sortable > .ct-multi-line > .ct-multi-line-body{margin-left: 34px;}
+
+.ct-multi-line-controler{position: absolute; top: 0; right: 5px}
+.ct-multi-line-controlers > a{border-top:none;}
+.ct-multi-line-btnFilter *, .ct-multi-btnCheckAll *{visibility: hidden;}
+.ct-multi-line-btnFilter.active *,.ct-multi-btnCheckAll.active *{visibility: visible;}
+.ct-multi-btnCheckAll{float: right; margin: 5px;}
+.ct-multi-line-body > .ct-panel > .ct-panel-head{display: none;}
+
+
+/*multi table*/
+.ct-multi.table{
+    display: table;
+}
+.ct-multi-body > .tblHead,.table > .ct-multi-line{display: table-row;}
+.tblHead > *, 
+.table > .ct-multi-line > .ct-multi-line-head,
+.table > .ct-multi-line > .ct-multi-line-controler,
+.table > .ct-multi-line > .ct-multi-line-body > .ct-panel > .ct-panel-body > *
+{display: table-cell; position: static;}
+
+
+/*filter*/
+.ct-filter-head{line-height: 30px; height: 30px;}
+.ct-filter-head > span{ float:left; }
+.ct-filter-head > .select2-container{float: right; min-width: 150px; font-size: 14px;}
+.ct-multi-line-body > .ct-filter > .ct-filter-head > .select2-container{margin-right: 60px;}
+
+.ct-filter-body > .ct-round{border: none;}
+.ct-filter-body > div > div[class*=head]{display: none;}
+.ct-filter-body > *{display: none;}
+.ct-filter-body > .active{display: block;}
+
+/*group*/
+.ct-group-head{
+    height: 28px;
+	line-height:28px;
+	padding:10px;
+    border-bottom: 1px solid #ddd; cursor: pointer;
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+}
+
+.ct-group > .ct-round{ overflow: visible; border: none;}
+.ct-group > .ct-panel > .ct-panel-head{display: none; }
+
+
+/*tabs*/
+.ct-tabs .ct-tabs-head.nav{margin: 0; padding: 5px 10px 0 20px;}
+.ct-tabs-content > .ct-round{border: none;}
+.ct-tabs-content > div > div[class*="-head"]{ display: none;}
+.ct-tabcheck > i{visibility: hidden;}
+.ct-tabcheck.active > i{visibility: visible;} 
+.tabs-left > .nav-tabs > li > a.ct-tabcheck{position: absolute; min-width: auto; margin: 1px; border: none;}
+.ct-tabs.tabs-left .ct-tabs-head.nav{margin: 0 19px 0 0; padding-right: 0;}
+
+/*panel*/
+.ct-panel{position: relative;}
+.ct.ct-panel > .ct-panel-head{position: absolute; left: 50px; top: -10px; padding: 2px 10px; border-radius:3px; font: bold 13px bold;}
+.ct-panel-body{ margin: 8px;}
+.ct-panel-head > a{margin-right: 5px; border: none; position: absolute; top: 0; left: 0; bottom: 0; width: 14px;}
+.ct-panel-disabled > .ct-panel-head > a > i{ visibility: hidden;}
+.ct-panel.inline > .ct-panel-body{margin: 0; overflow: hidden;}
+.ct-panel.inline > .ct-panel-body > label{ float: left;}
+.ct-group > .ct-panel{margin-top: 0;}
+
+/*combobox*/
+label.ct.ct-combobox {padding-right: 16px;}
+label.ct.ct-combobox:hover {padding-right: 15px;}
+
+
+.blue.ct-round .ct-multi-line-controler { top:7px; right:8px;}
+label.nolabel.ct > *{width: 100%; -moz-box-sizing:border-box;
+ -webkit-box-sizing:border-box;
+ box-sizing:border-box;}
+label.nolabel.ct > .select2-container{width: 100% !important;}
+.ct label.ct {/*
+    background: #F6F6F6;
+    box-shadow:0 -1px 0 0 #DDDDDD inset, 0 -2px 0 0 #FFFFFF inset;*/
+    border-top: 1px solid #DDDDDD;
+    float: none;
+    list-style-type: none;
+    margin: 0;
+    min-height: 28px;
+    padding: 4px 10px;
+	
+	line-height: 28px;
+	position:relative;
+}
+label.ct:first-child{border-top: none;}
+label.ct > *{float: right;}
+label.ct > span { float:left;}
+
+
+.ct-input input[type="text"],.ct-select select,.ct-select2 .select2-container{
+    line-height:28px; padding:4px 6px;  min-height: 28px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+    min-width: 220px;
+    width: 60%;
+    margin: 0;
+}
+.ct-select2 .select2-container{width: 60% !important;}
+
+.ct-textarea textarea, .ct-textarea > pre{width: 100%; overflow: hidden; min-height: 50px; resize: none; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; font-size: 13px; font-family: Arial, sans-serif; }
+.ct-textarea > pre{ height: auto; word-wrap: break-word; white-space: pre-wrap; z-index: -1; position: absolute; visibility: hidden;}
+
+
+/*checkbox*/
+.ct-checkbox{ width:50px; position: relative; height: 18px; background: #bd362f !important;}
+.ct-checkbox > a{ position: absolute; left: 1px; top: 1px; bottom: 1px; right: 50%; }
+.ct-input > input[type=checkbox]{display:none;}
+.ct-checked.ct-checkbox{background: #51a351 !important;;}
+.ct-checked.ct-checkbox > a{left: 50%; right: 1px;}
+.ct-checkbox > a{padding: 0; text-align: left; overflow: hidden;}
+.ct-checkbox > a > span{ margin: 0; width: 200%; height: 100%; display: block; font-weight: bolder; line-height:24px;}
+.ct-checkbox > a > span > span{width: 50%; text-align: center; display: inline-block; float: right;}
+.ct-checked.ct-checkbox > a > span{margin-left: -100%;}
+ 
+.ct-select2 .select2-container{padding: 0;  }
+.ct.ct-select2 .select2-container .select2-input{ margin: 0; padding: 4px;}
+
+.ct-select2:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.select2-results.ct-round{border: none;}
+.select2-drop{margin-top: -3px;}
+.ct-round .select2-result .icon-ok{ visibility: hidden; margin-right: 10px;}
+.ct-round .select2-result.ct-checked .icon-ok{ visibility: visible;}
+
+/*assigment*/                   
+.ct-assign-menus{display: none;}
+.ct-assign-menus li{list-style: none;}
+.ct-assign-menus li > div > * { position:relative; z-index:2;}
+.ct-assign-menus li > div:hover:after{ content: ""; position:absolute; left:0; right:0; height:25px; background: #DDDDDD;}
+.ct-assign-menus li{line-height: 25px;}
+.ct-assign-menus > li > div > .icon-ok{display: none;}
+.ct-assign-menus li > div > .icon-ok{visibility: hidden; margin-right: 10px;}
+.ct-assign-menus li.ct-checked > div > .icon-ok{visibility: visible;}
+.ct-assign-menus li .controls{float: right; margin-right: 50px;}
+.ct-assign-menus .controls .ct-toggleall > .icon-ok{visibility: hidden;}
+.ct-assign-menus .controls .ct-toggleall.active > .icon-ok{visibility: visible;}
+
+.ct-assign-menus .controls .ct-togglshow.show-item > .icon-plus{background-position: -408px -96px;}
+.ct-assign-menus .controls .ct-togglshow.show-item > .icon-plus:before{content: "\4b";}
+.ct-assignment .ct-togglemenus{float: right;}
+.ct-assignment > div{display: none; position: relative;}
+.ct-assignment > div > .head{padding: 4px 0 4px 20px;}
+.ct-assignment .select2-search{display: none;}
+
+/*expand*/
+.modal.ct-modal{overflow: hidden;}
+	
+	
+	
+
+html[xmlns] .ct-multi-body .ct-panel-body { /* O */	display: block;  }
+.ct-multi-body .ct-panel-body:after { /* FF, O, etc. */	content: ".";	display: block;	height: 0;	clear: both;	visibility: hidden;}
+label.ct:after, .ct[class*=-body]:after, .ct-multi-items:after{ /* FF, O, etc. */    content: ".";    display: block;    height: 0;    clear: both;    visibility: hidden;}
+.ct.tabs-left .tab-content{padding-bottom: 16px; margin-bottom: -16px;}
+
+
+
+
+/* Clearfix
+-------------------------------------------------------------*/
+* html .clearfix {	height: 1%;}
+* +html .clearfix { display: inline-block; } /* IE7xhtml*/
+html[xmlns] .clearfix { /* O */	display: block;  }
+.clearfix:after { /* FF, O, etc. */	content: ".";	display: block;	height: 0;	clear: both;	visibility: hidden;}
+
+.ct-filter-head .select2-choice span{line-height: 26px; height: 26px;}
+.controls .ct .btn-group > .btn{min-width: 0;}

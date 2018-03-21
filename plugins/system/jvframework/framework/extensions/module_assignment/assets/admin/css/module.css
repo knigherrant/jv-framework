@@ -1,0 +1,22 @@
+ul.moduleAsignment li {clear: both}
+.moduleAsignment  .assignment_type label{ border-bottom: 1px dotted; color: #171818; font-size: 12px !important; font-style: italic;}
+.moduleAsignment  .width50 {width: 50% !important;}
+.moduleAsignment  .assignment_content_type,
+.moduleAsignment  .assignment{ clear: both}
+.moduleAsignment  h3.title,
+.moduleAsignment  h3.subtitle{background: none !important;overflow: hidden; margin: 0}
+.moduleAsignment  h3.title span {font-size: 16px; margin-top: 10px; display: block}
+.moduleAsignment  h3.subtitle span{ background: #0088cc; margin: 5px 0; display: block; padding: 7px;color: #FFF; font-size: 12px; font-style: italic; }
+.moduleAsignment  .itemlist { max-height: 200px; overflow: auto;}
+.moduleAsignment  .itemlist li { height: 16px;  line-height: 16px; list-style: none outside none; margin: 4px 0 !important;}
+.moduleAsignment  .itemlist span {height: 16px;line-height: 16px;}
+.moduleAsignment  .itemlist img {cursor: pointer; float: left; height: 16px; margin: 0 4px 0 0; width: 16px;}
+ul.itemlist {margin: 0}
+/************* Joomla 3.0 ***************/
+div.moduleAsignment  .width50 {width: 200px !important;}
+div.moduleAsignment  h3.title,
+div.moduleAsignment h3.subtitle{background: none !important;overflow: hidden; margin: 0; width: 500px}
+div.moduleAsignment .fltlft { float: left}
+/*** K@ ***/
+ul.moduleAsignment #jformparamsmodule_assignmentk2itemlistqueryid {width: 50% !important;}
+div.moduleAsignment .moduleAsignment #jformparamsmodule_assignmentk2itemlistqueryid {width: 50% !important;}

@@ -1,0 +1,55 @@
+.jvajax_shop_search { position:relative;}
+.jvajax_shop_search_block, .jvajax_shop_search_name_block{margin-bottom: 10px; overflow: hidden; position:relative;}
+.jvajax_shop_search_price_slider .slider.slider-horizontal{margin: 10px 0}
+
+.jvajax_shop_search_fields input{width: 100%}
+
+
+.jvajax_shop_search_loading{text-align: center}
+.jvajax_shop_search_loading img{height: 36px}
+
+.jvajax_shop_search_content .row > [class*=col-md-] { margin-bottom:10px;}
+.jvajax_shop_search_content .item { overflow:hidden;    line-height: normal;    background: #fff;    border: 1px solid #dcdcdc;    border-radius: 5px;    margin-bottom: 0;    padding: 10px; }
+.jvajax_shop_search_content .item .image { margin-bottom:10px; display:block; }
+.jvajax_shop_search_content .item .title{ display:block;  line-height: normal; margin-bottom:10px; } 
+.jvajax_shop_search_content .item  .price , .form_add_to_cart,
+.jvajax_shop_search_content .item  .short_desc { display:block;  margin-bottom:10px; }
+.jvajax_shop_search_content .jvajax_shop_search_products_pagination { margin:0}
+.jvajax_shop_search_content .jvajax_shop_search_products_pagination ul { margin:0}
+
+.jvajax_shop_search_popup .jvajax_shop_search_content { background:#fff;   border-radius: 5px;    position: absolute; z-index:1000;    padding:15px;	border: 1px solid #ddd;	-moz-box-shadow: -2px 2px 6px rgba(0,0,0,.13);	-webkit-box-shadow: -2px 2px 6px rgba(0,0,0,.13);	box-shadow: -2px 2px 6px rgba(0,0,0,.13);}
+
+
+#sidebar-a .jvajax_shop_search_popup .jvajax_shop_search_content { left:0}
+#sidebar-b .jvajax_shop_search_popup .jvajax_shop_search_content { right:0}
+
+
+
+@media (min-width:992px)
+{
+	.jvajax_shop_search .col-md-2:nth-child(6n+1) ,
+	.jvajax_shop_search .col-md-3:nth-child(4n+1) ,
+	.jvajax_shop_search .col-md-4:nth-child(3n+1) ,
+	.jvajax_shop_search .col-md-6:nth-child(2n+1) { clear:both}  
+}
+
+@media (min-width:768px) and  (max-width:991px)
+{
+	.jvajax_shop_search_popup .jvajax_shop_search_content { max-width:720px}
+	.jvajax_shop_search .col-sm-2:nth-child(6n+1) ,
+	.jvajax_shop_search .col-sm-3:nth-child(4n+1) ,
+	.jvajax_shop_search .col-sm-4:nth-child(3n+1) ,
+	.jvajax_shop_search .col-sm-6:nth-child(2n+1) { clear:both}  	
+}
+@media  (max-width:767px) 
+{
+	.jvajax_shop_search_content .item .image.center {	max-height:100px; overflow:hidden; display:none}
+	.jvajax_shop_search_popup .jvajax_shop_search_content { max-width:300px}
+	
+	.jvajax_shop_search .col-xs-2:nth-child(6n+1) ,
+	.jvajax_shop_search .col-xs-3:nth-child(4n+1) ,
+	.jvajax_shop_search .col-xs-4:nth-child(3n+1) ,
+	.jvajax_shop_search .col-xs-6:nth-child(2n+1) { clear:both}   
+}
+
+.jvajax_shop_search .slider.slider-horizontal{width: 100%}

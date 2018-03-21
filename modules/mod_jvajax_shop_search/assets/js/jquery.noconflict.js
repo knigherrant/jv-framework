@@ -1,0 +1,1 @@
+$JVAS = jQuery.noConflict();

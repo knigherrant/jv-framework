@@ -1,0 +1,89 @@
+.tp-caption a {
+color:#ff7302;
+text-shadow:none;
+-webkit-transition:all 0.2s ease-out;
+-moz-transition:all 0.2s ease-out;
+-o-transition:all 0.2s ease-out;
+-ms-transition:all 0.2s ease-out;
+}
+
+.tp-caption a:hover {
+color:#ffa902;
+}
+.tp-caption a {
+color:#ff7302;
+text-shadow:none;
+-webkit-transition:all 0.2s ease-out;
+-moz-transition:all 0.2s ease-out;
+-o-transition:all 0.2s ease-out;
+-ms-transition:all 0.2s ease-out;
+}
+
+.tp-caption a:hover {
+color:#ffa902;
+}
+
+#rev_slider_20_1_wrapper .tp-bullets.simplebullets.round .bullet {
+      width: 30px;
+    height: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+}
+#rev_slider_20_1_wrapper .tp-bullets.simplebullets.round .bullet.selected {
+  background-color: #fff;
+}
+#rev_slider_20_1_wrapper .tp-bullets.simplebullets.round .bullet:before {
+  display: none;
+}
+#rev_slider_16_1_wrapper .tparrows.default,
+#rev_slider_18_1_wrapper .tparrows.default,
+#rev_slider_20_1_wrapper .tparrows.default{
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+    line-height: 40px;
+}
+.ltr #rev_slider_20_1_wrapper .tparrows.default.tp-leftarrow:after {
+  content: "\f104";
+}
+
+.ltr #rev_slider_20_1_wrapper .tparrows.default.tp-rightarrow:after {
+  content: "\f105";
+}
+#rev_slider_15_1_wrapper .tparrows.default,
+#rev_slider_13_1_wrapper .tparrows.default{
+    width: 50px;
+    height: 50px;
+    border-radius: 0;
+    line-height: 50px;
+}
+#rev_slider_17_1_wrapper .tp-bullets{
+  right: 30px !important;left: auto !important;
+}
+#rev_slider_17_1_wrapper .tp-bullets.simplebullets.round .bullet {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #fff;
+    counter-increment: bullets;
+    text-align: center;
+    line-height: 30px;
+    font-size: 15px;
+    color:#252525;
+}
+#rev_slider_17_1_wrapper .tp-bullets.simplebullets.round .bullet:before {
+    display: none;
+}
+#rev_slider_17_1_wrapper .tp-bullets.simplebullets.round .bullet:after {   
+    content: counter(bullets, decimal);
+}
+#rev_slider_17_1_wrapper .tp-bullets.simplebullets.round .bullet.selected {
+    background-color: #55b521;
+    color: #fff;
+}
+@media (max-width: 767px) {
+#rev_slider_18_1_wrapper {
+  margin-top: 0 !important;
+}
+}

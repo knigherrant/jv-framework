@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="system" method="upgrade">
+	<name>System - JV Libraries</name>
+    <author>JoomlaVi! Project</author>
+    <creationDate>April 2016</creationDate>
+    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenseses/gpl-3.0.html GNU/GPL or later</license>
+    <authorEmail>info@phpkungfu.club</authorEmail>
+    <authorUrl>www.phpkungfu.club</authorUrl>
+    <version>4.2.5</version>
+    <description>
+    <![CDATA[
+        Libraries: jquery, jquery ui, jquery plugins, bootstraps, mootools <br/>
+        Customfield for joomla.
+    ]]>
+    </description>
+    <scriptfile>script.php</scriptfile>
+    <media folder="media">
+        <folder>jvlibs_exts</folder>
+    </media>
+	<files>
+		<filename plugin="jvlibs">index.html</filename>
+        <filename plugin="jvlibs">jvlibs.php</filename>
+        <filename plugin="jvlibs">jvlibs.xml</filename>
+        <filename>libs.php</filename>
+        <filename>script.php</filename>
+        <folder>customfield</folder>
+        <folder>javascripts</folder>
+        <folder>jvlibs_exts</folder>
+	</files>
+	<config>
+        <fields name="params">
+          <fieldset name="basic">
+            <field type="jvcustom" include="php">JVLibs::loadExtConfig();</field>
+            <field name="bootstrapstyle" class="btn-group" label="Bootstrap style on" default="none" type="list">
+                <option value="none">Disable</option>
+                <option value="site">Site</option>
+                <option value="admin">Admin</option>
+                <option value="both">Site and admin</option>
+            </field>
+          </fieldset> 
+          <fieldset name="exts" label="Extensions">
+            <field name="configs" type="jvcustom" filter="raw" ><![CDATA[
+                {
+                    label: 'Extensions',
+                    field: 'tabs',
+                    'class': 'tabs-left',
+                    sortable: 'true',
+                    item: (function($){
+                        var configs = {};
+                        $.each(JVLibsExts,function(index){
+                            var label = this.name?this.name:index;
+                            configs[index] = {
+                                label: label,
+                                field: 'panel',
+                                item: $.extend({active: {
+                                    field: 'input',
+                                    type: 'checkbox',
+                                    value: false,
+                                    label: 'Active ' + label
+                                }}, this.config)
+                            };
+                        });
+                        return configs;
+                    })(jQuery)
+                }
+            ]]></field>
+            <field type="jvcustom" include="css">
+               /* #options-exts > .control-group > .control-label{display:none;}
+                #options-exts > .control-group > .controls{margin:0;}*/
+            </field>
+          </fieldset>
+        </fields>
+    </config> 
+</extension>

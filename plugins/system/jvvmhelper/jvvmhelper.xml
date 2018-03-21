@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>System - VM JVVMHelper</name>    	
+    <author>JoomlaVi! Project</author>
+    <creationDate>July 2015</creationDate>
+    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL or later</license>
+    <authorEmail>info@phpkungfu.club</authorEmail>
+    <authorUrl>www.phpkungfu.club</authorUrl>
+    <version>1.0.0</version>
+	<description>JV Compare for Virtuemart</description>
+    
+    <install>
+        <sql> <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file> </sql>
+    </install>
+    <uninstall>
+        <sql> <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file> </sql>
+    </uninstall>
+
+	<files>
+		<filename plugin="jvvmhelper">jvvmhelper.php</filename>
+		<filename>index.html</filename>
+		<folder>fields</folder>
+		<folder>assets</folder>
+		<folder>language</folder>
+		<folder>sql</folder>
+	</files>
+	<languages folder="language">		
+		<language tag="en-GB">en-GB/en-GB.plg_system_jvvmhelper.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_jvvmhelper.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+                                <field name="use" multiple="true" type="list" default="all" label="Add function" description="Add function">
+								<option value="all">Compare and Wishlist</option>
+					<option value="compare">Compare</option>
+                                        <option value="wishlist">Wishlist</option>
+				</field>
+                                <field name="allow" multiple="true" type="list" default="all" label="Add to page" description="Add to page (It will add after add to cart button)">
+					<option value="all">ALL Pages</option>
+					<option value="detail">Product Detail</option>
+                                        <option value="list">Product Listing</option>
+				</field>
+                                <field name="itemid_compare" type="menuitem" label="Item menu for Compare" description="Menu item for Compare"/>
+				<field name="itemid_wishlist" type="menuitem" label="Item menu for Wishlist" description="Menu item for Wishlist"/>	
+				<field name="limit" type="list" default="3" label="Limit add to Compare" description="Limit add to Compare">
+					<option value="2">2</option>
+					<option value="3">3</option>
+                                        <option value="4">4</option>
+					<option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="6">7</option>
+                                        <option value="6">8</option>
+                                        <option value="6">9</option>
+                                        <option value="6">10</option>
+				</field>
+                                <field name="showcol" multiple="true" type="list" default="all" label="Show Field to compare" description="Show Field to compare">
+					<option value="all">All Field</option>
+                                        <option value="name">Product Name</option>
+					<option value="image">Image</option>
+                                        <option value="rating">Rating</option>
+					<option value="price">Price</option>
+                                        <option value="desc">Descripttion</option>
+                                        <option value="manu">Manufacturer</option>
+                                        <option value="stock">Availability</option>
+                                        <option value="sku">Product sku</option>
+                                        <option value="weight">Weight</option>
+				</field>
+                                <field name="jstyle"  type="list" default="table-condensed" label="Style Table" description="Style Table">
+					<option value="table-condensed">Condensed</option>
+                                        <option value="table-hover">Hover</option>
+					<option value="table-bordered">Bordered</option>
+                                        <option value="table-striped">Striped</option>
+					
+				</field>
+                                
+			</fieldset>
+		</fields>
+	</config>
+    <updateservers>
+        <server type="extension" priority="1" name="phpkungfu.club">http://www.phpkungfu.club/update/update.xml</server>
+    </updateservers>
+</extension>

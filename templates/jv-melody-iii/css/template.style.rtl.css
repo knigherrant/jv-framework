@@ -1,0 +1,37 @@
+#less-content-separator {
+  content: "separator";
+}
+#logo {
+  float: right;
+}
+.position-search {
+  right: auto;
+  left: 15px;
+}
+#block-header .timer {
+  left: 100px;
+  right: auto;
+}
+#block-header .font-size {
+  left: 0;
+  right: auto;
+}
+.follow-us li a {
+  padding: 8px 40px 8px 0;
+}
+.follow-us .facebook a {
+  background-position: right  0;
+}
+.follow-us .twitter a {
+  background-position: right -50px;
+}
+.follow-us .rss a {
+  background-position: right -100px;
+}
+.follow-us .people a {
+  background-position: right -150px;
+}
+a.flexMenuToggle {
+  float: right;
+  margin: 0 0 0 10px;
+}

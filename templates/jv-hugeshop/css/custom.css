@@ -1,0 +1,28 @@
+/*
+ # @template	JV Huge
+ # @version		1.0.0
+ # ------------------------------------------------------------------------
+ # @author    	PHPKungfu.Com
+ # @copyright 	Copyright (C) 2015 phpkungfu.club. All Rights Reserved.
+ # @license 	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
+ # @websites 	http://www.phpkungfu.club
+ #
+ #
+ # ------------------------------------------------------------------------
+ # Attention! Backup this file before updating. 
+ # ------------------------------------------------------------------------
+ */
+/* latin-ext */
+/* latin */
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 600;
+  src:   url(https://fonts.gstatic.com/l/font?kit=C6HYlRF50SGJq1XyXj04zxdZxb3fA2wVomvRVt8hFySBfnpr3YzEM7mN_1ZaLKSfzLuvPFpw7sRXHGzdTkvmZyUNW3BaINaGJKm1h1egTGuvb9Nz9-X5H-XHadBbfPWAU351u4zXxG3Zon7kYtJ4HbV24cwx4QasZKQCk_Ze5B612QAmTZLg60ln0-_uMmcJwglw9XRRED2FPfvPMy4pnWYEUa5OJojXuIvikwtdjsvCnkfO-Mr0_cuWfZ3ZByXC&skey=3f719168dac5287a&v=v9) format('woff2');
+}
+ body {
+ 	font-family: 'Josefin Sans', sans-serif;
+ 	font-size: 15px;
+ 	font-weight: 600;
+ 	letter-spacing: 0.08em;
+ }

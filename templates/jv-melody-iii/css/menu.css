@@ -1,0 +1,98 @@
+#less-content-separator {
+  content: "separator";
+}
+#block-mainnav ul.fxmenu li .level1 {
+  line-height: 50px;
+  display: block;
+  padding: 0 20px;
+  font-size: 18px;
+  color: #000;
+}
+#block-mainnav ul.fxmenu li:hover .level1,
+#block-mainnav ul.fxmenu li.active .level1 {
+  color: #fff;
+}
+#block-mainnav ul.fxmenu li > .iconImage {
+  padding-left: 50px;
+  position: relative;
+}
+#block-mainnav ul.fxmenu li > .iconImage img.icon {
+  left: 5px;
+  margin-top: -15px;
+  max-height: 30px;
+  max-width: 40px;
+  position: absolute;
+  top: 50%;
+}
+#block-mainnav ul.fxmenu li > .fx-desc {
+  line-height: 18px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+#block-mainnav ul.fxmenu li > .fx-desc .fx-desc {
+  font-size: 13px;
+  font-weight: normal;
+  display: block;
+}
+
+#block-mainnav ul.fxmenu .fx-subitem {
+  border-radius: 0 0 5px 5px;
+  background: #545454;
+  box-shadow: 3px 3px 3px rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: 3px 3px 3px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 3px 3px 3px rgba(255, 255, 255, 0.3);
+}
+#block-mainnav ul.fxmenu .fx-subitem .fx-subitem {
+  background-color: #454545;
+}
+#block-mainnav ul.fxmenu .fx-subitem ul li {
+  border-top: 1px solid #3e3e3e;
+}
+#block-mainnav ul.fxmenu .fx-subitem ul li:first-child {
+  border-top: none;
+}
+#block-mainnav ul.fxmenu .fx-subitem .levelsub {
+  padding: 10px 0;
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+#block-mainnav ul.fxmenu .fx-subitem li.fxcolumn > .iconsubmenu {
+  display: none !important;
+}
+#block-mainnav ul.fxmenu .fx-subitem li:first-child > .levelsub {
+  border: none;
+  box-shadow: none;
+}
+
+#block-mainnav ul.fxmenu .fx-subitem li:hover > .levelsub,
+#block-mainnav ul.fxmenu .fx-subitem li.active > .levelsub {
+  color: #000;
+}
+
+#block-mainnav ul.fxmenu .fx-subitem .fx-subitem {
+  border-radius: 5px;
+}
+
+#block-mainnav ul.fxmenu .fx-subitem .group-title,
+.fx-subitem h3.title-module {
+  border-bottom: 1px solid #3e3e3e !important;
+  font-size: 150%;
+  line-height: normal;
+  background: none !important;
+  padding: 10px 0 !important;
+}
+
+#block-mainnav ul.fxmenu .fx-subitem .jv-module {
+  background: none;
+  color: #fff;
+}
+#block-mainnav ul.fxmenu .fx-subitem h3.title-module {
+  color: #fff;
+  margin-bottom: 10px;
+}
+#block-mainnav ul.fxmenu .fx-subitem .jv-module .contentmod {
+  padding: 0;
+}

@@ -1,0 +1,152 @@
+.pricetable-1 {
+	margin-top: -30px;
+	.pricetable-variables(@color) {
+		&.pricetable-popular {
+			.pricetable-col-inner {
+				border-color: @color;
+				.pricetable-col-purchase {
+					.btn {
+						background-color: @color;
+						color: #fff;
+						&:hover {
+							background-color: darken(@color, 5%);
+						}
+					}
+				}
+			}
+		}
+		.pricetable-col-title{
+			background-color: @color;
+			&:before {
+				border-color: transparent @color transparent transparent;
+			}
+			&:after {
+				border-color: transparent transparent transparent @color;
+			}
+		}
+	}
+	.pricetable {
+		&-popular {
+			.pricetable-variables(@brand-primary); 
+		}
+		&-col {
+			padding-top: 30px;
+			&-inner {
+				background-color: #fff;
+				text-align: center;
+				border: 1px solid #f1f1f1;
+			}
+			&-head {
+				border-bottom: 1px solid #f1f1f1;
+				position: relative;
+				padding-top: 35px;
+			}
+			&-title {
+				font-size: 12px;
+				text-transform: uppercase;
+				line-height: 1;
+				display: inline-block;
+				margin: 0;
+				margin-top: 10px;
+				padding: 9px 25px;
+				color: #fff;
+				bottom: -15px;
+				position: relative;
+				background-color: #dadada;
+				.transition(all 0.2s ease-in-out); 
+				&:before,
+				&:after {
+					content: "";
+					position: absolute;
+					top: 0;
+					border-style: solid;
+				}
+				&:before {
+					border-width: 15px 10px 15px 0;
+					border-color: transparent #dadada transparent transparent;
+					left: -10px;
+				}
+				&:after {
+					border-width: 15px 0 15px 10px;
+					border-color: transparent transparent transparent #dadada;
+					right: -10px;
+				}
+			}
+			&-sub-title {
+				line-height: 1;
+				margin: 25px 0;
+			}
+			&-feature {
+				padding-top: 25px;
+				padding-bottom: 25px;
+				&-detail {
+					padding: 9px 0;
+				}
+			}
+			&-price {
+				color: #313131;
+				line-height: 1;
+				.price {
+					font-size: 90px;
+					font-weight: 700;
+				}
+				.currency {
+					position: relative;
+					top: -18px;
+					font-size: 40px;
+					font-weight: 300;
+				}
+				.duration {
+					font-size: 16px;
+				}
+				+ p {
+					margin-top: 20px;
+					margin-bottom: 0;
+				}
+			}
+			&-purchase {
+				padding: 0 20px 20px;
+				background-color: #fff;
+				.btn {
+					font-weight: normal;
+					color: @text-color;
+					text-transform: initial;
+					background-color: #f9f9f9;
+					display: block;
+					&:hover {
+						background-color: darken(#f9f9f9, 5%);
+					}
+				}
+			}
+			&.primary {
+				.pricetable-variables(@brand-primary);
+			}
+			&.info {
+				.pricetable-variables(@brand-info);
+			}
+			&.danger {
+				.pricetable-variables(@brand-danger);
+			}
+			&.warning {
+				.pricetable-variables(@brand-warning);
+			}
+			&.success {
+				.pricetable-variables(@brand-success);
+			}
+			&.gray {
+				.pricetable-variables(@gray);
+			}
+			&.black {
+				.pricetable-variables(@gray-darker);
+			}
+			&.col-xs-12 {
+				@media (max-width: 767px) {
+					max-width: 400px;
+				    margin-left: auto;
+				    margin-right: auto;
+				    float: none;
+				}			    
+			}
+		}
+	}
+}

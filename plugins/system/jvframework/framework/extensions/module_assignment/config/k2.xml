@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params">
+		<fieldset label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT" name='module_assignment'>
+            <fields name="module_assignment">
+                <fields name="k2">
+                    <field type="title" label="K2 Content" class="title assignment_content_type"/>
+                    <fields name="pagetype">
+                        <field type="title" label="Menu Item Type" class="subtitle assignment_type"/>
+                        <field name="enable" type="list" default="0" class="assignment_enable" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ENABLE">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </field>
+                        <field name="include" type="radio" default="1" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_INCLUDE_EXCLUDE">
+                            <option value="1">Include</option>
+                            <option value="0">Exclude</option>
+                        </field>
+                        <fields name="query">
+                            <field name="view" type="list" multiple="true" size="8" class="width50" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ITEM_TYPE">
+                                <option value='item'>Item</option>
+                                <option value='itemlist::{"layout":"category"}'>Categories</option>
+                                <option value='itemlist::{"layout":"tag"}'>Tag</option>
+                                <option value='itemlist::{"task":"user"}'>User Info (blog) </option>
+                                <option value='latest::{"layout":"latest"}'>Latest</option>
+                            </field>
+                            <field type="hidden" name="option" default="com_k2"/>
+                        </fields>
+                    </fields>
+                    <fields name="itemlist">
+                        <field type="title" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_CATEGORIES" class="subtitle assignment_type"/>
+                        <field name="enable" type="list" default="0" class="assignment_enable" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ENABLE">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </field>
+                        <field name="include" type="radio" default="1" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_INCLUDE_EXCLUDE">
+                            <option value="1">Include</option>
+                            <option value="0">Exclude</option>
+                        </field>
+
+                        <fields name="query">
+                            <field name="id" type="categoriesmultiple"  size="10" default="" label="Categories" description="Categories"/>
+                            <field type="hidden" name="view" default="itemlist"/>
+                            <field type="hidden" name="layout" default="category"/>
+                            <field type="hidden" name="option" default="com_k2"/>
+                        </fields>
+                    </fields>
+                    <fields name="item">
+                        <field type="title" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ITEM" class="subtitle assignment_type"/>
+                        <field name="enable" type="list" default="0" class="assignment_enable" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ENABLE">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </field>
+                        <field name="include" type="radio" default="1" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_INCLUDE_EXCLUDE">
+                            <option value="1">Include</option>
+                            <option value="0">Exclude</option>
+                        </field>
+                        <field name="ids" type="item" default="" label="K2_ADD_ITEMS" description="K2_USE_THIS_TO_ADD_ITEMS_TO_THE_LIST_BELOW"/>
+                        <fields name="query">
+                            <field name="id" type="items" default="" label="K2_DRAG_AND_DROP_TO_REORDER_ITEMS" description="K2_DRAG_AND_DROP_TO_REORDER_ITEMS_CLICK_THE_REMOVE_ICON_TO_REMOVE_AN_ITEM_FROM_THE_LIST"/>
+                            <field type="hidden" name="view" default="item"/>
+                            <field type="hidden" name="option" default="com_k2"/>
+                        </fields>
+                    </fields>
+                </fields>
+            </fields>
+		</fieldset>					
+	</fields>
+</form>

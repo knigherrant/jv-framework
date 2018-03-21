@@ -1,0 +1,51 @@
+/* --- Generic Styling --- */
+a:active,a:focus { outline:0; }
+table.contentpaneopen { width:100%; }
+div.sigProClear { clear:both; float:none!important; height:0!important; line-height:0!important; border:none!important; background:none!important; width:auto; margin:0!important; padding:0!important; }
+
+/* Container */
+div.sigProClassic {  list-style:none; clear:both; overflow:hidden; position: relative;}
+
+/* Thumbnail */
+div.sigProClassic div.sigProThumb {  padding:0; list-style:none!important; position: relative; }
+
+/* width:33%; to force columns */
+div.sigProClassic div.sigProThumb a img.sigProImg,
+div.sigProClassic div.sigProThumb a:hover img.sigProImg { display:block; width:100%; padding:0; margin:0; border:none; background-repeat:no-repeat; background-position:50% 50%; background-size: cover;}
+
+div.sigProClassic div.sigProThumb .sigProCaption { font-family: 'Oswald', serif; font-weight: 300; position: absolute; bottom: 15px; left: 15px; font-size: 18px; display: inline-block; line-height: 22px; padding: 10px 15px; background-color: rgba(0,0,0,0.6); color: #fff;}
+
+/* Popup */
+span.sigProPopupCaption {  color:#C63C13; font-size:13px; }
+a.sigProDownloadLink,a.sigProDownloadLink:hover { background:url(../images/disk.png) no-repeat left center; padding:4px 0 4px 20px; }
+div.sigProModulePosition { text-align:center; border-top:1px solid #ccc; border-bottom:1px solid #ccc; padding:4px; margin:8px 0; background:#ffffdd; }
+
+/* IE specific styling: Use "body.sigProIsIEX element {}" - where X is 6, 7 or 8 - to target elements for these browser versions only */
+body.sigProIsIE6 { }
+body.sigProIsIE6 div.sigProClassic span.sigProPseudoCaption,
+body.sigProIsIE6 div.sigProClassic span.sigProCaption { width:100%; padding:2px 0; cursor:pointer; }
+
+body.sigProIsIE7 { }
+body.sigProIsIE7 div.sigProClassic div.sigProThumb a.sigProLink,
+body.sigProIsIE7 div.sigProClassic div.sigProThumb a.sigProLink:hover { float:left; }
+
+body.sigProIsIE6 div.sigProClassic span.sigProPseudoCaption,
+body.sigProIsIE7 div.sigProClassic span.sigProPseudoCaption,
+body.sigProIsIE8 div.sigProClassic span.sigProPseudoCaption { filter:alpha(opacity=70); }
+
+/* Flickr Set link */
+a.sigProFlickrSetLink {display:block;clear:left;padding:2px 8px;}
+
+/* Print message */
+.sigProPrintMessage {display:none;}
+
+#fancybox-buttons ul { background-image: none !important; box-shadow: none !important; border: none; background-color: rgba(0,0,0,0.5)}
+#fancybox-buttons a.btnNext,
+#fancybox-buttons a.btnClose { border: none;}
+#fancybox-buttons a.btnToggle { border: ;}
+.fancyboxCounter { color: #999; font-weight: 100;}
+
+
+#itemGallery .sigProThumb{ float: left; margin:  0 10px 10px 0;}
+#itemGallery .sigProThumb a{ width: 200px; height: 200px;  display: block;}
+#itemGallery .sigProThumb img{ background-size: cover; background-position: center;}

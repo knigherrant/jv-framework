@@ -1,0 +1,209 @@
+//
+// Breadcrumbs
+// --------------------------------------------------
+
+
+.breadcrumb {
+  padding: @breadcrumb-padding-vertical @breadcrumb-padding-horizontal;
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  border-radius: @border-radius-base;
+
+  > li {
+    display: inline-block;
+
+    + li:before {
+      content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
+      color: @breadcrumb-color; 
+    }
+  }
+
+  > .active {
+    color: @breadcrumb-active-color;
+  }
+}
+
+
+.extended-breadcrumb {
+  padding: 65px 0;
+  position: relative;
+  .text-center();
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+  &.parallax {
+    background-attachment: fixed;
+  }
+  .pageHeading {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 35px;
+    &-Description {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+  }
+  .breadcrumb {
+    margin: 10px 0 0;
+    padding: 0;
+    > li {
+      > a,
+      > span {
+        color: @headings-color;
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+      }
+      > a:hover {
+        .opacity(0.8);
+      }
+      + li:before {
+        color: @headings-color;
+        font-family: "FontAwesome";
+        content: "\f105";
+        padding: 0 20px;
+      }
+    }
+    > .active {
+      color: @headings-color;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+  }
+  .breadcrumb-overlay {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  @media (max-width:992px) {
+    .pageHeading {
+      font-size: 28px;
+      &-Description {
+        font-size: 14px;
+      }
+    }
+    .breadcrumb {
+      > li {
+        > a,
+        > span {
+          font-size: 14px;
+        }
+      }
+      > .active {
+        font-size: 14px;
+      }
+    }
+  }
+  @media (max-width:767px) {
+    .pageHeading {
+      font-size: 24px;
+      &-Description {
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+    .breadcrumb {
+      > li {
+        > a,
+        > span {
+          font-size: 12px;
+          font-weight: 400;
+        }
+        + li:before {
+          padding: 0 10px;
+          font-size: 12px;
+        }
+      }
+      > .active {
+        font-size: 12px;
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    .pageHeading {
+      font-size: 22px;
+      &-Description {
+        font-size: 10px;
+      }
+    }
+    .breadcrumb {
+      > li {
+        > a,
+        > span {
+          font-size: 10px;
+        }
+        + li:before {
+          font-size: 8px;
+        }
+      }
+      > .active {
+        font-size: 10px;
+      }
+    }
+  } 
+  &-2 {
+    padding: 215px 0;
+    background-color: #eee;
+    .pageHeading {
+      font-size: 35px;
+      color: #fff;
+      letter-spacing: 0.2em;
+      &:after {
+        display: none;
+      }
+      &-Description {
+        font-size: 16px;
+        color: #fff;
+      }
+    }
+    .breadcrumb {
+      > li {
+        > a,
+        > span,
+        + li:before {
+          color: #fff;
+          .opacity(1);
+        }
+        > a:hover {
+          color: @brand-primary;
+        }
+      }
+      > .active {
+        color: #fff;
+        font-weight: 600;
+        &:before {
+          font-weight: normal;
+        }
+      }
+    }
+    @media (max-width:992px) {
+      padding: 150px 0 100px;
+      .pageHeading {
+        font-size: 28px;
+      }
+    }
+    @media (max-width:767px) {
+      padding: 150px 0 80px;
+      .pageHeading {
+        font-size: 24px;
+      }
+    }
+    @media (max-width: 480px) {
+      .pageHeading {
+        font-size: 22px;
+        
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.adminformlist .spacer label {
+    border-bottom: 1px solid #CCCCCC;
+    font-size: 17px !important;
+    font-weight: bold;
+}
+.adminformlist .spacer .help label{
+	font-size: 12px !important;
+    font-weight: normal;
+ 	border-bottom: none;
+}
+
+.flexmenu .ui-tabs .ui-tabs-nav li {clear: none !important;}
+.flexmenu li label {width: auto !important;}

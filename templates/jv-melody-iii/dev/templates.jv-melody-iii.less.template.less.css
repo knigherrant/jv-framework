@@ -1,0 +1,21 @@
+#less-content-separator {
+  content: "separator";
+}
+a,
+.iconsubmenu,
+.btn,
+button,
+input[type="submit"],
+input[type="button"] {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+}
+a:hover {
+  color: #F18E36;
+}
+#fx-item466 .fx-subitem_ {
+  display: block !important;
+  opacity: 1 !important;
+}

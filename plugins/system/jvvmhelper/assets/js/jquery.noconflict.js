@@ -1,0 +1,1 @@
+$JVLIKE = jQuery.noConflict();

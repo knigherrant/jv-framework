@@ -1,0 +1,185 @@
+//
+// actionbox
+// --------------------------------------------------
+
+.actionbox {
+  padding:  (@actionbox-padding)  @actionbox-padding*2;
+  margin-bottom: @actionbox-padding;
+  background-color: @actionbox-bg;
+  overflow: hidden;
+  .clearfix();
+  @media (max-width: 991px) {
+    text-align: center;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+  h1, .h1,
+  h2, .h2,
+  h3, .h3,
+  h4, .h4,
+  h5, .h5,
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+    @media (max-width: 1199px) {
+      line-height: 1.4 !important;
+    }
+  }
+  > hr {
+    border-top-color: darken(@actionbox-bg, 10%);
+  }
+  &-content {
+    float: left;
+    @media (max-width: 1199px) {
+      max-width: 500px;
+    }
+    @media (max-width: 991px) {
+      float: none;
+      max-width: none; 
+      + div {
+        margin-top: 30px;
+      }
+    }
+  }
+  &-button,
+  &-button-second {
+    float: right;
+    margin-left: 10px;
+    .btn {
+      min-width: 140px;
+    }
+    @media (max-width: 991px) {
+      float: none;
+      margin-right: 5px;
+      margin-left: 5px;
+      display: inline-block; 
+      + .actionbox-button-second {
+        margin-top: 10px;
+      }
+    }
+  }
+  &-icon-box{
+    float: left;
+    margin-right: 20px;
+    @media (max-width: 991px) {
+      float: none;
+      margin-right: 0;
+      + div {
+        margin-top: 30px;
+      }
+    }
+    img {
+     max-width: 74px; 
+    }
+    .fa {
+      width: 2.45em;
+      height: 2.45em;
+      line-height: 2.45em;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 10px;
+      background-color: @brand-primary;
+      color: #fff;
+      margin-top: -0.3em;
+      margin-bottom: -0.3em;
+    }
+  }
+  &-default {
+    position: relative;
+    &:before {
+      content: "";
+      top: -1px;
+      left: -1px;
+      bottom: -1px;
+      width: 4px;
+      background-color: @brand-primary;
+      display: block;
+      position: absolute;
+    }
+  }
+  &-style-1 {
+    border: none;
+    background-color: #f9f9f9;
+  }
+  &-style-3 {
+    border: none;
+    background-color: #333;
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4,
+    h5, .h5,
+    p {
+       color: #969595;
+    }
+   
+  }
+  &-style-4 {
+    border: none;
+    background-color: @brand-primary;
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4,
+    h5, .h5,
+    p {
+       color: #fff;
+    }
+  }
+  &-style-5 {
+    border: none;
+    background-color: fade(#000, 50%);
+    max-width: 870px;
+    margin: 0 auto;
+    @media (min-width: 1200px) {
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4,
+    h5, .h5{
+       color: #fff;
+       letter-spacing: 12px;
+       margin-right: -10px;
+       margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 1.08em;
+      margin-bottom: 40px;
+    }
+    .actionbox-content {
+      float: none;
+    }
+    .actionbox-button {
+      float: none;
+      margin: 0;
+      position: relative;
+      padding-top: 10px;
+      &:before {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 2px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -20px;
+        background-color: fade(#fff, 15%);
+      }
+      .btn {
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+    }
+    
+  }
+  &-unstyled {
+    padding:  (@actionbox-padding + 10) 0;
+    border: none;
+    background-color: transparent !important;
+  }
+}

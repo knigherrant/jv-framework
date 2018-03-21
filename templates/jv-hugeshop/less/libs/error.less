@@ -1,0 +1,82 @@
+.error404 {
+	overflow-x: hidden;
+}
+.error-404text {
+	font-size: 200px;
+	line-height: 1;
+	color: @brand-primary;
+	font-weight: 300;
+	margin-bottom: 0;
+}
+.error-logo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 120px;
+	text-align: center;
+	right: 0;
+	background-color: #fff;
+	border: 1px solid #f0f0f0;
+}
+.error404 .error404-inner {
+  background-color: #fff;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  overflow-x: hidden;
+}
+.error-default {
+	padding: 250px 0 220px;
+	max-width: 765px;
+	margin: 0 auto;
+}
+.error-title {
+	font-size: 35px;
+	color: @headings-color;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+.error-subtitle{
+	font-size: 22px;
+	font-weight: 400;
+	margin-bottom: 50px;
+	color: @headings-color;
+}
+@media (max-width: 1199px) {
+	.error-default {
+		padding: 200px 0 120px;
+	}
+}
+@media (max-width: 991px) {
+	.error-default {
+		padding: 180px 0 100px;
+	}
+	.error-404text {
+		font-size: 160px;
+	}
+}
+
+@media (max-width: 767px) {
+	.error-404text {
+		font-size: 140px;
+	}
+	.error-title {
+		font-size: 30px;
+	}
+	.error-subtitle {
+		font-size: 18px;
+	}
+}
+@media (max-width: 480px) {
+	.error-404text {
+		font-size: 120px;
+	}
+	.error-title {
+		font-size: 26px;
+	}
+	.error-subtitle {
+		font-size: 16px;
+	}
+}

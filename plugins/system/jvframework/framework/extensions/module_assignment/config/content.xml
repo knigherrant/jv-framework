@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="params">
+		<fieldset label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT" name='module_assignment'>
+            <fields name="module_assignment">
+                <fields name="content">
+                    
+                    <field type="title" label="Joomla! Content" class="title assignment_content_type"/>
+                       
+                      <fields name="customtitle">
+                        <field type="title" label="Custom title module" class="subtitle"/>
+                        <field name="custom" type="list" default="0" class="" label="Custom title module">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </field>
+                    </fields>
+                    
+                    
+                    <fields name="pagetype">
+                        <field type="title" label="Menu Item Type" class="subtitle assignment_type"/>
+                        <field name="enable" type="list" default="0" class="assignment_enable" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ENABLE">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </field>
+                        <field name="include" type="radio" default="1" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_INCLUDE_EXCLUDE">
+                            <option value="1">Include</option>
+                            <option value="0">Exclude</option>
+                        </field>
+                        <fields name="query">
+                            <field name="view" type="list" multiple="true" size="8" class="width50" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ITEM_TYPE">
+                                <option value="archive">Archived Articles</option>
+                                <option value="article">Single Article</option>
+                                <option value="categories">List All Categories</option>
+                                <option value='category::{"layout":"list"}'>Category blog</option>
+                                <option value='category::{"layout":"blog"}'>Category list</option>
+                                <option value="featured">Featured Articles</option>
+                            </field>
+                            <field type="hidden" name="option" default="com_content"/>
+                        </fields>
+                    </fields>
+                    <fields name="categories">
+                        <field type="title" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_CATEGORIES" class="subtitle assignment_type"/>
+                        <field name="enable" type="list" default="0" class="assignment_enable" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ENABLE">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </field>
+                        <field name="include" type="radio" default="1" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_INCLUDE_EXCLUDE">
+                            <option value="1">Include</option>
+                            <option value="0">Exclude</option>
+                        </field>
+
+                        <fields name="query">
+                            <field name="id" type="category" extension="com_content" multiple="true" class="width50" size="10" label="Categories"/>
+                            <field type="hidden" name="view" default="category"/>
+                            <field type="hidden" name="option" default="com_content"/>
+                        </fields>
+                    </fields>
+                    <fields name="article">
+                        <field type="title" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ARTICLES" class="subtitle assignment_type"/>
+                        <field name="enable" type="list" default="0" class="assignment_enable" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ENABLE">
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </field>
+                        <field name="include" type="radio" default="1" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_INCLUDE_EXCLUDE">
+                            <option value="1">Include</option>
+                            <option value="0">Exclude</option>
+                        </field>
+                        <fields name="query">
+                            <field name="id" type="modal_article" multiple="true" label="JVFRAMEWORK_EXTENSION_MODULE_ASSIGNMENT_ARTICLES"/>
+                            <field type="hidden" name="view" default="article"/>
+                            <field type="hidden" name="option" default="com_content"/>
+                        </fields>
+                    </fields>
+                </fields>
+            </fields>
+		</fieldset>					
+	</fields>
+</form>

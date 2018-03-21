@@ -1,0 +1,33 @@
+.social {
+	&-1 {
+		overflow: hidden;
+		.social {
+			padding-top: 5px;
+			&-icon {
+				display: block;
+			    width: 40px;
+			    height: 40px;
+			    border-radius: 50%;
+			    line-height: 38px;
+			    text-align: center;
+			    margin: 5px;
+			    background-color: #fff;
+			    color: #252525;
+			    font-size: 18px;
+			    border: 1px solid #e5e5e5;
+			    &:hover {
+			    	color: #fff;
+			    	border-color: @brand-primary;
+			    	background-color: @brand-primary;
+			    }
+			}			
+			&icons-inner {
+				margin: -5px -5px 0;
+				.clearfix();
+			}
+			&-cols{
+				display: inline-block;
+			}
+		}
+	}
+}

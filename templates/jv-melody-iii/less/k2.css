@@ -1,0 +1,103 @@
+/* Rating */ 
+.ItemRatingBlock, .catItemRatingBlock { overflow:hidden}
+.itemRatingForm {    display: inline-block;    line-height: 25px;    vertical-align: middle;}
+.itemRatingLog { display: inline-block;    font-size: 11px;    margin: 0;    padding: 0 0 0 4px;}
+div.itemRatingForm .formLogLoading {    background: url(../images/default/loading.gif) no-repeat scroll left center rgba(0, 0, 0, 0);    height: 25px;    padding: 0 0 0 20px;}
+.itemRatingList, .itemRatingList a:hover, .itemRatingList .itemCurrentRating {    background: url(../images/default/transparent_star.gif) repeat-x scroll left -1000px rgba(0, 0, 0, 0);}
+.itemRatingList {    background-position: left top;    float: left;   height: 25px;    list-style: none outside none;    margin: 0;    overflow: hidden;    padding: 0;    position: relative;    width: 125px;}
+.itemRatingList li {    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);    display: inline;    padding: 0;}
+.itemRatingList a, .itemRatingList .itemCurrentRating {    border: medium none;    cursor: pointer;    height: 25px;    left: 0;    line-height: 25px;    outline: medium none;    overflow: hidden;    position: absolute;    text-indent: -1000px;    top: 0;
+-webkit-transition: none;	-moz-transition:none;	-o-transition:none;	transition:none;  }
+
+.itemRatingList a:hover {    background-position: left bottom;}
+.itemRatingList a.one-star {    width: 20%;    z-index: 6;}
+.itemRatingList a.two-stars {    width: 40%;    z-index: 5;}
+.itemRatingList a.three-stars {    width: 60%;    z-index: 4;}
+.itemRatingList a.four-stars {    width: 80%;    z-index: 3;}
+.itemRatingList a.five-stars {    width: 100%;    z-index: 2;}
+.itemRatingList .itemCurrentRating {    background-position: 0 center;    margin: 0;    padding: 0;    z-index: 1;}
+
+.genericItemView { margin-bottom:20px;}
+
+/* itemComments */
+#recaptcha_area { overflow:auto}
+
+.itemComments {   margin-bottom: 30px;}
+.itemCommentsList { margin:0  0 30px; }
+.itemCommentsList  li {list-style-type:none; margin-bottom:20px;}
+.itemCommentsList  li .avatar { float:left; border:1px solid #ddd; border-radius:3px; padding:2px; margin-right:10px;}
+.itemCommentsList  li .text { overflow:hidden;  border:1px solid #ddd; border-radius:3px; padding:10px;}
+.itemCommentsList  li .text  p { margin:0}  
+.itemCommentsList  li .commentAuthorName { margin-bottom:0; font-weight:700}
+.itemCommentsList  li .commentDate { color:#888;     display: block;    font-size: 90%;    margin-bottom: 5px;}
+.itemCommentsList  li .commentLink { float:right}
+
+.itemComments  form label { display:block;}
+.itemComments textarea  { margin-bottom:20px; height:160px !important; width: 100%;}  
+.itemComments .inputbox  { margin-bottom:20px; width:100%; height:40px;}  
+.recaptchatable  { background:#fff;}
+
+#recaptcha_response_field { border-color:#DFDFDF !important; padding:0 5px !important }
+#formLog { color:#f00}
+
+/* ItemLinks */
+.ItemLinks {    color: #9EA1A6;    display: block;    font-size: 95%; margin-bottom:10px;}
+.ItemLinks > * {    border-left: 1px solid #9EA1A6;    line-height: normal;    padding: 0 7px 0 9px;}
+.ItemLinks > *:first-child {    border-left: medium none;    padding-left: 0;}
+.ItemLinks a {    color: #9EA1A6;}
+.ItemLinks a:hover {    color: #F18E36;}
+.ItemRatingBlock { margin-bottom:10px;}
+
+
+/* itemToolbar */
+div.itemToolbar {    background:#F5F5F5;      padding: 5px; color:#fff; overflow:hidden; margin-bottom:20px;     border: 1px solid #DDDDDD;     border-radius: 5px;}
+div.itemToolbar  .ItemLinks { float: right; margin:0 }
+div.itemToolbar  .ItemLinks:first-child { float: left}
+
+
+/* k2 */
+.itemListSubCategories  .subCategoryContainer { margin-bottom:20px; border: 1px solid #DDDDDD; padding:10px;}
+
+.ItemImage { display:block; margin-bottom:10px;}
+.itemDateModified, .ItemReadMore { margin-bottom:10px;}
+.userView .ItemView, .tagView .ItemView , .itemList .row-fluid  { border-bottom:1px solid #ddd;  margin-bottom:20px;}
+.cols-1.row-fluid { border-bottom: none;  margin-bottom:0; }
+.cols-1.row-fluid .itemContainer  { border-bottom:1px solid #ddd;  margin-bottom:20px; padding-bottom:20px;}
+
+.ItemView > * { margin-bottom:10px;}
+.userView .ItemView, .tagView .ItemView { padding-bottom:10px;}
+
+.boxDescription  { background-color:#F5F5F5; padding:10px; border:1px solid #ddd; margin-bottom:20px; border-radius:5px; overflow:hidden; }
+.boxDescription > div { overflow:hidden}
+.boxDescription > div * { margin:0 !important; border:none !important}
+
+#itemListLinks { padding-bottom:20px; border:none}
+#itemListLinks a { display:block; margin-bottom:5px;}
+
+.itemListView .ItemLinks > *, .k2LatestCommentsBlock .ItemLinks > * { display:block; border:none; border-bottom:1px dashed #ddd; padding:8px 0;}
+
+.itemContainer { margin-bottom:20px;}
+.k2FeedIcon { float:right}
+
+
+.itemViewdetail > div { margin-bottom:20px;}
+.itemViewdetail .itemBody > * { display:block; margin-bottom:20px;}
+.itemViewdetail .itemImage { text-align:center; margin-bottom:20px;}
+.itemBody .ItemLinks { border-bottom:1px dashed #ddd; padding:10px 0; margin-bottom:10px;}
+
+.itemNavigation a, .ItemTags a {    background:#F5F5F5;    border-radius: 3px;    padding: 2px 5px; display:inline-block}
+
+#mailtoForm .formelm { overflow:hidden; margin-bottom:20px;}
+#mailtoForm .formelm label { float:left; width:150px; line-height:36px;}
+
+
+#k2Container .admintable td { padding:10px;}
+
+.k2ItemsBlock ul { margin:0}
+.k2ItemsBlock ul li { list-style-type:none}
+.moduleItemTitle ,.moduleItemIntrotext ,.moduleItemImage { display:block; margin-bottom:10px;}
+
+
+.k2AccountPage #description_ifr  { height:100px !important;}
+
+

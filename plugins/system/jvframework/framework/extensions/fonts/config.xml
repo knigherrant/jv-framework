@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="extension" version="2.5" client="site" method="upgrade">
+	<name>JV Framework - JS Fonts</name>
+	<creationDate>April 2016</creationDate>
+	<author>JoomlaVi! Project</author>
+	<authorEmail>info@phpkungfu.club</authorEmail>
+	<authorUrl>http://www.phpkungfu.club</authorUrl>
+	<copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+	<version>1.0.3</version>
+	<description>Google Fonts extension for JV Framework</description> 
+	<files>
+		<filename extension="fonts">index.html</filename>
+		<filename>config.xml</filename>
+		<filename>fonts.php</filename>
+		<folder>assets</folder>
+	</files>
+        <config>
+        <fields name="params">
+            <fieldset name="fonts" label="Google Fonts">
+                <field type="group" label="Google Fonts"/>
+                <field name="fonts" type="jvcustom"><![CDATA[ 
+                {
+                    label: 'Google fonts',
+                    field: 'multi',
+                    filter: true,
+                    'class': 'none google-font',
+                    buttons:[{
+                        icon: 'icon-refresh',
+                        label: 'Refresh fonts',
+                        callback: function(){
+                            $.each(this.fields(),function(){
+                                //$(this).data().fields('font').children('.select2-offscreen').trigger('select2-selecting');
+                            });
+                        }
+                    }],
+                    item: {
+						field: 'group',
+						label: 'Apply selector',
+						toggle: true,
+						titlefield: 'text',
+						item: {
+							text:{
+								label : 'Title',
+								field: 'input',
+								type : 'text',
+								title: 'Title of font'
+							},
+							font:{
+								label: 'Font family',
+								field: 'select2',
+								minimumInputLength: 1,
+								validates: {
+									required: true
+								},
+								events: {
+									'select2-selecting': function(e){
+										var 
+											self = window,
+											input = $(this)
+										;
+										self._gFonts = self._gFonts || {};
+										setTimeout(function(){
+											var font = input.data().data()['@data'];
+											var 
+												panel = input.parents('.ct-panel:first'),
+												weight = panel.data().fields('weight'),
+												weightData = weight.find('input:last').data('select2').opts.data,
+                                                                                                subsets = panel.data().fields('subsets'),
+												subsetsData = subsets.find('input:last').data('select2').opts.data
+											;
+											panel.prev().css('font-family',font);
+											weightData.splice(0,weightData.length);
+                                                                                        subsetsData.splice(0,subsetsData.length);
+											var values = [];
+                                                                                        var jvalues = [];
+											$.each(e.object.data.files || e.data.variants ,function(i){
+												weightData.push({
+													id: i,
+													text: i
+												});
+												values.push(i);
+											});
+                                                                                        
+                                                                                        $.each(e.object.data.subsets || e.data.subsets ,function(i){
+                                                                                                var j = e.object.data.subsets[i];
+												subsetsData.push({
+													id: j,
+													text: j
+												});
+												jvalues.push(j);
+											});
+                                                                                        subsets.data().data({'@data': jvalues,'@state': {data:subsetsData}});
+											weight.data().data({'@data': values,'@state': {data:weightData}});
+											
+											if(!self._gFonts[font]){
+												self._gFonts[font] = true;
+												$('head').append( $('<link/>',{rel:'stylesheet', type: 'text/css',href: 'http://fonts.googleapis.com/css?family=' + font + ':' + values.join(',')}));
+											}
+										},0);
+									}
+								},
+								formatResult: function(state){
+									if (!state.id) return state.text;
+									
+									var 
+										line = $('<div>').css('font-family',state.id),
+										label = $('<span>').addClass('icon').append(state.text)
+									;
+									return line.append(label);
+								},
+								query: function(ops){
+									var 
+										self = arguments.callee,
+										This = this,
+										gFont = window.gFontSearch =  window.gFontSearch || {}
+									;
+									if(gFont._gfontInit) return;
+									if(!gFont._gfontData){
+										gFont._gfontInit = true;
+										$.get('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCWonrDW2amTWX30frvUf2Aq6Vl9w-E49I&amp;callback=?').done(function( data ) {
+												gFont._gfontData = data;
+												delete gFont._gfontInit;
+												self.call(This,ops);
+										  });
+										return;
+									}
+									var data = [],i=0;
+									$.each(gFont._gfontData.items,function(){
+										if(ops.matcher(ops.term,this.family)){
+											data.push({
+												id: this.family,
+												text: this.family,
+												data: this
+											});
+											i++;
+											if(i>20) return false;
+										}
+									});
+									ops.callback({results: data});
+								}
+							},
+							weight: {
+								title: 'Font weight',
+								label: 'Font weight',
+								field: 'select2',
+								multiple: true,
+								item: {},
+								formatResult: function(state){
+									var 
+										line = $('<div>').css('font-weight',state.id),
+										label = $('<span>').addClass('icon').append(state.text)
+									;
+									return line.append(label);
+								},
+								query: function(ops){
+									var data = [];
+                                                                        console.log(this);
+									$.each(this.data,function(i){
+										if(!ops.term || ops.matcher(ops.term,this.text)) data.push(this);
+									});
+									ops.callback({results: data});
+								}
+							},
+                                                        subsets: {
+								title: 'Subsets',
+								label: 'Subsets',
+								field: 'select2',
+								multiple: true,
+								item: {},
+								formatResult: function(state){
+									var 
+										line = $('<div>').css('font-subsets',state.id),
+										label = $('<span>').addClass('icon').append(state.text)
+									;
+									return line.append(label);
+								},
+								query: function(ops){
+									var data = [];
+									$.each(this.data,function(i){
+										if(!ops.term || ops.matcher(ops.term,this.text)) data.push(this);
+									});
+									ops.callback({results: data});
+								}
+							},
+							assign: {
+								label: 'Assign to selector',
+								field: 'select2',
+								selectOnBlur: true,
+								validates: {
+									required: true
+								},
+								tags:[],
+								tokenSeparators: [',']
+							}
+						   
+						}
+					}
+                }
+             ]]></field>
+            <field type="end"/>
+            <field type="jvcustom" include="css"><![CDATA[
+                
+				.google-font { min-width:450px;}
+				.google-font > .ct-multi-head{display:none}
+            ]]></field>
+            </fieldset>
+        </fields>
+        </config>
+        
+    <updateservers>
+	   <server type="collection">http://update.phpkungfu.club/list.xml</server>
+	</updateservers>
+</extension>

@@ -1,0 +1,55 @@
+//add default by NTD
+.jvPopup {
+    text-align: center;
+    h3 {
+        margin-top: 0;
+    }
+    & >span {
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    &_ {
+        &message {
+            color: #000;
+            background-color: transparent;
+            padding: 15px;
+        }
+    }
+}
+
+.jvcompare,
+.jvWishlist {
+    display: inline-block;
+    margin: 5px 0;
+    color: #fff;
+    * {
+        color: inherit;
+    }
+    .jadded {
+        background: #105794;
+        pointer-events: none;
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        opacity: .65;
+    }
+}
+
+//fix addtocart default
+.vm3pr-0 .addtocart-area {
+    height: auto;
+    margin: 0;
+}
+
+div.addtocart-bar {
+    position: relative;
+    margin: 0;
+    height: auto;
+    bottom: initial;
+    top: initial;
+    left: initial;
+    right: initial;
+}
+
+.browse-view .row .product .spacer span {
+    color: inherit;
+}

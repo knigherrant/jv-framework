@@ -1,0 +1,42 @@
+.flickrfeed {
+	margin: -2px -3px 0 -2px; 
+	max-width: 320px;
+	&.flickr-2 {
+		margin: 1px;
+		max-width: 390px;
+		> div {
+			padding: 1px;
+			width: 20%;
+			&:first-child {
+				width: 100%;
+				padding-bottom: 2px;
+				max-width: 100%;
+				.sidebar & {
+					@media (min-width: 1200px) {
+						max-height: 150px;
+						overflow: hidden;
+					}
+				}
+			}
+		}
+
+	}
+
+}
+.flickrfeed > div {
+	padding: 2px 3px 3px 2px;
+}
+.blk-buttomb .flickrfeed > div {
+	max-width: 68px;
+	@media (max-width: 991px) and (min-width: 768px) {
+		max-width: 50px;
+	}
+}
+.sidebar-3 .flickrfeed-more {
+	a {
+		color: @text-color;
+		&:hover {
+			color: #fff;
+		}
+	}
+}

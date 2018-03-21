@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="editors-xtd" method="upgrade">
+	<name>Button - JV Shortcode</name>
+	<author>PHPKungfu.com</author>
+	<creationDate>June 2015</creationDate>
+	<copyright>Copyright (C) 2015 BowThemes. All rights reserved.</copyright>
+	<authorEmail>support@phpkungfu.club</authorEmail>
+	<authorUrl>http://www.phpkungfu.club/</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>1.0.0</version>
+	<description>Shortcode button plugin</description>
+	<files>
+		<filename plugin="jv_shortcode">jv_shortcode.php</filename>
+		<filename>index.html</filename>
+		<folder>language</folder>
+	</files>
+	 <scriptfile>script.php</scriptfile> 
+	<config>
+	</config>	
+</extension>

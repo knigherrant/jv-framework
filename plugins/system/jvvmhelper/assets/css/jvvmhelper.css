@@ -1,0 +1,49 @@
+.jvPopup {
+  text-align: center;
+}
+.jvPopup h3 {
+  margin-top: 0;
+}
+.jvPopup > span {
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.jvPopup_message {
+  color: #000;
+  background-color: transparent;
+  padding: 15px;
+}
+.jvcompare,
+.jvWishlist {
+  display: inline-block;
+  margin: 5px 0;
+  color: #fff;
+}
+.jvcompare *,
+.jvWishlist * {
+  color: inherit;
+}
+.jvcompare .jadded,
+.jvWishlist .jadded {
+  background: #105794;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  opacity: .65;
+}
+.vm3pr-0 .addtocart-area {
+  height: auto;
+  margin: 0;
+}
+div.addtocart-bar {
+  position: relative;
+  margin: 0;
+  height: auto;
+  bottom: initial;
+  top: initial;
+  left: initial;
+  right: initial;
+}
+.browse-view .row .product .spacer span {
+  color: inherit;
+}
