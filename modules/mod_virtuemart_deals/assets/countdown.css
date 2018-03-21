@@ -1,4 +1,0 @@
-.vmDeals .countdown{border:1px solid #ddd; height:57px;margin-bottom:0;text-align:center;width:100%; margin-top: 20px; color: inherit;}
-.vmDeals .countdown .countdown_row { display: table; width: 100%; height: 57px;}
-.vmDeals .countdown .countdown_row > span.countdown_section{display:table-cell;vertical-align:middle;width:25%; line-height: 24px;}
-.vmDeals .countdown span.countdown_amount{ font-weight: 600;}
