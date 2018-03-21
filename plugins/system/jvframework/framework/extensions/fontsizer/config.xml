@@ -2,10 +2,10 @@
 <extension type="extension" version="2.5" client="site" method="upgrade">
 	<name>JV Framework - Fontsizer</name>
 	<creationDate>14/7/2012</creationDate>
-	<author>JoomlaVi! Project</author>
+	<author>PHPKungfu! Project</author>
 	<authorEmail>info@phpkungfu.club</authorEmail>
 	<authorUrl>http://www.phpkungfu.club</authorUrl>
-	<copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+	<copyright>Copyright (C) PHPKungfu. All rights reserved</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
 	<version>1.0</version>
 	<description>Fontsizer extension for JV Framework</description> 

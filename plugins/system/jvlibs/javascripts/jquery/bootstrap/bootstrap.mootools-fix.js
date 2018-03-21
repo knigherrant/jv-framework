@@ -14,7 +14,7 @@
 
             Element.implement({
                 hide: function () {
-                    // console.log(this);
+                    //console.log(this);
                     //if(isBs($(this).data())) return this;
                     return mHide.apply(this, v);
                 },

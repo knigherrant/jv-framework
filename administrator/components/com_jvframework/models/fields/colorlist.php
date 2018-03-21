@@ -83,8 +83,7 @@ class JFormFieldColorlist extends JFormField
 
 		JFactory::getDocument ()->addStyleDeclaration ( "
 			.tab-content .fields label.radiobtn { width: 50px; height: 50px; height: auto; float: left; clear: none}
-			.tab-content .fields span.color-list {padding:10px; margin-bottom:5px; cursor: pointer;  background-color: #FFFFFF !important; border: 2px solid #CCCCCC; width: 80px; height: 124px; float: left; text-indent: -999em; font-size: 0; color: #fff; margin-right:5px; background-size: cover !important;}
-			.tab-content .fields span:hover,
+			.tab-content .fields span.color-list {padding:10px; margin-bottom:5px; cursor: pointer;  background-color: #FFFFFF !important; border: 2px solid #CCCCCC; width: 180px; height: 260px; float: left; text-indent: -999em; font-size: 0; color: #fff; margin-right: 10px; }
 			.tab-content .fields span.active {  border-color: #62C022; }
 		" );
 		

@@ -3,7 +3,7 @@
 # plugin system jvjquerylib - JV JQuery Libraries
 # @versions: 1.5.x,1.6.x,1.7.x,2.5.x
 # ------------------------------------------------------------------------
-# author    Open Source Code Solutions Co
+# author    PHPKungfu Solutions Co
 # copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
 # @license - http://www.gnu.org/licenseses/gpl-3.0.html GNU/GPL or later.
 # Websites: http://www.phpkungfu.club
@@ -117,6 +117,33 @@ abstract class JHtmlJquery
         JVJSLib::add('jquery.ui.interactions');
         return;
     }
+    public static function token($name = 'csrf.token')
+	{
+		// Only load once
+		if (!empty(static::$loaded[__METHOD__][$name]))
+		{
+			return;
+		}
+
+		static::framework();
+		JHtml::_('form.csrf', $name);
+
+		$doc = JFactory::getDocument();
+
+		$doc->addScriptDeclaration(
+<<<JS
+;(function ($) {
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-Token': Joomla.getOptions('$name')
+		}
+	});
+})(jQuery);
+JS
+		);
+
+		static::$loaded[__METHOD__][$name] = true;
+	}
 }
 
 if(JFactory::getApplication()->isSite()){

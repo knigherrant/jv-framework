@@ -82,7 +82,7 @@ class JFormFieldBackground extends JFormField
 
 		JFactory::getDocument ()->addStyleDeclaration ( "
 			.tab-content .fields label.radiobtn { width: 50px; height: 50px; height: auto; float: left; clear: none}
-			.tab-content .fields span.bg-list {padding:10px; border: 2px solid #CCCCCC; width: 55px; height: 55px; float: left; text-indent: -999em; font-size: 0; color: #fff; margin-right: 10px; }
+			.tab-content .fields span.bg-list {padding:10px; border: 2px solid #CCCCCC; width: 70px; height: 70px; float: left; text-indent: -999em; font-size: 0; color: #fff; margin-right: 10px; }
 			.tab-content .fields span.bgactive {  border-color:#62C022; }
 		" );
 		
