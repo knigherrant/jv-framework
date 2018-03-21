@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="package" version="3.0" method="upgrade">
+   <name>JVVMHelper</name>
+   <author>PHPKungfu</author>
+	<authorEmail>info@phpkungfu.club</authorEmail>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<creationDate>July 2015</creationDate>
+	<packagename>jvvmhelper</packagename>
+	<version>1.0.0</version>
+	<url>http://phpkungfu.club</url>
+	<packager>PHPKungfu</packager>
+	<packagerurl>http://phpkungfu.club</packagerurl>
+   <description />
+   <files folder="packages">
+      <file type="component" id="jvvmhelper">com_jvvmhelper.zip</file>
+      <file type="plugin" id="jvvmhelper">plg_jvvmhelper.zip</file>
+   </files>
+</extension>

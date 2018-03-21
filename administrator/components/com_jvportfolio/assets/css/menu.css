@@ -1,0 +1,4 @@
+#attrib-pfolayout .preview .pfo { overflow: hidden; }
+#attrib-pfolayout .preview .pfo .item { float: left; height: 50px; }         
+div#pfo-msizer.modal { left: 0; right: 0; margin: auto; width: 500px; }
+#attrib-pfolayout #pfo-msizer .modal-body { overflow: visible; padding: 9px 15px; }

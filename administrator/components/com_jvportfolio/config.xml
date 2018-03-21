@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <config>
+        <fieldset label="COM_JVPORTFOLIO" name="jvportfolio">
+            <field name="mfolder" type="folderlist" label="COM_JVPORTFOLIO_MFOLDER" directory="images" />
+            <field name="btnsocial" type="textarea" label="COM_JVPORTFOLIO_BTNSOCIAL_CODE" description="COM_JVPORTFOLIO_BTNSOCIAL_CODE_DESC" cols="40" rows="8" filter="raw" />
+        </fieldset>
+        <fieldset label="COM_JVPORTFOLIO_DETAIL" name="jvportfoliodetail">
+            <field name="pfo_t" type="componentlayout" extension="com_jvportfolio" view="item" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_TMPL_COG" useglobal="true" />
+            <field
+                name="show_title"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_TITLE"
+                description="COM_JVPORTFOLIO_TITLE_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            <field
+                name="show_desc"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_DESC"
+                description="COM_JVPORTFOLIO_DESC_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            <field
+                name="show_date"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_DATE"
+                description="COM_JVPORTFOLIO_DATE_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            <field
+                name="show_cat"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_CAT"
+                description="COM_JVPORTFOLIO_CAT_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            <field
+                name="show_client"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_CLIENT"
+                description="COM_JVPORTFOLIO_CLIENT_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            <field
+                name="show_tag"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_TAG"
+                description="COM_JVPORTFOLIO_TAG_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            <field
+                name="show_link"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_LINK"
+                description="COM_JVPORTFOLIO_LINK_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            <field
+                name="show_vote"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_VOTE"
+                description="COM_JVPORTFOLIO_VOTE_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+            <field
+                name="show_related"
+                type="radio"
+                class="btn-group btn-group-yesno"
+                default="1"
+                label="COM_JVPORTFOLIO_RELATED"
+                description="COM_JVPORTFOLIO_RELATED_DESC">
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
+            </field>
+        </fieldset>
+        <fieldset label="COM_JVPORTFOLIO_EXTRAGROUPS" name="jvpfoextragroups" addfieldpath="administrator/components/com_jvportfolio/fields">
+            <field name="jvpfo_assets" type="pfoassets" />
+        </fieldset>
+        <fieldset name="permissions" description="JCONFIG_PERMISSIONS_DESC" label="JCONFIG_PERMISSIONS_LABEL">
+            <field name="rules" type="rules" component="com_jvportfolio" class="inputbox" filter="rules" validate="rules" label="JCONFIG_PERMISSIONS_LABEL" section="component" />
+        </fieldset>
+    </config>

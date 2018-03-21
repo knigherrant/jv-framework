@@ -1,0 +1,110 @@
+@import 'Z:\jv-trucking\templates\jv-trucking\library\winless_lib.less';
+.vm-wishlist {
+    background: #F9F9F9;
+    padding: 20px;
+    &-- {
+        &items {}
+        &item {
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            .box-shadow(0 0 10px fadeout(#000, 90%));
+            .border-radius(3px);
+            &:extend(.position-relative);
+        }
+        &name {
+            &:extend(.reset-margin);
+            padding-bottom: 5px;
+            a {
+                color: #292F38;
+            }
+        }
+        &sku {
+            &:extend(.text-italic);
+            font-size: 83%;
+            color: #C8C7C7;
+        }
+        &thumbnail {
+            &.vm-wishlist--warrior {
+                height: 100%;
+                &:extend(.position-absolute);
+                top: 0;
+                left: 0;
+                background-size: 60% !important;
+                img {
+                    .opacity(0);
+                }
+            }
+        }
+        &addtocart {
+            .addtocart-bar {
+                &:extend(.position-relative, .text-right);
+                top: initial;
+                bottom: initial;
+                left: initial;
+                right: initial;
+            }
+            .addtocart-area {
+                &:extend(.reset-margin);
+            }
+        }
+        &rating {
+            border-bottom: 1px solid #FBF5F5;
+        }
+        &empty {
+            padding: 10px;
+            &:extend(.text-center);
+        }
+        &other {
+            &:extend(.reset-margin);
+            padding: 10px 0;
+            font-size: 85%;
+            li {
+                border-bottom: 1px dashed #cacaca;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+            .product-price {
+                &:extend(.reset-float, .reset-margin, .text-left);
+            }
+            &-outstock {
+                & > div {
+                    &:extend(.display-inline-block);
+                }
+            }
+        }
+    }
+}
+
+.jv-remove {
+    .removeWishlist {
+        &::before {
+            -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            border-radius: 100%;
+            background: #cacaca;
+            color: #fff;
+            content: "x";
+            font-size: 12px;
+            height: 20px;
+            line-height: 10px;
+            padding: 5px;
+            right: -5px;
+            top: -5px;
+            width: 20px;
+            z-index: 999;
+            position: absolute;
+            text-align: center;
+            font-weight: bold;
+        }
+        &:hover,
+        &:focus {
+            &::before {
+                background: darken(#cacaca, 10%);
+            }
+        }
+    }
+}

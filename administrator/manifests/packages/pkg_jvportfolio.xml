@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <extension type="package" version="1.6">
+ <name>JV Portfolio Package</name>
+ <author>PHPKungfu Team</author>
+ <creationDate>Oct 2016</creationDate>
+ <packagename>jvportfolio</packagename>
+ <version>2.0.3</version>
+ <url>http://www.phpkungfu.club/</url>
+ <packager>PHPKungfu Team</packager>
+ <packagerurl>http://www.phpkungfu.club/</packagerurl>
+ <description>Package to combine multiple extensions 's portfolio</description>
+ <update>http://www.phpkungfu.club/</update>
+ <files folder="packages">
+   <file type="component" id="com_jvportfolio" >com_jvportfolio.zip</file>
+   <file type="module" id="jvportfolio" client="site">mod_jvportfolio.zip</file>
+ </files>
+ </extension>

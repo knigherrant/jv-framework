@@ -1,0 +1,136 @@
+.vm-wishlist--sku {
+    font-style: italic
+}
+
+.vm-wishlist--remove::before {
+    font-weight: bold
+}
+
+.vm-wishlist--addtocart .addtocart-bar {
+    text-align: right
+}
+
+.vm-wishlist--other .product-price {
+    text-align: left
+}
+
+.vm-wishlist--remove::before,
+.vm-wishlist--empty {
+    text-align: center
+}
+
+.vm-wishlist--name,
+.vm-wishlist--addtocart .addtocart-area,
+.vm-wishlist--other,
+.vm-wishlist--other .product-price {
+    margin: 0
+}
+
+.vm-wishlist--other .product-price {
+    float: none
+}
+
+.vm-wishlist--other-outstock>div {
+    display: inline-block
+}
+
+.vm-wishlist--item,
+.vm-wishlist--addtocart .addtocart-bar {
+    position: relative
+}
+
+.vm-wishlist--thumbnail.vm-wishlist--warrior,
+.vm-wishlist--remove::before {
+    position: absolute
+}
+
+.vm-wishlist {
+    background: #f9f9f9;
+    padding: 20px
+}
+
+.vm-wishlist--item {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px
+}
+
+.vm-wishlist--name {
+    padding-bottom: 5px
+}
+
+.vm-wishlist--name a {
+    color: #292f38
+}
+
+.vm-wishlist--sku {
+    font-size: 83%;
+    color: #c8c7c7
+}
+
+.vm-wishlist--thumbnail.vm-wishlist--warrior {
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-size: 60% !important
+}
+
+.vm-wishlist--thumbnail.vm-wishlist--warrior img {
+    opacity: 0;
+    filter: alpha(opacity=0)
+}
+
+.vm-wishlist--addtocart .addtocart-bar {
+    top: initial;
+    bottom: initial;
+    left: initial;
+    right: initial
+}
+
+.vm-wishlist--rating {
+    border-bottom: 1px solid #fbf5f5
+}
+
+.vm-wishlist--remove::before {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    background: #cacaca;
+    color: #fff;
+    content: "x";
+    font-size: 12px;
+    height: 20px;
+    line-height: 10px;
+    padding: 5px;
+    right: -5px;
+    top: -5px;
+    width: 20px;
+    z-index: 999
+}
+
+.vm-wishlist--remove:hover::before,
+.vm-wishlist--remove:focus::before {
+    background: #b1b1b1
+}
+
+.vm-wishlist--empty {
+    padding: 10px
+}
+
+.vm-wishlist--other {
+    padding: 10px 0;
+    font-size: 85%
+}
+
+.vm-wishlist--other li {
+    border-bottom: 1px dashed #cacaca;
+    padding-bottom: 10px;
+    margin-bottom: 10px
+}

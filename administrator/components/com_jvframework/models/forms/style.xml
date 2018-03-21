@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset name="theme" label="Overview">
+    <field type="group" class="65r5trtrt" label="COM_JVFRAMEWORK_DESC"/>
+    <field name="title" type="text" class="inputbox" label="COM_TEMPLATES_FIELD_TITLE_LABEL" description="COM_TEMPLATES_FIELD_TITLE_DESC" required="true" />
+    <field id="id" name="id" type="text" default="0" readonly="true" class="readonly" label="JGLOBAL_FIELD_ID_LABEL" description="JGLOBAL_FIELD_ID_DESC" />
+    <field name="template" type="text" label="COM_TEMPLATES_FIELD_TEMPLATE_LABEL" description="COM_TEMPLATES_FIELD_TEMPLATE_DESC" class="readonly" readonly="true" />
+    <field name="client_id" type="hidden" label="COM_TEMPLATES_FIELD_CLIENT_LABEL" description="COM_TEMPLATES_FIELD_CLIENT_DESC" class="readonly" default="0" readonly="true" />
+    
+    
+    
+    <field name="version" type="text" default="0" readonly="true" class="readonly" label="COM_TEMPLATES_FIELD_VERSION_DESC" description="COM_TEMPLATES_FIELD_VERSION_DESC" />
+    
+    <field name="home" type="hidden" default="1" />
+    
+    <!-- removethis
+        <field name="home" type="contentlanguage" label="COM_TEMPLATES_FIELD_HOME_LABEL" description="COM_TEMPLATES_FIELD_HOME_SITE_DESC" class="inputbox" default="0">
+            <option value="0">JNO</option>
+            <option value="1">JALL</option>
+        </field> 
+        -->
+    <field type="end" />
+  </fieldset>
+  <fields name="params">
+    <!-- GLOBAL -->
+    <fieldset name="global" label="COM_JVFRAMEWORK_STYLE_GLOBAL">
+      <fields name="extension">
+        <field type="group" label="COM_JVFRAMEWORK_STYLE_LOGO"/>
+        <fields name="logo">
+          <field name="type" type="list" default="text" label="JVFRAMEWORK_EXTENSION_LOGO_TYPE" description="JVFRAMEWORK_EXTENSION_LOGO_TYPE_DESCRIPTION">
+            <option value="text">Text</option>
+            <option value="image">Images</option>
+          </field>
+          <field name="image" type="media" default="" label="JVFRAMEWORK_EXTENSION_LOGO_IMAGE" description="JVFRAMEWORK_EXTENSION_LOGO_IMAGE_DESCRIPTION" directory="images" exclude="" stripext="" />
+          <field name="text" type="text" default="JV" label="JVFRAMEWORK_EXTENSION_LOGO_TEXT" description="JVFRAMEWORK_EXTENSION_LOGO_TEXT_DESCRIPTION" />
+          <field name="slogan" type="text" default="" label="JVFRAMEWORK_EXTENSION_LOGO_SLOGAN" description="JVFRAMEWORK_EXTENSION_LOGO_SLOGAN_DESCRIPTION" />
+          <!-- removethis
+                        <field name="position" type="position" default="logo" label="JVFRAMEWORK_EXTENSION_LOGO_POSITION" />
+                        <field name="width" type="text" default="" label="JVFRAMEWORK_EXTENSION_LOGO_WIDTH" />
+	                <field name="height" type="text" default="" label="JVFRAMEWORK_EXTENSION_LOGO_HEIGHT" />
+	                <field name="padding" type="text" default="" label="JVFRAMEWORK_EXTENSION_LOGO_PADDING" />
+                        -->
+        </fields>
+        <field type="end" />
+      </fields>
+      <fields name="global">
+          
+          <field type="group" label="Develop Mode"/>
+        <field name="devmode" type="radio" class="btn-group"	default="0" label="" description="Dev">
+          <option value="1">JYES</option>
+          <option value="0">JNO</option>
+        </field>
+        <field type="end"/>
+          
+          <field type="group" label="JVFRAMEWORK_EXTENSION_LAYOUT"/>  
+					
+                    <!--<field name="type" type="layouttype" default="sb-c-sb" label=""/>-->
+
+                    <field name="type" type="list" default="sb-c-sb" label="">
+                        <option value="sb-c-sb">Default</option>
+                        <option value="sb-sb-c">Left - Right - Main</option>
+                        <option value="c-sb-sb">Main - Left- Right</option>
+                        <option value="mobile">Mobile</option>
+                    </field>
+
+
+                    <field type="end"/>
+          
+          
+
+          
+        <field type="group" label="Direction RTL"/>
+        <field name="direction" type="radio" class="btn-group"	default="0" label="" description="COM_JVFRAMEWORK_STYLE_DIRECTION_DESCRIPTION">
+          <option value="rtl">JYES</option>
+          <option value="auto">Auto</option>
+          <option value="0">JNO</option>
+          
+        </field>
+        <field type="end"/>
+        
+        
+        <field type="group" label="Support Retina"/>
+        <field name="retina" type="radio" class="btn-group"	default="1" label="" description="Support Retina">
+          <option value="1">JYES</option>
+          <option value="0">JNO</option>
+        </field>
+        <field type="end"/>
+        
+        
+        <field type="group" label="K2 CSS"/>
+        <field name="k2css" type="radio" class="btn-group"	default="0" label="" description="Include k2 css for suport k2">
+          <option value="1">JYES</option>
+          <option value="0">JNO</option>
+        </field>
+        <field type="end"/>
+        
+        
+		
+        <field type="group" label="Cache"/>
+			<field name="cache" type="radio" class="btn-group"	label=""
+				description="COM_JVFRAMEWORK_STYLE_EXTENSION_CACHE_DESCRIPTION" default="1">
+			  <option value="1">JYES</option>
+			  <option value="0">JNO</option>
+			</field>
+                        
+                        <field name="clear" type="clearcache" label="" />
+        <field type="end"/>
+		
+		
+		
+      </fields>
+    </fieldset>
+     <fieldset name="fonts" label="Google Fonts">  </fieldset>
+    <!-- STYLE -->
+    <fieldset name="style" label="COM_JVFRAMEWORK_STYLE_STYLE" />
+    <!-- EXTENSION -->
+    
+     <!-- MENU -->
+    <fieldset name="menu" label="COM_JVFRAMEWORK_STYLE_MENU" />
+    <!-- MOBILE -->
+    <!-- LAYOUT -->
+    <fieldset name="layout" label="COM_JVFRAMEWORK_STYLE_LAYOUT" />
+    
+    <fieldset name="extension" label="COM_JVFRAMEWORK_STYLE_FEATURE" />
+    
+    <!-- PERFORMANCE -->
+    <!--<fieldset name="performance" label="COM_JVFRAMEWORK_STYLE_PERFORMANCE" />-->
+   
+    <!--<fieldset name="mobile" label="COM_JVFRAMEWORK_STYLE_MOBILE" />-->
+    <fieldset name="owl" label="COM_JVFRAMEWORK_ADDCUSTOM_JS">
+        <field type="group" label="OWL Carousel Version"/>
+        <field name="owl_version" type="list"	default="v1.3.2" label="" description="">
+          <option value="1.3.3">Version 1.3.3</option>
+          <option value="2.0.0">Version 2.0.0</option>
+        </field>
+      <field type="end"/>
+      <field type="group" label="OWL Carousel"/>
+      <field name="owl_params" type="owl" addfieldpath="components/com_jvframework/models/fields" />
+      <field type="end"/>
+    </fieldset>
+    
+    
+    
+    
+    
+    <fieldset name="related" label="Related Article">  </fieldset>
+    
+    
+    
+    
+    
+  </fields>
+  <!-- ASSIGN -->
+  <fieldset name="assign" label="COM_JVFRAMEWORK_STYLE_ASSIGN">
+    <field type="group" label="COM_JVFRAMEWORK_STYLE_ASSIGN"/>
+    <field name="assigned" type="assign" multiple="true" />
+    <field type="end"/>
+  </fieldset>
+  
+  <fieldset name="scrolling" label="Scrolling Effect">  </fieldset>
+  
+</form>

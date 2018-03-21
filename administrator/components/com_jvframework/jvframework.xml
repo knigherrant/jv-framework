@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+	<name>JVFRAMEWORK</name>
+	<author>JoomlaVi! Project</author>
+	<creationDate>April 2016</creationDate>
+	<copyright>Copyright (C) JoomlaVi. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
+	<authorEmail>info@phpkungfu.club</authorEmail>
+	<authorUrl>www.phpkungfu.club</authorUrl>
+	<version>4.2.6</version>
+	<description>
+	<![CDATA[
+	<style type="text/css">
+	.icon-wrapper {width: auto; height: auto}
+	.adminform {text-align: left}
+  	.edit-template { display: none}
+  	#template-manager #adminForm .edit-template {  display: block}
+  	#adminForm .adminform > a > img {border: 1px solid #CCC; margin-right: 20px}
+  	#adminForm h2 {text-transform: uppercase; color: #7FB11F}
+  	#adminForm ul li {padding: 2px}
+  	#style-form > div, .width-40, .width-60 {width: 100% !important; text-align: left}
+  	fieldset.adminform > label { display: none}
+  	#style-form .mod-desc {margin-left: 0 !important}
+  	
+  	#controlpanel {background: #FFF; overflow: hidden; padding: 30px 0; clear: both}
+	#controlpanel div.icon a{ text-align: center; height: inherit; text-decoration: none; width: 125px; float: left; margin-right: 15px; border: 1px solid #CCC; background: #FFF}
+	
+	#controlpanel img {padding: 0; float: none;}
+	#controlpanel span { display: block; height: 25px; background: #2c2c2c; color: #FFF; line-height: 25px; text-align: center;}
+	
+	#controlpanel .about { line-height:20px; border: medium none; clear: both; }
+	#controlpanel .about h3 {margin: 0 0 10px; color: #7fb11f; font-size: 18px}
+	#controlpanel .about .about-inner { }
+	#controlpanel .about .about-inner > div { padding:15px}
+	#controlpanel .about .cpanel-inner { border-bottom: 1px solid #CCC; padding: 20px 0 !important;}
+	
+	#controlpanel .about p { margin: 10px 0 0; font-size: 12px;}
+	#controlpanel .about ul { padding-left:0; color:#909090}
+	#controlpanel .about ul li { list-style-type:none; padding: 0}
+	
+	.company-info a { display:block; padding-top:10px; text-align:right; float:right}
+  </style>
+  <script type="text/javascript">
+  	function getUrlVars() {var vars = {}; var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) { vars[key] = value; }); return vars; }
+	 
+	 window.addEvent('domready', function(){
+		var btn_edit = $('edit-template');  
+		if(btn_edit)		 
+			btn_edit.set('href',  btn_edit.get('href')  + '&id=' + getUrlVars()["id"] );
+	 }); 
+  </script>
+	 <ul>
+		<li><em>Version: 4.2.6</em></li>
+		<li><em>Release date: April 2016</em></li>
+	    <li><em>Contact us: <a href="mailto:info@phpkungfu.club">info@phpkungfu.club</a></em></li>
+	</ul>
+	  <div id="controlpanel">
+	<div class="width-60 fltlft">
+		<div class="cpanel-icon">
+			<div class="icon-wrapper">
+				<div class="icon">
+					<a href="index.php?option=com_templates&view=styles" class="hasTip" title="Style::The “Style” manager allows you to create, delete and edit styles – instances of the theme with their own setting, which you can apply to the entire site or a single page.">
+						<img alt="" src="components/com_jvframework/assets/images/cpanel/style.png">
+						<span>Style</span>
+					</a>
+				</div>
+			</div>
+			<div class="icon-wrapper">
+				<div class="icon">
+					<a title="Typographies::The “Typography” manager allows you to set up, edit and delete the typographies that will be used on your site." class="hasTip" href="index.php?option=com_jvframework&amp;view=typographies">
+						<img src="components/com_jvframework/assets/images/cpanel/typographies.png" alt="">
+						<span>Typographies</span>
+					</a>
+				</div>
+			</div>
+			<div class="icon-wrapper">
+				<div class="icon">
+					<a title="Extensions::This manager list all the JV Framework extensions that were installed on your site." class="hasTip" href="index.php?option=com_jvframework&amp;view=extensions">
+						<img src="components/com_jvframework/assets/images/cpanel/extension.png" alt="">
+						<span>Extensions</span>
+					</a>
+				</div>
+			</div>
+			<div class="icon-wrapper">
+				<div class="icon">
+				<a title="Install::Use Joomla's Installer to install JV-Framework's Extension." class="hasTip" href="index.php?option=com_installer">
+					<img src="components/com_jvframework/assets/images/cpanel/install.png" alt="">
+					<span>Install</span>
+				</a>				
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="width-60 about">
+    	<div class="about-inner">
+		<div class="cpanel-inner">
+			<h3>//// JV Framework</h3>
+			
+			<p>Flexible, customizable, high performance and developer-friendly.
+JV Framework 4.2.6 is a steep improvemence over our old Framework. While dropping some functions like drag and drop, it had gained several new ones, more up-to-date functions like a Grid layout control, a Responsive Design and a modular nature, allowing developers to improve or create new features with ease.
+<br>Try it out and experience the improvemence.</p>
+		</div>
+        <div class="cpanel-logo"><a href="http://phpkungfu.club" target="_blank"><img alt="Logo" src="components/com_jvframework/assets/images/logo2.png"></a></div>
+        </div>
+	</div>		
+</div>
+	]]>	
+	</description>
+  
+    <files folder="site">
+        <file>index.html</file>
+        <file>controller.php</file>
+        <file>jvframework.php</file>
+        <folder>assets</folder>
+        <folder>controllers</folder>
+        <folder>models</folder>
+        <folder>views</folder>
+    </files>
+    <administration>                
+        <menu img="components/com_jvframework/assets/images/jv.ico">COM_JVFRAMEWORK_MENU</menu>
+        <languages folder="admin/language">
+			<language tag="en-GB">en-GB.com_jvframework.ini</language>
+            <language tag="en-GB">en-GB.com_jvframework.sys.ini</language>
+		</languages>
+        <files folder="admin">            			
+			 <filename>controller.php</filename> 
+			 <filename>install.jvframework.php</filename> 
+			 <filename>jvframework.php</filename>      
+			 <filename>change_log.txt</filename>  
+            <folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
+			<folder>libraries</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+        </files>
+    </administration> 
+    <scriptfile>install.jvframework.php</scriptfile>
+    <updateservers>
+	   <server type="collection">http://update.phpkungfu.club/list.xml</server>
+	</updateservers>
+</extension>

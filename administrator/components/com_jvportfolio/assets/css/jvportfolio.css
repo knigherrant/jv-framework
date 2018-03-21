@@ -1,0 +1,16 @@
+
+/* page edit */
+.f-images .thumbnail {
+    margin: 0 0 2.5641% 2.5641%;
+    background: #fff;
+    transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+}
+.f-images .thumbnail img {height: 46px;}
+.row-fluid .f-images .thumbnail.first[class*="span"],
+.row-fluid .f-images .thumbnail[class*="span"]:first-child {
+    margin: 0 0 2.5641% 2.5641%;
+}

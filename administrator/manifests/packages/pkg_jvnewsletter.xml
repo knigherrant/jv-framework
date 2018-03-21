@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="2.5" method="update">
+	<name>JV Newsletter Package</name>
+	<author>PHPKungfu</author>
+	<authorEmail>info@phpkungfu.club</authorEmail>
+	<creationDate>11/2015</creationDate>
+ 	<packagename>jvnewsletter</packagename>
+	 <version>1.1.2</version>
+	 <url>http://phpkungfu.club</url>
+	 <packager>PHPKungfu</packager>
+	 <packagerurl>http://phpkungfu.club</packagerurl>
+	 <description>Welcome to JV Newsletter. Visit us at: http://www.phpkungfu.club</description>
+	 <files folder="packages">
+		 <file type="module" method="update" id="mod_jvnewsletter" >mod_jvnewsletter.zip</file>
+		 <file type="plugin" method="update" id="jvnewsletter" group="system">jvnewsletter.zip</file>
+	 </files>
+</extension>

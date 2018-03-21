@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="hidden"/>
+		<field name="title" type="text" size="40" label='COM_JVFRAMEWORK_TYPOGRAPHYS_TITLE'/>
+		<field name="tag" type="text" size="40" label='COM_JVFRAMEWORK_TYPOGRAPHYS_TAG'/>      
+		<field name="replacement" type="textarea" cols="80" rows="15" label='COM_JVFRAMEWORK_TYPOGRAPHYS_REPLACEMENT' filter="raw"/>
+		<field name="example" type="textarea" cols="80" rows="5" label='COM_JVFRAMEWORK_TYPOGRAPHYS_EXAMPLE' filter="raw"/>
+		<field name="published" type="list" default="1" label='COM_JVFRAMEWORK_PUBLISHED'>
+              <option value="1">JYES</option>
+              <option value="0">JNO</option>
+		</field>
+	</fieldset>
+</form>

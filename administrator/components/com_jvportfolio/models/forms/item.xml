@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+   <fieldset addfieldpath="administrator/components/com_jvportfolio/fields">
+      <field name="id" type="text" default="0" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_ID" readonly="true" class="readonly" description="JGLOBAL_FIELD_ID_DESC" />
+      <field name="name" type="text" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_NAME" description="COM_JVPORTFOLIO_FORM_DESC_ITEM_NAME" required="true" />
+      <field name="cate" type="tag" mode="" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_CATEGORIES" description="" multiple="true" custom="allow" class="span12"/>
+      <field name="image" type="uimage" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_IMAGE" description="COM_JVPORTFOLIO_FORM_DESC_ITEM_IMAGE" />
+      <field name="desc" type="textarea" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_DESC" description="COM_JVPORTFOLIO_FORM_DESC_ITEM_DESC" required="true" menu_published="0" cols="100" rows="8" filter="raw" class="span12"/>
+      <field name="link" type="text" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_LINK" description="COM_JVPORTFOLIO_FORM_DESC_ITEM_LINK" />
+      <field name="tag" type="tag" mode="" label="Tag" description="" multiple="true" custom="allow" class="span12"/>
+      <field name="created_by" type="createdby" default="" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_CREATED_BY" description="COM_JVPORTFOLIO_FORM_DESC_ITEM_CREATED_BY" />
+      <field name="date_created" type="timecreated" default="" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_DATE_CREATED" description="COM_JVPORTFOLIO_FORM_DESC_ITEM_DATE_CREATED" />
+      <field name="extrafields" type="extrafields" />
+	  <field name="pfo_v" type="textarea" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_VIDEO" class="span12" filter="raw" />
+	  <field name="pfo_t" type="componentlayout" extension="com_jvportfolio" view="item" label="COM_JVPORTFOLIO_FORM_LBL_ITEM_TMPL"/>
+   </fieldset>
+</form>

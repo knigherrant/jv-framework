@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_JVPORTFOLIO_TITLE_LIST_VIEW_ITEMS" option="COM_JVPORTFOLIO_TITLE_LIST_VIEW_ITEMS">
+        <message><![CDATA[COM_JVPORTFOLIO_TITLE_LIST_VIEW_ITEMS_DESC]]></message>
+	</layout>
+    <fields name="params">
+        <fieldset name="portlio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_TITLE" addfieldpath="administrator/components/com_jvportfolio/models/fields">
+                <field name="layout" type="componentlayout" extension="com_jvportfolio" view="items" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_LAYOUT_TITLE"/>
+                <field name="nlayout" type="note" class="alert alert-error" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_NOTE_LAYOUT_TITLE" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_NOTE_LAYOUT_DESC" />"
+                <field name="column" default="3" type="list" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_COLUMN" class="btn-group">
+                    <option value="12">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_ONE_COLUMN</option>
+                    <option value="6">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_TWO_COLUMN</option>
+                    <option value="4">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_THREE_COLUMN</option>
+                    <option value="3">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_FOUR_COLUMN</option>
+                    <option value="2">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SIX_COLUMN</option>
+                </field>
+                <field type="text" name="limit" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_LIMIT" default="20" required="true" class="validate-numneric"/>
+                <field name="filter" default="0" type="radio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_FILTER" class="btn-group">
+                    <option value="0">COM_JVPORTFOLIO_CONFIGURATION_MENU_NO</option>
+                    <option value="1">COM_JVPORTFOLIO_CONFIGURATION_MENU_YES</option>
+                </field>
+                <field name="sort" type="list" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SORT" multiple="true">
+                    <option value="date">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SORT_DATE</option>
+                    <option value="name">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SORT_NAME</option>
+                    <option value="liked">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SORT_LIKED</option>
+                </field>
+                <field type="tag" name="cate" label="COM_JVPORTFOLIO_CATEGORIES" multiple="true"/>    
+                <field type="tag" name="tags" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_TAG" multiple="true"/>
+                <field type="list" name="mfetch" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_FETCH">
+                    <option value="scroll">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_FETCH_SCROLL</option>
+                    <option value="button">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_FETCH_BUTTON</option>
+                    <option value="nav">COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_FETCH_PAGINATION</option>
+                </field>
+                <field type="folderlist" directory ="images\demo\portfolio\resize" name="isize" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_ISIZE"/>                
+                
+                <field name="nitem" type="note" class="alert alert-success" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_NOTE_TITLE" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_NOTE_DESCRIPTION" />"
+                <field name="hasTitle" default="0" type="radio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_HAS_TITLE" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_HAS_TITLE_DESC" class="btn-group">
+                    <option value="0">COM_JVPORTFOLIO_CONFIGURATION_MENU_NO</option>
+                    <option value="1">COM_JVPORTFOLIO_CONFIGURATION_MENU_YES</option>
+                </field>
+                <field name="hasTitleLink" default="1" type="radio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_HAS_TITLE_LINK" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_HAS_TITLE_LINK_DESC" class="btn-group">
+                    <option value="0">COM_JVPORTFOLIO_CONFIGURATION_MENU_NO</option>
+                    <option value="1">COM_JVPORTFOLIO_CONFIGURATION_MENU_YES</option>
+                </field>
+                <field name="hasTag" default="0" type="radio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_HAS_TAG" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_HAS_TAG_DESC" class="btn-group">
+                    <option value="0">COM_JVPORTFOLIO_CONFIGURATION_MENU_NO</option>
+                    <option value="1">COM_JVPORTFOLIO_CONFIGURATION_MENU_YES</option>
+                </field>
+                <field name="hasDate" default="0" type="radio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_HAS_DATE" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_HAS_DATE_DESC" class="btn-group">
+                    <option value="0">COM_JVPORTFOLIO_CONFIGURATION_MENU_NO</option>
+                    <option value="1">COM_JVPORTFOLIO_CONFIGURATION_MENU_YES</option>
+                </field>
+				<field name="showLiked" default="0" type="radio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SHOW_LIKED" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SHOW_LIKED_DESC" class="btn-group">
+                    <option value="0">COM_JVPORTFOLIO_CONFIGURATION_MENU_NO</option>
+                    <option value="1">COM_JVPORTFOLIO_CONFIGURATION_MENU_YES</option>
+                </field>
+                <field name="showQuickview" default="0" type="radio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SHOW_QUICKVIEW" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SHOW_QUICKVIEW_DESC" class="btn-group">
+                    <option value="0">COM_JVPORTFOLIO_CONFIGURATION_MENU_NO</option>
+                    <option value="1">COM_JVPORTFOLIO_CONFIGURATION_MENU_YES</option>
+                </field>
+                <field name="showDetail" default="0" type="radio" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SHOW_DETAIL" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_SHOW_DETAIL_DESC" class="btn-group">
+                    <option value="0">COM_JVPORTFOLIO_CONFIGURATION_MENU_NO</option>
+                    <option value="1">COM_JVPORTFOLIO_CONFIGURATION_MENU_YES</option>
+                </field>
+                
+                <field name="neffect" type="note" class="alert alert-success" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_NOTE_EFFECT" description="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_EFFECT_DESCRIPTION" />
+                <field name="effect" type="effect" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_EFFECT_LABEL" default="" class="chzn-custom-value"/>
+                <field name="exeffect" type="filelist" label="COM_JVPORTFOLIO_CONFIGURATION_MENU_ITEM_EXTEND_EFFECT_LABEL" default="" class="chzn-custom-value span2" directory="\components\com_jvportfolio\assets\css" filter="css$" hide_none="true"/>
+        </fieldset>
+    </fields>
+</metadata>

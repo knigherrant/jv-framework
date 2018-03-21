@@ -1,0 +1,74 @@
+.pane-slider{overflow: visible !important;}
+.clr {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+
+
+#JV_jCarousel .w70{
+	float:left;
+
+}
+#JV_jCarousel #jCarousel-source{
+    background-color: #137AAF;
+    border-bottom: 1px solid #137AAF;
+    font-size: 130%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.jCarousel-item {
+    position: relative;
+    cursor: pointer;
+	margin:10px 0;
+	width:400px;
+	
+  background-color: #f6f6f6;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#f6f6f6));
+  background-image: -moz-linear-gradient(top, #ffffff, #f6f6f6);
+  background-image: -ms-linear-gradient(top, #ffffff, #f6f6f6);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f6f6f6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #f6f6f6);
+  background-image: -o-linear-gradient(top, #ffffff, #f6f6f6);
+  background-image: linear-gradient(top, #ffffff, #f6f6f6);	
+	
+    border: 1px solid #AAAAAA;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 3px #FFFFFF inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+    color: #444444;
+    display: block;
+
+}
+
+.jCarousel-item  .jCarousel-title div { padding:10px;}
+.jCarousel-item .data-input, .jCarousel-item .jCarousel-inputs  { border-top:1px solid #ccc;  padding: 10px;}
+.jCarousel-item .jCarousel-input{margin-top:10px;}
+.jCarousel-item .jCarousel-input span.clear { display:none}
+
+#jvframework-tab .jCarousel-item .jCarousel-input label { float:left; width:150px; text-align:right; margin-right:10px !important; line-height:30px; }
+
+.jCarousel-item .jCarousel-input textarea{    width:99%;    height: 100px;    background-image: -moz-linear-gradient(center top , #FFFFFF 20%, #F6F6F6 50%, #EEEEEE 52%, #F4F4F4 100%);    border: 1px solid #AAAAAA;    border-radius: 5px 5px 5px 5px;    box-shadow: 0 0 3px #FFFFFF inset, 0 1px 1px rgba(0, 0, 0, 0.1);    color: #444444;    display: block;}
+.jCarousel-item .jCarousel-input label{
+    line-height: 24px;
+}
+#jCarousel-art .jCarousel-item .jCarousel-input select, .jCarousel-easing{width:100%}
+.jCarousel-handle{cursor: move; width: 20px; border-right: 1px solid #137AAF; display: none; float:left}
+.jCarousel-title-control{position: absolute; right:5px; top: 5px; padding:0 !important}
+a.jCarousel-button{display:block; width:17px; margin: 5px;}
+.jCarousel-buttontext{margin: 0 4px; font-size: 12px; font-weight: normal;}
+
+ul.chzn-results{
+    overflow: visible !important;
+}
+#jCarousel-art .chzn-container-single-nosearch .chzn-search input { position: static !important; }
+.chzn-drop{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.jCarousel-title-control .jCarousel-button { background:#f00; height:25px; margin:0; position:relative; background:#fff;  border: 1px solid #AAAAAA;    border-radius: 4px 4px 4px 4px; width:25px;  box-shadow: 0 0 3px #FFFFFF inset, 0 1px 1px rgba(0, 0, 0, 0.1);}
+.jCarousel-title-control .jCarousel-button:before { content:"X"; display:block; line-height:25px; text-align:center; color:#000;}
+
