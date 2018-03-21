@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.1" type="plugin" group="system">
 	<name>Jv Newsletter Auto Subscribe</name>
-	<author>Open Source Code Solutions Co</author>
+	<author>PHPKungfu Solutions Co</author>
 	<creationDate>July 2013</creationDate>
 	<copyright>Copyright (C) 2011 phpkungfu.club. All Rights Reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL or later.</license>

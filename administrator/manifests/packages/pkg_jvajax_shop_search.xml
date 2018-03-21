@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension type="package" version="2.5" method="upgrade">
 	<name>JV Ajax Shop Search Package</name>
-	<author>JoomlaVi! Project</author>
+	<author>PHPKungfu! Project</author>
     <creationDate>Nov 2014</creationDate>
-    <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+    <copyright>Copyright (C) PHPKungfu. All rights reserved</copyright>
     <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL or later</license>
 	<packagename>jvajax_shop_search</packagename>
     <authorEmail>info@phpkungfu.club</authorEmail>

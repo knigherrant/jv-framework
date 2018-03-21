@@ -2,7 +2,7 @@
 /**
  * @version     1.0.0
  * @package     mod_jvajax_shop_search
- * @copyright   Copyright (C) 2014 JoomlaVi. All rights reserved.
+ * @copyright   Copyright (C) 2014 PHPKungfu. All rights reserved.
  * @license     http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL or later
  * @author      info@phpkungfu.club <www.phpkungfu.club>
  */

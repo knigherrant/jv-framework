@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="3.0" method="upgrade" group="system">
     <name>popup</name>
-    <author>JoomlaVi! Project</author>
+    <author>PHPKungfu! Project</author>
     <creationDate>Oct 2016</creationDate>
-    <copyright>Copyright (C) 2016 JoomlaVi. All rights reserved</copyright>
+    <copyright>Copyright (C) 2016 PHPKungfu. All rights reserved</copyright>
     <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL or later</license>
     <authorEmail>info@phpkungfu.club</authorEmail>
     <authorUrl>www.phpkungfu.club</authorUrl>

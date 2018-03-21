@@ -3,7 +3,7 @@
  # com_jvframwork - JV Framework
  # @version		3.4.1
  # ------------------------------------------------------------------------
- # author    Open Source Code Solutions Co
+ # author    PHPKungfu Solutions Co
  # copyright Copyright (C) 2011 phpkungfu.club. All Rights Reserved.
  # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.
  # Websites: http://www.phpkungfu.club

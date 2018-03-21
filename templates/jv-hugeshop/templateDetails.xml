@@ -2,9 +2,9 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="3.1" type="template" method="upgrade" client="site">
   <name>JV-HugeShop</name>
-  <author>JoomlaVi! Project</author>
+  <author>PHPKungfu! Project</author>
   <creationDate>Oct 2016</creationDate>
-  <copyright>Copyright (C) JoomlaVi. All rights reserved</copyright>
+  <copyright>Copyright (C) PHPKungfu. All rights reserved</copyright>
   <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL or later.</license>
   <authorEmail>info@phpkungfu.club</authorEmail>
   <authorUrl>www.phpkungfu.club</authorUrl>
