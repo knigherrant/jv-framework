@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5.0" method="upgrade">
+	<name>JK Invitation</name>
+	<author>PHPKungfu! Project</author>
+    <creationDate>May 2014</creationDate>
+    <copyright>Copyright (C) PHPKungfu. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL or later</license>
+    <authorEmail>info@phpkungfu.club</authorEmail>
+    <authorUrl>www.phpkungfu.club</authorUrl>
+    <version>1.0.0</version>
+	<description>JK Invitation</description>
+	<files>
+		<filename module="mod_jkinvitation">mod_jkinvitation.php</filename>
+                <filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+                <folder>assets</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+                                <!--<field name="info" type="textarea" label="Invitation Info" description="Invitation Info" />-->
+                                <field name="name" type="text" label="Name" description="Name" />
+                                <field name="desc" type="text" label="Description" description="Description" />
+                                
+                                <field name="day" type="list"  default="Monday" label="Day Weeding" description="Day Weeding">
+					<option value="Monday">Monday</option>
+					<option value="Tuesday">Tuesday</option>
+					<option value="Wednesday">Wednesday</option>
+					<option value="Thursday">Thursday</option>
+                                        <option value="Friday">Friday</option>
+                                        <option value="Saturday">Saturday</option>
+                                        <option value="Thursday">Thursday</option>
+                                        
+				</field>
+                                
+                                <field name="date" type="calendar" label="Date" description="Date" />
+                                <field name="location" type="text" label="Location" description="Location" />
+                                <field name="rsvp" type="text" label="RSVP" description="RSVP" />
+                                
+				<field name="moduleclass_sfx" type="text" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+                         <fieldset name="man" label="Profile Man">
+				<field name="man_image" type="media"  class="inputbox" label="Image"  description="Image" />
+                                <field name="man_name" type="text"  class="inputbox" label="Name"  description="Name" />
+                                <field name="man_surname" type="text"  class="inputbox" label="Surname"  description="Surname" />
+                                <field name="man_fb" type="text"  class="inputbox" label="Facebbok"  description="Facebbok" />
+                                <field name="man_tw" type="text"  class="inputbox" label="Twitter"  description="Twitter" />
+                                <field name="man_ins" type="text"  class="inputbox" label="Instagram"  description="Instagram" />
+			</fieldset>
+                        <fieldset name="woman" label="Profile Woman">
+				<field name="woman_image" type="media"  class="inputbox" label="Image"  description="Image" />
+                                <field name="woman_name" type="text"  class="inputbox" label="Name"  description="Name" />
+                                <field name="woman_surname" type="text"  class="inputbox" label="Surname"  description="Surname" />
+                                <field name="woman_fb" type="text"  class="inputbox" label="Facebbok"  description="Facebbok" />
+                                <field name="woman_tw" type="text"  class="inputbox" label="Twitter"  description="Twitter" />
+                                <field name="woman_ins" type="text"  class="inputbox" label="Instagram"  description="Instagram" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

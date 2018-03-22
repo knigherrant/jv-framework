@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5.0" method="upgrade">
+	<name>JK CountDown</name>
+	<author>PHPKungfu! Project</author>
+    <creationDate>May 2014</creationDate>
+    <copyright>Copyright (C) PHPKungfu. All rights reserved</copyright>
+    <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL or later</license>
+    <authorEmail>info@phpkungfu.club</authorEmail>
+    <authorUrl>www.phpkungfu.club</authorUrl>
+    <version>1.0.0</version>
+	<description>JK Wedding</description>
+	<files>
+		<filename module="mod_jkcountdown">mod_jkcountdown.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+                                <field name="header" type="text" label="Header Text" description="Header Text" />
+                                <field name="date" type="calendar" label="Date" description="Date" showtime="true" translateformat="true"  class="readonly" />
+                                <field name="gtm" type="text" label="GTM" description="GTM" default="+0700" />
+                                <field name="footer" type="text" label="Footer Text" description="Footer Text" />
+				<field name="moduleclass_sfx" type="text" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
